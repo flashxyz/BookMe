@@ -7,7 +7,7 @@ A RemindYou repository with wiki for a team project at JCE's software engineerin
 ## Please visit our [live application](https://demo.reactstarterkit.com/)
 - Alright, currently only a landing page...
 
-[![Join the chat at https://gitter.im/robi-y/seproject-team-template]([![Gitter](https://badges.gitter.im/flashxyz/RemindYou.svg)](https://gitter.im/flashxyz/RemindYou?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge))
+[![Join the chat at https://gitter.im/robi-y/seproject-team-template](https://badges.gitter.im/robi-y/seproject-team-template.svg)](https://gitter.im/robi-y/seproject-team-template?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## [Issue Board](https://huboard.com/robi-y/seproject-team-template#/)
 
