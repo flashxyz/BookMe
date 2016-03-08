@@ -1,8 +1,8 @@
-# seproject-team-template
+# RemindYou
 
-A template repository with wiki for a team project at JCE's software engineering course
+A RemindYou repository with wiki for a team project at JCE's software engineering course
 
-![project logo (this one is taken from basecamp)](https://github.com/flashxyz/RemindYou/blob/master/Picture1.png?raw=true)
+![project logo](https://github.com/flashxyz/RemindYou/blob/master/Picture1.png?raw=true)
 
 ## Please visit our [live application](https://demo.reactstarterkit.com/)
 - Alright, currently only a landing page...
