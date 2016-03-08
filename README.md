@@ -22,7 +22,7 @@ Please visit our wiki for furthur project info:
 
 ### Project Documents
 - [Project Idea](docs/idea.pdf) ([Presentation](https://github.com/Hudeda/project/blob/master/ToRemindYou.pptx?raw=true))
-- [Project Inception](../../wiki/inception)
+- [Project Inception](https://github.com/Hudeda/project/blob/master/ToRemindYou.docx?raw=true)
 - [Software Requirements Specification](../../wiki/srs)
 - [Software Design Specification](../../wiki/sds)
 
