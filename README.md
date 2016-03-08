@@ -14,6 +14,19 @@ A RemindYou repository with wiki for a team project at JCE's software engineerin
 ## Disclaimer
 This project is developed as part of the requirements for a [software engineering course](https://github.com/jce-il/se-class/wiki) at the software engineering department - [Azrieli College of Engineering](http://www.jce.ac.il/), Jerusalem, Israel.
 
+### Developers
+<a href="https://github.com/flashxyz">
+<img src="https://avatars0.githubusercontent.com/u/13337543?v=3&s=140" alt="flashxyz" width="100" height="100">
+<a href="https://github.com/nirbm">
+<img src="https://avatars1.githubusercontent.com/u/14259229?v=3&s=460" alt="nirbm" width="100" height="100">
+<a href="https://github.com/rotemsd">
+<img src="https://avatars2.githubusercontent.com/u/17545972?v=3&s=460" alt="rotemsd" width="100" height="100">
+<a href="https://github.com/liorsap1">
+<img src="https://avatars3.githubusercontent.com/u/17621187?v=3&s=460" alt="liorsap1" width="100" height="100">
+<a href="https://github.com/Hudeda">
+<img src="https://avatars2.githubusercontent.com/u/17565414?v=3&s=460" alt="Hudeda" width="100" height="100">
+
+
 Please visit our wiki for furthur project info: 
 
 ### [User Manual](../../wiki/user-manual) (empty)
