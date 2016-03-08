@@ -2,7 +2,7 @@
 
 A RemindYou repository with wiki for a team project at JCE's software engineering course
 
-![project logo](https://github.com/flashxyz/RemindYou/blob/master/Picture1.png?raw=true)
+![project logo](https://github.com/flashxyz/RemindYou/blob/master/remindyou_logo.jpg?raw=true)
 
 ## Please visit our [live application](https://demo.reactstarterkit.com/)
 - Alright, currently only a landing page...
