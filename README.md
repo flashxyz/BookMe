@@ -14,17 +14,18 @@ This project is developed as part of the requirements for a [software engineerin
 
 ### Developers
 <a href="https://github.com/flashxyz">
-<img src="https://avatars0.githubusercontent.com/u/13337543?v=3&s=140" alt="flashxyz" width="100" height="100">
+<img src="https://avatars0.githubusercontent.com/u/13337543?v=3&s=140" alt="flashxyz" width="100" height="100"></a>
 <a href="https://github.com/nirbm">
-<img src="https://avatars1.githubusercontent.com/u/14259229?v=3&s=460" alt="nirbm" width="100" height="100">
+<img src="https://avatars1.githubusercontent.com/u/14259229?v=3&s=460" alt="nirbm" width="100" height="100"></a>
 <a href="https://github.com/rotemsd">
-<img src="https://avatars2.githubusercontent.com/u/17545972?v=3&s=460" alt="rotemsd" width="100" height="100">
+<img src="https://avatars2.githubusercontent.com/u/17545972?v=3&s=460" alt="rotemsd" width="100" height="100"></a>
 <a href="https://github.com/liorsap1">
-<img src="https://avatars3.githubusercontent.com/u/17621187?v=3&s=460" alt="liorsap1" width="100" height="100">
+<img src="https://avatars3.githubusercontent.com/u/17621187?v=3&s=460" alt="liorsap1" width="100" height="100"></a>
 <a href="https://github.com/Hudeda">
-<img src="https://avatars2.githubusercontent.com/u/17565414?v=3&s=460" alt="Hudeda" width="100" height="100">
-for further information about our talented team please visit our team's page
-### [Team Page](../../wiki/team)
+<img src="https://avatars2.githubusercontent.com/u/17565414?v=3&s=460" alt="Hudeda" width="100" height="100"></a>
+
+for further information about our talented team please visit our <a href="https://github.com/flashxyz/RemindYou/wiki/team"> team's page </a>
+
 
 
 #USFULL LINKS
