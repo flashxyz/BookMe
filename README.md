@@ -1,6 +1,5 @@
 # RemindYou
-<h1>The web application that will make our </h1><h2 color="green">live's timing much easier</h2> 
-
+<img src"https://github.com/flashxyz/RemindYou/blob/master/slogen.png"/>
 ![project logo](https://github.com/flashxyz/RemindYou/blob/master/remindyou_logo.jpg?raw=true)
 
 ## Please visit our [live application](https://nba.mantrastic.com/)
