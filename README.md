@@ -1,5 +1,5 @@
 # RemindYou
-<img src"https://github.com/flashxyz/RemindYou/blob/master/slogen.png"/>
+<img src="https://github.com/flashxyz/RemindYou/blob/master/slogen.png">
 ![project logo](https://github.com/flashxyz/RemindYou/blob/master/remindyou_logo.jpg?raw=true)
 
 ## Please visit our [live application](https://nba.mantrastic.com/)
