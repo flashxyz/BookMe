@@ -1,6 +1,6 @@
 # RemindYou
 
-<img src="https://github.com/flashxyz/RemindYou/blob/master/remindyou_logo.jpg">
+<img src="https://github.com/flashxyz/RemindYou/blob/master/remindyou_logo.jpg" align="center">
 
 
 A RemindYou repository with wiki for a team project at JCE's software engineering course
