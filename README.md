@@ -3,8 +3,9 @@
 ![project logo](https://github.com/flashxyz/RemindYou/blob/master/remindyou_logo.jpg?raw=true)
 
 ## Please visit our [live application](https://nba.mantrastic.com/)
-- currently only a landing page
+(currently only a landing page...)
 
+####you are more than welcome to join our chat on gitter:
 [![Gitter](https://badges.gitter.im/flashxyz/RemindYou.svg)](https://gitter.im/flashxyz/RemindYou?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 ## [Issue Board](https://huboard.com/robi-y/seproject-team-template#/)
