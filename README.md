@@ -1,5 +1,5 @@
 # RemindYou
-##The web application that will make our live's timing much easier 
+<h1>The web application that will make our </h1><h2 color="green">live's timing much easier</h2> 
 
 ![project logo](https://github.com/flashxyz/RemindYou/blob/master/remindyou_logo.jpg?raw=true)
 
