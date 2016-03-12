@@ -1,14 +1,10 @@
 # RemindYou
-
-<img src="https://github.com/flashxyz/RemindYou/blob/master/remindyou_logo.jpg" align="center">
-
-
-A RemindYou repository with wiki for a team project at JCE's software engineering course
+##The web application that will make our live's timing much easier 
 
 ![project logo](https://github.com/flashxyz/RemindYou/blob/master/remindyou_logo.jpg?raw=true)
 
-## Please visit our [live application](https://demo.reactstarterkit.com/)
-- Alright, currently only a landing page...
+## Please visit our [live application](https://nba.mantrastic.com/)
+- currently only a landing page
 
 [![Gitter](https://badges.gitter.im/flashxyz/RemindYou.svg)](https://gitter.im/flashxyz/RemindYou?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
