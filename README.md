@@ -23,13 +23,15 @@ This project is developed as part of the requirements for a [software engineerin
 <img src="https://avatars3.githubusercontent.com/u/17621187?v=3&s=460" alt="liorsap1" width="100" height="100">
 <a href="https://github.com/Hudeda">
 <img src="https://avatars2.githubusercontent.com/u/17565414?v=3&s=460" alt="Hudeda" width="100" height="100">
+for further information about our talented team please visit our team's page
+### [Team Page](../../wiki/team)
 
 
-Please visit our wiki for furthur project info: 
+#USFULL LINKS
 
 ### [User Manual](../../wiki/user-manual) (empty)
-
 ### [Team Page](../../wiki/team)
+
 
 ### Project Documents
 - [Project Idea](docs/idea.pdf) ([Presentation](https://github.com/Hudeda/project/blob/master/ToRemindYou.pptx?raw=true))
