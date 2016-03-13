@@ -25,7 +25,7 @@ This project is developed as part of the requirements for a [software engineerin
 <a href="https://github.com/Hudeda">
 <img src="https://avatars2.githubusercontent.com/u/17565414?v=3&s=460" alt="Hudeda" width="100" height="100"></a>
 
-for further information about our talented team please visit our <a href="https://github.com/flashxyz/RemindYou/wiki/team"> team's page </a>
+for further information about our talented team please visit our <a href="https://github.com/flashxyz/RemindYou/wiki/team"> team's page. </a>
 
 
 
