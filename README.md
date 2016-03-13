@@ -20,7 +20,7 @@ Please visit our wiki for furthur project info:
 
 ### [User Manual](../../wiki/user-manual) (empty)
 
-### [Team Page](../../wiki/team-page)
+### [Team Page](https://github.com/neviko/Diff-sign-project/wiki/Team-page)
 
 ### Project Documents
 - [Project Idea](docs/idea.pdf) ([Presentation](docs/idea-slides.pdf))
