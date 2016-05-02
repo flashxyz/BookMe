@@ -14,8 +14,9 @@
  *
  * @wordpress-plugin
  * Plugin Name:       WP BookMe plugin
- * Plugin URI:        https://github.com/flashxyz/BookMe/wp_book_me
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Plugin URI:        https://github.com/flashxyz/BookMe
+ * Description:       BookMe is a smart and generic WordPress plugin for managing & booking rooms at any facility. 
+BookMe aim is to provide a platform for anyone who wants to reserve a room for any use.
  * Version:           1.0.0
  * Author:            nirbm, hudeda, rotemsd, flashxyz, liorsap1
  * Author URI:        https://github.com/flashxyz/BookMe/wiki
