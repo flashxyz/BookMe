@@ -75,12 +75,12 @@ var del = arg;
 
 				<table width='635px' style='border: 1px solid #DFDFDF;background-color:#ffffff;'>
 				<tr style='background-color:#ffffff;'>
-				<td style='padding-left:20px;width:50px;' ><p>ID: <?php echo $option_id ?> </p></td>
+				<td style='padding-left:20px;width:100px;' ><p>Group ID: <?php echo $option_id ?> </p></td>
 				<td align='center'><p>Shortcode: <strong>[bk_rooms_group id="<?php echo $option_id ?>"]</strong></p></td>
 				<td align="center"><p><form action="?page=wp_book_me&option_id='<?php echo $option_id ?>'" method="POST" ><input type="hidden" name="option_id" value="<?php echo $option_id ?>">
-				<input type="hidden" name="page" value="wp_book_me"><input name="" value="Edit" type="Submit" style="text-align:center;width:70px;background:linear-gradient(0deg, #bbe0ef 5%, #90d4f0 70%);"></form></p></td>
+				<input type="hidden" name="page" value="wp_book_me"><input name="" value="Edit" type="Submit" class="button-secondary" style = "background-color:#BBEEAA;"></form></p></td>
 				<td align="center"><p><form action="?page=wp_book_me" method="get" ><input type="hidden" name="option_id" value="<?php echo $option_id ?>">
-				<input type="hidden" name="delete" value="true"><input type="button" onClick="return checkMe(<?php echo $option_id ?>)" value="Delete" style="text-align:center;width:70px;background:linear-gradient(0deg, #fef050 5%, #fce129 70%);"></form></p></td>
+				<input type="hidden" name="delete" value="true"><input type="button" onClick="return checkMe(<?php echo $option_id ?>)" value="Delete" class="button-secondary" style = "background-color:#FF8181;"></form></p></td>
 
 
 
@@ -102,7 +102,7 @@ var del = arg;
 	<table style='border: 1px solid #DFDFDF;background-color:#ffffff;' width='635px'>
 	<tr><td style="padding-left:20px;overflow:hidden;" colspan="4"><p><form action="?page=wp_book_me&option_id=<?php echo $nextID ?>&edit_group=true&create_group=true" method="POST" ><input type="hidden" name="option_id" value="<?php echo $nextID ?>">
 
-	<input type="hidden" name="create" value="true"><input type="hidden" name="page" value="wp_book_me"><input name="" value="Create New Rooms Group" type="Submit"></form></p></td></tr>
+	<input type="hidden" name="create" value="true"><input type="hidden" name="page" value="wp_book_me"><input name="" value="Create New Rooms Group" type="Submit" class="button-primary"></form></p></td></tr>
 	</table>
 
 
