@@ -73,7 +73,12 @@ class Wp_book_me_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wp_book_me-admin.css', array(), $this->version, 'all' );
+		/*wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wp_book_me-admin.css', array(), $this->version, 'all' );*/
+		if ( 'settings_page_wp_book_me' == get_current_screen() -> id ) {
+	             // CSS stylesheet for Color Picker
+	             wp_enqueue_style( 'wp-color-picker' );            
+	             wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wp_book_me-admin.css', array( 'wp-color-picker' ), $this->version, 'all' );
+	         }
 
 	}
 
@@ -96,15 +101,18 @@ class Wp_book_me_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp_book_me-admin.js', array( 'jquery' ), $this->version, false );
-
+		/*wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp_book_me-admin.js', array( 'jquery' ), $this->version, false );*/
+	        if ( 'settings_page_wp_book_me' == get_current_screen() -> id ) {
+	            wp_enqueue_media();   
+	            wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp_book_me-admin.js', array( 'jquery', 'wp-color-picker' , 'media-upload' ), $this->version, false );         
+	        }
 	}
 
 	public function add_plugin_admin_menu() {
 
 		
 		//Add a settings page for this plugin to the Settings menu.
-		add_options_page( 'WP BookMe Options Functions Setup', 'WP BookMe', 'manage_options', $this->plugin_name, array($this, 'display_plugin_setup_page'));
+		add_menu_page( 'WP BookMe Options Functions Setup', 'WP BookMe', 'manage_options', $this->plugin_name, array($this, 'display_plugin_setup_page'), plugins_url('wp_book_me/admin/css/bookme_icon.png'));
 	}
 
 	/**
@@ -130,6 +138,27 @@ class Wp_book_me_Admin {
 	*/
  
 	public function display_plugin_setup_page() {
-		include_once( 'partials/wp_book_me-admin-display.php' );
+	
+		if($_GET['option_id'] == false and $_POST['option_id'] == false)
+		{	
+			include_once( 'partials/wp_book_me-admin-display.php' );
+		}
+		if($_GET['option_id'] == true AND $_GET['delete'] == true)
+		{
+
+			require_once('partials/delete-group.php');
+			require_once('partials/wp_book_me-admin-display.php');
+
+		}
+		if($_GET['option_id']==true AND $_GET['create_group']==true AND @$_GET['edit_group'] == true )
+		{
+			require_once('partials/create-group.php');
+		}
 	}
+	public function options_update() {
+	    register_setting($this->plugin_name, $this->plugin_name, array($this, 'validate'));
+	}
+	
+	
+
 }

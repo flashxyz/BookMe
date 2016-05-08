@@ -29,3 +29,18 @@
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
+
+
+drop_tables();
+
+function drop_tables(){
+
+	global $wpdb;
+
+	$primary_tablename = $wpdb->prefix . "bookme_rooms_group_primary";
+
+	$sql = "DROP TABLE $primary_tablename";
+	
+	$wpdb->query($sql);
+
+}
