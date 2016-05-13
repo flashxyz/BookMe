@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Week Calendar Test</title>
+    <link rel='stylesheet prefetch' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
+<link rel='stylesheet prefetch' href='http://arshaw.com/js/fullcalendar-1.6.4/fullcalendar/fullcalendar.css'>
+<link rel='stylesheet prefetch' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/base/minified/jquery-ui.min.css'>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/style.css">
+
+  </head>
+
+  <body>
+    <div class="container-fluid">
+	<div class="row-fluid"> 
+	  <div class="jumbotron vertical-center">
+	  <div class="centering text-center">
+		<div class="BookHeader" >
+			<img src="BookMeLogo.png" style="width: auto; height: auto;max-width: 500px;max-height: 350px" />
+			<hr> 
+		</div>
+		
+			<div id="calendar"></div>
+			<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+			<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
+			<script src='http://arshaw.com/js/fullcalendar-1.6.4/fullcalendar/fullcalendar.min.js'></script>
+			<script src="js/calendar.js"></script>
+			<div id="calendar12">
+			<div id="details">
+			<hr>
+			</div>
+		  </div>
+		</div>
+		</div>
+		</div>
+    </div>
+	<div id="dialog">
+      <label > name  of event </label>
+      <input type="text" id="event_input" /><br>
+      <label > end hour </label><br>
+      <input type="number" id="endhour"/>
+      <button class="jscolor {valueElement: 'color_value'}" id="btnChooseColor"> choose color </button>
+    </div>
+
+  </body>
+</html>
