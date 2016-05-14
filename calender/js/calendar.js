@@ -16,11 +16,11 @@ $(document).ready(function () {
 		isRTL: true , 
 		minTime: "06:00:00",
 		maxTime: "22:00:00",
-		hiddenDays: [6],
+		//hiddenDays: [6],
 		firstHour: 8,
 		allDaySlot: false,
-		slotMinutes: 60,
-		height: 500,
+		slotMinutes: 45,
+		height: 600,
 		axisFormat: "HH:mm",
 		defaultView: "agendaWeek",
 		weekends: true,
@@ -47,12 +47,17 @@ $(document).ready(function () {
 			}
 			calendar.fullCalendar('unselect');
 		},
-		editable: true,
+		editable: false,
 		eventSources: [
 			// your event source
 			{
 				events: [ // put the array in the `events` property
-
+					{
+						title: 'test',
+						start: new Date(y,m,d,8,0),
+						end: new Date(y,m,d,9,0),
+						allDay: false
+					}
 				],
 				color: '#3300FF',
 				textColor: 'white'
@@ -67,12 +72,12 @@ $(document).ready(function () {
 		]
 	});
 
-	var dialogst = $("#dialog").dialog({
-		autoOpen: false,
-		height: 300,
-		width: 350,
-		modal: true
-	});
+	//var dialogst = $("#dialog").dialog({
+	//	autoOpen: false,
+	//	height: 300,
+	//	width: 350,
+	//	modal: true
+	//});
 
 	function endDialig(){
 
