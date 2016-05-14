@@ -17,6 +17,13 @@ $(document).ready(function () {
 		dayClick: function( date, jsEvent, view, resourceObj ) {
 			$("#dialog").dialog("open");
 			dateClick = new Date(date);
+			var houre = dateClick.getHours() - 3;
+			var day = dateClick.getDate();
+			var month = dateClick.getMonth();
+			var min = dateClick.getMinutes();
+			var year = dateClick.getFullYear();
+			dateClick = new Date(year, month, day, houre, min);
+
 			alert("date is " + dateClick);
 
 		},
@@ -89,25 +96,15 @@ $(document).ready(function () {
 	});
 
 	function endDialig(){
-
-		alert("inside");
 		var text = $("#endhour").val();
-		alert("got text");
-
 		var houre = parseInt(text);
-		alert("got hours");
-
 		var day = dateClick.getDate();
-		alert("got date");
-
 		var month = dateClick.getMonth();
-		alert("got month");
-
 		var year = dateClick.getFullYear();
-		alert("got year");
+		var min = dateClick.getMinutes();
 
 		text = $("#event_input").val();
-		var endDate = new Date(year, month, day, houre, 0);
+		var endDate = new Date(year, month, day, houre, min);
 		$("#dialog").dialog("close");
 
 		if(dateClick.getHours() >= endDate.getHours())
