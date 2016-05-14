@@ -13,6 +13,15 @@ if($_GET['group_id']==true AND $_GET['edit_group']==true)
     $selectSQL = $wpdb->get_results( "SELECT * FROM $group_options_table WHERE id = '$groupID'" );
 
 
+    $groupName = $selectSQL[0]->groupName;
+    $numOfRooms = $selectSQL[0]->numOfRooms;
+    $activeDays = $selectSQL[0]->activeDays;
+    $fromTime = $selectSQL[0]->fromTime;
+    $toTime = $selectSQL[0]->totime;
+    $description = $selectSQL[0]->description;
+    $viewMode = $selectSQL[0]->viewMode;
+    $calendarColor = $selectSQL[0]->calendarColor;
+    $windowTimeLength = $selectSQL[0]->windowTimeLength;
     
     ?>
     <div class="wrap">
@@ -29,7 +38,7 @@ if($_GET['group_id']==true AND $_GET['edit_group']==true)
                 </td>
                 <td width='100px' >
                     <label for="<?php echo $this->plugin_name; ?>_groupName">
-                        <input type="text" id="<?php echo $this->plugin_name; ?>_groupName" name="<?php echo $this->plugin_name; ?> [groupName]" value="text"/>
+                        <input type="text" id="<?php echo $this->plugin_name; ?>_groupName" name="<?php echo $this->plugin_name; ?> [groupName]" value="<?php echo $groupName; ?>"/>
                     </label>
                 </td>
             </tr>
@@ -40,7 +49,7 @@ if($_GET['group_id']==true AND $_GET['edit_group']==true)
                 </td>
                 <td width='100px' >
                     <label for="<?php echo $this->plugin_name; ?>_numOfRooms">
-                        <input type="number" id="<?php echo $this->plugin_name; ?>_numOfRooms" name="<?php echo $this->plugin_name; ?> [numOfRooms]" min="0" value="0"/>
+                        <input type="number" id="<?php echo $this->plugin_name; ?>_numOfRooms" name="<?php echo $this->plugin_name; ?> [numOfRooms]" min="0" value="<?php echo $numOfRooms; ?>"/>
                     </label>
                 </td>
             </tr>
@@ -51,7 +60,7 @@ if($_GET['group_id']==true AND $_GET['edit_group']==true)
                 </td>
                 <td width='100px' >
                     <label for="<?php echo $this->plugin_name; ?>_roomsAvailableFrom">
-                        <input type="text" id="<?php echo $this->plugin_name; ?>_roomsAvailableFrom" name="<?php echo $this->plugin_name; ?> [roomsAvailableFrom]" min="0" value="0"/>
+                        <input type="text" id="<?php echo $this->plugin_name; ?>_roomsAvailableFrom" name="<?php echo $this->plugin_name; ?> [roomsAvailableFrom]" min="0" value="<?php echo $fromTime; ?>"/>
                     </label>
                 </td>
 
