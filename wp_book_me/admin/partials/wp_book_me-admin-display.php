@@ -18,7 +18,7 @@
 global $wpdb;
 
 
-$group_options_table = $wpdb->prefix . "bookme_group_optinos";
+$group_options_table = $wpdb->prefix . "bookme_group_options";
 
 
 $selectSQL = $wpdb->get_results( "SELECT * FROM $group_options_table  ORDER BY id ASC" );

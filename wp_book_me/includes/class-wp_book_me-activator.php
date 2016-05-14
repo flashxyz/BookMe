@@ -34,10 +34,10 @@ class Wp_book_me_Activator {
 	
 		global $wpdb;
 		
-		$group_options_table = $wpdb->prefix . "bookme_group_optinos";
-		$rooms_options_table = $wpdb->prefix . "bookme_rooms_optinos";
+		$group_options_table = $wpdb->prefix . "bookme_group_options";
+		$rooms_options_table = $wpdb->prefix . "bookme_rooms_options";
 		$room_reservation_table = $wpdb->prefix . "bookme_room_reservation";
-		$general_options_table = $wpdb->prefix . "bookme_general_optinos";
+		$general_options_table = $wpdb->prefix . "bookme_general_options";
 
 		
 		if($wpdb->get_var("SHOW TABLES LIKE '$group_options_table'") != $group_options_table)

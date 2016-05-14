@@ -72,12 +72,12 @@ class Wp_book_me_Admin {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-
 		/*wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wp_book_me-admin.css', array(), $this->version, 'all' );*/
-		if ( 'settings_page_wp_book_me' == get_current_screen() -> id ) {
+		if ( 'toplevel_page_wp_book_me' == get_current_screen() -> id ) {
 	             // CSS stylesheet for Color Picker
-	             wp_enqueue_style( 'wp-color-picker' );            
-	             wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wp_book_me-admin.css', array( 'wp-color-picker' ), $this->version, 'all' );
+			wp_enqueue_style( 'wp-color-picker' );
+			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wp_book_me-admin.css', array( 'wp-color-picker', 'css/jquery.timepicker.css' ), $this->version, 'all' );
+			wp_enqueue_style( 'jquery.timepicker', plugin_dir_url( __FILE__ ) . 'css/jquery.timepicker.css', array( 'wp-color-picker', ), $this->version, 'all' );
 	         }
 
 	}
@@ -102,9 +102,11 @@ class Wp_book_me_Admin {
 		 */
 
 		/*wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp_book_me-admin.js', array( 'jquery' ), $this->version, false );*/
-	        if ( 'settings_page_wp_book_me' == get_current_screen() -> id ) {
-	            wp_enqueue_media();   
-	            wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp_book_me-admin.js', array( 'jquery', 'wp-color-picker' , 'media-upload' ), $this->version, false );         
+	        if ( 'toplevel_page_wp_book_me' == get_current_screen() -> id ) {
+				
+	            wp_enqueue_media();
+	            wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp_book_me-admin.js', array( 'jquery', 'wp-color-picker' ), $this->version, false);
+				wp_enqueue_script( 'jquery.timepicker.min', plugin_dir_url( __FILE__ ) . 'js/jquery.timepicker.min.js', array( 'jquery'), $this->version, false);
 	        }
 	}
 
