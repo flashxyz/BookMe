@@ -95,7 +95,7 @@ var del = arg;
     <br/>
 
     <?php 
-    	$last = $wpdb->get_row("SHOW TABLE STATUS LIKE '$tablename_options'");
+    	$last = $wpdb->get_row("SHOW TABLE STATUS LIKE '$group_options_table'");
 			$nextID = $last->Auto_increment;
 	?>
 

@@ -1,17 +1,17 @@
 <?php
 
-	$optionID = $_GET["option_id"];
+	$groupID = $_GET["group_id"];
 
-	if($_GET['option_id']==true AND $_GET['delete']==true)
+	if($_GET['group_id']==true AND $_GET['delete']==true)
 	{
 		
 		global $wpdb;
 
-		$tablename = $wpdb->prefix . "bookme_test_options";
+		$group_options_table = $wpdb->prefix . "bookme_group_optinos";
 
-		$selectSQL = $wpdb->get_results( "SELECT * FROM $tablename WHERE id = '$optionID'" );
+		$selectSQL = $wpdb->get_results( "SELECT * FROM $group_options_table WHERE id = '$groupID'" );
 
-		$wpdb->query( $wpdb->prepare( " DELETE FROM $tablename WHERE id = %d", $optionID));
+		$wpdb->query( $wpdb->prepare( " DELETE FROM $group_options_table WHERE id = %d", $groupID));
 
 
 	}
