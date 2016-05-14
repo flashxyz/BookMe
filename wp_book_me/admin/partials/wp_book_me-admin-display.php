@@ -77,7 +77,7 @@ var del = arg;
 				<tr style='background-color:#ffffff;'>
 				<td style='padding-left:20px;width:100px;' ><p>Group ID: <?php echo $group_id ?> </p></td>
 				<td align='center'><p>Shortcode: <strong>[bk_rooms_group id="<?php echo $group_id ?>"]</strong></p></td>
-				<td align="center"><p><form action="?page=wp_book_me&group_id='<?php echo $group_id ?>'" method="POST" ><input type="hidden" name="group_id" value="<?php echo $group_id ?>">
+				<td align="center"><p><form action="?page=wp_book_me&group_id=<?php echo $group_id ?>&edit_group=true" method="POST" ><input type="hidden" name="group_id" value="<?php echo $group_id ?>">
 				<input type="hidden" name="page" value="wp_book_me"><input name="" value="Edit" type="Submit" class="button-secondary" style = "background-color:#BBEEAA;"></form></p></td>
 				<td align="center"><p><form action="?page=wp_book_me" method="get" ><input type="hidden" name="group_id" value="<?php echo $group_id ?>">
 				<input type="hidden" name="delete" value="true"><input type="button" onClick="return checkMe(<?php echo $group_id ?>)" value="Delete" class="button-secondary" style = "background-color:#FF8181;"></form></p></td>

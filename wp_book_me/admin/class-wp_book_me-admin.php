@@ -150,9 +150,14 @@ class Wp_book_me_Admin {
 			require_once('partials/wp_book_me-admin-display.php');
 
 		}
+		if($_GET['group_id']==true  AND @$_GET['edit_group'] == true )
+		{
+			require_once('partials/edit-group.php');
+		}
 		if($_GET['group_id']==true AND $_GET['create_group']==true AND @$_GET['edit_group'] == true )
 		{
 			require_once('partials/create-group.php');
+			require_once('partials/edit-group.php');
 		}
 	}
 	public function options_update() {
