@@ -14,9 +14,10 @@ $(document).ready(function () {
 			right: 'month, agendaWeek, year'
 		},
 
-		dayClick: function(date, calEvent, jsEvent, view) {
+		dayClick: function( date, jsEvent, view, resourceObj ) {
 			$("#dialog").dialog("open");
-			dateClick = date;
+			dateClick = new Date(date);
+			alert("date is " + dateClick);
 
 		},
 		slotDuration: '00:10:00',
@@ -89,13 +90,25 @@ $(document).ready(function () {
 
 	function endDialig(){
 
+		alert("inside");
 		var text = $("#endhour").val();
+		alert("got text");
+
 		var houre = parseInt(text);
+		alert("got hours");
+
 		var day = dateClick.getDate();
+		alert("got date");
+
 		var month = dateClick.getMonth();
+		alert("got month");
+
 		var year = dateClick.getFullYear();
+		alert("got year");
+
 		text = $("#event_input").val();
 		var endDate = new Date(year, month, day, houre, 0);
+		$("#dialog").dialog("close");
 
 		if(dateClick.getHours() >= endDate.getHours())
 		{	alert("uston we have a problem"); return;}
@@ -110,7 +123,6 @@ $(document).ready(function () {
 				true // make the event "stick"
 		);
 
-		$("#dialog").dialog("close");
 	}
 
 });
