@@ -6,43 +6,53 @@ $(document).ready(function () {
 	var dateClick;
 	$('#btnChooseColor').click(endDialig);
 
-	var calendar = $('#calendar').fullCalendar({
+	var calendar;
+	calendar = $('#calendar').fullCalendar({
 		header: {
 			left: 'next,prev today',
 			center: 'title',
 			right: 'month, agendaWeek, year'
 		},
-		lang: 'he', 
-		isRTL: true , 
+
+		dayClick: function( date, jsEvent, view, resourceObj ) {
+			$("#dialog").dialog("open");
+			dateClick = new Date(date);
+			alert("date is " + dateClick);
+
+		},
+		slotDuration: '00:10:00',
+		lang: 'he',
+		isRTL: true,
 		minTime: "06:00:00",
 		maxTime: "22:00:00",
-		//hiddenDays: [6],
+		hiddenDays: [6],
 		firstHour: 8,
 		allDaySlot: false,
-		slotMinutes: 45,
-		height: 600,
+		height: 700,
 		axisFormat: "HH:mm",
 		defaultView: "agendaWeek",
 		weekends: true,
 		selectable: true,
 		selectHelper: true,
 		weekNumbers: true,
-		dayClick: function(date, allDay, jsEvent, view)
+		allDayDefault: true,
+		//eventClick :function(date, allDay, jsEvent, view) event cheange
+
+		eventClick: function(calEvent, jsEvent, view)
 		{
-			$("#dialog").dialog("open");
-			dateClick = date;
+			alert("test!");
 		},
-		select: function(start, end, allDay) {
+		select: function (start, end, allDay) {
 			//var title = prompt('Event Title:');
 			if (title) {
 				calendar.fullCalendar('renderEvent',
-						{
-							title: title,
-							start: start,
-							end: end,
-							allDay: allDay
-						},
-						true // make the event "stick"
+					{
+						title: title,
+						start: start,
+						end: end,
+						allDay: allDay
+					},
+					true // make the event "stick"
 				);
 			}
 			calendar.fullCalendar('unselect');
@@ -54,8 +64,8 @@ $(document).ready(function () {
 				events: [ // put the array in the `events` property
 					{
 						title: 'test',
-						start: new Date(y,m,d,8,0),
-						end: new Date(y,m,d,9,0),
+						start: new Date(y, m, d, 8, 0),
+						end: new Date(y, m, d, 9, 0),
 						allDay: false
 					}
 				],
@@ -63,31 +73,42 @@ $(document).ready(function () {
 				textColor: 'white'
 			},
 			{
-				events: [
-
-				],
+				events: [],
 				color: '#6699FF',
 				textColor: 'black'
 			}
 		]
 	});
 
-	//var dialogst = $("#dialog").dialog({
-	//	autoOpen: false,
-	//	height: 300,
-	//	width: 350,
-	//	modal: true
-	//});
+
+	$("#dialog").dialog ({
+		autoOpen: false,
+		height: 300,
+		width: 300,
+		modal: true
+	});
 
 	function endDialig(){
 
+		alert("inside");
 		var text = $("#endhour").val();
+		alert("got text");
+
 		var houre = parseInt(text);
+		alert("got hours");
+
 		var day = dateClick.getDate();
+		alert("got date");
+
 		var month = dateClick.getMonth();
+		alert("got month");
+
 		var year = dateClick.getFullYear();
+		alert("got year");
+
 		text = $("#event_input").val();
 		var endDate = new Date(year, month, day, houre, 0);
+		$("#dialog").dialog("close");
 
 		if(dateClick.getHours() >= endDate.getHours())
 		{	alert("uston we have a problem"); return;}
@@ -102,7 +123,6 @@ $(document).ready(function () {
 				true // make the event "stick"
 		);
 
-		$("#dialog").dialog("close");
 	}
 
 });

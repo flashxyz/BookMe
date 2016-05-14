@@ -3,12 +3,18 @@
   <head>
     <meta charset="UTF-8">
     <title>Week Calendar Test</title>
-    <link rel='stylesheet prefetch' href='fullcalendar-2.7.1/lib/cupertino/jquery-ui.min.css'>
-	<link rel='stylesheet prefetch' href='fullcalendar-2.7.1/fullcalendar.min.css'>
-	<!--<link rel='stylesheet prefetch' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/themes/base/minified/jquery-ui.min.css'>-->
-	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+      <link rel='stylesheet prefetch' href='fullcalendar-2.2.6/lib/cupertino/jquery-ui.min.css'>
+      <link rel='stylesheet prefetch' href='fullcalendar-2.2.6/fullcalendar.min.css'>
+      <link rel="stylesheet prefetch" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
 	<link rel="stylesheet" href="css/style.css">
 
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+      <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
+      <script src="fullcalendar-2.2.6/lib/moment.min.js"></script>
+      <script src='fullcalendar-2.2.6/fullcalendar.min.js'></script>
+      <script src='fullcalendar-2.2.6/lang-all.js'></script>
+      <script src="js/calendar.js"></script>
   </head>
 
   <body>
@@ -16,32 +22,25 @@
 	<div class="row-fluid"> 
 	  <div class="jumbotron vertical-center">
 	  <div class="centering text-center">
-          <!--chchchchcengesss -->
 		<!--<div class="BookHeader" >-->
 			<!--<img src="BookMeLogo.png" style="width: auto; height: auto;max-width: 500px;max-height: 350px" />-->
 			<!--<hr>-->
 		<!--</div>-->
-		
-			<div id="calendar"></div>
-			<script src='fullcalendar-2.7.1/lib/jquery.min.js'></script>
-			<script src='fullcalendar-2.7.1/lib/jquery-ui.custom.min.js'></script>
-		  	<script src='fullcalendar-2.7.1/lib/moment.min.js'></script>
-			<script src='fullcalendar-2.7.1/fullcalendar.min.js'></script>
-			<script src='fullcalendar-2.7.1/lang-all.js'></script>
-			<script src="js/calendar.js"></script>
-			<div id="details">
+          <div id="calendar"></div>
+
 			<hr>
-			</div>
 		</div>
 		</div>
 		</div>
+
+        <div id="dialog" title="Basic dialog">
+            <label > name  of event </label>
+            <input type="text" id="event_input" />
+            <label > end hour </label>
+            <input type="number" id="endhour"/>
+            <button class="jscolor {valueElement: 'color_value'}" id="btnChooseColor"> choose color </button>
+        </div>
     </div>
-    <div id="dialog">
-        <label > name  of event </label>
-        <input type="text" id="event_input" />
-        <label > end hour </label>
-        <input type="number" id="endhour"/>
-        <button class="jscolor {valueElement: 'color_value'}" id="btnChooseColor"> choose color </button>
-    </div>
+
   </body>
 </html>
