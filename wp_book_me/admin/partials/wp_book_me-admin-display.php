@@ -18,10 +18,10 @@
 global $wpdb;
 
 
-$tablename_options = $wpdb->prefix . "bookme_test_options";
+$group_options_table = $wpdb->prefix . "bookme_group_optinos";
 
 
-$selectSQL = $wpdb->get_results( "SELECT * FROM $tablename_options ORDER BY id ASC" );
+$selectSQL = $wpdb->get_results( "SELECT * FROM $group_options_table  ORDER BY id ASC" );
 
 $siteURL = get_site_url()."/wp-admin/admin.php";
 
@@ -40,8 +40,8 @@ var del = arg;
 		//confirmForm(); 
 		//fDeleteFieldAndData(del);
 		//e.preventDefault();
-		//window.location.href = '?page=contest-gallery/index.php&delete=true&option_id='+del+'';
-		window.location.replace(siteURL+'?page=wp_book_me&delete=true&option_id=' + del +'');
+		//window.location.href = '?page=contest-gallery/index.php&delete=true&group_id='+del+'';
+		window.location.replace(siteURL+'?page=wp_book_me&delete=true&group_id=' + del +'');
 	    return true;
     } else {
         //alert("Clicked Cancel");
@@ -62,9 +62,9 @@ var del = arg;
     	<?php foreach($selectSQL as $value)
     		{
 
-				$option_id = $value -> id;
+				$group_id = $value -> id;
 			
-				if ($option_id % 2 != 0) 
+				if ($group_id % 2 != 0) 
 				{
 					$backgroundColor = "#DFDFDF";
 				} 
@@ -75,12 +75,12 @@ var del = arg;
 
 				<table width='635px' style='border: 1px solid #DFDFDF;background-color:#ffffff;'>
 				<tr style='background-color:#ffffff;'>
-				<td style='padding-left:20px;width:100px;' ><p>Group ID: <?php echo $option_id ?> </p></td>
-				<td align='center'><p>Shortcode: <strong>[bk_rooms_group id="<?php echo $option_id ?>"]</strong></p></td>
-				<td align="center"><p><form action="?page=wp_book_me&option_id='<?php echo $option_id ?>'" method="POST" ><input type="hidden" name="option_id" value="<?php echo $option_id ?>">
+				<td style='padding-left:20px;width:100px;' ><p>Group ID: <?php echo $group_id ?> </p></td>
+				<td align='center'><p>Shortcode: <strong>[bk_rooms_group id="<?php echo $group_id ?>"]</strong></p></td>
+				<td align="center"><p><form action="?page=wp_book_me&group_id='<?php echo $group_id ?>'" method="POST" ><input type="hidden" name="group_id" value="<?php echo $group_id ?>">
 				<input type="hidden" name="page" value="wp_book_me"><input name="" value="Edit" type="Submit" class="button-secondary" style = "background-color:#BBEEAA;"></form></p></td>
-				<td align="center"><p><form action="?page=wp_book_me" method="get" ><input type="hidden" name="option_id" value="<?php echo $option_id ?>">
-				<input type="hidden" name="delete" value="true"><input type="button" onClick="return checkMe(<?php echo $option_id ?>)" value="Delete" class="button-secondary" style = "background-color:#FF8181;"></form></p></td>
+				<td align="center"><p><form action="?page=wp_book_me" method="get" ><input type="hidden" name="group_id" value="<?php echo $group_id ?>">
+				<input type="hidden" name="delete" value="true"><input type="button" onClick="return checkMe(<?php echo $group_id ?>)" value="Delete" class="button-secondary" style = "background-color:#FF8181;"></form></p></td>
 
 
 
@@ -88,7 +88,7 @@ var del = arg;
 				</table>
 
 		<?php 
-		@$option_id++;
+		@$group_id++;
 		} 
 		?>
 
@@ -100,7 +100,7 @@ var del = arg;
 	?>
 
 	<table style='border: 1px solid #DFDFDF;background-color:#ffffff;' width='635px'>
-	<tr><td style="padding-left:20px;overflow:hidden;" colspan="4"><p><form action="?page=wp_book_me&option_id=<?php echo $nextID ?>&edit_group=true&create_group=true" method="POST" ><input type="hidden" name="option_id" value="<?php echo $nextID ?>">
+	<tr><td style="padding-left:20px;overflow:hidden;" colspan="4"><p><form action="?page=wp_book_me&group_id=<?php echo $nextID ?>&edit_group=true&create_group=true" method="POST" ><input type="hidden" name="group_id" value="<?php echo $nextID ?>">
 
 	<input type="hidden" name="create" value="true"><input type="hidden" name="page" value="wp_book_me"><input name="" value="Create New Rooms Group" type="Submit" class="button-primary"></form></p></td></tr>
 	</table>

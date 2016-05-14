@@ -139,18 +139,18 @@ class Wp_book_me_Admin {
  
 	public function display_plugin_setup_page() {
 	
-		if($_GET['option_id'] == false and $_POST['option_id'] == false)
+		if($_GET['group_id'] == false and $_POST['group_id'] == false)
 		{	
 			include_once( 'partials/wp_book_me-admin-display.php' );
 		}
-		if($_GET['option_id'] == true AND $_GET['delete'] == true)
+		if($_GET['group_id'] == true AND $_GET['delete'] == true)
 		{
 
 			require_once('partials/delete-group.php');
 			require_once('partials/wp_book_me-admin-display.php');
 
 		}
-		if($_GET['option_id']==true AND $_GET['create_group']==true AND @$_GET['edit_group'] == true )
+		if($_GET['group_id']==true AND $_GET['create_group']==true AND @$_GET['edit_group'] == true )
 		{
 			require_once('partials/create-group.php');
 		}
