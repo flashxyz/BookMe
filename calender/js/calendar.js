@@ -47,7 +47,7 @@ $(document).ready(function () {
 
 		eventClick: function(calEvent, jsEvent, view)
 		{
-			alert("test!");
+			//alert("test!");
 		},
 		select: function (start, end, allDay) {
 			//var title = prompt('Event Title:');
