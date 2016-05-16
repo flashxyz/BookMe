@@ -24,7 +24,7 @@ $(document).ready(function () {
 			var year = dateClick.getFullYear();
 			dateClick = new Date(year, month, day, houre, min);
 
-			alert("date is " + dateClick);
+			//alert("date is " + dateClick);
 
 		},
 		slotDuration: '00:10:00',
@@ -47,22 +47,18 @@ $(document).ready(function () {
 
 		eventClick: function(calEvent, jsEvent, view)
 		{
-			//alert("test!");
-		},
-		select: function (start, end, allDay) {
-			//var title = prompt('Event Title:');
-			if (title) {
-				calendar.fullCalendar('renderEvent',
-					{
-						title: title,
-						start: start,
-						end: end,
-						allDay: allDay
-					},
-					true // make the event "stick"
-				);
+
+			var flag = false;
+
+			var id = calEvent.id;
+			console.log("the event title: "+calEvent.title);
+			if(flag)
+			{
+				calEvent.data = "another";
 			}
-			calendar.fullCalendar('unselect');
+
+
+
 		},
 		editable: false,
 		eventSources: [
