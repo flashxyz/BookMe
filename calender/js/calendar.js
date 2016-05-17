@@ -8,7 +8,7 @@ $(document).ready(function () {
 	var m = date.getMonth();
 	var y = date.getFullYear();
 	var dateClick;
-	$('#btnChooseColor').click(endDialig);
+	$('#btnChooseColor').click(openDialig);
 
 	var calendar;
 	calendar = $('#calendar').fullCalendar({
@@ -111,24 +111,22 @@ $(document).ready(function () {
 		modal: true
 	});
 
-	function endDialig(){
+	function openDialig(){
 		var text = $("#endhour").val();
 		var houre = parseInt(text);
 		var day = dateClick.getDate();
 		var month = dateClick.getMonth();
 		var year = dateClick.getFullYear();
 		var min = dateClick.getMinutes();
-		console.log(activeEvents);
+
 		text = $("#event_input").val();
 		flag = true;
-		for(var i = 0; i < activeEvents.length; i++) {
-			if (text != activeEvents[i]) {
-				$("#calendar").fullCalendar('removeEvent', {
-					title: activeEvents[i]
-				});
-				activeEvents[i] = "null";
-				flag = false;
-			}
+		for(var i = 0; i < activeEvents.length; i++) if (text == activeEvents[i]) {
+			$("#calendar").fullCalendar('removeEventSource', {
+				title: activeEvents[i]
+			});
+			activeEvents[i] = "null";
+			flag = false;
 		}
 		var endDate = new Date(year, month, day, houre, min);
 		$("#dialog").dialog("close");
@@ -148,7 +146,7 @@ $(document).ready(function () {
 				},
 				true // make the event "stick"
 			);
-
+			console.log(activeEvents);
 		}
 
 
