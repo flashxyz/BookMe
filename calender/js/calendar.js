@@ -1,3 +1,41 @@
+var flag = false;
+var activeEvents = [];
+
+
+EventManager = (function(){
+
+	var rootEventSource = [];
+	var filteredEventSource = [];
+
+	return {
+		// Usage: EventManager.setSource([pass,event,array,here]);
+		setRootSource : function(events){
+			rootEventSource = events;
+		},
+
+		filterCalendar : function(filterFN){
+
+			$("#calendar").fullCalendar('removeEventSource',filteredEventSource);
+
+			filteredEventSource = $.map(rootEventSource, function(event){
+				filterFN(event);
+			});
+
+			$("#calendar").fullCalendar('addEventSource', filteredEventSource);
+		}
+	};
+})();
+
+
+
+
+
+
+
+
+
+
+
 $(document).ready(function () {
 	var date = new Date();
 	var d = date.getDate();
@@ -116,14 +154,27 @@ $(document).ready(function () {
 		var year = dateClick.getFullYear();
 		var min = dateClick.getMinutes();
 
+
+
 		text = $("#event_input").val();
+		flag = true;
+		for(var i = 0; i < activeEvents.length; i++) {
+			if (text != activeEvents[i]) {
+				$("#calendar").fullCalendar('removeEventSource', {
+					title: text
+				});
+				active[i] = null;
+				flag = false;
+			}
+		}
 		var endDate = new Date(year, month, day, houre, min);
 		$("#dialog").dialog("close");
 
 		if(dateClick.getHours() >= endDate.getHours())
 		{	alert("uston we have a problem"); return;}
 
-		calendar.fullCalendar('renderEvent',
+		if(flag) {
+			calendar.fullCalendar('renderEvent',
 				{
 					title: text,
 					start: dateClick,
@@ -131,7 +182,12 @@ $(document).ready(function () {
 					allDay: false
 				},
 				true // make the event "stick"
-		);
+			);
+			var add = ["title"];
+			activeEvents.concat(add);
+		}
+
+
 
 	}
 
