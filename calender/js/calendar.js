@@ -2,40 +2,6 @@ var flag = false;
 var activeEvents = [];
 
 
-EventManager = (function(){
-
-	var rootEventSource = [];
-	var filteredEventSource = [];
-
-	return {
-		// Usage: EventManager.setSource([pass,event,array,here]);
-		setRootSource : function(events){
-			rootEventSource = events;
-		},
-
-		filterCalendar : function(filterFN){
-
-			$("#calendar").fullCalendar('removeEventSource',filteredEventSource);
-
-			filteredEventSource = $.map(rootEventSource, function(event){
-				filterFN(event);
-			});
-
-			$("#calendar").fullCalendar('addEventSource', filteredEventSource);
-		}
-	};
-})();
-
-
-
-
-
-
-
-
-
-
-
 $(document).ready(function () {
 	var date = new Date();
 	var d = date.getDate();
@@ -86,7 +52,6 @@ $(document).ready(function () {
 		eventClick: function(calEvent, jsEvent, view)
 		{
 			var id = calEvent.id;
-			console.log("the event title: "+calEvent.title);
 			var text = $("#event_input").val();
 			if(text != undefined)
 			{
@@ -172,11 +137,10 @@ $(document).ready(function () {
 
 		if(dateClick.getHours() >= endDate.getHours())
 		{	alert("uston we have a problem"); return;}
-
 		if(flag) {
 			calendar.fullCalendar('renderEvent',
 				{
-					title: text,
+					title: text + "\n",
 					start: dateClick,
 					end: endDate,
 					allDay: false
