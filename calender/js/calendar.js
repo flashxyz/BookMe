@@ -1,5 +1,5 @@
-var flag = false;
-var activeEvents = [];
+var AddEvent = false;
+var activeEventsSelected = [];
 
 
 $(document).ready(function () {
@@ -8,7 +8,7 @@ $(document).ready(function () {
 	var m = date.getMonth();
 	var y = date.getFullYear();
 	var dateClick;
-	$('#btnChooseColor').click(openDialig);
+	$('#btnChooseColor').click(open_Dialog_With_uesr);
 
 	var calendar;
 	calendar = $('#calendar').fullCalendar({
@@ -111,7 +111,7 @@ $(document).ready(function () {
 		modal: true
 	});
 
-	function openDialig(){
+	function open_Dialog_With_uesr(){
 		var text = $("#endhour").val();
 		var houre = parseInt(text);
 		var day = dateClick.getDate();
@@ -120,23 +120,23 @@ $(document).ready(function () {
 		var min = dateClick.getMinutes();
 
 		text = $("#event_input").val();
-		flag = true;
-		for(var i = 0; i < activeEvents.length; i++) if (text == activeEvents[i]) {
+		AddEvent = true;
+		for(var i = 0; i < activeEventsSelected.length; i++) if (text == activeEventsSelected[i]) {
 			$("#calendar").fullCalendar('removeEventSource', {
-				title: activeEvents[i]
+				title: activeEventsSelected[i]
 			});
-			activeEvents[i] = "null";
-			flag = false;
+			activeEventsSelected[i] = "null";
+			AddEvent = false;
 		}
 		var endDate = new Date(year, month, day, houre, min);
 		$("#dialog").dialog("close");
 
 		if(dateClick.getHours() >= endDate.getHours())
 		{	alert("uston we have a problem"); return;}
-		if(flag) {
-			var add = activeEvents.length;
-			activeEvents.length++;
-			activeEvents[add] = text;
+		if(AddEvent) {
+			var add = activeEventsSelected.length; // add the event to array of active events
+			activeEventsSelected.length++;
+			activeEventsSelected[add] = text;
 			calendar.fullCalendar('renderEvent',
 				{
 					title: text + "\n",
@@ -146,7 +146,7 @@ $(document).ready(function () {
 				},
 				true // make the event "stick"
 			);
-			console.log(activeEvents);
+			console.log(activeEventsSelected);
 		}
 
 
