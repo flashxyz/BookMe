@@ -34,14 +34,6 @@
 		</div>
 
         <div id="dialog" title="Basic dialog">
-
-            <label > Please Choose Available Room </label>
-            <form>
-                <input type="radio" id = "A100"> A100<br>
-                <input type="radio" id = "A101"> A101<br>
-                <input type="radio" id = "A102"> A102
-            </form>
-            <br>
             <label > Please Choose Room Accessories </label><br>
             <form>
                 <input type="radio" id = "projector"> Projector<br>
@@ -49,10 +41,19 @@
                 <input type="radio" id = "Speakers"> Speakers<br>
                 <input type="radio" id = "Computer"> Computer<br>
             </form><br>
+            <label > Room floor: </label>
+            <input type="text" id="room_floor_input" /><br><br>
             <label > Event title: </label>
             <input type="text" id="event_input" />
             <label > end hour: </label>
             <input type="datetime" step="10" id="endhour"/><br><br>
+            <label > Please Choose Available Room </label>
+            <label > (will appear after choose upper options)  </label>
+            <form>
+                <input type="radio" id = "A100"> A100<br>
+                <input type="radio" id = "A101"> A101<br>
+                <input type="radio" id = "A102"> A102<br>
+            </form>
             <button class="jscolor {valueElement: 'color_value'}" id="btnChooseColor"> choose color </button>
             <button id="btnRemove"> Remove </button>
         </div>

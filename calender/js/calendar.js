@@ -49,37 +49,37 @@ $(document).ready(function () {
 		allDayDefault: true,
 		//eventClick :function(date, allDay, jsEvent, view) event cheange
 
-		eventClick: function(calEvent, jsEvent, view)
-		{
-			var id = calEvent.id;
-			var text = $("#event_input").val();
-			if(text != undefined)
-			{
-				var text =  $("#endhour").val();
-				var houre = parseInt(text);
-				var day = dateClick.getDate();
-				var month = dateClick.getMonth();
-				var year = dateClick.getFullYear();
-				var min = dateClick.getMinutes();
-
-				text = "change the text";
-				var endDate = new Date(year, month, day, houre, min);
-				$("#dialog").dialog("close");
-
-				if(dateClick.getHours() >= endDate.getHours())
-				{	alert("uston we have a problem"); return;}
-
-				calendar.fullCalendar('renderEvent',
-					{
-						title: text,
-						start: dateClick,
-						end: endDate,
-						allDay: false
-					},
-					true // make the event "stick"
-				);
-			}
-		},
+		//eventClick: function(calEvent, jsEvent, view)
+		//{
+		//	var id = calEvent.id;
+		//	var text = $("#event_input").val();
+		//	if(text != undefined)
+		//	{
+		//		var text =  $("#endhour").val();
+		//		var houre = parseInt(text);
+		//		var day = dateClick.getDate();
+		//		var month = dateClick.getMonth();
+		//		var year = dateClick.getFullYear();
+		//		var min = dateClick.getMinutes();
+        //
+		//		text = "change the text";
+		//		var endDate = new Date(year, month, day, houre, min);
+		//		$("#dialog").dialog("close");
+        //
+		//		if(dateClick.getHours() >= endDate.getHours())
+		//		{	alert("uston we have a problem"); return;}
+        //
+		//		calendar.fullCalendar('renderEvent',
+		//			{
+		//				title: text,
+		//				start: dateClick,
+		//				end: endDate,
+		//				allDay: false
+		//			},
+		//			true // make the event "stick"
+		//		);
+		//	}
+		//},
 		editable: false,
 		eventSources: [
 			// your event source
