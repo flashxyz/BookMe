@@ -123,8 +123,8 @@ $(document).ready(function () {
 		flag = true;
 		for(var i = 0; i < activeEvents.length; i++) {
 			if (text != activeEvents[i]) {
-				$("#calendar").fullCalendar('removeEventSource', {
-					title: text
+				$("#calendar").fullCalendar('removeEvent', {
+					title: activeEvents[i]
 				});
 				activeEvents[i] = "null";
 				flag = false;
