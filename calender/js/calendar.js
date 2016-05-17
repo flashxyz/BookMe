@@ -47,18 +47,35 @@ $(document).ready(function () {
 
 		eventClick: function(calEvent, jsEvent, view)
 		{
-
-			var flag = false;
-
 			var id = calEvent.id;
 			console.log("the event title: "+calEvent.title);
-			if(flag)
+			var text = $("#event_input").val();
+			if(text != undefined)
 			{
-				calEvent.data = "another";
+				var text =  $("#endhour").val();
+				var houre = parseInt(text);
+				var day = dateClick.getDate();
+				var month = dateClick.getMonth();
+				var year = dateClick.getFullYear();
+				var min = dateClick.getMinutes();
+
+				text = "change the text";
+				var endDate = new Date(year, month, day, houre, min);
+				$("#dialog").dialog("close");
+
+				if(dateClick.getHours() >= endDate.getHours())
+				{	alert("uston we have a problem"); return;}
+
+				calendar.fullCalendar('renderEvent',
+					{
+						title: text,
+						start: dateClick,
+						end: endDate,
+						allDay: false
+					},
+					true // make the event "stick"
+				);
 			}
-
-
-
 		},
 		editable: false,
 		eventSources: [
