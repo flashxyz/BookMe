@@ -118,9 +118,7 @@ $(document).ready(function () {
 		var month = dateClick.getMonth();
 		var year = dateClick.getFullYear();
 		var min = dateClick.getMinutes();
-
-
-
+		console.log(activeEvents);
 		text = $("#event_input").val();
 		flag = true;
 		for(var i = 0; i < activeEvents.length; i++) {
@@ -128,7 +126,7 @@ $(document).ready(function () {
 				$("#calendar").fullCalendar('removeEventSource', {
 					title: text
 				});
-				active[i] = null;
+				activeEvents[i] = "null";
 				flag = false;
 			}
 		}
@@ -138,6 +136,9 @@ $(document).ready(function () {
 		if(dateClick.getHours() >= endDate.getHours())
 		{	alert("uston we have a problem"); return;}
 		if(flag) {
+			var add = activeEvents.length;
+			activeEvents.length++;
+			activeEvents[add] = text;
 			calendar.fullCalendar('renderEvent',
 				{
 					title: text + "\n",
@@ -147,8 +148,7 @@ $(document).ready(function () {
 				},
 				true // make the event "stick"
 			);
-			var add = ["title"];
-			activeEvents.concat(add);
+
 		}
 
 
