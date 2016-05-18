@@ -43,7 +43,7 @@
 		 $("#wp_book_me_adminGroupForm").validate({
 			  rules: {
 				  "wp_book_me[groupName]": {
-					  minlength: 10
+					  minlength: 6
 				  },
 				  "wp_book_me[numOfRooms]": {
 					  digits: true
@@ -51,7 +51,7 @@
 			  },
 			  messages: {
 				  "wp_book_me[groupName]": {
-					  minlength: "We need Min 2 chars"
+					  minlength: "We need Min 6 chars"
 				  },
 				  "wp_book_me[numOfRooms]": {
 					  digits: "Only numbers are allowed"
