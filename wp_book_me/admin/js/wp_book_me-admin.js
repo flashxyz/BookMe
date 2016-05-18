@@ -40,7 +40,7 @@
 		 $('.wp_book_me_time_picker').timepicker({'timeFormat': 'H:i'});
 		  
 		  
-		 $("#wp_book_me_adminGroupForm").validate({
+		 $("#wp_book_me_adminGroupOptionsForm").validate({
 			  rules: {
 				  "wp_book_me[groupName]": {
 					  minlength: 6
