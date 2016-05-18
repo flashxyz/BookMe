@@ -28,23 +28,27 @@
 	 * Although scripts in the WordPress core, Plugins and Themes may be
 	 * practising this, we should strive to set a better example in our own work.
 	 */
-	 
 	  $(function(){
- 
-             
+
 
 
          // WordPress specific plugins - color picker
          $( '.wp_book_me_calendarColor_class' ).wpColorPicker();
 
-		 $('.wp_book_me_time_picker').timepicker({'timeFormat': 'H:i'});
-		  
-		  
+		 $('.wp_book_me_time_picker').timepicker( {
+			 'timeFormat': 'H:i',
+			 'disableTextInput': true
+		 });
+
+
+
 		 $("#wp_book_me_adminGroupOptionsForm").validate({
+
 			  rules: {
+
 				  "wp_book_me[groupName]":  {
 					  required: true,
-					  minlength: 6
+					  minlength: 3
 				  },
 
 				  "wp_book_me[numOfRooms]": {
@@ -52,26 +56,34 @@
 					  digits: true
 
 				  },
+
 				  "wp_book_me[roomsAvailableUntil]": {
-					  required: {
-						  depends: function(element) {
-							  var status = false;
-								//not working properly
-							  if( $("#wp_book_me[roomsAvailableFrom]").val() > 0){
-								  var status = true;
-							  }
-							  return status;
-						  }
+					  required: function(element) {
+						  return $("#wp_book_me_roomsAvailableFrom").val().length!= "" ;
 					  }
-				  }
-			  },
-			  messages: {
-				  "wp_book_me[groupName]": {
-					  minlength: "Please, at least 6 characters are necessary"
 				  },
+
+				  "wp_book_me[roomsAvailableFrom]": {
+					  required: true
+				  }
+
+
+			  },
+
+			  messages: {
+
+				  "wp_book_me[groupName]": {
+					  minlength: "Please, at least 3 characters are necessary"
+				  },
+
 				  "wp_book_me[numOfRooms]": {
 					  digits: "Only numbers are allowed"
+				  },
+
+				  "wp_book_me[roomsAvailableUntil]": {
+					  required: "Rooms available from field is required first"
 				  }
+
 			  }
 
 		 });

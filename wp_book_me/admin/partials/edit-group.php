@@ -193,7 +193,7 @@ if($_GET['group_id']==true AND $_GET['edit_group']==true)
                 <tr>
                     <td width='100px' >
                         <label for="<?php echo $this->plugin_name; ?>_calendarViewMode">
-                            <input type="radio" id="<?php echo $this->plugin_name; ?>_calendarViewMode" name="<?php echo $this->plugin_name; ?>[calendarViewMode]" value="month" <?php checked($monthRadioChecked, 1); ?>/>
+                            <input type="radio" id="<?php echo $this->plugin_name; ?>_calendarViewMode" name="<?php echo $this->plugin_name; ?>[calendarViewMode]" value="month" <?php checked($monthRadioChecked, 1); ?> />
                             <sapn>Month</sapn>
                         </label>
                     </td>
