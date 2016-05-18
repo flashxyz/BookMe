@@ -47,7 +47,7 @@ if($_GET['group_id']==true AND $_GET['edit_group']==true)
         <hr>
         <h2>Group ID: <?php echo $groupID ?> </h2>
         <br>
-        <form  action="" method="post" id="<?php echo $this->plugin_name; ?>_adminGroupForm">
+        <form  action="?page=wp_book_me&group_id=<?php echo $groupID ?>&save_options=true"" method="post" id="<?php echo $this->plugin_name; ?>_adminGroupForm">
             <table width='700px'>
                 <tr>
                     <td width='250px' >
