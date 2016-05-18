@@ -78,8 +78,6 @@ class Wp_book_me_Admin {
 			wp_enqueue_style( 'wp-color-picker' );
 			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wp_book_me-admin.css', array( 'wp-color-picker'  ), $this->version, 'all' );
 			wp_enqueue_style( 'jquery.timepicker', plugin_dir_url( __FILE__ ) . 'css/jquery.timepicker.css', array( 'wp-color-picker' ), $this->version, 'all' );
-			//validation style
-			wp_enqueue_style( 'jquery.validate', plugin_dir_url( __FILE__ ) . 'css/validation.css', array( 'wp-color-picker' ), $this->version, 'all' );
 	         }
 
 	}
