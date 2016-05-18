@@ -58,12 +58,14 @@
 				  },
 
 				  "wp_book_me[roomsAvailableUntil]": {
+					  digits: true,
 					  required: function(element) {
 						  return $("#wp_book_me_roomsAvailableFrom").val().length!= "" ;
 					  }
 				  },
 
 				  "wp_book_me[roomsAvailableFrom]": {
+					  digits: true,
 					  required: true
 				  }
 
