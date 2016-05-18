@@ -49,7 +49,9 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
                                     <p>Room Name: </p>
                                 </td>
                                 <td width='200px'>
-                                    <strong><?php echo $value->roomName ?></strong>
+                                    <label for="<?php echo $this->plugin_name; ?>_roomOptionName">
+                                        <input type="text" id="<?php echo $this->plugin_name; ?>_roomOptionName" name="<?php echo $this->plugin_name; ?>[roomOptionName]" value="<?php echo $value->roomName; ?>"/>
+                                    </label>
                                 </td>
 
 
