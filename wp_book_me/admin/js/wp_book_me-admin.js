@@ -37,9 +37,32 @@
          // WordPress specific plugins - color picker
          $( '.wp_book_me_calendarColor_class' ).wpColorPicker();
 
-		  $('.wp_book_me_time_picker').timepicker({'timeFormat': 'H:i'});
-         
+		 $('.wp_book_me_time_picker').timepicker({'timeFormat': 'H:i'});
 
-    }); // End of DOM Ready
+		  
+
+		  $("#wp_book_me_adminGroupForm").validate({
+			  rules: {
+				  wp_book_me_groupName: {
+					  minlength: 2
+				  },
+				  wp_book_me_numOfRooms: {
+					  digits: true
+				  }
+			  },
+			  messages: {
+				  wp_book_me_groupName: {
+					  minlength: "We need Min 2 chars"
+				  },
+				  wp_book_me_numOfRooms: {
+					  digits: "Only numbers are allowed"
+				  }
+			  }
+		  });
+
+
+
+
+	  }); // End of DOM Ready
 
 }( jQuery ));

@@ -76,8 +76,10 @@ class Wp_book_me_Admin {
 		if ( 'toplevel_page_wp_book_me' == get_current_screen() -> id ) {
 	             // CSS stylesheet for Color Picker
 			wp_enqueue_style( 'wp-color-picker' );
-			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wp_book_me-admin.css', array( 'wp-color-picker', 'css/jquery.timepicker.css' ), $this->version, 'all' );
-			wp_enqueue_style( 'jquery.timepicker', plugin_dir_url( __FILE__ ) . 'css/jquery.timepicker.css', array( 'wp-color-picker', ), $this->version, 'all' );
+			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wp_book_me-admin.css', array( 'wp-color-picker'  ), $this->version, 'all' );
+			wp_enqueue_style( 'jquery.timepicker', plugin_dir_url( __FILE__ ) . 'css/jquery.timepicker.css', array( 'wp-color-picker' ), $this->version, 'all' );
+			//validation style
+			wp_enqueue_style( 'jquery.validate', plugin_dir_url( __FILE__ ) . 'css/validation.css', array( 'wp-color-picker' ), $this->version, 'all' );
 	         }
 
 	}
@@ -107,7 +109,10 @@ class Wp_book_me_Admin {
 	            wp_enqueue_media();
 	            wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp_book_me-admin.js', array( 'jquery', 'wp-color-picker' ), $this->version, false);
 				wp_enqueue_script( 'jquery.timepicker.min', plugin_dir_url( __FILE__ ) . 'js/jquery.timepicker.min.js', array( 'jquery'), $this->version, false);
-	        }
+				//added validation jQuery script
+				wp_enqueue_script( 'jquery.validate.min', plugin_dir_url( __FILE__ ) . 'js/jquery.validate.min.js', array( 'jquery'), $this->version, false);
+
+			}
 	}
 
 	public function add_plugin_admin_menu() {
@@ -162,10 +167,12 @@ class Wp_book_me_Admin {
 			require_once('partials/edit-group.php');
 		}
 	}
+	//need to remove this - > not used
 	public function options_update() {
-	    register_setting($this->plugin_name, $this->plugin_name, array($this, 'validate')); /////////////////need to remove
+		register_setting($this->plugin_name, $this->plugin_name, array($this, 'validate'));
 	}
-	
+
+
 	
 
 }
