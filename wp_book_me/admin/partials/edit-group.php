@@ -47,7 +47,7 @@ if($_GET['group_id']==true AND $_GET['edit_group']==true)
         <hr>
         <h2>Group ID: <?php echo $groupID ?> </h2>
         <br>
-        <form  action="?page=wp_book_me&group_id=<?php echo $groupID ?>&save_options=true"" method="post" id="<?php echo $this->plugin_name; ?>_adminGroupForm">
+        <form  action="?page=wp_book_me&group_id=<?php echo $groupID ?>&save_options=true" method="post" id="<?php echo $this->plugin_name; ?>_adminGroupOptionsForm">
             <table width='700px'>
                 <tr>
                     <td width='250px' >
@@ -219,17 +219,20 @@ if($_GET['group_id']==true AND $_GET['edit_group']==true)
                 <tr>
                     <td width="250px">
                         <input class="button-primary" type="submit" name="saveOptionsBTN" value="Save Options" />
+        </form>
                     </td>
     
                     <td width="250px">
-                        <input class="button-primary" type="submit" name="editRoomsBTN" value="Edit Rooms"  />
+                        <form  action="?page=wp_book_me&group_id=<?php echo $groupID ?>&edit_rooms=true" method="post" id="<?php echo $this->plugin_name; ?>_adminEditRoomsForm">
+                            <input class="button-primary" type="submit" name="editRoomsBTN" value="Edit Rooms"  />
+                        </form>
                     </td>
                 </tr>
     
             </table>
             
             
-        </form>
+
         
         
 

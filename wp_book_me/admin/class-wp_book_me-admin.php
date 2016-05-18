@@ -168,6 +168,10 @@ class Wp_book_me_Admin {
 		{
 			require_once('partials/save-options.php');
 		}
+		if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
+		{
+			require_once('partials/edit-rooms.php');
+		}
 	}
 	//need to remove this - > not used
 	public function options_update() {
