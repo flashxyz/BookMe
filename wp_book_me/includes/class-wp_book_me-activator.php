@@ -46,12 +46,12 @@ class Wp_book_me_Activator {
 				id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 				groupName VARCHAR(50),
 				numOfRooms INT(20),
-				activeDays VARCHAR(50),
+				activeDays VARCHAR(180),
 				fromTime VARCHAR(50),
 				toTime VARCHAR(50),
-				description VARCHAR(100),
-				viewMode VARCHAR(50),
-				calendarColor VARCHAR(50),
+				description VARCHAR(200),
+				viewMode VARCHAR(80),
+				calendarColor VARCHAR(10),
 				windowTimeLength INT(5)
 				) DEFAULT CHARACTER SET utf8";
 			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
