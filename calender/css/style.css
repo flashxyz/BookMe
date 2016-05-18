@@ -13,12 +13,14 @@ html, body {
 .jumbotron {
     margin-bottom: 0px;
 	height: 100%; /* cross-browser */
-    background-image: url("pat.png") reapet;
+    background-image: url("pat.png");
+    background-repeat : repeat;
 
-	-moz-box-shadow: 0px 10px 5px #484445;
+    -moz-box-shadow: 0px 10px 5px #484445;
 	-webkit-box-shadow: 0px 10px 5px #484445;
 	box-shadow: 0px 10px 4px #484445;
 }
+
 
 
 .container-fluid{
@@ -74,7 +76,8 @@ html, body {
 
 /* Remove the header border from Schedule */
 .fc td, .fc th {
-  border-style: 1px  gray  !important;
+  border-style: dashed   !important;
+  border-color: #8fdf82;
   border-width: 1px !important;
   padding: 0 !important;
   vertical-align: top !important;
@@ -125,4 +128,22 @@ html, body {
     color:#ef414c;
 }
 
+.ui-dialog {
+    background: #f8ffe8  !important;; /* Old browsers */
+    background: -moz-linear-gradient(top, #f8ffe8 0%, #e3f5ab 33%, #b7df2d 100%)  !important;; /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #f8ffe8 0%,#e3f5ab 33%,#b7df2d 100%)  !important;; /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #f8ffe8 0%,#e3f5ab 33%,#b7df2d 100%) !important;; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f8ffe8', endColorstr='#b7df2d',GradientType=0 )  !important;;
 
+}
+
+.ui-dialog-titlebar {
+
+    background: #febbbb; /* Old browsers */
+    background: -moz-linear-gradient(top, #febbbb 0%, #fe9090 45%, #ff5c5c 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #febbbb 0%,#fe9090 45%,#ff5c5c 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #febbbb 0%,#fe9090 45%,#ff5c5c 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#febbbb', endColorstr='#ff5c5c',GradientType=0 );
+    text: 'test';
+    content: 'test';
+}
