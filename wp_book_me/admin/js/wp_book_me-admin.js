@@ -38,27 +38,26 @@
          $( '.wp_book_me_calendarColor_class' ).wpColorPicker();
 
 		 $('.wp_book_me_time_picker').timepicker({'timeFormat': 'H:i'});
-
 		  
-
-		  $("#wp_book_me_adminGroupForm").validate({
+		  
+		 $("#wp_book_me_adminGroupForm").validate({
 			  rules: {
-				  wp_book_me_groupName: {
-					  minlength: 2
+				  "wp_book_me[groupName]": {
+					  minlength: 10
 				  },
-				  wp_book_me_numOfRooms: {
+				  "wp_book_me[numOfRooms]": {
 					  digits: true
 				  }
 			  },
 			  messages: {
-				  wp_book_me_groupName: {
+				  "wp_book_me[groupName]": {
 					  minlength: "We need Min 2 chars"
 				  },
-				  wp_book_me_numOfRooms: {
+				  "wp_book_me[numOfRooms]": {
 					  digits: "Only numbers are allowed"
 				  }
 			  }
-		  });
+		 });
 
 
 
