@@ -3,8 +3,11 @@
  * included in this file.
  */
 
+
+/*------- color of validation error ---------*/
 label.error {
     display: block;
-    background: #ffd2d2;
+    background: #ff6f74;
     padding: 0 10px;
 }
+/*-------------------------------------------*/

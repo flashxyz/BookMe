@@ -42,21 +42,38 @@
 		  
 		 $("#wp_book_me_adminGroupOptionsForm").validate({
 			  rules: {
-				  "wp_book_me[groupName]": {
+				  "wp_book_me[groupName]":  {
+					  required: true,
 					  minlength: 6
 				  },
+
 				  "wp_book_me[numOfRooms]": {
+					  required: true,
 					  digits: true
+
+				  },
+				  "wp_book_me[roomsAvailableUntil]": {
+					  required: {
+						  depends: function(element) {
+							  var status = false;
+								//not working properly
+							  if( $("#wp_book_me[roomsAvailableFrom]").val() > 0){
+								  var status = true;
+							  }
+							  return status;
+						  }
+					  }
 				  }
 			  },
 			  messages: {
 				  "wp_book_me[groupName]": {
-					  minlength: "We need Min 6 chars"
+					  minlength: "Please, at least 6 characters are necessary"
 				  },
 				  "wp_book_me[numOfRooms]": {
 					  digits: "Only numbers are allowed"
 				  }
 			  }
+
 		 });
 
 
