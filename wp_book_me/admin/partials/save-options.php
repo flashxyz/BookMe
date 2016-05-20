@@ -22,9 +22,9 @@ if($_GET['group_id']==true AND $_GET['save_options']==true)
     $groupDescription = $postArray['groupDescription'];
     $calendarColor = $postArray['calendarColor'];
     $timeSlot = $postArray['timeSlot'];
+    $calendarViewMode = $postArray['calendarViewMode'];
 
     //print post value
     echo "POST values <br>";
-    echo $groupName ."<br>".$numOfRooms."<br>".$roomsAvailableFrom."<br>". $roomsAvailableUntil."<br>".$groupDescription."<br>".$calendarColor."<br>".$timeSlot;
-
+    echo $groupName ."<br>".$numOfRooms."<br>".$roomsAvailableFrom."<br>". $roomsAvailableUntil."<br>".$groupDescription."<br>".$calendarColor."<br>".$timeSlot."<br>".$calendarViewMode;
 }

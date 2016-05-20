@@ -24,9 +24,9 @@ if($_GET['group_id']==true AND $_GET['edit_group']==true)
     $numOfRooms = $selectSQL[0]->numOfRooms;
     $activeDays = unserialize($selectSQL[0]->activeDays);
     $fromTime = $selectSQL[0]->fromTime;
-    $toTime = $selectSQL[0]->totime;
+    $toTime = $selectSQL[0]->toTime;
     $description = $selectSQL[0]->description;
-    $viewMode = unserialize($selectSQL[0]->viewMode);
+    $viewMode = $selectSQL[0]->viewMode;
     $calendarColor = $selectSQL[0]->calendarColor;
     $windowTimeLength = $selectSQL[0]->windowTimeLength;
 
@@ -37,16 +37,7 @@ if($_GET['group_id']==true AND $_GET['edit_group']==true)
     $thursdayChecked = $activeDays["thursday"];
     $fridayChecked = $activeDays["friday"];
     $saturdayChecked = $activeDays["saturday"];
-
-    $monthRadioChecked = $viewMode["month"];
-    $weekRadioChecked = $viewMode["week"];
-    $agendaRadioChecked = $viewMode["agenda"];
-
-
-
-
-
-
+    
     ?>
     <div class="wrap">
 
@@ -200,19 +191,19 @@ if($_GET['group_id']==true AND $_GET['edit_group']==true)
                 <tr>
                     <td width='100px' >
                         <label for="<?php echo $this->plugin_name; ?>_calendarViewMode">
-                            <input type="radio" id="<?php echo $this->plugin_name; ?>_calendarViewMode" name="<?php echo $this->plugin_name; ?>[calendarViewMode]" value="month" <?php checked($monthRadioChecked, 1); ?> />
+                            <input type="radio" id="<?php echo $this->plugin_name; ?>_calendarViewMode" name="<?php echo $this->plugin_name; ?>[calendarViewMode]" value="month" <?php checked($viewMode, "month"); ?> />
                             <sapn>Month</sapn>
                         </label>
                     </td>
                     <td width='100px' >
                         <label for="<?php echo $this->plugin_name; ?>_calendarViewMode">
-                            <input type="radio" id="<?php echo $this->plugin_name; ?>_calendarViewMode" name="<?php echo $this->plugin_name; ?>[calendarViewMode]" value="week" <?php checked($weekRadioChecked, 1); ?>/>
+                            <input type="radio" id="<?php echo $this->plugin_name; ?>_calendarViewMode" name="<?php echo $this->plugin_name; ?>[calendarViewMode]" value="week" <?php checked($viewMode, "week"); ?>/>
                             <sapn>Week</sapn>
                         </label>
                     </td>
                     <td width='100px' >
                         <label for="<?php echo $this->plugin_name; ?>_calendarViewMode">
-                            <input type="radio" id="<?php echo $this->plugin_name; ?>_calendarViewMode" name="<?php echo $this->plugin_name; ?>[calendarViewMode]" value="agenda" <?php checked($agendaRadioChecked, 1); ?>/>
+                            <input type="radio" id="<?php echo $this->plugin_name; ?>_calendarViewMode" name="<?php echo $this->plugin_name; ?>[calendarViewMode]" value="agenda" <?php checked($viewMode, "agenda"); ?>/>
                             <sapn>Agenda</sapn>
                         </label>
                     </td>
