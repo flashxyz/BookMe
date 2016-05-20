@@ -34,6 +34,7 @@ if($_GET['group_id']==true AND $_GET['save_options']==true)
     //echo "POST values <br>";
     //echo $groupName ."<br>".$numOfRooms."<br>".$roomsAvailableFrom."<br>". $roomsAvailableUntil."<br>".$groupDescription."<br>".$calendarColor."<br>".$timeSlot."<br>".$calendarViewMode;
 
+    //parse the active days to TLV format
     $activeDaysArray = serialize(array(
         'sunday' => $activeSundayCheckBox,
         'monday' => $activeMondayCheckBox,
@@ -44,6 +45,7 @@ if($_GET['group_id']==true AND $_GET['save_options']==true)
         'saturday' => $activeSaturdayCheckBox
     ));
 
+    //create array of the data we want to insert to specific row
     $dataArray = array(
         'groupName' => $groupName,
         'numOfRooms' => $numOfRooms,
@@ -56,17 +58,20 @@ if($_GET['group_id']==true AND $_GET['save_options']==true)
         'windowTimeLength' => $timeSlot
     );
 
+    //create array of the condition to get the specific row
     $whereArray = array( 'id' => $groupID);
 
-
+    //execute the update function for saving data
     $wpdb->update( $group_options_table, $dataArray, $whereArray);
 
 
 }
 
+//get the current path url
 $siteURL = get_site_url()."/wp-admin/admin.php";
 ?>
 
+<!-- this script redirect to the previous page-->
 <script>
 
     var siteURL = <?php echo json_encode($siteURL);?>;
