@@ -37,7 +37,7 @@ if($_GET['group_id']==true AND $_GET['edit_group']==true)
     $thursdayChecked = $activeDays["thursday"];
     $fridayChecked = $activeDays["friday"];
     $saturdayChecked = $activeDays["saturday"];
-    
+
     ?>
     <div class="wrap">
 
@@ -213,16 +213,21 @@ if($_GET['group_id']==true AND $_GET['edit_group']==true)
             </table>
             <br>
             <br>
-            <table width="500px">
+            <table width="450px">
                 <tr>
-                    <td width="250px">
+                    <td width="150px">
                         <input class="button-primary" type="submit" name="saveOptionsBTN" value="Save Options" />
         </form>
                     </td>
     
-                    <td width="250px">
+                    <td width="150px">
                         <form  action="?page=wp_book_me&group_id=<?php echo $groupID ?>&edit_rooms=true" method="post" id="<?php echo $this->plugin_name; ?>_adminEditRoomsForm">
                             <input class="button-primary" type="submit" name="editRoomsBTN" value="Edit Rooms"  />
+                        </form>
+                    </td>
+                    <td width="150px">
+                        <form  action="?page=wp_book_me" method="post" id="<?php echo $this->plugin_name; ?>_editGroupGoBackForm">
+                            <input class="button-primary" type="submit" name="goBackBTN" value="Go Back"/>
                         </form>
                     </td>
                 </tr>

@@ -22,7 +22,7 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
         <hr>
         <h2>Group ID: <?php echo $groupID ?> </h2>
         <br>
-        <form  action="?page=wp_book_me&group_id=<?php echo $groupID ?>&edit_group=true" method="post" id="<?php echo $this->plugin_name; ?>_adminGoBackForm">
+        <form  action="?page=wp_book_me&group_id=<?php echo $groupID ?>&edit_group=true" method="post" id="<?php echo $this->plugin_name; ?>_editRoomsGoBackForm">
 
             <!--create row for each room we have-->
             <?php foreach($selectSQL as $value)
