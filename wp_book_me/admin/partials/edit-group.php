@@ -9,10 +9,17 @@ if($_GET['group_id']==true AND $_GET['edit_group']==true)
     global $wpdb;
 
     $group_options_table = $wpdb->prefix . "bookme_group_options";
+    
+    $selectSQL = $wpdb->get_results($wpdb->prepare("SELECT * FROM $group_options_table WHERE id = %d", $groupID));
 
-    $selectSQL = $wpdb->get_results( "SELECT * FROM $group_options_table WHERE id = '$groupID'" );
-
-
+    if(empty($selectSQL)){
+        echo 'Please Wait...';
+        ?>
+            <script>
+                location.reload();
+            </script>
+        <?php
+    }
     $groupName = $selectSQL[0]->groupName;
     $numOfRooms = $selectSQL[0]->numOfRooms;
     $activeDays = unserialize($selectSQL[0]->activeDays);
