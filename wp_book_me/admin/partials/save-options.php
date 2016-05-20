@@ -22,15 +22,33 @@ if($_GET['group_id']==true AND $_GET['save_options']==true)
     $calendarColor = $postArray['calendarColor'];
     $timeSlot = $postArray['timeSlot'];
     $calendarViewMode = $postArray['calendarViewMode'];
-
+    $activeSundayCheckBox = $postArray['activeSunday'];
+    $activeMondayCheckBox = $postArray['activeMonday'];
+    $activeTuesdayCheckBox = $postArray['activeTuesday'];
+    $activeWednesdayCheckBox = $postArray['activeWednesday'];
+    $activeThursdayCheckBox = $postArray['activeThursday'];
+    $activeFridayCheckBox = $postArray['activeFriday'];
+    $activeSaturdayCheckBox = $postArray['activeSaturday'];
+    
     //print post value
     //echo "POST values <br>";
     //echo $groupName ."<br>".$numOfRooms."<br>".$roomsAvailableFrom."<br>". $roomsAvailableUntil."<br>".$groupDescription."<br>".$calendarColor."<br>".$timeSlot."<br>".$calendarViewMode;
+
+    $activeDaysArray = serialize(array(
+        'sunday' => $activeSundayCheckBox,
+        'monday' => $activeMondayCheckBox,
+        'tuesday' => $activeTuesdayCheckBox,
+        'wednesday' => $activeWednesdayCheckBox,
+        'thursday' => $activeThursdayCheckBox,
+        'friday' => $activeFridayCheckBox,
+        'saturday' => $activeSaturdayCheckBox
+    ));
 
     $dataArray = array(
         'groupName' => $groupName,
         'numOfRooms' => $numOfRooms,
         'fromTime' => $roomsAvailableFrom,
+        'activeDays' => $activeDaysArray,
         'toTime' => $roomsAvailableUntil,
         'description' => $groupDescription,
         'viewMode' => $calendarViewMode,
