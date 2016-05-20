@@ -58,7 +58,7 @@ var del = arg;
 	<br>
     <div class="main-table">
 
-		//create row for each group we have
+		<!-- create row for each group we have -->
     	<?php foreach($selectSQL as $value)
     		{
 
