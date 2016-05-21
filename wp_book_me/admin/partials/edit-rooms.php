@@ -22,7 +22,7 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
         <hr>
         <h2>Group ID: <?php echo $groupID ?> </h2>
         <br>
-        <form  action="?page=wp_book_me&group_id=<?php echo $groupID ?>&edit_group=true" method="post" id="<?php echo $this->plugin_name; ?>_editRoomsGoBackForm">
+        <form  action="" method="post" id="<?php echo $this->plugin_name; ?>_editRoomsSaveAllForm">
 
             <!--create row for each room we have-->
             <?php foreach($selectSQL as $value)
@@ -109,8 +109,28 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
             <?php
             }
             ?>
-            <input class="button-primary" type="submit" name="goBackBTN" value="Go Back"/>
-        </form>
+        <br>
+        <br>
+        <table width="500px">
+            <tr>
+                <td width="150px">
+                    <input class="button-primary" type="submit" name="saveOptionsBTN" value="Save All" />
+         </form>
+                </td>
+
+                <td width="200px">
+                    <form  action="" method="post" id="<?php echo $this->plugin_name; ?>_editRoomsNewRoomForm">
+                        <input class="button-primary" type="submit" name="editRoomsBTN" value="Create New Room"  />
+                    </form>
+                </td>
+                <td width="150px">
+                    <form  action="?page=wp_book_me&group_id=<?php echo $groupID ?>&edit_group=true" method="post" id="<?php echo $this->plugin_name; ?>_editRoomsGoBackForm">
+                        <input class="button-primary" type="submit" name="goBackBTN" value="Go Back"/>
+                    </form>
+                </td>
+            </tr>
+
+        </table>
     </div>
 
 <?php
