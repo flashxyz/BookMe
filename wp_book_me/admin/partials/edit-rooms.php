@@ -38,7 +38,7 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
 				{
 					$backgroundColor = "#ECECEC";
 				}    ?>
-
+    
 				<table width='635px' style='border: 1px solid #DFDFDF;background-color:#ffffff;'>
 				<tr style='background-color:#ffffff;'>
                     <td style='padding-left:20px;width:100px;' ><p>Room ID: <?php echo $value->roomId ?> </p></td>
