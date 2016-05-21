@@ -172,6 +172,10 @@ class Wp_book_me_Admin {
 		{
 			require_once('partials/edit-rooms.php');
 		}
+		if($_GET['group_id']==true AND $_GET['create_room']==true)
+		{
+			require_once('partials/create-room.php');
+		}
 	}
 	//need to remove this - > not used
 	public function options_update() {

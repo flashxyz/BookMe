@@ -119,7 +119,7 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
                 </td>
 
                 <td width="200px">
-                    <form  action="" method="post" id="<?php echo $this->plugin_name; ?>_editRoomsNewRoomForm">
+                    <form  action="?page=wp_book_me&group_id=<?php echo $groupID ?>&create_room=true&edit_rooms=true" method="post" id="<?php echo $this->plugin_name; ?>_editRoomsNewRoomForm">
                         <input class="button-primary" type="submit" name="editRoomsBTN" value="Create New Room"  />
                     </form>
                 </td>
