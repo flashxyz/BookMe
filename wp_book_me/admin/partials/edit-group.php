@@ -42,9 +42,15 @@ if($_GET['group_id']==true AND $_GET['edit_group']==true)
     <div class="wrap">
 
         <h1>Rooms Group Options</h1>
+        
         <hr>
+        
         <h2>Group ID: <?php echo $groupID ?> </h2>
+
+        <h2>Number of rooms:<div class = "textDesign">  <?php echo $numOfRooms; ?></div></h2>
+
         <br>
+        
         <form  action="?page=wp_book_me&group_id=<?php echo $groupID ?>&save_options=true" method="post" id="<?php echo $this->plugin_name; ?>_adminGroupOptionsForm">
             <table width='700px'>
                 <tr>
@@ -54,17 +60,6 @@ if($_GET['group_id']==true AND $_GET['edit_group']==true)
                     <td width='100px' >
                         <label for="<?php echo $this->plugin_name; ?>_groupName">
                             <input type="text" id="<?php echo $this->plugin_name; ?>_groupName" name="<?php echo $this->plugin_name; ?>[groupName]" value="<?php echo $groupName; ?>"/>
-                        </label>
-                    </td>
-                </tr>
-    
-                <tr>
-                    <td width='250px' >
-                        <span>Number of rooms: </span>
-                    </td>
-                    <td width='100px' >
-                        <label for="<?php echo $this->plugin_name; ?>_numOfRooms">
-                            <input type="number" id="<?php echo $this->plugin_name; ?>_numOfRooms" name="<?php echo $this->plugin_name; ?>[numOfRooms]" min="0" value="<?php echo $numOfRooms; ?>"/>
                         </label>
                     </td>
                 </tr>

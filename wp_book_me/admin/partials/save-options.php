@@ -15,7 +15,6 @@ if($_GET['group_id']==true AND $_GET['save_options']==true)
 
     //get post array values
     $groupName =  $postArray['groupName'];
-    $numOfRooms = $postArray['numOfRooms'];
     $roomsAvailableFrom = $postArray['roomsAvailableFrom'];
     $roomsAvailableUntil = $postArray['roomsAvailableUntil'];
     $groupDescription = $postArray['groupDescription'];
@@ -48,7 +47,6 @@ if($_GET['group_id']==true AND $_GET['save_options']==true)
     //create array of the data we want to insert to specific row
     $dataArray = array(
         'groupName' => $groupName,
-        'numOfRooms' => $numOfRooms,
         'fromTime' => $roomsAvailableFrom,
         'activeDays' => $activeDaysArray,
         'toTime' => $roomsAvailableUntil,
