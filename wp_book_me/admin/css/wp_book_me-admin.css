@@ -2,3 +2,20 @@
  * All of the CSS for your admin-specific functionality should be
  * included in this file.
  */
+
+
+/*------- color of validation error ---------*/
+label.error {
+    display: block;
+    background: #ff6f74;
+    padding: 0 10px;
+}
+/*-------------------------------------------*/
+
+/*------- design for text ---------*/
+.textDesign {
+
+    color: #ff5c5c;
+    display:inline-block;
+}
+/*-------------------------------------------*/

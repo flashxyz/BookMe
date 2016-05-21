@@ -37,10 +37,21 @@ function drop_tables(){
 
 	global $wpdb;
 
-	$primary_tablename = $wpdb->prefix . "bookme_rooms_group_primary";
+	$group_options_table = $wpdb->prefix . "bookme_group_options";
+	$rooms_options_table = $wpdb->prefix . "bookme_rooms_options";
+	$room_reservation_table = $wpdb->prefix . "bookme_room_reservation";
+	$general_options_table = $wpdb->prefix . "bookme_general_options";
 
-	$sql = "DROP TABLE $primary_tablename";
-	
+	$sql = "DROP TABLE $group_options_table";
+	$wpdb->query($sql);
+
+	$sql = "DROP TABLE $rooms_options_table";
+	$wpdb->query($sql);
+
+	$sql = "DROP TABLE $room_reservation_table";
+	$wpdb->query($sql);
+
+	$sql = "DROP TABLE $general_options_table";
 	$wpdb->query($sql);
 
 }

@@ -1,10 +1,14 @@
+var AddEvent = false;
+var activeEventsSelected = [];
+
+
 $(document).ready(function () {
 	var date = new Date();
 	var d = date.getDate();
 	var m = date.getMonth();
 	var y = date.getFullYear();
 	var dateClick;
-	$('#btnChooseColor').click(endDialig);
+	$('#btnChooseColor').click(open_Dialog_With_uesr);
 
 	var calendar;
 	calendar = $('#calendar').fullCalendar({
@@ -24,7 +28,7 @@ $(document).ready(function () {
 			var year = dateClick.getFullYear();
 			dateClick = new Date(year, month, day, houre, min);
 
-			alert("date is " + dateClick);
+			//alert("date is " + dateClick);
 
 		},
 		slotDuration: '00:10:00',
@@ -43,27 +47,11 @@ $(document).ready(function () {
 		selectHelper: true,
 		weekNumbers: true,
 		allDayDefault: true,
-		//eventClick :function(date, allDay, jsEvent, view) event cheange
 
-		eventClick: function(calEvent, jsEvent, view)
-		{
-			alert("test!");
+		eventClick: function(calEvent, jsEvent, view) {
+			alert("event clicked! ");
 		},
-		select: function (start, end, allDay) {
-			//var title = prompt('Event Title:');
-			if (title) {
-				calendar.fullCalendar('renderEvent',
-					{
-						title: title,
-						start: start,
-						end: end,
-						allDay: allDay
-					},
-					true // make the event "stick"
-				);
-			}
-			calendar.fullCalendar('unselect');
-		},
+
 		editable: false,
 		eventSources: [
 			// your event source
@@ -95,7 +83,7 @@ $(document).ready(function () {
 		modal: true
 	});
 
-	function endDialig(){
+	function open_Dialog_With_uesr(){
 		var text = $("#endhour").val();
 		var houre = parseInt(text);
 		var day = dateClick.getDate();
@@ -104,21 +92,36 @@ $(document).ready(function () {
 		var min = dateClick.getMinutes();
 
 		text = $("#event_input").val();
+		AddEvent = true;
+		for(var i = 0; i < activeEventsSelected.length; i++) if (text == activeEventsSelected[i]) {
+			$("#calendar").fullCalendar('removeEventSource', {
+				title: activeEventsSelected[i]
+			});
+			activeEventsSelected[i] = "null";
+			AddEvent = false;
+		}
 		var endDate = new Date(year, month, day, houre, min);
 		$("#dialog").dialog("close");
 
 		if(dateClick.getHours() >= endDate.getHours())
 		{	alert("uston we have a problem"); return;}
-
-		calendar.fullCalendar('renderEvent',
+		if(AddEvent) {
+			var add = activeEventsSelected.length; // add the event to array of active events
+			activeEventsSelected.length++;
+			activeEventsSelected[add] = text;
+			calendar.fullCalendar('renderEvent',
 				{
-					title: text,
+					title: text + "\n",
 					start: dateClick,
 					end: endDate,
 					allDay: false
 				},
 				true // make the event "stick"
-		);
+			);
+			console.log(activeEventsSelected);
+		}
+
+
 
 	}
 
