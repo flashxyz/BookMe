@@ -95,6 +95,63 @@
 
 		 });
 
+          
+          //validation script for edit-rooms option page
+
+          $("#wp_book_me_editRoomsSaveAllForm").validate({
+
+              rules: {
+
+                  "wp_book_me[roomOptionName]":  {
+                      required: true,
+                      minlength: 3,
+                      //limited by SQL database
+                      maxlength: 50
+                  },
+
+                  "wp_book_me[roomOptionCapacity]": {
+                      required: true,
+                      digits: true
+
+                  },
+
+                  "wp_book_me[roomOptionServices]": {
+                      //limited by SQL database
+                      maxlength: 100
+                  },
+
+                  "wp_book_me[roomOptionDescription]": {
+                      //limited by SQL database
+                      maxlength: 100
+                  }
+
+
+              },
+
+              messages: {
+
+                  "wp_book_me[roomOptionName]": {
+                      minlength: "Please, at least 3 characters are necessary",
+                      maxlength: "Max length of 50 characters"
+                  },
+
+                  "wp_book_me[roomOptionCapacity]": {
+                      digits: "Only numbers are allowed"
+                  },
+
+                  "wp_book_me[roomOptionServices]": {
+                      maxlength: "Max length of 100 characters"
+                  },
+                  "wp_book_me[roomOptionDescription]": {
+                      maxlength: "Max length of 100 characters"
+                  }
+
+              }
+
+
+
+
+          });
 
 
 
@@ -104,6 +161,6 @@
 
 
 
-	  }); // End of DOM Ready
+      }); // End of DOM Ready
 
 }( jQuery ));
