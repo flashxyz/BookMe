@@ -47,7 +47,7 @@ if($_GET['group_id']==true AND $_GET['edit_group']==true)
         
         <h2>Group ID: <?php echo $groupID ?> </h2>
 
-        <h2>Number of rooms:<div class = "textDesign">  <?php echo $numOfRooms; ?></div></h2>
+        <h2>Number of rooms:   <div class = "textDesign">  <?php echo $numOfRooms; ?> </div> </h2>
 
         <br>
         
