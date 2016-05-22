@@ -41,6 +41,7 @@
 		 });
 
 
+		//validation script for admin group options
 
 		 $("#wp_book_me_adminGroupOptionsForm").validate({
 
@@ -48,7 +49,9 @@
 
 				  "wp_book_me[groupName]":  {
 					  required: true,
-					  minlength: 3
+					  minlength: 3,
+					  //limited by SQL database
+					  maxlength: 50
 				  },
 
 				  "wp_book_me[numOfRooms]": {
@@ -58,14 +61,12 @@
 				  },
 
 				  "wp_book_me[roomsAvailableUntil]": {
-					  //digits: true,
 					  required: function(element) {
 						  return $("#wp_book_me_roomsAvailableFrom").val().length!= "" ;
 					  }
 				  },
 
 				  "wp_book_me[roomsAvailableFrom]": {
-					 // digits: true,
 					  required: true
 				  }
 
@@ -75,7 +76,8 @@
 			  messages: {
 
 				  "wp_book_me[groupName]": {
-					  minlength: "Please, at least 3 characters are necessary"
+					  minlength: "Please, at least 3 characters are necessary",
+					  maxlength: "Max length of 50 characters"
 				  },
 
 				  "wp_book_me[numOfRooms]": {
@@ -88,11 +90,77 @@
 
 			  }
 
+
+
+
 		 });
 
+          
+          //validation script for edit-rooms option page
+
+          $("#wp_book_me_editRoomsSaveAllForm").validate({
+
+              rules: {
+
+                  "wp_book_me[roomOptionName]":  {
+                      required: true,
+                      minlength: 3,
+                      //limited by SQL database
+                      maxlength: 50
+                  },
+
+                  "wp_book_me[roomOptionCapacity]": {
+                      required: true,
+                      digits: true
+
+                  },
+
+                  "wp_book_me[roomOptionServices]": {
+                      //limited by SQL database
+                      maxlength: 100
+                  },
+
+                  "wp_book_me[roomOptionDescription]": {
+                      //limited by SQL database
+                      maxlength: 100
+                  }
+
+
+              },
+
+              messages: {
+
+                  "wp_book_me[roomOptionName]": {
+                      minlength: "Please, at least 3 characters are necessary",
+                      maxlength: "Max length of 50 characters"
+                  },
+
+                  "wp_book_me[roomOptionCapacity]": {
+                      digits: "Only numbers are allowed"
+                  },
+
+                  "wp_book_me[roomOptionServices]": {
+                      maxlength: "Max length of 100 characters"
+                  },
+                  "wp_book_me[roomOptionDescription]": {
+                      maxlength: "Max length of 100 characters"
+                  }
+
+              }
 
 
 
-	  }); // End of DOM Ready
+
+          });
+
+
+
+
+
+
+
+
+
+      }); // End of DOM Ready
 
 }( jQuery ));

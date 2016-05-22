@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 $groupID = $_GET["group_id"];
 
@@ -38,7 +38,7 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
 				{
 					$backgroundColor = "#ECECEC";
 				}    ?>
-
+    
 				<table width='635px' style='border: 1px solid #DFDFDF;background-color:#ffffff;'>
 				<tr style='background-color:#ffffff;'>
                     <td style='padding-left:20px;width:100px;' ><p>Room ID: <?php echo $value->roomId ?> </p></td>
@@ -49,7 +49,9 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
                                     <p>Room Name: </p>
                                 </td>
                                 <td width='200px'>
-                                    <strong><?php echo $value->roomName ?></strong>
+                                    <label for="<?php echo $this->plugin_name; ?>_roomOptionName">
+                                        <input type="text" id="<?php echo $this->plugin_name; ?>_roomOptionName" name="<?php echo $this->plugin_name; ?>[roomOptionName]" value="<?php echo $value->roomName; ?>"/>
+                                    </label>
                                 </td>
 
 
