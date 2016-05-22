@@ -8,7 +8,7 @@ $(document).ready(function () {
 	var m = date.getMonth();
 	var y = date.getFullYear();
 	var dateClick;
-	$('#btnChooseColor').click(open_Dialog_With_uesr);
+	$('#btnRemove').click(open_Dialog_With_uesr);
 
 	var calendar;
 	calendar = $('#calendar').fullCalendar({
@@ -19,7 +19,7 @@ $(document).ready(function () {
 		},
 
 		dayClick: function( date, jsEvent, view, resourceObj ) {
-			$("#dialog").dialog("open");
+			$("#myModal").modal();
 			dateClick = new Date(date);
 			var houre = dateClick.getHours() - 3;
 			var day = dateClick.getDate();
@@ -101,8 +101,7 @@ $(document).ready(function () {
 			AddEvent = false;
 		}
 		var endDate = new Date(year, month, day, houre, min);
-		$("#dialog").dialog("close");
-
+		$('#MyModal').modal('hide');
 		if(dateClick.getHours() >= endDate.getHours())
 		{	alert("uston we have a problem"); return;}
 		if(AddEvent) {
