@@ -1,7 +1,14 @@
+
+@import url(http://fonts.googleapis.com/css?family=Exo:100,200,400);
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);
+@import url(http://fonts.googleapis.com/earlyaccess/opensanshebrew.css);
+
+
 html, body {
 	height: 100%;
-	font-family: "Arial";
-	background-color:gray;
+
+		font-family: 'Open Sans Hebrew', sans-serif;	color: #e8f5ff;
+	background-color:purple;
 
 }
 
@@ -50,6 +57,7 @@ html, body {
 
 .fc-agenda-slots td div {
   height: 60px !important;
+  color:purple;
 }
 
 /* Remove that awful yellow color and border from today in Schedule */
@@ -95,6 +103,7 @@ html, body {
 /* Normal font weight for the time in each event */
 .fc-time-grid-event .fc-time {
   font-weight: normal !important;
+  color:purple;
 }
 
 /* Apply same opacity to all day events */
@@ -116,17 +125,18 @@ html, body {
 }
 
 .fc-widget-header{
-    background-color: #ef414c;
+    background-color: purple;
 	color: #a7cc76;
 }
 
 .fc-header-title {
-    background-color:#a7cc76;
+    background-color:purple;
 }
 
 .fc-header-title h2 {
-    color:#ef414c;
+    color: purple;
 }
+
 
 .ui-dialog {
     background: #f8ffe8  !important;; /* Old browsers */
@@ -146,4 +156,13 @@ html, body {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#febbbb', endColorstr='#ff5c5c',GradientType=0 );
     text: 'test';
     content: 'test';
+}
+
+.fc-axis {
+
+		color:purple; 
+}
+
+.fc-center h2 {
+	color:purple;
 }
