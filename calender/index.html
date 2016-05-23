@@ -29,8 +29,8 @@
                 <!--<hr>-->
                 <!--</div>-->
                 <div id="calendar"></div>
-
                 <hr>
+                <div id="roomSelector"> </div>
             </div>
         </div>
     </div>
@@ -57,9 +57,9 @@
                     <label> Room floor: </label>
                     <input type="text" id="room_floor_input"/><br><br>
                     <label> Event title: </label>
-                    <input type="text" id="event_input"/>
+                    <input type="text" id="event_input"/><br>
                     <label> end hour: </label>
-                    <input type="datetime" step="10" id="endhour"/><br><br>
+                    <input type="time" min="06:00:00" max="21:00:00" step="3600" id="endhour"/><br><br>
                     <label> Please Choose Available Room </label>
                     <label> (will appear after choose upper options) </label>
 

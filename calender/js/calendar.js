@@ -8,12 +8,7 @@ $(document).ready(function () {
     var m = date.getMonth();
     var y = date.getFullYear();
     var dateClick;
-
-
     $('#myModal').modal('hide');
-
-
-
     $('#btnRemove').click(open_Dialog_With_uesr);
 
     var calendar;
@@ -24,23 +19,22 @@ $(document).ready(function () {
             right: 'month, agendaWeek, year'
         },
 
-        dayClick: function (date, jsEvent, view, resourceObj) {
-            $('#myModal').modal('show');
-
-
-
-            dateClick = new Date(date);
-            var houre = dateClick.getHours() - 3;
-            var day = dateClick.getDate();
-            var month = dateClick.getMonth();
-            var min = dateClick.getMinutes();
-            var year = dateClick.getFullYear();
-            dateClick = new Date(year, month, day, houre, min);
+        select: function( start, end, jsEvent, view) {
+             $('#myModal').modal('show');
+            alert(start);
+            alert(end);
+            // dateClick = new Date(date);
+            // var houre = dateClick.getHours() - 3;
+            // var day = dateClick.getDate();
+            // var month = dateClick.getMonth();
+            // var min = dateClick.getMinutes();
+            // var year = dateClick.getFullYear();
+            // dateClick = new Date(year, month, day, houre, min);
 
             //alert("date is " + dateClick);
 
         },
-        slotDuration: '00:10:00',
+        slotDuration: '00:30:00',
         lang: 'he',
         isRTL: true,
         minTime: "06:00:00",
@@ -48,7 +42,7 @@ $(document).ready(function () {
         hiddenDays: [6],
         firstHour: 8,
         allDaySlot: false,
-        height: 700,
+        height: 600,
         axisFormat: "HH:mm",
         defaultView: "agendaWeek",
         weekends: true,
@@ -85,46 +79,52 @@ $(document).ready(function () {
     });
 
 
-    function open_Dialog_With_uesr() {
-        $('#myModal').modal('hide');
-
-        var text = $("#endhour").val();
-        var houre = parseInt(text);
-        var day = dateClick.getDate();
-        var month = dateClick.getMonth();
-        var year = dateClick.getFullYear();
-        var min = dateClick.getMinutes();
-        text = $("#event_input").val();
-        AddEvent = true;
-        for (var i = 0; i < activeEventsSelected.length; i++) if (text == activeEventsSelected[i]) {
-            $("#calendar").fullCalendar('removeEventSource', {
-                title: activeEventsSelected[i]
-            });
-            activeEventsSelected[i] = "null";
-            AddEvent = false;
-        }
-        var endDate = new Date(year, month, day, houre, min);
-        if (dateClick.getHours() >= endDate.getHours()) {
-            alert("uston we have a problem");
-            return;
-        }
-        if (AddEvent) {
-            var add = activeEventsSelected.length; // add the event to array of active events
-            activeEventsSelected.length++;
-            activeEventsSelected[add] = text;
-            calendar.fullCalendar('renderEvent',
-                {
-                    title: text + "\n",
-                    start: dateClick,
-                    end: endDate,
-                    allDay: false
-                },
-                true // make the event "stick"
-            );
-            console.log(activeEventsSelected);
-        }
-
-
-    }
+    // function open_Dialog_With_uesr() {
+    //     $('#myModal').modal('hide');
+		//
+    //     var text = $("#endhour").val();
+    //     var hours = text.split(":")[0];
+    //     var minutes = text.split(":")[1];
+    //
+    //
+    //     var day = dateClick.getDate();
+    //     var month = dateClick.getMonth();
+    //     var year = dateClick.getFullYear();
+    //     text = $("#event_input").val();
+    //     alert("the hours is "+ hours);
+    //     alert("the minute is "+ minutes);
+    //     alert("the event_input is "+ text);
+    //
+    //     AddEvent = true;
+    //     // for (var i = 0; i < activeEventsSelected.length; i++) if (text == activeEventsSelected[i]) {
+    //     //     $("#calendar").fullCalendar('removeEventSource', {
+    //     //         title: activeEventsSelected[i]
+    //     //     });
+    //     //     activeEventsSelected[i] = "null";
+    //     //     AddEvent = false;
+    //     // }
+    //     var endDate = new Date(year, month, day, hours, minutes);
+    //     if (dateClick.getHours() >= endDate.getHours()) {
+    //         alert("uston we have a problem");
+    //         return;
+    //     }
+    //     if (AddEvent) {
+    //         var add = activeEventsSelected.length; // add the event to array of active events
+    //         activeEventsSelected.length++;
+    //         activeEventsSelected[add] = text;
+    //         calendar.fullCalendar('renderEvent',
+    //             {
+    //                 title: text,
+    //                 start: dateClick,
+    //                 end: endDate,
+    //                 allDay: false
+    //             },
+    //             true // make the event "stick"
+    //         );
+    //         console.log(activeEventsSelected);
+    //     }
+    //
+    //
+    // }
 
 });
