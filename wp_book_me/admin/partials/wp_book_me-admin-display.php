@@ -55,8 +55,53 @@ var del = arg;
 <div class="wrap">
 	<h1><?php echo esc_html(get_admin_page_title()); ?></h1>
 	<hr>
-	<br>
+
+	<div>
+		<h3>General Setting</h3>
+
+		<hr>
+
+		<table width='350px'>
+			<tr>
+				<td width='250px' >
+					<span>Date Format: </span>
+				</td>
+				<td width='100px' >
+					<label for="<?php echo $this->plugin_name; ?>_dateFormat">
+						<input type="text" id="<?php echo $this->plugin_name; ?>_dateFormat" name="<?php echo $this->plugin_name; ?>[dateFormat]" value=""/>
+					</label>
+				</td>
+			</tr>
+			<tr>
+				<td width='250px' >
+					<span>First Day Of Week: </span>
+				</td>
+				<td width='100px' >
+					<label for="<?php echo $this->plugin_name; ?>_firstDay">
+						<input type="text" id="<?php echo $this->plugin_name; ?>_firstDay" name="<?php echo $this->plugin_name; ?>[firstDay]" value=""/>
+					</label>
+				</td>
+			</tr>
+			<tr>
+				<td width='250px' >
+					<span>RTL: </span>
+				</td>
+				<td width='100px' >
+					<label for="<?php echo $this->plugin_name; ?>_rtl">
+						<input type="checkbox" id="<?php echo $this->plugin_name; ?>_rtl" name="<?php echo $this->plugin_name; ?>[rtl]" value=""/>
+					</label>
+				</td>
+			</tr>
+		</table>
+
+		<hr>
+	</div>
+
     <div class="main-table">
+
+		<h3>Group List</h3>
+
+		<hr>
 
 		<!-- create row for each group we have -->
     	<?php foreach($selectSQL as $value)
