@@ -34,7 +34,16 @@ $(document).ready(function () {
             var minEnd = dateEnd.getMinutes();
             var yearEnd = dateEnd.getFullYear();
 
-            // alert( dayStart+"/"+monthStart + "/" +yearStart);
+            var strStartTime = dayStart+"/"+monthStart + "/" +yearStart;
+            alert(dateStart);
+            $('#datePicker').val(strStartTime);
+            var strTimeStart = convertTime(houreStart,minStart);
+            var strTimeEnd = convertTime(houreEnd,minEnd);
+
+            $('#stepExample1').val(strTimeStart);
+            $('#stepExample2').val(strTimeEnd);
+
+
             // alert(houreStart);
             // alert(minStart)
             // alert(houreEnd);
@@ -138,8 +147,11 @@ $(document).ready(function () {
 
     ///duration of time start/end
     $(function() {
-        $('#stepExample1').timepicker({ 'step': 15 });
+        $('#stepExample1').timepicker({
+            'timeFormat': 'H:i',
+            'step': 15 });
         $('#stepExample2').timepicker({
+            'timeFormat': 'H:i',
             'step': function(i) {
                 return (i%2) ? 15 : 45;
             }
@@ -149,16 +161,29 @@ $(document).ready(function () {
 
 
      ///for a date picker
-     $('#datepairExample .time').timepicker({
-         'showDuration': true,
-         'timeFormat': 'g:ia'
-     });
+
 
      $('#datepairExample .date').datepicker({
-         'format': 'm/d/yyyy',
+         'format': 'd/m/yyyy',
          'autoclose': true
      });
 
      $('#datepairExample').datepair();
+
+    function convertTime(houreStart, minStart){
+        var strTimeStart;
+        if(houreStart<10)
+            if(minStart < 10)
+                strTimeStart = '0'+houreStart+':'+minStart+'0';
+            else
+                strTimeStart = '0'+houreStart+':'+minStart;
+        else
+        if(minStart < 10)
+            strTimeStart = houreStart+':'+minStart+'0';
+        else
+            strTimeStart = houreStart+':'+minStart;
+
+        return strTimeStart;
+    }
 
 });
