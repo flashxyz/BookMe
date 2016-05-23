@@ -118,12 +118,13 @@ var del = arg;
 		<hr>
 
 		<!-- create row for each group we have -->
+		<?php $groupIndex = 0; ?>
     	<?php foreach($selectSQL as $value)
     		{
-
-				$group_id = $value -> id;
+				$groupIndex++;
+//				$group_id = $value -> id;
 			
-				if ($group_id % 2 != 0) 
+				if ($groupIndex % 2 != 0)
 				{
 					$backgroundColor = "#DFDFDF";
 				} 
@@ -132,8 +133,8 @@ var del = arg;
 					$backgroundColor = "#ECECEC";
 				}    ?>
 
-				<table width='635px' style='border: 1px solid #DFDFDF;background-color:#ffffff;'>
-				<tr style='background-color:#ffffff;'>
+				<table width='635px' style='border: 1px solid #DFDFDF;background-color:<?php echo $backgroundColor ?>;'>
+				<tr style='background-color:<?php echo $backgroundColor ?>;'>
 				<td style='padding-left:20px;width:100px;' ><p>Group ID: <?php echo $group_id ?> </p></td>
 				<td align='center'><p>Shortcode: <strong>[bk_rooms_group id="<?php echo $group_id ?>"]</strong></p></td>
 				<td align="center"><p><form action="?page=wp_book_me&group_id=<?php echo $group_id ?>&edit_group=true" method="POST" ><input type="hidden" name="group_id" value="<?php echo $group_id ?>">
@@ -158,7 +159,7 @@ var del = arg;
 			$nextID = $last->Auto_increment;
 	?>
 
-	<table style='border: 1px solid #DFDFDF;background-color:#ffffff;' width='635px'>
+	<table style='border: 1px solid #DFDFDF;background-color:<?php echo $backgroundColor ?>;' width='635px'>
 	<tr><td style="padding-left:20px;overflow:hidden;" colspan="4"><p><form action="?page=wp_book_me&group_id=<?php echo $nextID ?>&edit_group=true&create_group=true" method="POST" ><input type="hidden" name="group_id" value="<?php echo $nextID ?>">
 
 	<input type="hidden" name="create" value="true"><input type="hidden" name="page" value="wp_book_me"><input name="" value="Create New Rooms Group" type="Submit" class="button-primary"></form></p></td></tr>
