@@ -39,20 +39,22 @@ class Wp_book_me_Activator {
 		$room_reservation_table = $wpdb->prefix . "bookme_room_reservation";
 		$general_options_table = $wpdb->prefix . "bookme_general_options";
 
-		
+		 /**
+		 * SQL tables :
+		 */
 		if($wpdb->get_var("SHOW TABLES LIKE '$group_options_table'") != $group_options_table)
 		{
 			$sql = "CREATE TABLE $group_options_table (
 				id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 				groupName VARCHAR(50),
-				numOfRooms INT(20),
+				numOfRooms INT(3),
 				activeDays VARCHAR(180),
 				fromTime VARCHAR(50),
 				toTime VARCHAR(50),
 				description VARCHAR(200),
 				viewMode VARCHAR(80),
 				calendarColor VARCHAR(10),
-				windowTimeLength INT(5)
+				windowTimeLength INT(4)
 				) DEFAULT CHARACTER SET utf8";
 			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 			dbDelta($sql);
@@ -66,7 +68,7 @@ class Wp_book_me_Activator {
 				roomId BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 				groupId BIGINT,
 				roomName VARCHAR(50),
-				capacity INT(20),
+				capacity INT(4),
 				services VARCHAR(100),
 				isActive INT(1),
 				description VARCHAR(100)
