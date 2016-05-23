@@ -3,125 +3,128 @@ var activeEventsSelected = [];
 
 
 $(document).ready(function () {
-	var date = new Date();
-	var d = date.getDate();
-	var m = date.getMonth();
-	var y = date.getFullYear();
-	var dateClick;
-	$('#btnRemove').click(open_Dialog_With_uesr);
-
-	var calendar;
-	calendar = $('#calendar').fullCalendar({
-		header: {
-			left: 'next,prev today',
-			center: 'title',
-			right: 'month, agendaWeek, year'
-		},
-
-		dayClick: function( date, jsEvent, view, resourceObj ) {
-			$("#myModal").modal();
-			dateClick = new Date(date);
-			var houre = dateClick.getHours() - 3;
-			var day = dateClick.getDate();
-			var month = dateClick.getMonth();
-			var min = dateClick.getMinutes();
-			var year = dateClick.getFullYear();
-			dateClick = new Date(year, month, day, houre, min);
-
-			//alert("date is " + dateClick);
-
-		},
-		slotDuration: '00:10:00',
-		lang: 'he',
-		isRTL: true,
-		minTime: "06:00:00",
-		maxTime: "22:00:00",
-		hiddenDays: [6],
-		firstHour: 8,
-		allDaySlot: false,
-		height: 700,
-		axisFormat: "HH:mm",
-		defaultView: "agendaWeek",
-		weekends: true,
-		selectable: true,
-		selectHelper: true,
-		weekNumbers: true,
-		allDayDefault: true,
-
-		eventClick: function(calEvent, jsEvent, view) {
-			alert("event clicked! ");
-		},
-
-		editable: false,
-		eventSources: [
-			// your event source
-			{
-				events: [ // put the array in the `events` property
-					{
-						title: 'test',
-						start: new Date(y, m, d, 8, 0),
-						end: new Date(y, m, d, 9, 0),
-						allDay: false
-					}
-				],
-				color: '#3300FF',
-				textColor: 'white'
-			},
-			{
-				events: [],
-				color: '#6699FF',
-				textColor: 'black'
-			}
-		]
-	});
+    var date = new Date();
+    var d = date.getDate();
+    var m = date.getMonth();
+    var y = date.getFullYear();
+    var dateClick;
 
 
-	$("#dialog").dialog ({
-		autoOpen: false,
-		height: 300,
-		width: 300,
-		modal: true
-	});
-
-	function open_Dialog_With_uesr(){
-		var text = $("#endhour").val();
-		var houre = parseInt(text);
-		var day = dateClick.getDate();
-		var month = dateClick.getMonth();
-		var year = dateClick.getFullYear();
-		var min = dateClick.getMinutes();
-
-		text = $("#event_input").val();
-		AddEvent = true;
-		for(var i = 0; i < activeEventsSelected.length; i++) if (text == activeEventsSelected[i]) {
-			$("#calendar").fullCalendar('removeEventSource', {
-				title: activeEventsSelected[i]
-			});
-			activeEventsSelected[i] = "null";
-			AddEvent = false;
-		}
-		var endDate = new Date(year, month, day, houre, min);
-		$('#MyModal').modal('hide');
-		if(dateClick.getHours() >= endDate.getHours())
-		{	alert("uston we have a problem"); return;}
-		if(AddEvent) {
-			var add = activeEventsSelected.length; // add the event to array of active events
-			activeEventsSelected.length++;
-			activeEventsSelected[add] = text;
-			calendar.fullCalendar('renderEvent',
-				{
-					title: text + "\n",
-					start: dateClick,
-					end: endDate,
-					allDay: false
-				},
-				true // make the event "stick"
-			);
-			console.log(activeEventsSelected);
-		}
+    $('#myModal').modal('hide');
 
 
 
-	}
+    $('#btnRemove').click(open_Dialog_With_uesr);
+
+    var calendar;
+    calendar = $('#calendar').fullCalendar({
+        header: {
+            left: 'next,prev today',
+            center: 'title',
+            right: 'month, agendaWeek, year'
+        },
+
+        dayClick: function (date, jsEvent, view, resourceObj) {
+            $('#myModal').modal('show');
+
+
+
+            dateClick = new Date(date);
+            var houre = dateClick.getHours() - 3;
+            var day = dateClick.getDate();
+            var month = dateClick.getMonth();
+            var min = dateClick.getMinutes();
+            var year = dateClick.getFullYear();
+            dateClick = new Date(year, month, day, houre, min);
+
+            //alert("date is " + dateClick);
+
+        },
+        slotDuration: '00:10:00',
+        lang: 'he',
+        isRTL: true,
+        minTime: "06:00:00",
+        maxTime: "22:00:00",
+        hiddenDays: [6],
+        firstHour: 8,
+        allDaySlot: false,
+        height: 700,
+        axisFormat: "HH:mm",
+        defaultView: "agendaWeek",
+        weekends: true,
+        selectable: true,
+        selectHelper: true,
+        weekNumbers: true,
+        allDayDefault: true,
+
+        eventClick: function (calEvent, jsEvent, view) {
+            alert("event clicked! ");
+        },
+
+        editable: false,
+        eventSources: [
+            // your event source
+            {
+                events: [ // put the array in the `events` property
+                    {
+                        title: 'test',
+                        start: new Date(y, m, d, 8, 0),
+                        end: new Date(y, m, d, 9, 0),
+                        allDay: false
+                    }
+                ],
+                color: '#3300FF',
+                textColor: 'white'
+            },
+            {
+                events: [],
+                color: '#6699FF',
+                textColor: 'black'
+            }
+        ]
+    });
+
+
+    function open_Dialog_With_uesr() {
+        $('#myModal').modal('hide');
+
+        var text = $("#endhour").val();
+        var houre = parseInt(text);
+        var day = dateClick.getDate();
+        var month = dateClick.getMonth();
+        var year = dateClick.getFullYear();
+        var min = dateClick.getMinutes();
+        text = $("#event_input").val();
+        AddEvent = true;
+        for (var i = 0; i < activeEventsSelected.length; i++) if (text == activeEventsSelected[i]) {
+            $("#calendar").fullCalendar('removeEventSource', {
+                title: activeEventsSelected[i]
+            });
+            activeEventsSelected[i] = "null";
+            AddEvent = false;
+        }
+        var endDate = new Date(year, month, day, houre, min);
+        if (dateClick.getHours() >= endDate.getHours()) {
+            alert("uston we have a problem");
+            return;
+        }
+        if (AddEvent) {
+            var add = activeEventsSelected.length; // add the event to array of active events
+            activeEventsSelected.length++;
+            activeEventsSelected[add] = text;
+            calendar.fullCalendar('renderEvent',
+                {
+                    title: text + "\n",
+                    start: dateClick,
+                    end: endDate,
+                    allDay: false
+                },
+                true // make the event "stick"
+            );
+            console.log(activeEventsSelected);
+        }
+
+
+    }
 
 });
