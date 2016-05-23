@@ -7,16 +7,26 @@
     <link rel='stylesheet prefetch' href='fullcalendar-2.2.6/fullcalendar.min.css'>
     <link rel="stylesheet prefetch" type="text/css"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
     <link rel="stylesheet" href="css/style.css">
+
+
+    <link rel="stylesheet" type="text/css" href="css/jquery.timepicker.css"/>
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-datepicker.css"/>
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
+    <script type="text/javascript" src="js/jquery.timepicker.min.js"></script>
     <script src="fullcalendar-2.2.6/lib/moment.min.js"></script>
     <script src='fullcalendar-2.2.6/fullcalendar.min.js'></script>
     <script src='fullcalendar-2.2.6/lang-all.js'></script>
     <script src="js/calendar.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+    <script src="js/datepair.js"></script>
+    <script src="js/jquery.datepair.js"></script>
+
 </head>
 
 <body>
@@ -30,7 +40,30 @@
                 <!--</div>-->
                 <div id="calendar"></div>
                 <hr>
-                <div id="roomSelector"> </div>
+                <div id="roomSelector">
+
+                    <section id="examples">
+                        <article>
+                            <div class="demo">
+
+
+                                <p>
+                                    <label>Start time:</label>
+                                    <input id="stepExample1" type="text" class="time"/><br>
+                                    <label>End time:</label>
+                                    <input id="stepExample2" type="text" class="time"/><br>
+                                <!--<p id="datepairExample">-->
+                                    <!--<label>Date:</label>-->
+                                    <!--<input type="text" class="date start"/>-->
+
+                                <!--</p>-->
+                                </p>
+                            </div>
+
+                        </article>
+                    </section>
+
+                </div>
             </div>
         </div>
     </div>

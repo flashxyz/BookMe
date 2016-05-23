@@ -8,8 +8,6 @@ $(document).ready(function () {
     var m = date.getMonth();
     var y = date.getFullYear();
     var dateClick;
-    $('#myModal').modal('hide');
-    $('#btnRemove').click(open_Dialog_With_uesr);
 
     var calendar;
     calendar = $('#calendar').fullCalendar({
@@ -20,18 +18,28 @@ $(document).ready(function () {
         },
 
         select: function( start, end, jsEvent, view) {
-             $('#myModal').modal('show');
-            alert(start);
-            alert(end);
-            // dateClick = new Date(date);
-            // var houre = dateClick.getHours() - 3;
-            // var day = dateClick.getDate();
-            // var month = dateClick.getMonth();
-            // var min = dateClick.getMinutes();
-            // var year = dateClick.getFullYear();
-            // dateClick = new Date(year, month, day, houre, min);
+            var dateStart = new Date(start);
+            var dateEnd = new Date(end);
 
-            //alert("date is " + dateClick);
+            var houreStart = dateStart.getHours() - 3;
+            var dayStart = dateStart.getDate();
+            var monthStart = dateStart.getMonth() + 1;
+            var minStart = dateStart.getMinutes();
+            var yearStart = dateStart.getFullYear();
+
+
+            var houreEnd = dateEnd.getHours() - 3;
+            var dayEnd = dateEnd.getDate();
+            var monthEnd = dateEnd.getMonth() + 1;
+            var minEnd = dateEnd.getMinutes();
+            var yearEnd = dateEnd.getFullYear();
+
+            // alert( dayStart+"/"+monthStart + "/" +yearStart);
+            // alert(houreStart);
+            // alert(minStart)
+            // alert(houreEnd);
+            // alert(minEnd);
+
 
         },
         slotDuration: '00:30:00',
@@ -81,7 +89,7 @@ $(document).ready(function () {
 
     // function open_Dialog_With_uesr() {
     //     $('#myModal').modal('hide');
-		//
+    //
     //     var text = $("#endhour").val();
     //     var hours = text.split(":")[0];
     //     var minutes = text.split(":")[1];
@@ -126,5 +134,31 @@ $(document).ready(function () {
     //
     //
     // }
+
+
+    ///duration of time start/end
+    $(function() {
+        $('#stepExample1').timepicker({ 'step': 15 });
+        $('#stepExample2').timepicker({
+            'step': function(i) {
+                return (i%2) ? 15 : 45;
+            }
+        });
+    });
+
+
+
+    // ///for a date picker
+    // $('#datepairExample .time').timepicker({
+    //     'showDuration': true,
+    //     'timeFormat': 'g:ia'
+    // });
+    //
+    // $('#datepairExample .date').datepicker({
+    //     'format': 'm/d/yyyy',
+    //     'autoclose': true
+    // });
+    //
+    // $('#datepairExample').datepair();
 
 });
