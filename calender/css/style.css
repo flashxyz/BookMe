@@ -138,25 +138,25 @@ html, body {
 }
 
 
-.ui-dialog {
-    background: #f8ffe8  !important;; /* Old browsers */
-    background: -moz-linear-gradient(top, #f8ffe8 0%, #e3f5ab 33%, #b7df2d 100%)  !important;; /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, #f8ffe8 0%,#e3f5ab 33%,#b7df2d 100%)  !important;; /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, #f8ffe8 0%,#e3f5ab 33%,#b7df2d 100%) !important;; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f8ffe8', endColorstr='#b7df2d',GradientType=0 )  !important;;
+/*.ui-dialog {*/
+    /*background: #f8ffe8  !important;; !* Old browsers *!*/
+    /*background: -moz-linear-gradient(top, #f8ffe8 0%, #e3f5ab 33%, #b7df2d 100%)  !important;; !* FF3.6-15 *!*/
+    /*background: -webkit-linear-gradient(top, #f8ffe8 0%,#e3f5ab 33%,#b7df2d 100%)  !important;; !* Chrome10-25,Safari5.1-6 *!*/
+    /*background: linear-gradient(to bottom, #f8ffe8 0%,#e3f5ab 33%,#b7df2d 100%) !important;; !* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ *!*/
+    /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f8ffe8', endColorstr='#b7df2d',GradientType=0 )  !important;;*/
 
-}
+/*}*/
 
-.ui-dialog-titlebar {
+/*.ui-dialog-titlebar {*/
 
-    background: #febbbb; /* Old browsers */
-    background: -moz-linear-gradient(top, #febbbb 0%, #fe9090 45%, #ff5c5c 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, #febbbb 0%,#fe9090 45%,#ff5c5c 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom, #febbbb 0%,#fe9090 45%,#ff5c5c 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#febbbb', endColorstr='#ff5c5c',GradientType=0 );
-    text: 'test';
-    content: 'test';
-}
+    /*background: #febbbb; !* Old browsers *!*/
+    /*background: -moz-linear-gradient(top, #febbbb 0%, #fe9090 45%, #ff5c5c 100%); !* FF3.6-15 *!*/
+    /*background: -webkit-linear-gradient(top, #febbbb 0%,#fe9090 45%,#ff5c5c 100%); !* Chrome10-25,Safari5.1-6 *!*/
+    /*background: linear-gradient(to bottom, #febbbb 0%,#fe9090 45%,#ff5c5c 100%); !* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ *!*/
+    /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#febbbb', endColorstr='#ff5c5c',GradientType=0 );*/
+    /*text: 'test';*/
+    /*content: 'test';*/
+/*}*/
 
 .fc-axis {
 

@@ -1,81 +1,82 @@
 <!DOCTYPE html>
-<html >
-  <head>
+<html>
+<head>
     <meta charset="UTF-8">
     <title>Week Calendar Test</title>
-      <link rel='stylesheet prefetch' href='fullcalendar-2.2.6/lib/cupertino/jquery-ui.min.css'>
-      <link rel='stylesheet prefetch' href='fullcalendar-2.2.6/fullcalendar.min.css'>
-      <link rel="stylesheet prefetch" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel='stylesheet prefetch' href='fullcalendar-2.2.6/lib/cupertino/jquery-ui.min.css'>
+    <link rel='stylesheet prefetch' href='fullcalendar-2.2.6/fullcalendar.min.css'>
+    <link rel="stylesheet prefetch" type="text/css"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
-	<link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-      <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
-      <script src="fullcalendar-2.2.6/lib/moment.min.js"></script>
-      <script src='fullcalendar-2.2.6/fullcalendar.min.js'></script>
-      <script src='fullcalendar-2.2.6/lang-all.js'></script>
-      <script src="js/calendar.js"></script>
-  </head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
+    <script src="fullcalendar-2.2.6/lib/moment.min.js"></script>
+    <script src='fullcalendar-2.2.6/fullcalendar.min.js'></script>
+    <script src='fullcalendar-2.2.6/lang-all.js'></script>
+    <script src="js/calendar.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+            integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+            crossorigin="anonymous"></script>
+</head>
 
-  <body>
-    <div class="container-fluid">
-	<div class="row-fluid"> 
-	  <div class="jumbotron vertical-center">
-	  <div class="centering text-center">
-		<!--<div class="BookHeader" >-->
-			<!--<img src="BookMeLogo.png" style="width: auto; height: auto;max-width: 500px;max-height: 350px" />-->
-			<!--<hr>-->
-		<!--</div>-->
-          <div id="calendar"></div>
+<body>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="jumbotron vertical-center">
+            <div class="centering text-center">
+                <!--<div class="BookHeader" >-->
+                <!--<img src="BookMeLogo.png" style="width: auto; height: auto;max-width: 500px;max-height: 350px" />-->
+                <!--<hr>-->
+                <!--</div>-->
+                <div id="calendar"></div>
 
-			<hr>
-		</div>
-		</div>
-		</div>
-        <div id="dialog" title="ROOM SELECTOR">
-
-            <!-- Modal -->
-            <div id="myModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-
-
-
-            <label > Please Choose Room Accessories </label><br>
-            <form>
-                <input type="radio" id = "projector"> Projector<br>
-                <input type="radio" id = "Microphone"> Microphone<br>
-                <input type="radio" id = "Speakers"> Speakers<br>
-                <input type="radio" id = "Computer"> Computer<br>
-            </form><br>
-            <label > Room floor: </label>
-            <input type="text" id="room_floor_input" /><br><br>
-            <label > Event title: </label>
-            <input type="text" id="event_input" />
-            <label > end hour: </label>
-            <input type="datetime" step="10" id="endhour"/><br><br>
-            <label > Please Choose Available Room </label>
-            <label > (will appear after choose upper options)  </label>
-            <form>
-                <input type="radio" id = "A100"> A100<br>
-                <input type="radio" id = "A101"> A101<br>
-                <input type="radio" id = "A102"> A102<br>
-            </form>
-            <button class="jscolor {valueElement: 'color_value'}" id="btnChooseColor"> choose color </button>
-            <button id="btnRemove"> Remove </button>
+                <hr>
             </div>
-            </div>
-            </div>
-            </div>
-
-
-
-
         </div>
     </div>
 
-  </body>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+
+
+                    <label> Please Choose Room Accessories </label><br>
+                    <form>
+                        <input type="radio" id="projector"> Projector<br>
+                        <input type="radio" id="Microphone"> Microphone<br>
+                        <input type="radio" id="Speakers"> Speakers<br>
+                        <input type="radio" id="Computer"> Computer<br>
+                    </form>
+                    <br>
+                    <label> Room floor: </label>
+                    <input type="text" id="room_floor_input"/><br><br>
+                    <label> Event title: </label>
+                    <input type="text" id="event_input"/>
+                    <label> end hour: </label>
+                    <input type="datetime" step="10" id="endhour"/><br><br>
+                    <label> Please Choose Available Room </label>
+                    <label> (will appear after choose upper options) </label>
+                    <form>
+                        <input type="radio" id="A100"> A100<br>
+                        <input type="radio" id="A101"> A101<br>
+                        <input type="radio" id="A102"> A102<br>
+                    </form>
+                    <button class="jscolor {valueElement: 'color_value'}" id="btnChooseColor"> choose color</button>
+                    <button id="btnRemove"> Remove</button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+</body>
 </html>
