@@ -24,13 +24,14 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
         <br>
         <form  action="" method="post" id="<?php echo $this->plugin_name; ?>_editRoomsSaveAllForm">
 
+            <?php $roomIndex = 0; ?>
             <!--create row for each room we have-->
             <?php foreach($selectSQL as $value)
     		{
-
+                $roomIndex++;
 				$group_id = $value -> groupId;
 
-				if ($group_id % 2 != 0)
+				if ($roomIndex % 2 != 0)
 				{
 					$backgroundColor = "#DFDFDF";
 				}
@@ -39,9 +40,9 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
 					$backgroundColor = "#ECECEC";
 				}    ?>
     
-				<table width='635px' style='border: 1px solid #DFDFDF;background-color:#ffffff;'>
-				<tr style='background-color:#ffffff;'>
-                    <td style='padding-left:20px;width:100px;' ><p>Room ID: <?php echo $value->roomId ?> </p></td>
+				<table width='635px' style='border: 1px solid <?php echo $backgroundColor ?>;background-color:<?php echo $backgroundColor ?>'>
+				<tr style='background-color:<?php echo $backgroundColor ?>'>
+                    <td style='padding-left:20px;width:100px;' ><p>Room <?php echo $roomIndex ?> </p></td>
                     <td align='center'>
                         <table width='400px'>
                             <tr>
