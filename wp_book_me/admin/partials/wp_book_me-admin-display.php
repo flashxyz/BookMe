@@ -61,31 +61,45 @@ var del = arg;
 
 		<hr>
 
-		<table width='350px'>
+		<table width='550px'>
 			<tr>
+				
 				<td width='250px' >
 					<span>Date Format: </span>
 				</td>
+				
 				<td width='100px' >
 					<label for="<?php echo $this->plugin_name; ?>_dateFormat">
 						<input type="text" id="<?php echo $this->plugin_name; ?>_dateFormat" name="<?php echo $this->plugin_name; ?>[dateFormat]" value=""/>
 					</label>
 				</td>
 			</tr>
+			
 			<tr>
+				
 				<td width='250px' >
 					<span>First Day Of Week: </span>
 				</td>
+				
 				<td width='100px' >
 					<label for="<?php echo $this->plugin_name; ?>_firstDay">
 						<input type="text" id="<?php echo $this->plugin_name; ?>_firstDay" name="<?php echo $this->plugin_name; ?>[firstDay]" value=""/>
 					</label>
 				</td>
+
+				<td width='100px' >
+				</td>
+				
+				<td width='100px' >
+					<input class="button-primary" type="submit" name="saveOptionsBTN" value="Save" />
+				</td>
 			</tr>
+			
 			<tr>
 				<td width='250px' >
 					<span>RTL: </span>
 				</td>
+				
 				<td width='100px' >
 					<label for="<?php echo $this->plugin_name; ?>_rtl">
 						<input type="checkbox" id="<?php echo $this->plugin_name; ?>_rtl" name="<?php echo $this->plugin_name; ?>[rtl]" value=""/>
