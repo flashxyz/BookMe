@@ -7,7 +7,11 @@ $(document).ready(function () {
     var d = date.getDate();
     var m = date.getMonth();
     var y = date.getFullYear();
+    var timeStart;
+    var timeEnd;
     var dateClick;
+    $('#btnAddRoom').click(addEvent);
+
 
     var calendar;
     calendar = $('#calendar').fullCalendar({
@@ -27,12 +31,16 @@ $(document).ready(function () {
             var minStart = dateStart.getMinutes();
             var yearStart = dateStart.getFullYear();
 
+            timeStart = new Date(yearStart, monthStart-1, dayStart, houreStart ,minStart);
+            alert("timr is: "+timeStart);
 
             var houreEnd = dateEnd.getHours() - 3;
             var dayEnd = dateEnd.getDate();
             var monthEnd = dateEnd.getMonth() + 1;
             var minEnd = dateEnd.getMinutes();
             var yearEnd = dateEnd.getFullYear();
+
+            timeEnd = new Date(yearEnd, monthEnd - 1, dayEnd, houreEnd ,minEnd);
 
             var strStartTime = dayStart+"/"+monthStart + "/" +yearStart;
             alert(dateStart);
@@ -95,8 +103,20 @@ $(document).ready(function () {
         ]
     });
 
-
-    // function open_Dialog_With_uesr() {
+    function addEvent() {
+        alert(timeStart);
+        alert(timeEnd);
+        calendar.fullCalendar('renderEvent',
+                    {
+                        title: "רשום לחדר A107",
+                        start: timeStart,
+                        end: timeEnd,
+                        allDay: false
+                    },
+                    true // make the event "stick"
+                );
+    }
+    // function addEvent() {
     //     $('#myModal').modal('hide');
     //
     //     var text = $("#endhour").val();
