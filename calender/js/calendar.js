@@ -1,7 +1,3 @@
-
-
-
-
 $(document).ready(function () {
     var availableRooms = ["A100","A101","A102","B100","B101","B102","C100","C101","C102"];
     var date = new Date();
@@ -12,7 +8,8 @@ $(document).ready(function () {
     var timeEnd;
     var dateClick;
     $('#btnAddRoom').click(addEvent);
-
+    var services = ["adam","nir","lior"];
+    displayCheckboxes();
 
     var calendar;
     calendar = $('#calendar').fullCalendar({
@@ -62,7 +59,7 @@ $(document).ready(function () {
 
 
         },
-        slotDuration: '00:30:00',
+        slotDuration: '01:00:00',
         lang: 'he',
         isRTL: true,
         minTime: "06:00:00",
@@ -107,22 +104,26 @@ $(document).ready(function () {
     });
 
 
+
     function addEvent() {
         var nowTime = new Date();
         if( timeStart.getYear() <= nowTime.getYear())
             if(timeStart.getMonth() <= nowTime.getMonth())
                 if( timeStart.getDate() <= nowTime.getDate() && timeStart.getHours() < nowTime.getHours())
                     return;
-
         calendar.fullCalendar('renderEvent',
-                    {
-                        title: "רשום לחדר A107",
-                        start: timeStart,
-                        end: timeEnd,
-                        allDay: false
-                    },
-                    true // make the event "stick"
-                );
+            {
+                title: "רשום לחדר " + $('#roomSelect').val(),
+                start: timeStart,
+                end: timeEnd,
+                color: '#3300FF',
+                textColor: 'white',
+                allDay: false
+
+            },
+            true // make the event "stick"
+        );
+
     }
     // function addEvent() {
     //     $('#myModal').modal('hide');
@@ -188,15 +189,15 @@ $(document).ready(function () {
 
 
 
-     ///for a date picker
+    ///for a date picker
 
 
-     $('#datepairExample .date').datepicker({
-         'format': 'd/m/yyyy',
-         'autoclose': true
-     });
+    $('#datepairExample .date').datepicker({
+        'format': 'd/m/yyyy',
+        'autoclose': true
+    });
 
-     $('#datepairExample').datepair();
+    $('#datepairExample').datepair();
 
     function convertTime(houreStart, minStart){
         var strTimeStart;
@@ -215,18 +216,33 @@ $(document).ready(function () {
     }
     function ShowAvailableRoom(startTime, endTime) {
         var i, j;
-        if ($('#stepExample1').val() == "06:00" && $('#stepExample2').val() == "08:00" && $('#datePicker').val() != "") {
+        if ($('#stepExample1').val() != "" && $('#stepExample2').val() != "" && $('#datePicker').val() != "") {
             for (i = 0; i < availableRooms.length; i++) {
-                $('#sel1').append("<option>" + availableRooms[i] + "</option>");
+                $('#roomSelect').append("<option>" + availableRooms[i] + "</option>");
                 //.attr("value",key).text(value))
             }
         }
         else {
-            var x = document.getElementById("sel1");
+            var x = document.getElementById("roomSelect");
             for (i = 0; i < availableRooms.length; i++) {
                 x.remove(x.childNodes);
             }
         }
+    }
+    function displayCheckboxes()
+    {
+        var checkboxes = "<div class='col-sm-12'>";
+
+        for(var i = 0 ; i < services.length ; i++)
+        {
+            checkboxes += "<div class='checkbox'><label><input type='checkbox' value=''> " +
+                "<span class='cr'><i class='cr-icon glyphicon glyphicon-ok'></i></span>" +
+                services[i]+" </label></div>";
+        }
+        checkboxes +="</div>"
+        $('#checkboxes').append(checkboxes);
+
+
     }
 
 });
