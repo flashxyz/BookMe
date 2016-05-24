@@ -1,8 +1,9 @@
 
-var activeEventsSelected = [];
+
 
 
 $(document).ready(function () {
+    var availableRooms = ["A100","A101","A102","B100","B101","B102","C100","C101","C102"];
     var date = new Date();
     var d = date.getDate();
     var m = date.getMonth();
@@ -51,6 +52,7 @@ $(document).ready(function () {
 
             $('#stepExample1').val(strTimeStart);
             $('#stepExample2').val(strTimeEnd);
+            $('#sel1').change(ShowAvailableRoom());
 
 
             // alert(houreStart);
@@ -210,6 +212,21 @@ $(document).ready(function () {
             strTimeStart = houreStart+':'+minStart;
 
         return strTimeStart;
+    }
+    function ShowAvailableRoom(startTime, endTime) {
+        var i, j;
+        if ($('#stepExample1').val() == "06:00" && $('#stepExample2').val() == "08:00" && $('#datePicker').val() != "") {
+            for (i = 0; i < availableRooms.length; i++) {
+                $('#sel1').append("<option>" + availableRooms[i] + "</option>");
+                //.attr("value",key).text(value))
+            }
+        }
+        else {
+            var x = document.getElementById("sel1");
+            for (i = 0; i < availableRooms.length; i++) {
+                x.remove(x.childNodes);
+            }
+        }
     }
 
 });
