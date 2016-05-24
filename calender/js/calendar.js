@@ -1,4 +1,4 @@
-var AddEvent = false;
+
 var activeEventsSelected = [];
 
 
@@ -32,7 +32,7 @@ $(document).ready(function () {
             var yearStart = dateStart.getFullYear();
 
             timeStart = new Date(yearStart, monthStart-1, dayStart, houreStart ,minStart);
-            alert("timr is: "+timeStart);
+
 
             var houreEnd = dateEnd.getHours() - 3;
             var dayEnd = dateEnd.getDate();
@@ -43,8 +43,9 @@ $(document).ready(function () {
             timeEnd = new Date(yearEnd, monthEnd - 1, dayEnd, houreEnd ,minEnd);
 
             var strStartTime = dayStart+"/"+monthStart + "/" +yearStart;
-            alert(dateStart);
+
             $('#datePicker').val(strStartTime);
+
             var strTimeStart = convertTime(houreStart,minStart);
             var strTimeEnd = convertTime(houreEnd,minEnd);
 
@@ -59,7 +60,7 @@ $(document).ready(function () {
 
 
         },
-        slotDuration: '00:30:00',
+        slotDuration: '01:00:00',
         lang: 'he',
         isRTL: true,
         minTime: "06:00:00",
@@ -92,26 +93,30 @@ $(document).ready(function () {
                         allDay: false
                     }
                 ],
+                textColor: 'black'
+            }
+        ]
+    });
+
+
+    function addEvent() {
+        var nowTime = new Date();
+        if( timeStart.getYear() <= nowTime.getYear())
+            if(timeStart.getMonth() <= nowTime.getMonth())
+                if( timeStart.getDate() <= nowTime.getDate() && timeStart.getHours() < nowTime.getHours())
+                    return;
+
+        calendar.fullCalendar('renderEvent',
+            {
+                title: "רשום לחדר A107",
+                start: timeStart,
+                end: timeEnd,
                 color: '#3300FF',
                 textColor: 'white'
             },
             {
                 events: [],
                 color: '#6699FF',
-                textColor: 'black'
-            }
-        ]
-    });
-
-    
-    function addEvent() {
-        alert(timeStart);
-        alert(timeEnd);
-        calendar.fullCalendar('renderEvent',
-                    {
-                        title: "רשום לחדר A107",
-                        start: timeStart,
-                        end: timeEnd,
                         allDay: false
                     },
                     true // make the event "stick"
