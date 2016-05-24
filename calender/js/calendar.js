@@ -60,7 +60,7 @@ $(document).ready(function () {
 
 
         },
-        slotDuration: '01:00:00',
+        slotDuration: '00:30:00',
         lang: 'he',
         isRTL: true,
         minTime: "06:00:00",
@@ -93,6 +93,12 @@ $(document).ready(function () {
                         allDay: false
                     }
                 ],
+                color: '#3300FF',
+                textColor: 'white'
+            },
+            {
+                events: [],
+                color: '#6699FF',
                 textColor: 'black'
             }
         ]
@@ -107,16 +113,10 @@ $(document).ready(function () {
                     return;
 
         calendar.fullCalendar('renderEvent',
-            {
-                title: "רשום לחדר A107",
-                start: timeStart,
-                end: timeEnd,
-                color: '#3300FF',
-                textColor: 'white'
-            },
-            {
-                events: [],
-                color: '#6699FF',
+                    {
+                        title: "רשום לחדר A107",
+                        start: timeStart,
+                        end: timeEnd,
                         allDay: false
                     },
                     true // make the event "stick"
