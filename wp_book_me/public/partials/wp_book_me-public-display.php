@@ -17,10 +17,10 @@
 
 function display($atts)
 {
-    //include_once( '');
-    ?>
-    <h1>here will be the shortcode </h1>
-    <?php
+    @ob_start();
+    include_once 'frontend-bookme.php';
+    $frontend_bookme = @ob_get_clean();
+    return $frontend_bookme;
 }
 
 add_shortcode('bk_rooms_group', 'display');
