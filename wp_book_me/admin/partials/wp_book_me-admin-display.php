@@ -55,8 +55,67 @@ var del = arg;
 <div class="wrap">
 	<h1><?php echo esc_html(get_admin_page_title()); ?></h1>
 	<hr>
-	<br>
+
+	<div>
+		<h3>General Setting</h3>
+
+		<hr>
+
+		<table width='550px'>
+			<tr>
+				
+				<td width='250px' >
+					<span>Date Format: </span>
+				</td>
+				
+				<td width='100px' >
+					<label for="<?php echo $this->plugin_name; ?>_dateFormat">
+						<input type="text" id="<?php echo $this->plugin_name; ?>_dateFormat" name="<?php echo $this->plugin_name; ?>[dateFormat]" value=""/>
+					</label>
+				</td>
+			</tr>
+			
+			<tr>
+				
+				<td width='250px' >
+					<span>First Day Of Week: </span>
+				</td>
+				
+				<td width='100px' >
+					<label for="<?php echo $this->plugin_name; ?>_firstDay">
+						<input type="text" id="<?php echo $this->plugin_name; ?>_firstDay" name="<?php echo $this->plugin_name; ?>[firstDay]" value=""/>
+					</label>
+				</td>
+
+				<td width='100px' >
+				</td>
+				
+				<td width='100px' >
+					<input class="button-primary" type="submit" name="saveOptionsBTN" value="Save" />
+				</td>
+			</tr>
+			
+			<tr>
+				<td width='250px' >
+					<span>RTL: </span>
+				</td>
+				
+				<td width='100px' >
+					<label for="<?php echo $this->plugin_name; ?>_rtl">
+						<input type="checkbox" id="<?php echo $this->plugin_name; ?>_rtl" name="<?php echo $this->plugin_name; ?>[rtl]" value=""/>
+					</label>
+				</td>
+			</tr>
+		</table>
+
+		<hr>
+	</div>
+
     <div class="main-table">
+
+		<h3>Group List</h3>
+
+		<hr>
 
 		<!-- create row for each group we have -->
     	<?php foreach($selectSQL as $value)
@@ -64,7 +123,7 @@ var del = arg;
 
 				$group_id = $value -> id;
 			
-				if ($group_id % 2 != 0) 
+				if ($group_id % 2 != 0)
 				{
 					$backgroundColor = "#DFDFDF";
 				} 
@@ -73,8 +132,8 @@ var del = arg;
 					$backgroundColor = "#ECECEC";
 				}    ?>
 
-				<table width='635px' style='border: 1px solid #DFDFDF;background-color:#ffffff;'>
-				<tr style='background-color:#ffffff;'>
+				<table width='635px' style='border: 1px solid #DFDFDF;background-color:<?php echo $backgroundColor ?>;'>
+				<tr style='background-color:<?php echo $backgroundColor ?>;'>
 				<td style='padding-left:20px;width:100px;' ><p>Group ID: <?php echo $group_id ?> </p></td>
 				<td align='center'><p>Shortcode: <strong>[bk_rooms_group id="<?php echo $group_id ?>"]</strong></p></td>
 				<td align="center"><p><form action="?page=wp_book_me&group_id=<?php echo $group_id ?>&edit_group=true" method="POST" ><input type="hidden" name="group_id" value="<?php echo $group_id ?>">
@@ -99,7 +158,7 @@ var del = arg;
 			$nextID = $last->Auto_increment;
 	?>
 
-	<table style='border: 1px solid #DFDFDF;background-color:#ffffff;' width='635px'>
+	<table width='635px'>
 	<tr><td style="padding-left:20px;overflow:hidden;" colspan="4"><p><form action="?page=wp_book_me&group_id=<?php echo $nextID ?>&edit_group=true&create_group=true" method="POST" ><input type="hidden" name="group_id" value="<?php echo $nextID ?>">
 
 	<input type="hidden" name="create" value="true"><input type="hidden" name="page" value="wp_book_me"><input name="" value="Create New Rooms Group" type="Submit" class="button-primary"></form></p></td></tr>

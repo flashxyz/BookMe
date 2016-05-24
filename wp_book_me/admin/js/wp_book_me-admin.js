@@ -54,9 +54,10 @@
 					  maxlength: 50
 				  },
 
-				  "wp_book_me[numOfRooms]": {
+				  "wp_book_me[timeSlot]": {
 					  required: true,
-					  digits: true
+					  digits: true,
+					  max: 999
 
 				  },
 
@@ -111,7 +112,8 @@
 
                   "wp_book_me[roomOptionCapacity]": {
                       required: true,
-                      digits: true
+                      digits: true,
+					  max:9999
 
                   },
 
