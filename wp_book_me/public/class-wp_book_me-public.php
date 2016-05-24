@@ -100,4 +100,11 @@ class Wp_book_me_Public {
 
 	}
 
+
+
+
 }
+
+include_once('partials/wp_book_me-public-display.php');
+
+?>

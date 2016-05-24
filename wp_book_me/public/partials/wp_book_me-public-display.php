@@ -11,6 +11,18 @@
  * @package    Wp_book_me
  * @subpackage Wp_book_me/public/partials
  */
-?>
 
-<!-- This file should primarily consist of HTML with a little bit of PHP. -->
+
+
+
+function display($atts)
+{
+    //include_once( '');
+    ?>
+    <h1>here will be the shortcode </h1>
+    <?php
+}
+
+add_shortcode('bk_rooms_group', 'display');
+
+?>
