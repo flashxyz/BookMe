@@ -118,13 +118,12 @@ var del = arg;
 		<hr>
 
 		<!-- create row for each group we have -->
-		<?php $groupIndex = 0; ?>
     	<?php foreach($selectSQL as $value)
     		{
-				$groupIndex++;
-//				$group_id = $value -> id;
+
+				$group_id = $value -> id;
 			
-				if ($groupIndex % 2 != 0)
+				if ($group_id % 2 != 0)
 				{
 					$backgroundColor = "#DFDFDF";
 				} 
@@ -159,7 +158,7 @@ var del = arg;
 			$nextID = $last->Auto_increment;
 	?>
 
-	<table style='border: 1px solid #DFDFDF;background-color:<?php echo $backgroundColor ?>;' width='635px'>
+	<table width='635px'>
 	<tr><td style="padding-left:20px;overflow:hidden;" colspan="4"><p><form action="?page=wp_book_me&group_id=<?php echo $nextID ?>&edit_group=true&create_group=true" method="POST" ><input type="hidden" name="group_id" value="<?php echo $nextID ?>">
 
 	<input type="hidden" name="create" value="true"><input type="hidden" name="page" value="wp_book_me"><input name="" value="Create New Rooms Group" type="Submit" class="button-primary"></form></p></td></tr>

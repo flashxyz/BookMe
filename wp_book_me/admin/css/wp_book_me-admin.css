@@ -19,3 +19,12 @@ label.error {
     display:inline-block;
 }
 /*-------------------------------------------*/
+
+.backgroundButton {
+
+    border: 1px solid #DFDFDF;
+    background-color: #fdd49a;
+    padding-left:20px;
+    overflow:hidden;
+}
+/*-------------------------------------------*/
