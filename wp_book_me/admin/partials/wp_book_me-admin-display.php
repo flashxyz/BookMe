@@ -116,14 +116,14 @@ var del = arg;
 		<h3>Group List</h3>
 
 		<hr>
-
+		<?php $group_index = 0; ?>
 		<!-- create row for each group we have -->
     	<?php foreach($selectSQL as $value)
     		{
-
+				
 				$group_id = $value -> id;
 			
-				if ($group_id % 2 != 0)
+				if ($group_index % 2 != 0)
 				{
 					$backgroundColor = "#DFDFDF";
 				} 
@@ -147,7 +147,8 @@ var del = arg;
 				</table>
 
 		<?php 
-		@$group_id++;
+		$group_id++;
+		$group_index++;		
 		} 
 		?>
 
