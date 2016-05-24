@@ -103,6 +103,7 @@ $(document).ready(function () {
         ]
     });
 
+    
     function addEvent() {
         alert(timeStart);
         alert(timeEnd);
