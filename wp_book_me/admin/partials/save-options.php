@@ -2,7 +2,7 @@
 
 global $wpdb;
 
-
+//saved optionns for group
 if($_GET['group_id']==true AND $_GET['save_options']==true)
 {
 
