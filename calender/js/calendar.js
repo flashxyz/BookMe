@@ -1,5 +1,12 @@
 $(document).ready(function () {
-    var availableRooms = ["A100","A101","A102","B100","B101","B102","C100","C101","C102"];
+    var availableRooms = [["A100","projector"],["A101","projector"],["A102","adam"],
+        ["B100","lior"],["B101","adam"],
+        ["B102","adam"],["C100","nir"],
+        ["C101","lior"],["C102","adam"]];
+    var duartionInMin = 90;
+    var minimumTime = 6;
+    var maximumTime = 22;
+    // the array is build in this plan: place 0 - the room, place 1 - the services.
     var date = new Date();
     var d = date.getDate();
     var m = date.getMonth();
@@ -8,11 +15,8 @@ $(document).ready(function () {
     var timeEnd;
     var dateClick;
     $('#btnAddRoom').click(addEvent);
-
-    var duartionInMin = 90;
-    var minimumTime = 6;
-    var maximumTime = 22;
-    var services = ["1","2","3"];
+    var services = ["adam","nir","lior","projector"];
+    var wishServices = [];
     displayCheckboxes();
 
     var calendar;
@@ -54,6 +58,7 @@ $(document).ready(function () {
             $('#stepExample1').val(strTimeStart);
             $('#stepExample2').val(strTimeEnd);
             $('#sel1').change(ShowAvailableRoom());
+            getWishServices();
 
 
             // alert(houreStart);
@@ -63,13 +68,13 @@ $(document).ready(function () {
 
 
         },
-        slotDuration: '00:'+duartionInMin+':00',
+        slotDuration: '01:00:00',
         lang: 'he',
         isRTL: true,
-        minTime: "0"+minimumTime+":00:00",
-        maxTime: maximumTime+":00:00",
+        minTime: "06:00:00",
+        maxTime: "22:00:00",
         hiddenDays: [6],
-        // firstHour: 8,
+        firstHour: 8,
         allDaySlot: false,
         height: 600,
         axisFormat: "HH:mm",
@@ -181,20 +186,12 @@ $(document).ready(function () {
     ///duration of time start/end
     $(function() {
         $('#stepExample1').timepicker({
-            'minTime': "0"+minimumTime+":00",
-            'maxTime': maximumTime+":00",
             'timeFormat': 'H:i',
-            'step': function(i) {
-                return (i%2) ? duartionInMin : duartionInMin;
-            }
-
-        });
+            'step': 15 });
         $('#stepExample2').timepicker({
-            'minTime': "0"+minimumTime+":00",
-            'maxTime': maximumTime+":00",
             'timeFormat': 'H:i',
             'step': function(i) {
-                return (i%2) ? duartionInMin : duartionInMin;
+                return (i%2) ? 15 : 45;
             }
         });
     });
@@ -226,7 +223,6 @@ $(document).ready(function () {
 
         return strTimeStart;
     }
-
     function ShowAvailableRoom(startTime, endTime) {
         var i, j;
         if ($('#stepExample1').val() != "" && $('#stepExample2').val() != "" && $('#datePicker').val() != "") {
@@ -242,16 +238,27 @@ $(document).ready(function () {
             }
         }
     }
+    function getWishServices(){
+        var doc = document.getElementById("checkbox");
 
+        for (var i = 0; i < doc.childNodes.length; i++) {
+
+            wishServices.length++;
+            wishServices += doc.lastElementChild;
+        }
+        alert(wishServices.toString);
+    }
     function displayCheckboxes()
     {
-        var checkboxes = "<div class='col-sm-12 '>";
+        var checkboxes = "<div class='col-sm-12'>";
 
         for(var i = 0 ; i < services.length ; i++)
         {
-            checkboxes += "<div class='checkbox-inline checkbox'><label><input type='checkbox' value=''> " +
+            checkboxes += "<div class='checkbox'>"+
+                "<label><input type='checkbox' value=''> " +
                 "<span class='cr'><i class='cr-icon glyphicon glyphicon-ok'></i></span>" +
                 services[i]+" </label></div>";
+
         }
         checkboxes +="</div>"
         $('#checkboxes').append(checkboxes);

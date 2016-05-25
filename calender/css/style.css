@@ -24,8 +24,8 @@ html, body {
     box-shadow: 0px 10px 4px #484445;
 }
 #roomSelector {
-    height:300px;
-    border: 1px green dashed;
+    height: 35%;
+    border: 2px green dashed;
     color: purple;
 }
 
@@ -186,7 +186,23 @@ html, body {
     background: purple;
 }
 
-
+#roomSelect{
+    /*this id is in the register room form*/
+    margin: auto;
+    width: 35%;
+}
+.demo{
+    display: flex;
+}
+#Accessories{
+    margin-left: 10%;
+}
+#timeSectionform {
+    margin: auto;
+}
+#confirmSection{
+    margin-right: 10%;
+}
 
 
 
@@ -195,6 +211,7 @@ html, body {
     content: '';
     display: table;
     clear: both;
+    vertical-align: baseline;
 }
 
 .checkbox .cr,
