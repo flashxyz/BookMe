@@ -8,7 +8,11 @@ $(document).ready(function () {
     var timeEnd;
     var dateClick;
     $('#btnAddRoom').click(addEvent);
-    var services = ["adam","nir","lior"];
+
+    var duartionInMin = 90;
+    var minimumTime = 6;
+    var maximumTime = 22;
+    var services = ["1","2","3"];
     displayCheckboxes();
 
     var calendar;
@@ -59,13 +63,13 @@ $(document).ready(function () {
 
 
         },
-        slotDuration: '01:00:00',
+        slotDuration: '00:'+duartionInMin+':00',
         lang: 'he',
         isRTL: true,
-        minTime: "06:00:00",
-        maxTime: "22:00:00",
+        minTime: "0"+minimumTime+":00:00",
+        maxTime: maximumTime+":00:00",
         hiddenDays: [6],
-        firstHour: 8,
+        // firstHour: 8,
         allDaySlot: false,
         height: 600,
         axisFormat: "HH:mm",
@@ -177,12 +181,20 @@ $(document).ready(function () {
     ///duration of time start/end
     $(function() {
         $('#stepExample1').timepicker({
-            'timeFormat': 'H:i',
-            'step': 15 });
-        $('#stepExample2').timepicker({
+            'minTime': "0"+minimumTime+":00",
+            'maxTime': maximumTime+":00",
             'timeFormat': 'H:i',
             'step': function(i) {
-                return (i%2) ? 15 : 45;
+                return (i%2) ? duartionInMin : duartionInMin;
+            }
+
+        });
+        $('#stepExample2').timepicker({
+            'minTime': "0"+minimumTime+":00",
+            'maxTime': maximumTime+":00",
+            'timeFormat': 'H:i',
+            'step': function(i) {
+                return (i%2) ? duartionInMin : duartionInMin;
             }
         });
     });
@@ -214,6 +226,7 @@ $(document).ready(function () {
 
         return strTimeStart;
     }
+
     function ShowAvailableRoom(startTime, endTime) {
         var i, j;
         if ($('#stepExample1').val() != "" && $('#stepExample2').val() != "" && $('#datePicker').val() != "") {
@@ -229,13 +242,14 @@ $(document).ready(function () {
             }
         }
     }
+
     function displayCheckboxes()
     {
-        var checkboxes = "<div class='col-sm-12'>";
+        var checkboxes = "<div class='col-sm-12 '>";
 
         for(var i = 0 ; i < services.length ; i++)
         {
-            checkboxes += "<div class='checkbox'><label><input type='checkbox' value=''> " +
+            checkboxes += "<div class='checkbox-inline checkbox'><label><input type='checkbox' value=''> " +
                 "<span class='cr'><i class='cr-icon glyphicon glyphicon-ok'></i></span>" +
                 services[i]+" </label></div>";
         }

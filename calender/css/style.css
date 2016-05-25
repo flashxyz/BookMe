@@ -85,8 +85,9 @@ html, body {
 
 /* Bolds the name of the event and inherits the font size */
 .fc-event {
-    font-size: inherit !important;
+    font-size: 25px !important;
     font-weight: bold !important;
+
 }
 
 /* Remove the header border from Schedule */
@@ -163,6 +164,8 @@ html, body {
 /*text: 'test';*/
 /*content: 'test';*/
 /*}*/
+
+
 
 .fc-axis {
 
@@ -244,4 +247,10 @@ html, body {
 .checkbox label input[type="checkbox"]:disabled + .cr,
 .radio label input[type="radio"]:disabled + .cr {
     opacity: .5;
+}
+
+
+#checkboxes {
+    margin-left: 0;
+    margin-right: 10px;
 }
