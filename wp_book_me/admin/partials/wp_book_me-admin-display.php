@@ -26,7 +26,7 @@ $general_options_table = $wpdb->prefix . "bookme_general_options";
 $selectSQL = $wpdb->get_results( "SELECT * FROM $group_options_table  ORDER BY id ASC" );
 
 
-$getGeneralOptions = $wpdb->get_results( "SELECT * FROM $general_options_table" );
+$getGeneralOptions = $wpdb->get_results( "SELECT * FROM $general_options_table WHERE id = 1" );
 
 	$dateFormat = $getGeneralOptions[0]->dateFormat;
 
@@ -72,7 +72,7 @@ var del = arg;
 		<h3>General Setting</h3>
 
 		<hr>
-
+		<form action="?page=wp_book_me&save_general_options=true" method="POST" >
 		<table width='550px'>
 			<tr>
 				
@@ -114,12 +114,12 @@ var del = arg;
 				
 				<td width='100px' >
 					<label for="<?php echo $this->plugin_name; ?>_rtl">
-						<input type="checkbox" id="<?php echo $this->plugin_name; ?>_rtl" name="<?php echo $this->plugin_name; ?>[rtl]" <?php checked($isRTL, 1); ?>/>
+						<input type="checkbox" id="<?php echo $this->plugin_name; ?>_rtl" name="<?php echo $this->plugin_name; ?>[rtl]" value="1" <?php checked($isRTL, 1); ?>/>
 					</label>
 				</td>
 			</tr>
 		</table>
-
+		</form>
 		<hr>
 	</div>
 
