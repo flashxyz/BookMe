@@ -37,7 +37,7 @@ if($_GET['group_id']==true AND $_GET['edit_group']==true)
     $thursdayChecked = $activeDays["thursday"];
     $fridayChecked = $activeDays["friday"];
     $saturdayChecked = $activeDays["saturday"];
-
+    
     ?>
     <div class="wrap">
 
