@@ -36,9 +36,27 @@
          $( '.wp_book_me_calendarColor_class' ).wpColorPicker();
 
 		 $('.wp_book_me_time_picker').timepicker( {
-			 'timeFormat': 'H:i',
 			 'disableTextInput': true
+
 		 });
+
+		  $('.wp_book_me_time_picker_r').timepicker( {
+			  'disableTextInput': true,
+			  'minTime': function() {
+				  return $("#wp_book_me_from_time_hidden").val();
+			  }
+
+		  });
+
+			//test function
+		  $( "#wp_book_me_roomOptionCapacity" ).click(function() {
+			  alert($("#wp_book_me_from_time_hidden").val());
+		  });
+
+
+
+
+
 
 
 		//validation script for admin group options

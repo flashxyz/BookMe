@@ -31,19 +31,28 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
     $saturdayChecked = $activeDays["saturday"];
 
     //decide if it's disabled or not
-    echo $disableSunday = $sundayChecked?'':'disabled="disabled"';
-    echo $disableMonday = $mondayChecked?'':'disabled="disabled"';
-    echo $disableTuesday = $tuesdayChecked?'':'disabled="disabled"';
-    echo $disableWednesday = $wednesdayChecked?'':'disabled="disabled"';
-    echo $disableThursday = $thursdayChecked?'':'disabled="disabled"';
-    echo $disableFriday = $fridayChecked?'':'disabled="disabled"';
-    echo $disableSaturday = $saturdayChecked?'':'disabled="disabled"';
+    $disableSunday = $sundayChecked?'':'disabled="disabled"';
+    $disableMonday = $mondayChecked?'':'disabled="disabled"';
+    $disableTuesday = $tuesdayChecked?'':'disabled="disabled"';
+    $disableWednesday = $wednesdayChecked?'':'disabled="disabled"';
+    $disableThursday = $thursdayChecked?'':'disabled="disabled"';
+    $disableFriday = $fridayChecked?'':'disabled="disabled"';
+    $disableSaturday = $saturdayChecked?'':'disabled="disabled"';
 
 
-    //echo $activeDays;
-    //$test = $selectSQL[0]->roomName;
-    //echo $test;
+    //get group time constrains
+    $fromTime = $selectSQLGroup[0]->fromTime;
+    $toTime = $selectSQLGroup[0]->toTime;
+
+
+
     ?>
+
+    <!--those hidden fields will contain the time restrictions for the JQUERY functions-->
+    <input type="hidden" id="<?php echo $this->plugin_name; ?>_from_time_hidden" value="<?php echo $fromTime ?>">
+    <input type="hidden" id="<?php echo $this->plugin_name; ?>_to_time_hidden" value="<?php echo $toTime ?>">
+    <!--  --  -->
+    
     <div class="wrap">
 
         <h1>Edit Rooms</h1>
@@ -102,7 +111,7 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
                                 </td>
                                 <td width='200px'>
                                     <label for="<?php echo $this->plugin_name; ?>_roomOptionFromTime">
-                                        <input type="text" id="<?php echo $this->plugin_name; ?>_roomOptionFromTime" class="<?php echo $this->plugin_name; ?>_time_picker" name="<?php echo $this->plugin_name; ?>[roomOptionFromTime]" value=""/>
+                                        <input type="text" id="<?php echo $this->plugin_name; ?>_roomOptionFromTime" class="<?php echo $this->plugin_name; ?>_time_picker_r" name="<?php echo $this->plugin_name; ?>[roomOptionFromTime]" value=""/>
                                     </label>
                                 </td>
                             </tr>
@@ -112,7 +121,7 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
                                 </td>
                                 <td width='200px'>
                                     <label for="<?php echo $this->plugin_name; ?>_roomOptionUntilTime">
-                                        <input type="text" id="<?php echo $this->plugin_name; ?>_roomOptionUntilTime" class="<?php echo $this->plugin_name; ?>_time_picker" name="<?php echo $this->plugin_name; ?>[roomOptionUntilTime]" value=""/>
+                                        <input type="text" id="<?php echo $this->plugin_name; ?>_roomOptionUntilTime" class="<?php echo $this->plugin_name; ?>_time_picker_r" name="<?php echo $this->plugin_name; ?>[roomOptionUntilTime]" value=""/>
                                     </label>
                                 </td>
                             </tr>
@@ -238,6 +247,8 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
 
         </table>
     </div>
+
+
 
 <?php
 
