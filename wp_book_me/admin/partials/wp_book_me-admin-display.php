@@ -20,8 +20,20 @@ global $wpdb;
 
 $group_options_table = $wpdb->prefix . "bookme_group_options";
 
+$general_options_table = $wpdb->prefix . "bookme_general_options";
+
 
 $selectSQL = $wpdb->get_results( "SELECT * FROM $group_options_table  ORDER BY id ASC" );
+
+
+$getGeneralOptions = $wpdb->get_results( "SELECT * FROM $general_options_table" );
+
+	$dateFormat = $getGeneralOptions[0]->dateFormat;
+
+	$isRTL = $getGeneralOptions[0]->isRTL;
+
+	$firstDayOfWeek = $getGeneralOptions[0]->firstDayOfWeek;
+
 
 $siteURL = get_site_url()."/wp-admin/admin.php";
 
@@ -70,7 +82,7 @@ var del = arg;
 				
 				<td width='100px' >
 					<label for="<?php echo $this->plugin_name; ?>_dateFormat">
-						<input type="text" id="<?php echo $this->plugin_name; ?>_dateFormat" name="<?php echo $this->plugin_name; ?>[dateFormat]" value=""/>
+						<input type="text" id="<?php echo $this->plugin_name; ?>_dateFormat" name="<?php echo $this->plugin_name; ?>[dateFormat]" value="<?php echo $dateFormat ?>"/>
 					</label>
 				</td>
 			</tr>
@@ -83,7 +95,7 @@ var del = arg;
 				
 				<td width='100px' >
 					<label for="<?php echo $this->plugin_name; ?>_firstDay">
-						<input type="text" id="<?php echo $this->plugin_name; ?>_firstDay" name="<?php echo $this->plugin_name; ?>[firstDay]" value=""/>
+						<input type="text" id="<?php echo $this->plugin_name; ?>_firstDay" name="<?php echo $this->plugin_name; ?>[firstDay]" value="<?php echo $firstDayOfWeek ?>"/>
 					</label>
 				</td>
 
@@ -102,7 +114,7 @@ var del = arg;
 				
 				<td width='100px' >
 					<label for="<?php echo $this->plugin_name; ?>_rtl">
-						<input type="checkbox" id="<?php echo $this->plugin_name; ?>_rtl" name="<?php echo $this->plugin_name; ?>[rtl]" value=""/>
+						<input type="checkbox" id="<?php echo $this->plugin_name; ?>_rtl" name="<?php echo $this->plugin_name; ?>[rtl]" <?php checked($isRTL, 1); ?>/>
 					</label>
 				</td>
 			</tr>
@@ -160,7 +172,7 @@ var del = arg;
 	?>
 
 	<table width='635px'>
-	<tr><td style="padding-left:20px;overflow:hidden;" colspan="4"><p><form action="?page=wp_book_me&group_id=<?php echo $nextID ?>&edit_group=true&create_group=true" method="POST" ><input type="hidden" name="group_id" value="<?php echo $nextID ?>">
+	<tr><td style="overflow:hidden;" colspan="4"><p><form action="?page=wp_book_me&group_id=<?php echo $nextID ?>&edit_group=true&create_group=true" method="POST" ><input type="hidden" name="group_id" value="<?php echo $nextID ?>">
 
 	<input type="hidden" name="create" value="true"><input type="hidden" name="page" value="wp_book_me"><input name="" value="Create New Rooms Group" type="Submit" class="button-primary"></form></p></td></tr>
 	</table>

@@ -96,8 +96,9 @@ class Wp_book_me_Activator {
 		if($wpdb->get_var("SHOW TABLES LIKE '$general_options_table'") != $general_options_table)
 		{
 			$sql = "CREATE TABLE $general_options_table (
+				id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 				isRTL int(1),
-				firstDayOfWeek int(1),
+				firstDayOfWeek VARCHAR(20),
 				dateFormat VARCHAR(50)
 				) DEFAULT CHARACTER SET utf8";
 			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
