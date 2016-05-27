@@ -54,7 +54,8 @@ class Wp_book_me_Activator {
 				description VARCHAR(200),
 				viewMode VARCHAR(80),
 				calendarColor VARCHAR(10),
-				windowTimeLength INT(4)
+				windowTimeLength INT(4),
+				services VARCHAR(8000)
 				) DEFAULT CHARACTER SET utf8";
 			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 			dbDelta($sql);

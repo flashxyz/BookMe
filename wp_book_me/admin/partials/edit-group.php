@@ -125,6 +125,8 @@ if($_GET['group_id']==true AND $_GET['edit_group']==true)
     
             </table>
 
+
+            <br><span>services: </span><hr>
     
     
             <br><span>Active days of the week: </span><hr>
