@@ -40,21 +40,6 @@
 
 		 });
 
-		  $('.wp_book_me_time_picker_r').timepicker( {
-			  'disableTextInput': true,
-			  'minTime': function() {
-				  return $("#wp_book_me_from_time_hidden").val();
-			  }
-
-		  });
-
-			//test function
-		  $( "#wp_book_me_roomOptionCapacity" ).click(function() {
-			  alert($("#wp_book_me_from_time_hidden").val());
-		  });
-
-
-
 
 
 
@@ -135,10 +120,10 @@
 
                   },
 
-                  "wp_book_me[roomOptionServices]": {
-                      //limited by SQL database
-                      maxlength: 100
-                  },
+                  // "wp_book_me[roomOptionServices]": {
+                  //     //limited by SQL database
+                  //     maxlength: 100
+                  // },
 
                   "wp_book_me[roomOptionDescription]": {
                       //limited by SQL database
@@ -159,9 +144,9 @@
                       digits: "Only numbers are allowed"
                   },
 
-                  "wp_book_me[roomOptionServices]": {
-                      maxlength: "Max length of 100 characters"
-                  },
+                  // "wp_book_me[roomOptionServices]": {
+                  //     maxlength: "Max length of 100 characters"
+                  // },
                   "wp_book_me[roomOptionDescription]": {
                       maxlength: "Max length of 100 characters"
                   }
