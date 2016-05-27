@@ -44,26 +44,41 @@
                     <section id="examples">
                         <article>
                             <div class="demo">
-                                <p>
-                                    <label>Start time:</label>
-                                    <input id="stepExample1" type="text" class="time"/><br>
-                                    <label>End time:</label>
-                                    <input id="stepExample2" type="text" class="time"/><br>
-                                <p id="datepairExample">
+                                <div id="roomTimeSelect">
+                                    <p>??? ???? <br>
+                                        <label>??? ?????:</label>
+                                        <input id="stepExample1" type="text" class="time labelForom"/><br>
+                                        <label>??? ????:</label>
+                                        <input id="stepExample2" type="text" class="time labelForom"/><br>
+                                    <p id="datepairExample">
+                                        <label>?????</label>
+                                        <input type="text" class="date start labelForom" id="datePicker"/><br>
+                                </div>
+                                <div  id="roomServicesSelect">
+                                    <p/>??????? <br>
+                                    <div id="checkboxes"></div>
+                                </div>
+                                <div  id="roomConfirmSelect">
+                                    <br>
 
-                                    <label>Date:</label>
-                                    <input type="text" class="date start" id = "datePicker"/><br>
-                                <div id = "checkboxes"></div><br>
+                                    <button type="button" id="btnFindRoom" class="btn btn-default">???</button><br>
+                                    <div id = "roomHide">
+                                        <label for="roomSelect">??? ???: </label><br>
+                                        <select class="form-control labelForom" id="roomSelect">
+                                            <option></option>
 
-                                <label for="roomSelect">Select Room (select one):</label><br>
-                                <select class="form-control" id="roomSelect">
-                                    <option></option>
+                                        </select>
+                                        <button type="button" id="btnAddRoom" class="btn btn-default">?????</button>
 
-                                </select>
+                                    </div>
 
-                                </p>
-                                </p>
-                                <button type="button" id = "btnAddRoom" class="btn btn-default">אישור</button>
+                                    </p>
+                                </div>
+
+                                <div  id="roomPictureSelect">
+                                    <br>??? ????? ????? ?? ???? ?????
+                                    <div id = "img"></div>
+                                </div>
                             </div>
 
                         </article>
