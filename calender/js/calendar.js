@@ -191,7 +191,7 @@ $(document).ready(function () {
         for (i = 0; i < availableRooms.length; i++) {
             y.remove(y.childNodes);
         }
-        $('#roomSelect').append("<option>" + "??? ???:" + "</option>");
+        $('#roomSelect').append("<option>" + "בחר חדר:" + "</option>");
         if ($('#stepExample1').val() != "" && $('#stepExample2').val() != "" && $('#datePicker').val() != "") {
             for (i = 0; i < availableRooms.length; i++) {
                 $('#roomSelect').append("<option>" + availableRooms[i] + "</option>");
@@ -203,7 +203,7 @@ $(document).ready(function () {
 
         }
         else {
-            alert("?? ?????? ?????")
+            alert("נא להכניס ערכים")
             var x = document.getElementById("roomSelect");
             for (i = 0; i < availableRooms.length; i++) {
                 x.remove(x.childNodes);
