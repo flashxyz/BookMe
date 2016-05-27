@@ -30,10 +30,23 @@ $getGeneralOptions = $wpdb->get_results( "SELECT * FROM $general_options_table W
 
 	$dateFormat = $getGeneralOptions[0]->dateFormat;
 
+	//this part  is for date format selection combobox
+	$notSelectedDateFormat = "MM/dd/YYYY";
+	if(($dateFormat != "dd/MM/YYYY") )
+	{
+		$notSelectedDateFormat = "dd/MM/YYYY";
+	}
+
+
 	$isRTL = $getGeneralOptions[0]->isRTL;
 
 	$firstDayOfWeek = $getGeneralOptions[0]->firstDayOfWeek;
-
+	//this part  is for first day of the week selection combobox
+	$notSelecedFirstDay = "monday";
+	if($firstDayOfWeek != "sunday")
+	{
+		$notSelecedFirstDay = "sunday";
+	}
 
 $siteURL = get_site_url()."/wp-admin/admin.php";
 
@@ -81,9 +94,19 @@ var del = arg;
 				</td>
 				
 				<td width='100px' >
+					<select id="<?php echo $this->plugin_name; ?>_dateFormat" name="<?php echo $this->plugin_name; ?>[dateFormat]" >
+						<option value="<?php echo $dateFormat ?>" ><?php echo $dateFormat ?></option>
+						<option value="<?php echo $notSelectedDateFormat ?>"><?php echo $notSelectedDateFormat ?></option>
+					</select>
+
+
+
+					<!--
 					<label for="<?php echo $this->plugin_name; ?>_dateFormat">
 						<input type="text" id="<?php echo $this->plugin_name; ?>_dateFormat" name="<?php echo $this->plugin_name; ?>[dateFormat]" value="<?php echo $dateFormat ?>"/>
 					</label>
+					-->
+
 				</td>
 			</tr>
 			
@@ -94,9 +117,17 @@ var del = arg;
 				</td>
 				
 				<td width='100px' >
+					<select id="<?php echo $this->plugin_name; ?>_firstDay" name="<?php echo $this->plugin_name; ?>[firstDay]" >
+						<option value="<?php echo $firstDayOfWeek ?>" ><?php echo $firstDayOfWeek ?></option>
+						<option value="<?php echo $notSelecedFirstDay ?>"><?php echo $notSelecedFirstDay ?></option>
+					</select>
+
+					<!--
 					<label for="<?php echo $this->plugin_name; ?>_firstDay">
 						<input type="text" id="<?php echo $this->plugin_name; ?>_firstDay" name="<?php echo $this->plugin_name; ?>[firstDay]" value="<?php echo $firstDayOfWeek ?>"/>
 					</label>
+					-->
+
 				</td>
 
 				<td width='100px' >
