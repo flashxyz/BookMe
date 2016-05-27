@@ -93,7 +93,7 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
                                         <input type="text" id="<?php echo $this->plugin_name; ?>_roomOptionName" class="<?php echo $this->plugin_name; ?>_roomOptionName" name="<?php echo $this->plugin_name; ?>[roomOptionName]" value="<?php echo $value->roomName; ?>"/>
                                     </label>
                                 </td>
-
+                            </tr>
 
                             <tr>
                                 <td width='200px'>
@@ -105,6 +105,8 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
                                     </label>
                                 </td>
                             </tr>
+
+    <!--
                             <tr>
                                 <td width='200px'>
                                     <span>Room available from: </span>
@@ -125,6 +127,8 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
                                     </label>
                                 </td>
                             </tr>
+
+     -->
                             <tr>
                                 <td width='200px'>
                                     <span>Services: </span>
