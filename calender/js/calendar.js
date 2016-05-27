@@ -1,5 +1,9 @@
 $(document).ready(function () {
-    var availableRooms = [["A100","1"], ["A101","2"], ["A102", "3"], ["B100", "1"],["B101" ,"2"], ["B102","3"],[ "C100","2"],["C101","1"], ["C102","3"]];
+    var availableRooms = [["A100","1","adamRoomSelector"], ["A101","2","adamRoomSelector"],
+        ["A102", "3","adamRoomSelector"], ["B100", "1","adamRoomSelector"],
+        ["B101" ,"2","adamRoomSelector"], ["B102","3","adamRoomSelector"],
+        [ "C100","2","adamRoomSelector"],["C101","1","adamRoomSelector"],
+        ["C102","3",""]];
     var date = new Date();
     var d = date.getDate();
     var m = date.getMonth();
@@ -8,11 +12,20 @@ $(document).ready(function () {
     var timeEnd;
     var dateClick;
     $('#btnAddRoom').click(addEvent);
+    $('#btnFindRoom').click(ShowAvailableRoom);
+    $('#roomHide').hide();
+
+    $('#datePicker').change(ShowAvailableRoom);
+    $('#stepExample1').change(ShowAvailableRoom);
+    $('#stepExample2').change(ShowAvailableRoom);
+
+    $('#roomSelect').change(setPicture);
 
     var duartionInMin = 90;
     var minimumTime = 6;
     var maximumTime = 22;
-    var services = ["1", "2", "3"];
+    var services = ["ggggggggg", "ggggggggg", "ggggggggg","ggggggggg", "ggggggggg", "ggggggggg","ggggggggg", "ggggggggg",
+        "ggggggggg","ggggggggg", "ggggggggg", "ggggggggg"];
     displayCheckboxes();
 
     var calendar;
@@ -51,7 +64,10 @@ $(document).ready(function () {
             $('#datePicker').val(strStartTime);
             $('#stepExample1').val(strTimeStart);
             $('#stepExample2').val(strTimeEnd);
-            $('#sel1').change(ShowAvailableRoom());
+
+
+
+
         },
         slotDuration: '00:' + duartionInMin + ':00',
         lang: 'he',
@@ -110,7 +126,7 @@ $(document).ready(function () {
             }
         calendar.fullCalendar('renderEvent',
             {
-                title: "רשום לחדר " + $('#roomSelect').val(),
+                title: "???? ???? " + $('#roomSelect').val(),
                 start: timeStart,
                 end: timeEnd,
                 color: '#3300FF',
@@ -170,31 +186,64 @@ $(document).ready(function () {
     }
 
     function ShowAvailableRoom(startTime, endTime) {
-        var i, j;
+        var  j,i;
+        var y = document.getElementById("roomSelect");
+        for (i = 0; i < availableRooms.length; i++) {
+            y.remove(y.childNodes);
+        }
+        $('#roomSelect').append("<option>" + "??? ???:" + "</option>");
         if ($('#stepExample1').val() != "" && $('#stepExample2').val() != "" && $('#datePicker').val() != "") {
             for (i = 0; i < availableRooms.length; i++) {
                 $('#roomSelect').append("<option>" + availableRooms[i] + "</option>");
                 //.attr("value",key).text(value))
             }
+            $('#roomHide').show();
+            $('#btnFindRoom').hide();
+
+
         }
         else {
+            alert("?? ?????? ?????")
             var x = document.getElementById("roomSelect");
             for (i = 0; i < availableRooms.length; i++) {
                 x.remove(x.childNodes);
             }
+            $('#roomHide').hide();
+            $('#btnFindRoom').show();
         }
+        //$('#roomSelect').change($('#roomSelect').val());
+
+
+    }
+
+    function setPicture() {
+        alert("in");
+        var name =  $('#roomSelect').val();
+        var i;
+        for( i = 0 ; i < availableRooms.length ; i++)
+            if(name == availableRooms[i])
+                break;
+        var imgstring = "./img/"+availableRooms[i][2]+".jpg";
+        var style = "width:304px;height:228px;";
+
+        $('#img').replaceWith("<img id = 'img' src="+imgstring+" style="+style+">");
+
     }
 
     function displayCheckboxes() {
-        var checkboxes = "<div class='col-sm-12 '>";
+        var checkboxes = "<tr class='col-sm-12 '>";
 
         for (var i = 0; i < services.length; i++) {
-            checkboxes += "<div class='checkbox-inline checkbox'><label><input type='checkbox' value=''> " +
-                "<span class='cr'><i class='cr-icon glyphicon glyphicon-ok'></i></span>" +
-                services[i] + " </label></div>";
+            if( i % 3 == 0 && i > 0)
+                checkboxes +="</tr><tr class='col-sm-12'>"
+            checkboxes += "<td class='checkbox-inline checkbox'> <label><input type='checkbox' value='' >"+
+                " <span class='cr'><i class='cr-icon glyphicon glyphicon-ok'></i></span>" + services[i] +
+                " </label></td>";
+
         }
-        checkboxes += "</div>"
+        checkboxes += "</tr>"
         $('#checkboxes').append(checkboxes);
     }
+
 
 });
