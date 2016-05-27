@@ -49,9 +49,10 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
     ?>
 
     <!--those hidden fields will contain the time restrictions for the JQUERY functions-->
+    <!--
     <input type="hidden" id="<?php echo $this->plugin_name; ?>_from_time_hidden" value="<?php echo $fromTime ?>">
     <input type="hidden" id="<?php echo $this->plugin_name; ?>_to_time_hidden" value="<?php echo $toTime ?>">
-    <!--  --  -->
+    -->
     
     <div class="wrap">
 
@@ -93,7 +94,7 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
                                         <input type="text" id="<?php echo $this->plugin_name; ?>_roomOptionName" class="<?php echo $this->plugin_name; ?>_roomOptionName" name="<?php echo $this->plugin_name; ?>[roomOptionName]" value="<?php echo $value->roomName; ?>"/>
                                     </label>
                                 </td>
-
+                            </tr>
 
                             <tr>
                                 <td width='200px'>
@@ -105,6 +106,8 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
                                     </label>
                                 </td>
                             </tr>
+
+                            <!--
                             <tr>
                                 <td width='200px'>
                                     <span>Room available from: </span>
@@ -125,6 +128,8 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
                                     </label>
                                 </td>
                             </tr>
+
+
                             <tr>
                                 <td width='200px'>
                                     <span>Services: </span>
@@ -135,6 +140,8 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
                                     </label>
                                 </td>
                             </tr>
+                            -->
+
 
                             <tr>
                                 <td width='200px'>
