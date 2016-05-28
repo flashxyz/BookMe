@@ -27,7 +27,6 @@ $(document).ready(function () {
     var services = ["11111", "222222", "3333333","444444", "555", "666666","77777", "88888",
         "99999","10000", "200000", "300"];
     displayCheckboxes();
-    alert(activeDays);
     var calendar;
     calendar = $('#calendar').fullCalendar({
         header: {
@@ -56,7 +55,6 @@ $(document).ready(function () {
             timeStart = new Date(yearStart, monthStart - 1, dayStart, houreStart, minStart);
 
 
-            alert(timeStart.getHours() + "  " + timeEnd.getHours());
             var strTimeStart = convertTime(timeStart.getHours(), timeStart.getMinutes());
             var strTimeEnd = convertTime(timeEnd.getHours(), timeEnd.getMinutes());
             var strStartTime = dayStart + "/" + monthStart + "/" + yearStart;

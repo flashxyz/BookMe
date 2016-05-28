@@ -83,7 +83,92 @@ if(empty($selectSQL)) {
     
 </style>
 
-<h1>The group id is: <?php echo $groupID; ?> and the view will appear here</h1>
+
+<div class="container text-right">
+
+    <!-- Calendar and description row -->
+    <div class="row">
+        <div class="col-md-9">
+            <div id="calendar"></div>
+            <hr>
+        </div>
+
+        <div class="col-md-3">
+
+            <img src="http://bookme.myweb.jce.ac.il/wp-content/uploads/2016/05/remindyou_logo.jpg"  />
+            <h3>חדרי שקט</h3>
+            <p>חדרי השקט ממוקמים בקומה מינוס 2 והם שקטים ביותר</p>
+            <h3>אמצעים מיוחדים</h3>
+            <ul>
+                <li>זכוכית משוריינת ירי</li>
+                <li>מחשב מיוחד לעיוורים</li>
+                <li>ארוחות בין 14:00-16:00</li>
+                <li>סמים קלים</li>
+            </ul>
+        </div>
+
+    </div>
+    <!-- /.row -->
+
+    <!-- Related Projects Row -->
+    <div class="row">
+
+        <div class="col-sm-3 col-xs-6">
+
+            כאן אולי תבוא תמונה
+        </div>
+
+        <div class="col-sm-3 col-xs-6">
+            <a href="#">
+                <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+            </a>
+        </div>
+
+        <div class="col-sm-3 col-xs-6">
+            <a href="#">
+                <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
+            </a>
+        </div>
+
+        <div class="col-sm-3 col-xs-6">
+
+            <div id="roomTimeSelect">
+                <p>מתי להזמין<br><br>
+                    <label>שעת התחלה: </label>
+                    <input id="stepExample1" type="text" class="time labelForom"/><br>
+                    <label>שעת סיום: </label>
+                    <input id="stepExample2" type="text" class="time labelForom"/><br>
+                <p id="datepairExample">
+                    <label>תאריך:</label>
+                    <input type="text" class="date start labelForom" id="datePicker"/><br>
+                    <label>כמות:</label>
+                    <input id="quantity" type="text" class="time labelForom"/><br>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.row -->
+
+    <hr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <div class="container-fluid">
@@ -94,24 +179,11 @@ if(empty($selectSQL)) {
                 <!--<img src="BookMeLogo.png" style="width: auto; height: auto;max-width: 500px;max-height: 350px" />-->
                 <!--<hr>-->
                 <!--</div>-->
-                <div id="calendar"></div>
-                <hr>
+
                 <div id="roomSelector">
                     <section id="examples">
                         <article>
                             <div class="demo">
-                                <div id="roomTimeSelect">
-                                    <p>מתי להזמין<br><br>
-                                        <label>שעת התחלה: </label>
-                                        <input id="stepExample1" type="text" class="time labelForom"/><br>
-                                        <label>שעת סיום: </label>
-                                        <input id="stepExample2" type="text" class="time labelForom"/><br>
-                                    <p id="datepairExample">
-                                        <label>תאריך:</label>
-                                        <input type="text" class="date start labelForom" id="datePicker"/><br>
-                                        <label>כמות:</label>
-                                        <input id="quantity" type="text" class="time labelForom"/><br>
-                                </div>
                                 <div  id="roomServicesSelect">
                                     <p/>שירותים <br>
                                     <div id="checkboxes"></div>
