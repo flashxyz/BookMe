@@ -234,7 +234,7 @@ $(document).ready(function () {
         var checkboxes = "<tr class='col-sm-12 '>";
 
         for (var i = 0; i < services.length; i++) {
-            if( i % 3 == 0 && i > 0)
+            if( i % 2 == 0 && i > 0)
                 checkboxes +="</tr><tr class='col-sm-12'>"
             checkboxes += "<td class='checkbox-inline checkbox'> <label><input type='checkbox' value='' >"+
                 " <span class='cr'><i class='cr-icon glyphicon glyphicon-ok'></i></span>" + services[i] +
