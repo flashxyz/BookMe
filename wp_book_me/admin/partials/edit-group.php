@@ -41,14 +41,14 @@ if($_GET['group_id']==true AND $_GET['edit_group']==true)
     $saturdayChecked = $activeDays["saturday"];
     
     ?>
-
-    <script>
-
+    
+    <script type='text/javascript'>
+        
         function addService()
         {
-            alert("add service");
+            var model=$('#wp_book_me_serviceBox').val();
+            alert(model);
         }
-
     </script>
     
     
