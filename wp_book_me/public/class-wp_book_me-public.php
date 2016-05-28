@@ -103,6 +103,7 @@ class Wp_book_me_Public {
 		 */
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp_book_me-public.js', array( 'jquery' ), $this->version, false );
+		
 		wp_enqueue_script( 'jquery-2.2.4.min', plugin_dir_url( __FILE__ ) . 'js/jquery-2.2.4.min.js', array( 'jquery'), $this->version, false);
 		wp_enqueue_script(  'jquery-ui.min', plugin_dir_url( __FILE__ ) . 'js/jquery-ui.min.js', array( 'jquery'), $this->version, false);
 		wp_enqueue_script(  'query.timepicker.min', plugin_dir_url( __FILE__ ) . 'js/jquery.timepicker.min.js', array( 'jquery'), $this->version, false);
@@ -113,7 +114,8 @@ class Wp_book_me_Public {
 		wp_enqueue_script(  'bootstrap.min', plugin_dir_url( __FILE__ ) . 'js/bootstrap.min.js', array( 'jquery'), $this->version, false);
 		wp_enqueue_script(  'bootstrap-datepicker', plugin_dir_url( __FILE__ ) . 'js/bootstrap-datepicker.js', array( 'jquery'), $this->version, false);
 		wp_enqueue_script(  'datepair', plugin_dir_url( __FILE__ ) . 'js/datepair.js', array( 'jquery'), $this->version, false);
-		
+		wp_enqueue_script(  'jquery.datepair', plugin_dir_url( __FILE__ ) . 'js/jquery.datepair.js', array( 'jquery'), $this->version, false);
+
 
 
 	}
