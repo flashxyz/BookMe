@@ -25,6 +25,8 @@ if(empty($selectSQL)) {
 ?>
 
 <h1>The group id is: <?php echo $groupID; ?> and the view will appear here</h1>
+
+
 <div class="container-fluid">
     <div class="row-fluid">
         <div class="jumbotron vertical-center">
@@ -39,27 +41,42 @@ if(empty($selectSQL)) {
                     <section id="examples">
                         <article>
                             <div class="demo">
+                                <div id="roomTimeSelect">
+                                    <p>מתי להזמין<br><br>
+                                        <label>שעת התחלה: </label>
+                                        <input id="stepExample1" type="text" class="time labelForom"/><br>
+                                        <label>שעת סיום: </label>
+                                        <input id="stepExample2" type="text" class="time labelForom"/><br>
+                                    <p id="datepairExample">
+                                        <label>תאריך:</label>
+                                        <input type="text" class="date start labelForom" id="datePicker"/><br>
+                                        <label>כמות:</label>
+                                        <input id="quantity" type="text" class="time labelForom"/><br>
+                                </div>
+                                <div  id="roomServicesSelect">
+                                    <p/>שירותים <br>
+                                    <div id="checkboxes"></div>
+                                </div>
+                                <div  id="roomConfirmSelect">
+                                    <br>
 
-                                <p>
-                                <div id = "checkboxes"></div>
-                                <label>Start time:</label>
-                                <input id="stepExample1" type="text" class="time"/><br>
-                                <label>End time:</label>
-                                <input id="stepExample2" type="text" class="time"/><br>
-                                <p id="datepairExample">
+                                    <button type="button" id="btnFindRoom" class="btn btn-default">מצא</button><br>
+                                    <div id = "roomHide">
+                                        <label for="roomSelect">בחר חדר: </label><br>
+                                        <select class="form-control labelForom" id="roomSelect" value="בחר חדר">
+                                            <option></option>
+                                        </select>
+                                        <button type="button" id="btnAddRoom" class="btn btn-default">אישור</button>
 
-                                    <label>Date:</label>
-                                    <input type="text" class="date start" id = "datePicker"/><br>
+                                    </div>
 
-                                    <label for="roomSelect">Select Room (select one):</label><br>
-                                    <select class="form-control" id="roomSelect">
-                                        <option></option>
+                                    </p>
+                                </div>
 
-                                    </select>
-
-                                </p>
-                                </p>
-                                <button type="button" id = "btnAddRoom" class="btn btn-default">אישור</button>
+                                <div  id="roomPictureSelect">
+                                    <br>
+                                    <div id = "img"></div>
+                                </div>
                             </div>
 
                         </article>
