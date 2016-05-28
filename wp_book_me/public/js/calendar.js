@@ -27,13 +27,13 @@ $(document).ready(function () {
     var services = ["11111", "222222", "3333333","444444", "555", "666666","77777", "88888",
         "99999","10000", "200000", "300"];
     displayCheckboxes();
-
+    alert(activeDays);
     var calendar;
     calendar = $('#calendar').fullCalendar({
         header: {
             left: 'next,prev today',
             center: 'title',
-            right: ''
+            right: 'month, agendaWeek, basicDay'
         },
 
         select: function (start, end, jsEvent, view) {

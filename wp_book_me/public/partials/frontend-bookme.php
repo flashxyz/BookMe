@@ -20,7 +20,6 @@ $calendarColor = $selectSQL[0]->calendarColor;
 $fromTime = $selectSQL[0]->fromTime;
 $toTime = $selectSQL[0]->toTime;
 $windowTimeLength = $selectSQL[0]->windowTimeLength;
-$viewMode = $selectSQL[0]->viewMode;
 $services = unserialize($selectSQL[0]->services);
 $activeDays = unserialize($selectSQL[0]->activeDays);
 
@@ -38,7 +37,14 @@ if(empty($selectSQL)) {
     var windowTimeLength = "<?php echo $windowTimeLength ?>";
     var fromTime = "<?php echo $fromTime ?>";
     var toTime = "<?php echo $toTime ?>";
-    var viewMode = "<?php echo $viewMode ?>";
+    var activeDays = [];
+    activeDays[0] = "<?php echo $activeDays["sunday"] ?>";
+    activeDays[1] = "<?php echo $activeDays["monday"] ?>";
+    activeDays[2] = "<?php echo $activeDays["tuesday"] ?>";
+    activeDays[3] = "<?php echo $activeDays["wednesday"] ?>";
+    activeDays[4] = "<?php echo $activeDays["thursday"] ?>";
+    activeDays[5] = "<?php echo $activeDays["friday"] ?>";
+    activeDays[6] = "<?php echo $activeDays["saturday"] ?>";
 </script>
 
 <style>
