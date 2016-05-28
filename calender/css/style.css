@@ -268,7 +268,9 @@ html, body {
 
 }
 .col-sm-12{
-    margin: auto;
+    align-items: baseline;
+    display: inline-block;
+    position: relative;
 }
 
 

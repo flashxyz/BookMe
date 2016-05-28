@@ -24,8 +24,8 @@ $(document).ready(function () {
     var duartionInMin = 90;
     var minimumTime = 6;
     var maximumTime = 22;
-    var services = ["ggggggggg", "ggggggggg", "ggggggggg","ggggggggg", "ggggggggg", "ggggggggg","ggggggggg", "ggggggggg",
-        "ggggggggg","ggggggggg", "ggggggggg", "ggggggggg"];
+    var services = ["11111", "222222", "3333333","444444", "555", "666666","77777", "88888",
+        "99999","10000", "200000", "300"];
     displayCheckboxes();
 
     var calendar;
@@ -234,10 +234,11 @@ $(document).ready(function () {
         var checkboxes = "<tr class='col-sm-12 '>";
 
         for (var i = 0; i < services.length; i++) {
-            if( i % 2 == 0 && i > 0)
+            if( i % 3 == 0 && i > 0)
                 checkboxes +="</tr><tr class='col-sm-12'>"
             checkboxes += "<td class='checkbox-inline checkbox'> <label><input type='checkbox' value='' >"+
-                " <span class='cr'><i class='cr-icon glyphicon glyphicon-ok'></i></span>" + services[i] +
+                " <span class='cr'><i class='cr-icon glyphicon glyphicon-ok'></i></span>" +
+                services[i] +
                 " </label></td>";
 
         }
