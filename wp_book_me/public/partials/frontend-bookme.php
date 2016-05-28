@@ -119,15 +119,11 @@ if(empty($selectSQL)) {
         </div>
 
         <div class="col-sm-3 col-xs-6">
-            <a href="#">
-                <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
-            </a>
+         הצעת חדרים פה
         </div>
 
         <div class="col-sm-3 col-xs-6">
-            <a href="#">
-                <img class="img-responsive portfolio-item" src="http://placehold.it/500x300" alt="">
-            </a>
+ שירותים יופיעו פה
         </div>
 
         <div class="col-sm-3 col-xs-6">
