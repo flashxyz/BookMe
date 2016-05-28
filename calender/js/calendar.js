@@ -33,7 +33,7 @@ $(document).ready(function () {
         header: {
             left: 'next,prev today',
             center: 'title',
-            right: 'month, agendaWeek, year'
+            right: 'month, agendaWeek, basicDay'
         },
 
         select: function (start, end, jsEvent, view) {
@@ -126,7 +126,7 @@ $(document).ready(function () {
             }
         calendar.fullCalendar('renderEvent',
             {
-                title: "???? ???? " + $('#roomSelect').val(),
+                title: "רשום לחדר " + $('#roomSelect').val(),
                 start: timeStart,
                 end: timeEnd,
                 color: '#3300FF',
