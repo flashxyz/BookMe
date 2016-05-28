@@ -101,9 +101,9 @@ if (empty($selectSQL)) {
         <div class="col-md-3">
 
             <img src="http://bookme.myweb.jce.ac.il/wp-content/uploads/2016/05/remindyou_logo.jpg"/>
-            <h3>חדרי שקט</h3>
-            <p>חדרי השקט ממוקמים בקומה מינוס 2 והם שקטים ביותר</p>
-            <h3>אמצעים מיוחדים</h3>
+            <h3>חדרי שקט</h3> <br>
+            <p>חדרי השקט ממוקמים בקומה מינוס 2 והם שקטים ביותר</p> <br>
+            <h3>אמצעים מיוחדים</h3> <br>
             <ul>
                 <li>זכוכית משוריינת ירי</li>
                 <li>מחשב מיוחד לעיוורים</li>
@@ -169,7 +169,6 @@ if (empty($selectSQL)) {
                     <label>כמות:</label>
                     <input id="quantity" type="text" class="time labelForom"/><br>
             </div>
-
         </div>
         <hr>
     </div>
