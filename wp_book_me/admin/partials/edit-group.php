@@ -29,6 +29,8 @@ if($_GET['group_id']==true AND $_GET['edit_group']==true)
     $viewMode = $selectSQL[0]->viewMode;
     $calendarColor = $selectSQL[0]->calendarColor;
     $windowTimeLength = $selectSQL[0]->windowTimeLength;
+    $services = unserialize($selectSQL[0]->services);
+    
 
     $sundayChecked = $activeDays["sunday"];
     $mondayChecked = $activeDays["monday"];
@@ -39,6 +41,23 @@ if($_GET['group_id']==true AND $_GET['edit_group']==true)
     $saturdayChecked = $activeDays["saturday"];
     
     ?>
+
+    <script>
+
+        function addService()
+        {
+            alert("add service");
+        }
+
+    </script>
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="wrap">
 
         <h1>Rooms Group Options</h1>
@@ -127,9 +146,35 @@ if($_GET['group_id']==true AND $_GET['edit_group']==true)
 
 
             <br><span>services: </span><hr>
-    
-    
-            <br><span>Active days of the week: </span><hr>
+            <input type="text" id="<?php echo $this->plugin_name; ?>_serviceBox" name="<?php echo $this->plugin_name; ?>[_serviceBox]"/>
+
+            <input class="button-primary" type="button" name="addServiceBTN" value="Add Service" onclick="return addService()"/>
+
+            <br><br>
+
+            <table width="300px">
+                <?php
+
+                for ($i = 0; $i < count($services); ++$i)
+                {
+                    ?>
+                    <tr>
+                        <td width="200px">
+                            <span> <?php echo $services[$i]; ?></span>
+                        </td>
+                        <td width="100px">
+                            <input class="button-secondary" type="button" name="deleteBTN" value="Delete" style = "background-color:#FF8181;"/>
+                        </td>
+                    </tr>
+
+                    <?php
+                }
+
+                ?>
+            </table>
+            
+            
+            <br><br><span>Active days of the week: </span><hr>
             <table width='400px'>
                 <tr>
                     <td width='100px' >
