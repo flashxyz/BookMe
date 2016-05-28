@@ -36,7 +36,8 @@
          $( '.wp_book_me_calendarColor_class' ).wpColorPicker();
 
 		 $('.wp_book_me_time_picker').timepicker( {
-			 'disableTextInput': true
+			 'disableTextInput': true,
+			 'timeFormat': 'H:i'
 
 		 });
 

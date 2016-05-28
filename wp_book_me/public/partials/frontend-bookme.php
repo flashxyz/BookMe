@@ -16,13 +16,66 @@ $group_options_table = $wpdb->prefix . "bookme_group_options";
 
 $selectSQL = $wpdb->get_results($wpdb->prepare("SELECT * FROM $group_options_table WHERE id = %d", $groupID));
 
+$calendarColor = $selectSQL[0]->calendarColor;
+$fromTime = $selectSQL[0]->fromTime;
+$toTime = $selectSQL[0]->toTime;
+$windowTimeLength = $selectSQL[0]->windowTimeLength;
+$viewMode = $selectSQL[0]->viewMode;
+$services = unserialize($selectSQL[0]->services);
+$activeDays = unserialize($selectSQL[0]->activeDays);
 
 if(empty($selectSQL)) {
 
     echo "<h1>Sorry.. There is no shortcode id = " . $groupID . "</h1>";
     return;
 }
+
+
+
 ?>
+
+<script type="text/javascript">
+    var windowTimeLength = "<?php echo $windowTimeLength ?>";
+    var fromTime = "<?php echo $fromTime ?>";
+    var toTime = "<?php echo $toTime ?>";
+    var viewMode = "<?php echo $viewMode ?>";
+</script>
+
+<style>
+
+    html, body {
+        color:  <?php echo $calendarColor; ?>;
+        background-color:  <?php echo $calendarColor; ?>;
+    }
+    .fc-widget-header {
+        background-color: <?php echo $calendarColor; ?>;
+    }
+
+    .fc-header-title {
+        background-color:  <?php echo $calendarColor; ?>;
+    }
+    .fc-header-title h2 {
+        color:  <?php echo $calendarColor; ?>;
+    }
+
+    #roomSelector {
+        color: <?php echo $calendarColor; ?>;
+    }
+    .fc-agenda-slots td div {
+        color: <?php echo $calendarColor; ?>;
+    }
+    .fc-time-grid-event .fc-time {
+        color: <?php echo $calendarColor; ?>;
+    }
+    .fc-axis {
+        color: <?php echo $calendarColor; ?>;
+    }
+    .fc-center h2 {
+        color: <?php echo $calendarColor; ?>;
+    }
+    
+    
+</style>
 
 <h1>The group id is: <?php echo $groupID; ?> and the view will appear here</h1>
 

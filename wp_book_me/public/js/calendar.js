@@ -21,9 +21,9 @@ $(document).ready(function () {
 
     $('#roomSelect').change(setPicture);
 
-    var duartionInMin = 90;
-    var minimumTime = 6;
-    var maximumTime = 22;
+    var duartionInMin = windowTimeLength;
+    var minimumTime = fromTime;
+    var maximumTime = toTime;
     var services = ["11111", "222222", "3333333","444444", "555", "666666","77777", "88888",
         "99999","10000", "200000", "300"];
     displayCheckboxes();
@@ -33,7 +33,7 @@ $(document).ready(function () {
         header: {
             left: 'next,prev today',
             center: 'title',
-            right: 'month, agendaWeek, basicDay'
+            right: ''
         },
 
         select: function (start, end, jsEvent, view) {
@@ -72,8 +72,8 @@ $(document).ready(function () {
         slotDuration: '00:' + duartionInMin + ':00',
         lang: 'he',
         isRTL: true,
-        minTime: "0" + minimumTime + ":00:00",
-        maxTime: maximumTime + ":00:00",
+        minTime: minimumTime + ":00",
+        maxTime: maximumTime + ":00",
         hiddenDays: [6],
         // firstHour: 8,
         allDaySlot: false,
@@ -94,14 +94,6 @@ $(document).ready(function () {
         eventSources: [
             // your event source
             {
-                events: [ // put the array in the `events` property
-                    {
-                        title: 'test',
-                        start: new Date(y, m, d, 8, 0),
-                        end: new Date(y, m, d, 9, 0),
-                        allDay: false
-                    }
-                ],
                 color: '#3300FF',
                 textColor: 'white'
             },
@@ -143,8 +135,8 @@ $(document).ready(function () {
     ///duration of time start/end
     $(function () {
         $('#stepExample1').timepicker({
-            'minTime': "0" + minimumTime + ":00",
-            'maxTime': maximumTime + ":00",
+            'minTime': minimumTime,
+            'maxTime': maximumTime,
             'timeFormat': 'H:i',
             'step': function (i) {
                 return (i % 2) ? duartionInMin : duartionInMin;
@@ -152,8 +144,8 @@ $(document).ready(function () {
 
         });
         $('#stepExample2').timepicker({
-            'minTime': "0" + minimumTime + ":00",
-            'maxTime': maximumTime + ":00",
+            'minTime': minimumTime,
+            'maxTime': maximumTime,
             'timeFormat': 'H:i',
             'step': function (i) {
                 return (i % 2) ? duartionInMin : duartionInMin;

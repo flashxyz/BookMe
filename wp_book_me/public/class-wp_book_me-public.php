@@ -114,14 +114,6 @@ class Wp_book_me_Public {
 		wp_enqueue_script(  'bootstrap-datepicker', plugin_dir_url( __FILE__ ) . 'js/bootstrap-datepicker.js', array( 'jquery'), $this->version, false);
 		wp_enqueue_script(  'datepair', plugin_dir_url( __FILE__ ) . 'js/datepair.js', array( 'jquery'), $this->version, false);
 		
-//		wp_enqueue_script(  $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/jquery.datepair.js', array( 'jquery'), $this->version, false);
-//		wp_enqueue_script(  $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/jquery.timepicker.min.js', array( 'jquery'), $this->version, false);
-		
-//		wp_enqueue_script(  $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/jquery-ui.min.js', array( 'jquery'), $this->version, false);
-//		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/lang-all.js', array( 'jquery'), $this->version, false);
-		
-
-		
 
 
 	}
