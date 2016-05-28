@@ -109,6 +109,7 @@ class Wp_book_me_Admin {
 				wp_enqueue_script( 'jquery.timepicker.min', plugin_dir_url( __FILE__ ) . 'js/jquery.timepicker.min.js', array( 'jquery'), $this->version, false);
 				//added validation jQuery script
 				wp_enqueue_script( 'jquery.validate.min', plugin_dir_url( __FILE__ ) . 'js/jquery.validate.min.js', array( 'jquery'), $this->version, false);
+				wp_enqueue_script( 'jquery-2.2.4.min', plugin_dir_url( __FILE__ ) . 'js/jquery-2.2.4.min.js', array( 'jquery'), $this->version, false);
 
 			}
 	}

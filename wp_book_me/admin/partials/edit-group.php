@@ -39,16 +39,27 @@ if($_GET['group_id']==true AND $_GET['edit_group']==true)
     $thursdayChecked = $activeDays["thursday"];
     $fridayChecked = $activeDays["friday"];
     $saturdayChecked = $activeDays["saturday"];
+
+    $siteURL = get_site_url()."/wp-admin/admin.php";
     
     ?>
+    
+    <script type='text/javascript'>
 
-    <script>
+        var siteURL = <?php echo json_encode($siteURL);?>;
 
         function addService()
         {
-            alert("add service");
+            var service=$('#wp_book_me_serviceBox').val();
+            alert(service);
+            window.location.replace(siteURL+'?page=wp_book_me&group_id=' + <?php echo $groupID; ?> +'&addService='+service);
         }
 
+        function deleteService(index)
+        {
+            alert(index);
+            window.location.replace(siteURL+'?page=wp_book_me&group_id=' + <?php echo $groupID; ?> +'&deleteService='+index);
+        }
     </script>
     
     
@@ -163,7 +174,7 @@ if($_GET['group_id']==true AND $_GET['edit_group']==true)
                             <span> <?php echo $services[$i]; ?></span>
                         </td>
                         <td width="100px">
-                            <input class="button-secondary" type="button" name="deleteBTN" value="Delete" style = "background-color:#FF8181;"/>
+                            <input class="button-secondary" type="button" name="deleteBTN" value="Delete" style = "background-color:#FF8181;" onclick="return deleteService(<?php echo $i; ?>)"/>
                         </td>
                     </tr>
 
