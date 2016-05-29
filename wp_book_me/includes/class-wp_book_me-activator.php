@@ -108,7 +108,24 @@ class Wp_book_me_Activator {
 			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 			dbDelta($sql);
 
+
+
+			//insert default values to general options
+
+			//create array of the data we want to insert to specific row
+			$dataArray = array(
+				'id' => '',
+				'isRTL' => 1,
+				'firstDayOfWeek' => 'sunday',
+				'dateFormat' => 'dd/MM/YYYY'
+			);
+
+			//execute the insert new row query
+			$wpdb->insert($general_options_table, $dataArray);
+
 		}
+
+
 	}
 
 }
