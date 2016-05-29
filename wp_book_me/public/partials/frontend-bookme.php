@@ -16,6 +16,14 @@ $group_options_table = $wpdb->prefix . "bookme_group_options";
 
 $selectSQL = $wpdb->get_results($wpdb->prepare("SELECT * FROM $group_options_table WHERE id = %d", $groupID));
 
+
+if (empty($selectSQL)) {
+
+    echo "<h1>Sorry.. There is no shortcode id = " . $groupID . "</h1>";
+    return;
+}
+
+
 $calendarColor = $selectSQL[0]->calendarColor;
 $fromTime = $selectSQL[0]->fromTime;
 $toTime = $selectSQL[0]->toTime;
@@ -23,12 +31,7 @@ $windowTimeLength = $selectSQL[0]->windowTimeLength;
 $services = unserialize($selectSQL[0]->services);
 $activeDays = unserialize($selectSQL[0]->activeDays);
 $groupName = $selectSQL[0]->groupName;
-
-if (empty($selectSQL)) {
-
-    echo "<h1>Sorry.. There is no shortcode id = " . $groupID . "</h1>";
-    return;
-}
+$description = $selectSQL[0]->description;
 
 
 ?>
@@ -103,8 +106,8 @@ if (empty($selectSQL)) {
         <div class="col-md-3">
 
             <img src="http://bookme.myweb.jce.ac.il/wp-content/uploads/2016/05/remindyou_logo.jpg"/>
-            <h3><?php echo $groupName ?></h3> <br>
-            <p>חדרי השקט ממוקמים בקומה מינוס 2 והם שקטים ביותר</p> <br>
+            <h3><?php echo $groupName; ?></h3> <br>
+            <p><?php echo $description; ?></p> <br>
             <h3>אמצעים מיוחדים</h3> <br>
             <div id=services></div>
             <!--            <ul>-->
