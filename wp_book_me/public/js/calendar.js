@@ -20,8 +20,8 @@ $(document).ready(function () {
     $('#stepExample2').change(ShowAvailableRoom);
 
     $('#roomSelect').change(setPicture);
-
-    var duartionInMin = windowTimeLength;
+//// adam
+    var duartionInMin = 90 ;
     var minimumTime = fromTime;
     var maximumTime = toTime;
     var services = ["11111", "222222", "3333333","444444", "555", "666666","77777", "88888",

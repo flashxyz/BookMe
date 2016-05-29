@@ -181,6 +181,15 @@ class Wp_book_me_Admin {
 		{
 			require_once('partials/save-general-options.php');
 		}
+		if($_GET['save_room']==true)
+		{
+			require_once('partials/save-rooms.php');
+		}
+		if($_GET['delete_room']==true)
+		{
+			require_once('partials/delete-room.php');
+		}
+
 	}
 	//need to remove this - > not used
 	public function options_update() {
