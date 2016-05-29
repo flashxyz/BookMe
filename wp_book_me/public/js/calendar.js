@@ -25,8 +25,8 @@ $(document).ready(function () {
     $('#stepExample2').change(ShowAvailableRoom);
 
     $('#roomSelect').change(setPicture);
-
-    var duartionInMin = windowTimeLength;
+//// adam
+    var duartionInMin = 90 ;
     var minimumTime = fromTime;
     var maximumTime = toTime;
 
