@@ -22,6 +22,7 @@ $toTime = $selectSQL[0]->toTime;
 $windowTimeLength = $selectSQL[0]->windowTimeLength;
 $services = unserialize($selectSQL[0]->services);
 $activeDays = unserialize($selectSQL[0]->activeDays);
+$groupName = $selectSQL[0]->groupName;
 
 if (empty($selectSQL)) {
 
@@ -33,6 +34,9 @@ if (empty($selectSQL)) {
 ?>
 
 <script type="text/javascript">
+
+    var groupName = "<?php echo $groupName ?>";
+
     var windowTimeLength = "<?php echo $windowTimeLength ?>";
     var fromTime = "<?php echo $fromTime ?>";
     var toTime = "<?php echo $toTime ?>";
