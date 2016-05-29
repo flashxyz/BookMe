@@ -108,6 +108,10 @@ $(document).ready(function () {
     });
 
 
+    /*addEvent function
+       create event if the time of event is bigger the Current Time
+         client can create event only in the future
+      */
     function addEvent() {
         var nowTime = new Date();
         if (timeStart.getYear() <= nowTime.getYear())
@@ -130,7 +134,6 @@ $(document).ready(function () {
             },
             true // make the event "stick"
         );
-
     }
 
 
@@ -164,6 +167,11 @@ $(document).ready(function () {
 
     $('#datepairExample').datepair();
 
+    /*
+    convertTime this function get hour, min
+    and return time.
+    eg convertTime(6,7) = 06:07 .convertTime(12,10) = 12:10
+     */
     function convertTime(houreStart, minStart) {
         var strTimeStart;
         if (houreStart < 10)
@@ -175,7 +183,6 @@ $(document).ready(function () {
             strTimeStart = houreStart + ':' + minStart + '0';
         else
             strTimeStart = houreStart + ':' + minStart;
-
         return strTimeStart;
     }
 
@@ -197,7 +204,6 @@ $(document).ready(function () {
 
         }
         else {
-            alert("נא להכניס ערכים")
             var x = document.getElementById("roomSelect");
             for (i = 0; i < availableRooms.length; i++) {
                 x.remove(x.childNodes);
@@ -211,7 +217,6 @@ $(document).ready(function () {
     }
 
     function setPicture() {
-        alert("in");
         var name = $('#roomSelect').val();
         var i;
         for (i = 0; i < availableRooms.length; i++)
