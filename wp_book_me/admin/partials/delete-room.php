@@ -12,7 +12,7 @@
         $groupID = $_GET['group_id'];
         $roomID = $_GET['room_id'];
 
-        echo "Delete Room " . $roomID . "in Group " . $groupID;
+        //echo "Delete Room " . $roomID . "in Group " . $groupID;
 
         //get the table name we want to work with
         $group_options_table = $wpdb->prefix . "bookme_group_options";
@@ -21,31 +21,62 @@
         //check if the row exist
         $selectSQL = $wpdb->get_results( "SELECT * FROM  $rooms_options_table WHERE roomId = '$roomID'" );
 
-        //execute the delete query of the group id we want to delete
-        $wpdb->query( $wpdb->prepare( " DELETE FROM $rooms_options_table WHERE roomId = %d", $roomID));
-
-
         //get all the rooms associate to this group id
-        $selectSQL = $wpdb->get_results( "SELECT * FROM $rooms_options_table WHERE groupId = '$groupID'" );
-
-
-        //update the number of rooms in group option table
-
+        $selectSQL2 = $wpdb->get_results( "SELECT * FROM $rooms_options_table WHERE groupId = '$groupID'" );
 
         //take the num of the rooms + 1
-        $numOfRooms  = sizeof($selectSQL);
+        $numOfRooms  = sizeof($selectSQL2);
+
+        //if it's the last room, just reset the first room to room 1
+        if($numOfRooms == 1)
+        {
+            //create array of the data we want to insert to specific row
+            $dataArray = array(
+                'groupId' => $groupID,
+                'roomName' => 'Room 1',
+                'capacity' => '0',
+                'isActive' => '1',
+                'capacity' => '0'
+            );
+
+            //create array of the condition to get the specific row
+            $whereArray = array( 'roomId' => '1');
+
+            //execute the update function for saving data
+            $wpdb->update( $rooms_options_table, $dataArray, $whereArray);
 
 
-        //create array of the data we want to insert to specific row
-        $dataArray = array(
-            'numOfRooms' => $numOfRooms
-        );
+        }
+        //delete the room and update DB
+        else
+        {
 
-        //create array of the condition to get the specific row
-        $whereArray = array( 'id' => $groupID);
+            //execute the delete query of the group id we want to delete
+            $wpdb->query( $wpdb->prepare( " DELETE FROM $rooms_options_table WHERE roomId = %d", $roomID));
 
-        //execute the update function for saving data
-        $wpdb->update( $group_options_table, $dataArray, $whereArray);
+
+
+
+
+            //update the number of rooms in group option table
+
+            //create array of the data we want to insert to specific row
+            $dataArray = array(
+                'numOfRooms' => $numOfRooms
+            );
+
+            //create array of the condition to get the specific row
+            $whereArray = array( 'id' => $groupID);
+
+            //execute the update function for saving data
+            $wpdb->update( $group_options_table, $dataArray, $whereArray);
+
+
+        }
+
+
+
+
 
     }
 
