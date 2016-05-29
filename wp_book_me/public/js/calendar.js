@@ -1,16 +1,21 @@
 $(document).ready(function () {
-    var availableRooms = [["A100","1","adamRoomSelector"], ["A101","2","adamRoomSelector"],
-        ["A102", "3","adamRoomSelector"], ["B100", "1","adamRoomSelector"],
-        ["B101" ,"2","adamRoomSelector"], ["B102","3","adamRoomSelector"],
-        [ "C100","2","adamRoomSelector"],["C101","1","adamRoomSelector"],
-        ["C102","3",""]];
+    var availableRooms = [["A100", "1", "adamRoomSelector"], ["A101", "2", "adamRoomSelector"],
+        ["A102", "3", "adamRoomSelector"], ["B100", "1", "adamRoomSelector"],
+        ["B101", "2", "adamRoomSelector"], ["B102", "3", "adamRoomSelector"],
+        ["C100", "2", "adamRoomSelector"], ["C101", "1", "adamRoomSelector"],
+        ["C102", "3", ""]];
     var date = new Date();
     var d = date.getDate();
     var m = date.getMonth();
     var y = date.getFullYear();
     var timeStart;
     var timeEnd;
+
+
+    var hideDays = [] ;
+    getHideDays();
     var dateClick;
+
     $('#btnAddRoom').click(addEvent);
     $('#btnFindRoom').click(ShowAvailableRoom);
     $('#roomHide').hide();
@@ -24,8 +29,9 @@ $(document).ready(function () {
     var duartionInMin = windowTimeLength;
     var minimumTime = fromTime;
     var maximumTime = toTime;
-    var services = ["11111", "222222", "3333333","444444", "555", "666666","77777", "88888",
-        "99999","10000", "200000", "300"];
+
+    var services = ["11111", "222222", "3333333", "444444", "555", "666666", "77777", "88888",
+        "99999", "10000", "200000", "300"];
     displayCheckboxes();
     var calendar;
     calendar = $('#calendar').fullCalendar({
@@ -64,15 +70,13 @@ $(document).ready(function () {
             $('#stepExample2').val(strTimeEnd);
 
 
-
-
         },
         slotDuration: '00:' + duartionInMin + ':00',
         lang: 'he',
         isRTL: true,
         minTime: minimumTime + ":00",
         maxTime: maximumTime + ":00",
-        hiddenDays: [6],
+        hiddenDays: hideDays,
         // firstHour: 8,
         allDaySlot: false,
         height: 600,
@@ -111,7 +115,7 @@ $(document).ready(function () {
                 if (timeStart.getDate() < nowTime.getDate())
                     return;
                 else if (timeStart.getDate() == nowTime.getDate())
-                    if (timeStart.getHours()  <= nowTime.getHours() )
+                    if (timeStart.getHours() <= nowTime.getHours())
                         return;
             }
         calendar.fullCalendar('renderEvent',
@@ -176,7 +180,7 @@ $(document).ready(function () {
     }
 
     function ShowAvailableRoom(startTime, endTime) {
-        var  j,i;
+        var j, i;
         var y = document.getElementById("roomSelect");
         for (i = 0; i < availableRooms.length; i++) {
             y.remove(y.childNodes);
@@ -208,15 +212,15 @@ $(document).ready(function () {
 
     function setPicture() {
         alert("in");
-        var name =  $('#roomSelect').val();
+        var name = $('#roomSelect').val();
         var i;
-        for( i = 0 ; i < availableRooms.length ; i++)
-            if(name == availableRooms[i])
+        for (i = 0; i < availableRooms.length; i++)
+            if (name == availableRooms[i])
                 break;
-        var imgstring = "./img/"+availableRooms[i][2]+".jpg";
+        var imgstring = "./img/" + availableRooms[i][2] + ".jpg";
         var style = "width:304px;height:228px;";
 
-        $('#img').replaceWith("<img id = 'img' src="+imgstring+" style="+style+">");
+        $('#img').replaceWith("<img id = 'img' src=" + imgstring + " style=" + style + ">");
 
     }
 
@@ -224,9 +228,9 @@ $(document).ready(function () {
         var checkboxes = "<tr class='col-sm-12 '>";
 
         for (var i = 0; i < services.length; i++) {
-            if( i % 3 == 0 && i > 0)
-                checkboxes +="</tr><tr class='col-sm-12'>"
-            checkboxes += "<td class='checkbox-inline checkbox'> <label><input type='checkbox' value='' >"+
+            if (i % 3 == 0 && i > 0)
+                checkboxes += "</tr><tr class='col-sm-12'>"
+            checkboxes += "<td class='checkbox-inline checkbox'> <label><input type='checkbox' value='' >" +
                 " <span class='cr'><i class='cr-icon glyphicon glyphicon-ok'></i></span>" +
                 services[i] +
                 " </label></td>";
@@ -237,4 +241,14 @@ $(document).ready(function () {
     }
 
 
+    //Returns the days should not present in the calendar
+    function getHideDays() {
+        var i, j = 0;
+        for (i = 0; i < activeDays.length; i++) {
+            if (activeDays[i] == '') {
+                hideDays[j] = i;
+                j++;
+            }
+        }
+    }
 });
