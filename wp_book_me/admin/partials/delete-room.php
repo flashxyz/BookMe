@@ -49,7 +49,17 @@
 
     }
 
+// here is the code for staying on the current page when deleting a room
 
+$siteURL = get_site_url()."/wp-admin/admin.php";
 
 
 ?>
+
+<script>
+
+    var siteURL = <?php echo json_encode($siteURL);?>;
+
+    window.location.replace(siteURL +"?page=wp_book_me&group_id=" + <?php echo $groupID; ?> + "&edit_rooms=true");
+
+</script>
