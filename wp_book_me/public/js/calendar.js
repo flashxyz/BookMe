@@ -230,12 +230,12 @@ $(document).ready(function () {
     }
 
     function displayCheckboxes() {
-        var checkboxes = "<tr class='col-sm-12 '>";
+        var checkboxes = "<tr class='col-sm-12'>";
 
         for (var i = 0; i < services.length; i++) {
             if (i % 3 == 0 && i > 0)
                 checkboxes += "</tr><tr class='col-sm-12'>"
-            checkboxes += "<td class='checkbox-inline checkbox'> <label><input type='checkbox' value='' >" +
+            checkboxes += "<td class='checkbox-inline checkbox'> <label><input type='checkbox' value = '0' >" +
                 " <span class='cr'><i class='cr-icon glyphicon glyphicon-ok'></i></span>" +
                 services[i] +
                 " </label></td>";
