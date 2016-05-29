@@ -126,11 +126,8 @@ if (empty($selectSQL)) {
         </div>
 
         <div class="col-sm-3 col-xs-6">
-
-
             <div id="roomConfirmSelect">
                 <br>
-
                 <button type="button" id="btnFindRoom" class="btn btn-default">מצא</button>
                 <br>
                 <div id="roomHide">
@@ -139,24 +136,19 @@ if (empty($selectSQL)) {
                         <option></option>
                     </select>
                     <button type="button" id="btnAddRoom" class="btn btn-default">אישור</button>
-
                 </div>
-
                 </p>
             </div>
-
-
         </div>
 
         <div class="col-sm-3 col-xs-6">
-            <div id="roomServicesSelect">
+            <div class="pre-scrollable">
                 <p/>שירותים <br>
                 <div id="checkboxes"></div>
             </div>
         </div>
 
         <div class="col-sm-3 col-xs-6">
-
             <div id="roomTimeSelect">
                 <p>מתי להזמין<br><br>
                     <label>שעת התחלה: </label>
