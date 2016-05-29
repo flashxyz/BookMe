@@ -187,7 +187,10 @@ class Wp_book_me_Admin {
 		}
 		if($_GET['delete_room']==true)
 		{
+			
 			require_once('partials/delete-room.php');
+			require_once('partials/edit-rooms.php');
+			
 		}
 
 	}

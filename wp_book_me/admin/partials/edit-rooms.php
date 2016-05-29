@@ -13,6 +13,14 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
 
     $selectSQL = $wpdb->get_results( "SELECT * FROM $rooms_options_table WHERE groupId = '$groupID'" );
 
+    if(empty($selectSQL)){
+        echo 'Please Wait...';
+        ?>
+        <script>
+            location.reload();
+        </script>
+        <?php
+    }
 
     //get group table from SQL
     $group_options_table = $wpdb->prefix . "bookme_group_options";
