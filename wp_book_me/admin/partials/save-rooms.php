@@ -11,7 +11,7 @@ if($_GET['group_id']==true AND $_GET['room_id']==true AND  $_GET['save_room']==t
     $roomID = $_GET['room_id'];
     $postArray = $_POST['wp_book_me'];
 
-    echo "SaveRoom";
+    echo "EditRoom";
     echo $groupID;
     echo $roomID;
 }

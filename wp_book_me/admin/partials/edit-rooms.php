@@ -55,6 +55,12 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
 
 
     ?>
+
+    <!--those hidden fields will contain the time restrictions for the JQUERY functions-->
+    <!--
+    <input type="hidden" id="<?php echo $this->plugin_name; ?>_from_time_hidden" value="<?php echo $fromTime ?>">
+    <input type="hidden" id="<?php echo $this->plugin_name; ?>_to_time_hidden" value="<?php echo $toTime ?>">
+    -->
     
     <div class="wrap">
 
@@ -109,6 +115,42 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
                                         </label>
                                     </td>
                                 </tr>
+
+                                <!--
+                                <tr>
+                                    <td width='200px'>
+                                        <span>Room available from: </span>
+                                    </td>
+                                    <td width='200px'>
+                                        <label for="<?php echo $this->plugin_name; ?>_roomOptionFromTime">
+                                            <input type="text" id="<?php echo $this->plugin_name; ?>_roomOptionFromTime" class="<?php echo $this->plugin_name; ?>_time_picker_r" name="<?php echo $this->plugin_name; ?>[roomOptionFromTime]" value=""/>
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width='200px'>
+                                        <span>Room available until: </span>
+                                    </td>
+                                    <td width='200px'>
+                                        <label for="<?php echo $this->plugin_name; ?>_roomOptionUntilTime">
+                                            <input type="text" id="<?php echo $this->plugin_name; ?>_roomOptionUntilTime" class="<?php echo $this->plugin_name; ?>_time_picker_r" name="<?php echo $this->plugin_name; ?>[roomOptionUntilTime]" value=""/>
+                                        </label>
+                                    </td>
+                                </tr>
+
+
+                                <tr>
+                                    <td width='200px'>
+                                        <span>Services: </span>
+                                    </td>
+                                    <td width='200px'>
+                                        <label for="<?php echo $this->plugin_name; ?>_roomOptionServices">
+                                            <input type="text" id="<?php echo $this->plugin_name; ?>_roomOptionServices" class="<?php echo $this->plugin_name; ?>_roomOptionServices" name="<?php echo $this->plugin_name; ?>[roomOptionServices]" value="<?php echo $value->services; ?>"/>
+                                        </label>
+                                    </td>
+                                </tr>
+                                -->
+
 
                                 <tr>
                                     <td width='200px'>
@@ -190,6 +232,12 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
 
                         <td align="center">
 
+    <!--                        ?page=wp_book_me&group_id=<?php echo $groupID ?>&save_room=true&room_id=<?php echo$room_id ?>
+
+                            <form  action="EEEE" method="post" id="<?php echo $this->plugin_name; ?>_editRoomsSaveForm_<?php echo $room_id; ?>">
+                                <input class="button-secondary" type="submit" name="saveRoomBTN" value="save" style = "background-color:#BBEEAA;" />
+                            </form>
+-->
                             <input class="button-secondary"  type="submit" name="saveRoomBTN_<?php echo$room_id ?>" value="Save" style = "background-color:#BBEEAA;" />
                         </td>
                 </form>
@@ -199,6 +247,11 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
                                 <input class="button-secondary" type="submit" name="deleteBTN_<?php echo $value->roomId ?>" value="Delete" style = "background-color:#FF8181;"/>
                             </form>
 
+                            <!--
+
+                            <form action="DEL" method="get" ><input type="hidden" name="room_id" value="<?php echo $value->roomId ?>">
+                                <input type="hidden" name="delete" value="true"><input type="button" onClick="return checkMe(<?php echo  $value->roomId ?>)" value="Delete" class="button-secondary" style = "background-color:#FF8181;"></form></p>
+                            -->
                         </td>
 
                     </tr>

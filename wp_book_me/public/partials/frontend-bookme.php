@@ -35,8 +35,6 @@ if (empty($selectSQL)) {
 
 <script type="text/javascript">
 
-    var groupName = "<?php echo $groupName ?>";
-
     var windowTimeLength = "<?php echo $windowTimeLength ?>";
     var fromTime = "<?php echo $fromTime ?>";
     var toTime = "<?php echo $toTime ?>";
@@ -105,15 +103,16 @@ if (empty($selectSQL)) {
         <div class="col-md-3">
 
             <img src="http://bookme.myweb.jce.ac.il/wp-content/uploads/2016/05/remindyou_logo.jpg"/>
-            <h3>חדרי שקט</h3> <br>
+            <h3><?php echo $groupName ?></h3> <br>
             <p>חדרי השקט ממוקמים בקומה מינוס 2 והם שקטים ביותר</p> <br>
             <h3>אמצעים מיוחדים</h3> <br>
-            <ul>
-                <li>זכוכית משוריינת ירי</li>
-                <li>מחשב מיוחד לעיוורים</li>
-                <li>ארוחות בין 14:00-16:00</li>
-                <li>סמים קלים</li>
-            </ul>
+            <div id = services></div>
+<!--            <ul>-->
+<!--                <li>זכוכית משוריינת ירי</li>-->
+<!--                <li>מחשב מיוחד לעיוורים</li>-->
+<!--                <li>ארוחות בין 14:00-16:00</li>-->
+<!--                <li>סמים קלים</li>-->
+<!--            </ul>-->
         </div>
 
     </div>

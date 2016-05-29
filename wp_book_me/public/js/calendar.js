@@ -26,13 +26,14 @@ $(document).ready(function () {
 
     $('#roomSelect').change(setPicture);
 //// adam
-    var duartionInMin = 90 ;
+    var duartionInMin = windowTimeLength ;
     var minimumTime = fromTime;
     var maximumTime = toTime;
 
-    var services = ["11111", "222222", "3333333", "444444", "555", "666666", "77777", "88888",
+    var servicesArry = ["11111", "222222", "3333333", "444444", "555", "666666", "77777", "88888",
         "99999", "10000", "200000", "300"];
     displayCheckboxes();
+    displayServicesDescription();
     var calendar;
     calendar = $('#calendar').fullCalendar({
         header: {
@@ -232,12 +233,12 @@ $(document).ready(function () {
     function displayCheckboxes() {
         var checkboxes = "<tr class='col-sm-12'>";
 
-        for (var i = 0; i < services.length; i++) {
+        for (var i = 0; i < servicesArry.length; i++) {
             if (i % 3 == 0 && i > 0)
                 checkboxes += "</tr><tr class='col-sm-12'>"
             checkboxes += "<td class='checkbox-inline checkbox'> <label><input type='checkbox' value = '0' >" +
                 " <span class='cr'><i class='cr-icon glyphicon glyphicon-ok'></i></span>" +
-                services[i] +
+                servicesArry[i] +
                 " </label></td>";
 
         }
@@ -256,4 +257,15 @@ $(document).ready(function () {
             }
         }
     }
+
+
+    function displayServicesDescription() {
+        var services = "<ul>";
+        for (var i = 0; i < servicesArry.length; i++)
+            services += "<li>"+ servicesArry[i] +"</li>"
+
+        services += "</ul>"
+        $('#services').append(services);
+    }
+
 });
