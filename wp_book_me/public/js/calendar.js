@@ -39,7 +39,7 @@ $(document).ready(function () {
         header: {
             left: 'next,prev today',
             center: 'title',
-            right: 'month, agendaWeek, basicDay'
+            right: ''
         },
 
         select: function (start, end, jsEvent, view) {
@@ -258,7 +258,7 @@ $(document).ready(function () {
         }
     }
 
-
+    
     function displayServicesDescription() {
         var services = "<ul>";
         for (var i = 0; i < servicesArry.length; i++)
@@ -267,5 +267,5 @@ $(document).ready(function () {
         services += "</ul>"
         $('#services').append(services);
     }
-
+    
 });

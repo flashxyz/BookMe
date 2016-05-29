@@ -113,9 +113,9 @@ html, body {
     padding: 5px ! important;
 }
 
-#popup_choose {
-    direction: ltr;
-}
+/*#popup_choose {*/
+    /*direction: ltr;*/
+/*}*/
 
 .fc-widget-header {
     background-color: purple;
@@ -222,31 +222,50 @@ html, body {
 }
 
 
-.demo{
-    direction: rtl;
-    display: flex;
-    margin: 5px;
-    width: auto;
-
-}
-
 .labelForom{
-    width: 45%;
-    margin: auto;
+    width: 100%;
 
 }
 .col-sm-12{
+    direction: rtl !important;
     align-items: baseline;
     display: inline-block;
     position: relative;
 }
 
 .container {
-    direction: rtl;
+    direction: rtl !important;
+
     display: flex;
     margin: 5px;
 
 }
 .pre-scrollable{
     height: 200px;
+}
+
+.tdStart{
+    text-align: right !important;
+    direction: rtl !important;
+    width: 50% !important;
+}
+.trStart{
+    text-align: right !important;
+    direction: rtl !important;
+    border-right:none !important;
+}
+
+#roomConfirmSelect{
+    text-align: center;
+}
+
+#chooseroom{
+    display: block;
+    text-align: center;
+    background: aqua;
+}
+
+.form-control{
+    width: 50% !important;
+    text-align: center !important;
 }

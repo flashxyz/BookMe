@@ -106,20 +106,20 @@ if (empty($selectSQL)) {
             <h3><?php echo $groupName ?></h3> <br>
             <p>חדרי השקט ממוקמים בקומה מינוס 2 והם שקטים ביותר</p> <br>
             <h3>אמצעים מיוחדים</h3> <br>
-            <div id = services></div>
-<!--            <ul>-->
-<!--                <li>זכוכית משוריינת ירי</li>-->
-<!--                <li>מחשב מיוחד לעיוורים</li>-->
-<!--                <li>ארוחות בין 14:00-16:00</li>-->
-<!--                <li>סמים קלים</li>-->
-<!--            </ul>-->
+            <div id=services></div>
+            <!--            <ul>-->
+            <!--                <li>זכוכית משוריינת ירי</li>-->
+            <!--                <li>מחשב מיוחד לעיוורים</li>-->
+            <!--                <li>ארוחות בין 14:00-16:00</li>-->
+            <!--                <li>סמים קלים</li>-->
+            <!--            </ul>-->
         </div>
 
     </div>
     <!-- /.row -->
 
     <!-- Related Projects Row -->
-    <div class="row">
+    <div class="rtl">
 
         <div class="col-sm-3 col-xs-6">
             <div id="roomPictureSelect">
@@ -134,10 +134,9 @@ if (empty($selectSQL)) {
                 <button type="button" id="btnFindRoom" class="btn btn-default">מצא</button>
                 <br>
                 <div id="roomHide">
-                    <label for="roomSelect">בחר חדר: </label><br>
-                    <select class="form-control labelForom" id="roomSelect" value="בחר חדר">
-                        <option></option>
-                    </select>
+                    <label>בחר חדר: </label><br>
+                    <div id = "chooseroom"><select class="form-control" id="roomSelect" value="בחר חדר">
+                        <option></option></select></div>
                     <button type="button" id="btnAddRoom" class="btn btn-default">אישור</button>
                 </div>
                 </p>
@@ -145,24 +144,34 @@ if (empty($selectSQL)) {
         </div>
 
         <div class="col-sm-3 col-xs-6">
-            <div class="pre-scrollable">
                 <p/>שירותים <br>
+            <div class="pre-scrollable">
                 <div id="checkboxes"></div>
             </div>
         </div>
 
         <div class="col-sm-3 col-xs-6">
-            <div id="roomTimeSelect">
-                <p>מתי להזמין<br><br>
-                    <label>שעת התחלה: </label>
-                    <input id="stepExample1" type="text" class="time labelForom"/><br>
-                    <label>שעת סיום: </label>
-                    <input id="stepExample2" type="text" class="time labelForom"/><br>
-                <p id="datepairExample">
-                    <label>תאריך:</label>
-                    <input type="text" class="date start labelForom" id="datePicker"/><br>
-                    <label>כמות:</label>
-                    <input id="quantity" type="text" class="time labelForom"/><br>
+            <div>
+                <table>
+                    <p> מתי להזמין<br><br>
+                        <tr class="trStart">
+                            <td class='tdStart'><label>שעת התחלה: </label></td>
+                            <td class='tdStart'><input id="stepExample1" type="text" class="time labelForom"/></td>
+                        </tr>
+                        <tr class="trStart">
+                            <td class='tdStart'><label>שעת סיום: </label></td>
+                            <td class='tdStart'> <input id="stepExample2" type="text" class="time labelForom"/></td>
+                        </tr>
+                        <tr class="trStart">
+                            <td class='tdStart'><label>תאריך:</label></td>
+                            <td class='tdStart'><input type="text" class="date start labelForom" id="datePicker"/></td>
+                        </tr>
+                        <tr class="trStart">
+                            <td class='tdStart'><label>כמות:</label></td>
+                            <td class='tdStart'><input id="quantity" type="text" class="time labelForom"/></td>
+                        </tr>
+                    </p>
+                </table>
             </div>
         </div>
         <hr>
