@@ -12,11 +12,10 @@ html, body {
     margin-bottom: 0px;
     background-image: url("pat.png");
     background-repeat: repeat;
+
     -moz-box-shadow: 0px 10px 5px #484445;
     -webkit-box-shadow: 0px 10px 5px #484445;
     box-shadow: 0px 10px 4px #484445;
-
-    padding: 10px;
 }
 #roomSelector {
     border: 1px green ;
@@ -35,9 +34,14 @@ html, body {
     opacity:0.5 !important;
 }
 
+.fill-height {
+    min-height: 100%;
+    height: auto !important; /* cross-browser */
+    height: 100%; /* cross-browser */
+}
 
 .row-fluid {
-
+    height: 100%;
     display: table-cell;
     vertical-align: middle;
 }
@@ -82,7 +86,7 @@ html, body {
     border-width: 1px !important;
     padding: 0 !important;
     vertical-align: top !important;
-    font-size: 17pt;
+    font-size: 30pt;
 
 }
 
@@ -113,9 +117,9 @@ html, body {
     padding: 5px ! important;
 }
 
-/*#popup_choose {*/
-    /*direction: ltr;*/
-/*}*/
+#popup_choose {
+    direction: ltr;
+}
 
 .fc-widget-header {
     background-color: purple;
@@ -217,57 +221,29 @@ html, body {
 
 
 #checkboxes {
-    direction: rtl;
+    margin-left: 0;
+    margin-right: 10px;
 }
 
 
+.demo{
+    direction: rtl;
+    display: flex;
+    margin: 5px;
+    width: auto;
+
+}
+
 .labelForom{
-    width: 100%;
+    width: 45%;
+    margin: auto;
 
 }
 .col-sm-12{
-    direction: rtl !important;
     align-items: baseline;
     display: inline-block;
     position: relative;
 }
 
-.container {
-    direction: rtl !important;
 
-    display: flex;
-    margin: 5px;
 
-}
-.pre-scrollable{
-    height: 200px;
-}
-
-.tdStart{
-    text-align: right !important;
-    direction: rtl !important;
-    width: 50% !important;
-}
-.trStart{
-    text-align: right !important;
-    direction: rtl !important;
-    border-right:none !important;
-}
-
-#roomConfirmSelect{
-    text-align: center;
-}
-
-#chooseRoom{
-    display: block ;
-    text-align: center;
-}
-
-.form-control{
-    width: 50% !important;
-    text-align: center !important;
-}
-
-.fc-week-number span{
-    color: #A7CC76;
-}

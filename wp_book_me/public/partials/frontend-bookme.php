@@ -56,14 +56,20 @@ $description = $selectSQL[0]->description;
     html, body {
         color: <?php echo $calendarColor; ?>;
         background-color: <?php echo $calendarColor; ?>;
+        font-family: 'Open Sans Hebrew', sans-serif;
+
     }
 
     .fc-widget-header {
         background-color: <?php echo $calendarColor; ?>;
+        font-family: 'Open Sans Hebrew', sans-serif;
+
     }
 
     .fc-header-title {
         background-color: <?php echo $calendarColor; ?>;
+        font-family: 'Open Sans Hebrew', sans-serif;
+
     }
 
     .fc-header-title h2 {

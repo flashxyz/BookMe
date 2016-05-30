@@ -23,8 +23,8 @@ function convertTime(houreStart, minStart) {
             strTimeStart = houreStart + ':' + minStart + '0';
         else
             strTimeStart = houreStart + ':' + minStart;
-        return strTimeStart;
     }
+    return strTimeStart;
 
 }
 

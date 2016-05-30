@@ -180,8 +180,8 @@ $(document).ready(function () {
                 strTimeStart = houreStart + ':' + minStart + '0';
             else
                 strTimeStart = houreStart + ':' + minStart;
-            return strTimeStart;
         }
+        return strTimeStart;
     }
 
     //showing the availabil rooms before elections user and availability room
