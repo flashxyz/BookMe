@@ -1,10 +1,15 @@
 
 
-
+//just for test
 function test1() {
     return true;
 }
 
+/*
+ convertTime this function get hour, min
+ and return time.
+ eg convertTime(6,7) = 06:07 .convertTime(12,10) = 12:10
+ */
 function convertTime(houreStart, minStart) {
     var strTimeStart;
     if (houreStart < 10) {
@@ -23,6 +28,7 @@ function convertTime(houreStart, minStart) {
 
 }
 
+//gets array of services and returns a HTML code line with checkboxes and the array's data
 function displayCheckboxes(servicesArr) {
     var checkboxes = "<tr class='col-sm-12'>";
 
