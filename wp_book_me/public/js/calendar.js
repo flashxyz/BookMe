@@ -203,7 +203,6 @@ $(document).ready(function () {
             }
             $('#roomHide').show();
             $('#btnFindRoom').hide();
-
         }
         else {
             var x = document.getElementById("roomSelect");
