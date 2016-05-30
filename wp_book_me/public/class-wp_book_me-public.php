@@ -80,6 +80,8 @@ class Wp_book_me_Public {
 		wp_enqueue_style( 'jquery-ui.min', plugin_dir_url( __FILE__ ) . 'css/jquery-ui.min.css', array(), $this->version, 'all' );
 		wp_enqueue_style( 'fullcalendar.min', plugin_dir_url( __FILE__ ) . 'css/fullcalendar.min.css', array(), $this->version, 'all' );
 		wp_enqueue_style( 'bootstrap.min', plugin_dir_url( __FILE__ ) . 'css/bootstrap.min.css', array(), $this->version, 'all' );
+		wp_enqueue_style( 'bootstrap-theme.min', plugin_dir_url( __FILE__ ) . 'css/bootstrap-theme.min.css', array(), $this->version, 'all' );
+
 
 	}
 
@@ -112,6 +114,7 @@ class Wp_book_me_Public {
 		wp_enqueue_script( 'lang-all', plugin_dir_url( __FILE__ ) . 'js/lang-all.js', array( 'jquery'), $this->version, false);
 		wp_enqueue_script( 'calendar', plugin_dir_url( __FILE__ ) . 'js/calendar.js', array( 'jquery'), $this->version, false);
 		wp_enqueue_script(  'bootstrap.min', plugin_dir_url( __FILE__ ) . 'js/bootstrap.min.js', array( 'jquery'), $this->version, false);
+		wp_enqueue_script(  'bootstrap-checkbox', plugin_dir_url( __FILE__ ) . 'js/bootstrap-checkbox.js', array( 'jquery'), $this->version, false);
 		wp_enqueue_script(  'bootstrap-datepicker', plugin_dir_url( __FILE__ ) . 'js/bootstrap-datepicker.js', array( 'jquery'), $this->version, false);
 		wp_enqueue_script(  'datepair', plugin_dir_url( __FILE__ ) . 'js/datepair.js', array( 'jquery'), $this->version, false);
 		wp_enqueue_script(  'jquery.datepair', plugin_dir_url( __FILE__ ) . 'js/jquery.datepair.js', array( 'jquery'), $this->version, false);
