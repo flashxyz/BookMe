@@ -282,13 +282,15 @@ function colourBrightness($hex, $percent) {
                                             <td class='tdStart'><input id="quantity" type="text"
                                                                        class="time labelForom"/></td>
                                         </tr>
-                                        <p/>שירותים <br>
-
+                                        <tr class="trStart">
+                                        <label>שירותים</label>
                                         <div class="pre-scrollable text-right">
                                             <div id="checkboxes1">
                                                 <!--  here, the capabilities will be printed dynamically from js-->
                                             </div>
                                         </div>
+                                        </tr>
+                                        <br>
                                 </div><br>
                                 <button id ="deleteOrderButton" type="button" class="btn btn-success" >מחיקת חדר</button>
                             </div>
