@@ -19,7 +19,9 @@ $(document).ready(function () {
     $('#btnAddRoom').click(addEvent);
     $('#btnFindRoom').click(ShowAvailableRoom);
     $('#roomHide').hide();
+    $('#changeOrderTime').hide();
     $('#myModal').modal('hide');
+
 
     $('#datePicker').change(makeChange);
     $('#stepExample1').change(makeChange);
@@ -92,6 +94,9 @@ $(document).ready(function () {
 
         eventClick: function (calEvent, jsEvent, view) {
             $('#myModal').modal('show');
+            $(document).on("click", "#changeOrderTimeButton", function(event){
+                openEditRoom();
+            });
         },
 
         editable: false,
@@ -268,6 +273,11 @@ $(document).ready(function () {
         services += "</ul>"
         $('#services').append(services);
     }
+
+    function openEditRoom() {
+        $('#changeOrderTime').show();
+    }
+
 
     //change timeStart timEnd fo user changes in labels
     // e.g timeEnd = ( "Mon May 30 2016 16:00:00 GMT+03:00(שעון קיץ ירושלים)" )

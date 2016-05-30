@@ -259,7 +259,31 @@ function colourBrightness($hex, $percent) {
                                 <p>החדר מוזמן לכך וכך שעות</p>
                             </div>
                             <div class="modal-body"id ="editRoomTime">
-                                <button type="button" class="btn btn-success">עריכה</button>
+                                <button id ="changeOrderTimeButton" type="button" class="btn btn-success" >עריכה</button>
+                                <div id="changeOrderTime">
+                                    <p> מתי להזמין<br><br>
+                                        <tr class="trStart">
+                                            <td class='tdStart'><label>שעת התחלה: </label></td>
+                                            <td class='tdStart'><input id="stepExample1" type="text"
+                                                                       class="time labelForom"/></td>
+                                        </tr>
+                                        <tr class="trStart">
+                                            <td class='tdStart'><label>שעת סיום: </label></td>
+                                            <td class='tdStart'><input id="stepExample2" type="text"
+                                                                       class="time labelForom"/></td>
+                                        </tr>
+                                        <tr class="trStart">
+                                            <td class='tdStart'><label>תאריך:</label></td>
+                                            <td class='tdStart'><input type="text" class="date start labelForom"
+                                                                       id="datePicker"/>
+                                            </td>
+                                        </tr>
+                                        <tr class="trStart">
+                                            <td class='tdStart'><label>כמות:</label></td>
+                                            <td class='tdStart'><input id="quantity" type="text"
+                                                                       class="time labelForom"/></td>
+                                        </tr>
+                                </div>
                                 <button type="button" class="btn btn-danger">מחיקת חדר</button>
                             </div>
                             <div class="modal-footer">
