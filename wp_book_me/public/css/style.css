@@ -24,6 +24,10 @@ html, body {
     color: purple;
 }
 
+#roomSelect {
+    background-color: #eadcff;
+    width:inherit !important;
+}
 .container-fluid {
     display: table;
     padding: 0;
