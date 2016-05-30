@@ -261,7 +261,7 @@ function colourBrightness($hex, $percent) {
                             <div class="modal-body"id ="editRoomTime">
                                 <button id ="changeOrderTimeButton" type="button" class="btn btn-success" >עריכה</button>
                                 <div id="changeOrderTime">
-                                    <p> מתי להזמין<br><br>
+                                    <p> ערוך הזמנת חדר מחדש <br><br>
                                         <tr class="trStart">
                                             <td class='tdStart'><label>שעת התחלה: </label></td>
                                             <td class='tdStart'><input id="stepExample1" type="text"
@@ -274,8 +274,7 @@ function colourBrightness($hex, $percent) {
                                         </tr>
                                         <tr class="trStart">
                                             <td class='tdStart'><label>תאריך:</label></td>
-                                            <td class='tdStart'><input type="text" class="date start labelForom"
-                                                                       id="datePicker"/>
+                                            <input type="text" class="date start labelForom" id="datePicker">
                                             </td>
                                         </tr>
                                         <tr class="trStart">
@@ -283,7 +282,14 @@ function colourBrightness($hex, $percent) {
                                             <td class='tdStart'><input id="quantity" type="text"
                                                                        class="time labelForom"/></td>
                                         </tr>
-                                </div>
+                                        <p/>שירותים <br>
+
+                                        <div class="pre-scrollable text-right">
+                                            <div id="checkboxes1">
+                                                <!--  here, the capabilities will be printed dynamically from js-->
+                                            </div>
+                                        </div>
+                                </div><br>
                                 <button id ="deleteOrderButton" type="button" class="btn btn-success" >מחיקת חדר</button>
                             </div>
                             <div class="modal-footer">

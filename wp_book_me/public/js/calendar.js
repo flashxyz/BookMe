@@ -36,7 +36,7 @@ $(document).ready(function () {
 
     var servicesArry = ["מיקרוגל", "מיקרופון", "הסרטת וידאו", "מחשב", "רמקולים", "666666", "77777", "88888",
         "99999", "10000", "מקרן", "300"];
-    displayCheckboxes();
+    displayCheckboxes("checkboxes");
     displayServicesDescription();
     var calendar;
     calendar = $('#calendar').fullCalendar({
@@ -97,6 +97,7 @@ $(document).ready(function () {
             $('#myModal').modal('show');
             $(document).on("click", "#changeOrderTimeButton", function(event){
                 openEditRoom();
+                displayCheckboxes("checkboxes1");
             });
             // $('#myCalendar').fullCalendar('removeEvents',event._id);
             $(document).on("click", "#deleteOrderButton", function(event){
@@ -242,7 +243,7 @@ $(document).ready(function () {
     }
 
     //change the services to checkboxes and display them in services div
-    function displayCheckboxes() {
+    function displayCheckboxes(whichId) {
 
 
         var checkboxes = "<table class='table table-sm'  align='right' ><thead> <tr> <th data-halign='right'>שירות</th> <th>סמן</th></tr>"
@@ -255,8 +256,14 @@ $(document).ready(function () {
             checkboxes += "<tr> <td data-halign='right'>" + servicesArry[i].toString() +"</td> <td><input type='checkbox' data-group-cls='btn-group-sm'></td><td></tr>" ;
         }
         checkboxes+= "</table>";
-        $('#checkboxes').append(checkboxes);
-        $(':checkbox').checkboxpicker();
+        if(whichId == "checkboxes") {
+            $('#checkboxes').append(checkboxes);
+            $(':checkbox').checkboxpicker();
+        }
+        if(whichId == "checkboxes1") {
+            $('#checkboxes1').append(checkboxes);
+            $(':checkbox').checkboxpicker();
+        }
     }
 
 
