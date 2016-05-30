@@ -259,10 +259,9 @@ html, body {
     text-align: center;
 }
 
-#chooseroom{
-    display: block;
+#chooseRoom{
+    display: block ;
     text-align: center;
-    background: aqua;
 }
 
 .form-control{

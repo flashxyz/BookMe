@@ -8,11 +8,11 @@ $(document).ready(function () {
     var d = date.getDate();
     var m = date.getMonth();
     var y = date.getFullYear();
+
     var timeStart;
     var timeEnd;
 
-
-    var hideDays = [] ;
+    var hideDays = [];
     getHideDays();
     var dateClick;
 
@@ -20,13 +20,12 @@ $(document).ready(function () {
     $('#btnFindRoom').click(ShowAvailableRoom);
     $('#roomHide').hide();
 
-    $('#datePicker').change(ShowAvailableRoom);
-    $('#stepExample1').change(ShowAvailableRoom);
-    $('#stepExample2').change(ShowAvailableRoom);
-
+    $('#datePicker').change(makeChange);
+    $('#stepExample1').change(makeChange);
+    $('#stepExample2').change(makeChange);
     $('#roomSelect').change(setPicture);
-//// adam
-    var duartionInMin = windowTimeLength ;
+
+    var duartionInMin = windowTimeLength;
     var minimumTime = fromTime;
     var maximumTime = toTime;
 
@@ -43,6 +42,8 @@ $(document).ready(function () {
         },
 
         select: function (start, end, jsEvent, view) {
+            $('#roomHide').hide();
+            $('#btnFindRoom').show();
             var dateStart = new Date(start);
             var dateEnd = new Date(end);
 
@@ -61,7 +62,6 @@ $(document).ready(function () {
             timeEnd = new Date(yearEnd, monthEnd - 1, dayEnd, houreEnd, minEnd);
             timeStart = new Date(yearStart, monthStart - 1, dayStart, houreStart, minStart);
 
-
             var strTimeStart = convertTime(timeStart.getHours(), timeStart.getMinutes());
             var strTimeEnd = convertTime(timeEnd.getHours(), timeEnd.getMinutes());
             var strStartTime = dayStart + "/" + monthStart + "/" + yearStart;
@@ -70,7 +70,6 @@ $(document).ready(function () {
             $('#stepExample1').val(strTimeStart);
             $('#stepExample2').val(strTimeEnd);
 
-
         },
         slotDuration: '00:' + duartionInMin + ':00',
         lang: 'he',
@@ -78,7 +77,6 @@ $(document).ready(function () {
         minTime: minimumTime + ":00",
         maxTime: maximumTime + ":00",
         hiddenDays: hideDays,
-        // firstHour: 8,
         allDaySlot: false,
         height: 600,
         axisFormat: "HH:mm",
@@ -110,9 +108,9 @@ $(document).ready(function () {
 
 
     /*addEvent function
-       create event if the time of event is bigger the Current Time
-         client can create event only in the future
-      */
+     create event if the time of event is bigger the Current Time
+     client can create event only in the future
+     */
     function addEvent() {
         var nowTime = new Date();
         if (timeStart.getYear() <= nowTime.getYear())
@@ -144,34 +142,31 @@ $(document).ready(function () {
             'minTime': minimumTime,
             'maxTime': maximumTime,
             'timeFormat': 'H:i',
-            'step': function (i) {
-                return (i % 2) ? duartionInMin : duartionInMin;
-            }
+            'step': duartionInMin,
 
         });
         $('#stepExample2').timepicker({
             'minTime': minimumTime,
             'maxTime': maximumTime,
             'timeFormat': 'H:i',
-            'step': function (i) {
-                return (i % 2) ? duartionInMin : duartionInMin;
-            }
+            'step': duartionInMin,
         });
     });
 
 
     ///for a date picker
-    $('#datepairExample .date').datepicker({
+    $('#datePicker').datepicker({
         'format': 'd/m/yyyy',
         'autoclose': true
     });
 
-    $('#datepairExample').datepair();
+    $('#datePicker').datepicker();
+    ;
 
     /*
-    convertTime this function get hour, min
-    and return time.
-    eg convertTime(6,7) = 06:07 .convertTime(12,10) = 12:10
+     convertTime this function get hour, min
+     and return time.
+     eg convertTime(6,7) = 06:07 .convertTime(12,10) = 12:10
      */
     function convertTime(houreStart, minStart) {
         var strTimeStart;
@@ -190,11 +185,12 @@ $(document).ready(function () {
     function ShowAvailableRoom(startTime, endTime) {
         var j, i;
         var y = document.getElementById("roomSelect");
-        for (i = 0; i < availableRooms.length; i++) {
+        $('#roomSelect').append("<option>" + "בחר חדר:" + "</option>");
+        for (i = 0; i < availableRooms.length + 1; i++) {
             y.remove(y.childNodes);
         }
-        $('#roomSelect').append("<option>" + "בחר חדר:" + "</option>");
-        if ($('#stepExample1').val() != "" && $('#stepExample2').val() != "" && $('#datePicker').val() != "") {
+        if ($('#stepExample1').val() != "" && $('#stepExample2').val() != "" && $('#datePicker').val() != ""
+            && $('#stepExample1').val() < $('#stepExample2').val()) {
             for (i = 0; i < availableRooms.length; i++) {
                 $('#roomSelect').append("<option>" + availableRooms[i] + "</option>");
                 //.attr("value",key).text(value))
@@ -202,19 +198,15 @@ $(document).ready(function () {
             $('#roomHide').show();
             $('#btnFindRoom').hide();
 
-
         }
         else {
             var x = document.getElementById("roomSelect");
-            for (i = 0; i < availableRooms.length; i++) {
+            for (i = 0; i < availableRooms.length + 1; i++) {
                 x.remove(x.childNodes);
             }
             $('#roomHide').hide();
             $('#btnFindRoom').show();
         }
-        //$('#roomSelect').change($('#roomSelect').val());
-
-
     }
 
     function setPicture() {
@@ -258,14 +250,71 @@ $(document).ready(function () {
         }
     }
 
-    
+    //display services in description
     function displayServicesDescription() {
         var services = "<ul>";
         for (var i = 0; i < servicesArry.length; i++)
-            services += "<li>"+ servicesArry[i] +"</li>"
-
+            services += "<li>" + servicesArry[i] + "</li>"
         services += "</ul>"
         $('#services').append(services);
     }
-    
+
+    function makeChange() {
+        $('#roomHide').hide();
+        $('#btnFindRoom').show();
+
+        var i;
+        var day = "";
+        var month = "";
+        var year = "";
+        var hourStart = "";
+        var minStart = "";
+        var hourEnd = "";
+        var minEnd = "";
+        var startTime = $("#stepExample1").val();
+        var endTime = $("#stepExample2").val();
+        var dateTime = $("#datePicker").val();
+
+        for (i = 0; (dateTime[i] != '/') ; i++) {
+            if( i > dateTime.length )
+                return;
+            day += dateTime[i];
+        }
+        i++;
+        for (; dateTime[i] != '/'; i++) {
+            if (i > dateTime.length)
+                return;
+            month += dateTime[i];
+        }
+        i++;
+        for (; i != dateTime.length ; i++)
+            year += dateTime[i];
+
+        if (day == "" || month == "")
+            return;
+
+        for (i = 0; startTime[i] != ':'; i++) {
+            if( i > startTime.length )
+                return;
+            hourStart += startTime[i];
+        }
+        i++;
+        for (; i < startTime.length ; i++)
+            minStart += startTime[i];
+
+        for (i = 0; endTime[i] != ':'; i++) {
+            if( i > endTime.length )
+                return;
+            hourEnd += endTime[i];
+        }
+        i++;
+        for (; i < endTime.length ; i++)
+            minEnd += endTime[i];
+
+        if (minEnd == "" || hourEnd == "" || minStart == "" || hourStart == "")
+            return;
+
+        timeStart = new Date(year, month - 1, day, hourStart, minStart);
+        timeEnd = new Date(year, month - 1, day, hourEnd, minEnd);
+    }
 });
