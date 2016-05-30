@@ -169,16 +169,19 @@ $(document).ready(function () {
      */
     function convertTime(houreStart, minStart) {
         var strTimeStart;
-        if (houreStart < 10)
+        if (houreStart < 10) {
             if (minStart < 10)
                 strTimeStart = '0' + houreStart + ':' + minStart + '0';
             else
                 strTimeStart = '0' + houreStart + ':' + minStart;
-        else if (minStart < 10)
-            strTimeStart = houreStart + ':' + minStart + '0';
-        else
-            strTimeStart = houreStart + ':' + minStart;
-        return strTimeStart;
+        }
+        else {
+            if (minStart < 10)
+                strTimeStart = houreStart + ':' + minStart + '0';
+            else
+                strTimeStart = houreStart + ':' + minStart;
+            return strTimeStart;
+        }
     }
 
     function ShowAvailableRoom(startTime, endTime) {
@@ -221,6 +224,7 @@ $(document).ready(function () {
         $('#img').replaceWith("<img id = 'img' src=" + imgstring + " style=" + style + ">");
 
     }
+
     //change the services to checkboxes and display them in services div
     function displayCheckboxes() {
         var checkboxes = "<tr class='col-sm-12'>";
@@ -278,8 +282,8 @@ $(document).ready(function () {
         var endTime = $("#stepExample2").val();
         var dateTime = $("#datePicker").val();
 
-        for (i = 0; (dateTime[i] != '/') ; i++) {
-            if( i > dateTime.length )
+        for (i = 0; (dateTime[i] != '/'); i++) {
+            if (i > dateTime.length)
                 return;
             day += dateTime[i];
         }
@@ -290,28 +294,28 @@ $(document).ready(function () {
             month += dateTime[i];
         }
         i++;
-        for (; i != dateTime.length ; i++)
+        for (; i != dateTime.length; i++)
             year += dateTime[i];
 
         if (day == "" || month == "")
             return;
 
         for (i = 0; startTime[i] != ':'; i++) {
-            if( i > startTime.length )
+            if (i > startTime.length)
                 return;
             hourStart += startTime[i];
         }
         i++;
-        for (; i < startTime.length ; i++)
+        for (; i < startTime.length; i++)
             minStart += startTime[i];
 
         for (i = 0; endTime[i] != ':'; i++) {
-            if( i > endTime.length )
+            if (i > endTime.length)
                 return;
             hourEnd += endTime[i];
         }
         i++;
-        for (; i < endTime.length ; i++)
+        for (; i < endTime.length; i++)
             minEnd += endTime[i];
 
         if (minEnd == "" || hourEnd == "" || minStart == "" || hourStart == "")
