@@ -1,5 +1,5 @@
 var services = ["service1", "service2"];
-
+var services2 = ["Test1", ""];
 
 QUnit.test( "hello test", function( assert ) {
   assert.ok( 1 == "1", "Passed!" );
@@ -24,8 +24,12 @@ QUnit.test( "convertTime test", function( assert ) {
 QUnit.test( "displayCheckboxes", function( assert ) {
 
   var answer = displayCheckboxes( services );
-  var res = "<tr class='col-sm-12'><td class='checkbox-inline checkbox'> <label><input type='checkbox' value = '0' > <span class='cr'><i class='cr-icon glyphicon glyphicon-ok'></i></span>" + services[0] + " </label></td><td class='checkbox-inline checkbox'> <label><input type='checkbox' value = '0' > <span class='cr'><i class='cr-icon glyphicon glyphicon-ok'></i></span>" + services[1] + " </label></td></tr>"
+  var res = "<tr class='col-sm-12'><td class='checkbox-inline checkbox'> <label><input type='checkbox' value = '0' > <span class='cr'><i class='cr-icon glyphicon glyphicon-ok'></i></span>" + services[0] + " </label></td><td class='checkbox-inline checkbox'> <label><input type='checkbox' value = '0' > <span class='cr'><i class='cr-icon glyphicon glyphicon-ok'></i></span>" + services[1] + " </label></td></tr>";
   assert.equal( answer , res, "html attributes added as expected" );
+
+   var answer = displayCheckboxes( services2 );
+   var res = "<tr class='col-sm-12'><td class='checkbox-inline checkbox'> <label><input type='checkbox' value = '0' > <span class='cr'><i class='cr-icon glyphicon glyphicon-ok'></i></span>Test1 </label></td><td class='checkbox-inline checkbox'> <label><input type='checkbox' value = '0' > <span class='cr'><i class='cr-icon glyphicon glyphicon-ok'></i></span> </label></td></tr>";
+   assert.equal( answer , res, "html attributes added as expected" );
 
 });
 
