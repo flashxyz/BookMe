@@ -76,12 +76,12 @@ html, body {
 /* Remove the header border from Schedule */
 .fc td, .fc th {
     border-style: dashed !important;
-    border-color: #8fdf82;
     border-width: 1px !important;
     padding: 0 !important;
     vertical-align: top !important;
 
 }
+
 
 /* Inherits background for each event from Schedule. */
 .fc-event .fc-bg {
@@ -116,9 +116,15 @@ html, body {
 
 .fc-widget-header {
     background-color: purple;
+    //height: 20px;
+    padding: 5px;
     color: #a7cc76;
+    margin-bottom: 5px;
 }
 
+.fc-row{
+    height: 30px;
+}
 .fc-header-title {
     background-color: purple;
 }
@@ -276,4 +282,5 @@ html, body {
 
 .fc-week-number span{
     color: #A7CC76;
+    padding: 5px;
 }

@@ -141,17 +141,19 @@ function colourBrightness($hex, $percent) {
         color: <?php echo $calendarColor; ?>;
     }
 
-    .fc-time{
-        color:white;
-    }
+
     .fc-axis {
         color: <?php echo $calendarColor; ?>;
     }
-
+    .fc-bg {
+        color: <?php echo $newColour; ?> !important;
+    }
     .fc-center h2 {
         color: <?php echo $calendarColor; ?>;
     }
-
+    .fc td, .fc th {
+        color: <?php echo $newColour; ?> !important;
+    }
 
 </style>
 
@@ -167,9 +169,10 @@ function colourBrightness($hex, $percent) {
 
         <div class="col-md-3">
 
-            <img src="http://bookme.myweb.jce.ac.il/wp-content/uploads/2016/05/remindyou_logo.jpg"/>
             <h3><?php echo $groupName; ?></h3>
-            <p><?php echo $description; ?></p> <br>
+            <p><?php echo $description; ?></p>
+            <img src="http://bookme.myweb.jce.ac.il/wp-content/uploads/2016/05/remindyou_logo.jpg"/>
+
             <h3>אמצעים מיוחדים</h3> <br>
             <div id=services></div>
 
