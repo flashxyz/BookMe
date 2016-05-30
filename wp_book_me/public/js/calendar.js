@@ -208,6 +208,7 @@ $(document).ready(function () {
         }
     }
 
+
     function setPicture() {
         var name = $('#roomSelect').val();
         var i;
@@ -220,7 +221,7 @@ $(document).ready(function () {
         $('#img').replaceWith("<img id = 'img' src=" + imgstring + " style=" + style + ">");
 
     }
-
+    //change the services to checkboxes and display them in services div
     function displayCheckboxes() {
         var checkboxes = "<tr class='col-sm-12'>";
 
@@ -239,6 +240,7 @@ $(document).ready(function () {
 
 
     //Returns the days should not present in the calendar
+    // e.g [1,2,3,4,5] is the arry of the hide days in week calendar
     function getHideDays() {
         var i, j = 0;
         for (i = 0; i < activeDays.length; i++) {
@@ -258,6 +260,8 @@ $(document).ready(function () {
         $('#services').append(services);
     }
 
+    //change timeStart timEnd fo user changes in labels
+    // e.g timeEnd = ( "Mon May 30 2016 16:00:00 GMT+03:00(שעון קיץ ירושלים)" )
     function makeChange() {
         $('#roomHide').hide();
         $('#btnFindRoom').show();
