@@ -31,8 +31,8 @@ $(document).ready(function () {
     var minimumTime = fromTime;
     var maximumTime = toTime;
 
-    var servicesArry = ["11111", "222222", "3333333", "444444", "555", "666666", "77777", "88888",
-        "99999", "10000", "200000", "300"];
+    var servicesArry = ["מיקרוגל", "מיקרופון", "הסרטת וידאו", "מחשב", "רמקולים", "666666", "77777", "88888",
+        "99999", "10000", "מקרן", "300"];
     displayCheckboxes();
     displayServicesDescription();
     var calendar;
@@ -233,14 +233,14 @@ $(document).ready(function () {
     function displayCheckboxes() {
 
 
-        var checkboxes = "<table class='table table-sm'><thead> <tr> <th>שירות</th> <th>סמן</th></tr>"
+        var checkboxes = "<table class='table table-sm'  align='right' ><thead> <tr> <th data-halign='right'>שירות</th> <th>סמן</th></tr>"
 
 
         if(servicesArry.length == 0)
             return;
 
         for (var i = 0; i < servicesArry.length; i++) {
-            checkboxes += "<tr> <td>" + servicesArry[i].toString() +"</td> <td><input type='checkbox' data-group-cls='btn-group-sm'></td><td></tr>" ;
+            checkboxes += "<tr> <td data-halign='right'>" + servicesArry[i].toString() +"</td> <td><input type='checkbox' data-group-cls='btn-group-sm'></td><td></tr>" ;
         }
         checkboxes+= "</table>";
         $('#checkboxes').append(checkboxes);
