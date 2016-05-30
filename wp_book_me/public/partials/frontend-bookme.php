@@ -110,12 +110,7 @@ $description = $selectSQL[0]->description;
             <p><?php echo $description; ?></p> <br>
             <h3>אמצעים מיוחדים</h3> <br>
             <div id=services></div>
-            <!--            <ul>-->
-            <!--                <li>זכוכית משוריינת ירי</li>-->
-            <!--                <li>מחשב מיוחד לעיוורים</li>-->
-            <!--                <li>ארוחות בין 14:00-16:00</li>-->
-            <!--                <li>סמים קלים</li>-->
-            <!--            </ul>-->
+
         </div>
 
     </div>

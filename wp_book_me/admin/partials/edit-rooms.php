@@ -119,28 +119,6 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
                                 <!--
                                 <tr>
                                     <td width='200px'>
-                                        <span>Room available from: </span>
-                                    </td>
-                                    <td width='200px'>
-                                        <label for="<?php echo $this->plugin_name; ?>_roomOptionFromTime">
-                                            <input type="text" id="<?php echo $this->plugin_name; ?>_roomOptionFromTime" class="<?php echo $this->plugin_name; ?>_time_picker_r" name="<?php echo $this->plugin_name; ?>[roomOptionFromTime]" value=""/>
-                                        </label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td width='200px'>
-                                        <span>Room available until: </span>
-                                    </td>
-                                    <td width='200px'>
-                                        <label for="<?php echo $this->plugin_name; ?>_roomOptionUntilTime">
-                                            <input type="text" id="<?php echo $this->plugin_name; ?>_roomOptionUntilTime" class="<?php echo $this->plugin_name; ?>_time_picker_r" name="<?php echo $this->plugin_name; ?>[roomOptionUntilTime]" value=""/>
-                                        </label>
-                                    </td>
-                                </tr>
-
-
-                                <tr>
-                                    <td width='200px'>
                                         <span>Services: </span>
                                     </td>
                                     <td width='200px'>

@@ -161,7 +161,6 @@ $(document).ready(function () {
     });
 
     $('#datePicker').datepicker();
-    ;
 
     /*
      convertTime this function get hour, min
