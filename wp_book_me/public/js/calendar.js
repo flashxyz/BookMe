@@ -192,6 +192,7 @@ $(document).ready(function () {
         for (i = 0; i < availableRooms.length + 1; i++) {
             y.remove(y.childNodes);
         }
+        $('#roomSelect').append("<option>" + "בחר חדר:" + "</option>");
         if ($('#stepExample1').val() != "" && $('#stepExample2').val() != "" && $('#datePicker').val() != ""
             && $('#stepExample1').val() < $('#stepExample2').val()) {
             for (i = 0; i < availableRooms.length; i++) {
