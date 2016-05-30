@@ -103,7 +103,9 @@ function colourBrightness($hex, $percent) {
         font-family: 'Open Sans Hebrew', sans-serif;
 
     }
-
+    .btn-group-sm ,.active, .btn-success a{
+        background-color: #2aabd2;
+    }
     .fc-widget-header {
         background-color: <?php echo $calendarColor; ?>;
         font-family: 'Open Sans Hebrew', sans-serif;
@@ -241,6 +243,31 @@ function colourBrightness($hex, $percent) {
                             </tr>
                         </p>
                     </table>
+                </div>
+            </div>
+            <div id ="dialogWithUser">
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">פרטי החדר</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>החדר מוזמן לכך וכך שעות</p>
+                            </div>
+                            <div class="modal-body"id ="editRoomTime">
+                                <button type="button" class="btn btn-success">עריכה</button>
+                                <button type="button" class="btn btn-danger">מחיקת חדר</button>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
             <hr>

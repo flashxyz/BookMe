@@ -19,6 +19,7 @@ $(document).ready(function () {
     $('#btnAddRoom').click(addEvent);
     $('#btnFindRoom').click(ShowAvailableRoom);
     $('#roomHide').hide();
+    $('#myModal').modal('hide');
 
     $('#datePicker').change(makeChange);
     $('#stepExample1').change(makeChange);
@@ -90,7 +91,7 @@ $(document).ready(function () {
         allDayDefault: true,
 
         eventClick: function (calEvent, jsEvent, view) {
-            alert("event clicked! ");
+            $('#myModal').modal('show');
         },
 
         editable: false,

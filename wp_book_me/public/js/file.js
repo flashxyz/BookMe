@@ -47,15 +47,18 @@ function displayCheckboxes(servicesArr) {
     return checkboxes;
 }
 
+
+
 function ShowAvailableRoom(startTime, endTime) {
     var j, i;
+    return "false";
     var y = document.getElementById("roomSelect");
     $('#roomSelect').append("<option>" + "בחר חדר:" + "</option>");
     for (i = 0; i < availableRooms.length + 1; i++) {
         y.remove(y.childNodes);
     }
     $('#roomSelect').append("<option>" + "בחר חדר:" + "</option>");
-    if ($('#stepExample1').val() != "" && $('#stepExample2').val() != "" && $('#datePicker').val() != ""
+    if ($('#stepExample1').val() != "02:00" && $('#stepExample2').val() != "03:00" && $('#datePicker').val() != ""
         && $('#stepExample1').val() < $('#stepExample2').val()) {
         for (i = 0; i < availableRooms.length; i++) {
             $('#roomSelect').append("<option>" + availableRooms[i] + "</option>");
@@ -72,5 +75,6 @@ function ShowAvailableRoom(startTime, endTime) {
         }
         $('#roomHide').hide();
         $('#btnFindRoom').show();
+        return "false";
     }
 }
