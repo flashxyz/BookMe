@@ -284,7 +284,7 @@ function colourBrightness($hex, $percent) {
                                                                        class="time labelForom"/></td>
                                         </tr>
                                 </div>
-                                <button type="button" class="btn btn-danger">מחיקת חדר</button>
+                                <button id ="deleteOrderButton" type="button" class="btn btn-success" >מחיקת חדר</button>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

@@ -93,9 +93,16 @@ $(document).ready(function () {
         allDayDefault: true,
 
         eventClick: function (calEvent, jsEvent, view) {
+            $('#changeOrderTime').hide();
             $('#myModal').modal('show');
             $(document).on("click", "#changeOrderTimeButton", function(event){
                 openEditRoom();
+            });
+            // $('#myCalendar').fullCalendar('removeEvents',event._id);
+            $(document).on("click", "#deleteOrderButton", function(event){
+                $('#calendar').fullCalendar('removeEvents', function (event) {
+                    return event == calEvent;
+                });
             });
         },
 
