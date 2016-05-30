@@ -184,6 +184,7 @@ $(document).ready(function () {
         }
     }
 
+    //showing the availabil rooms before elections user and availability room
     function ShowAvailableRoom(startTime, endTime) {
         var j, i;
         var y = document.getElementById("roomSelect");
