@@ -36,11 +36,12 @@
                 'roomName' => 'Room 1',
                 'capacity' => '0',
                 'isActive' => '1',
+                'description' => '',
                 'capacity' => '0'
             );
 
             //create array of the condition to get the specific row
-            $whereArray = array( 'roomId' => '1');
+            $whereArray = array( 'roomId' => $roomID);
 
             //execute the update function for saving data
             $wpdb->update( $rooms_options_table, $dataArray, $whereArray);
