@@ -25,6 +25,8 @@ $(document).ready(function () {
     $('#stepExample2').change(makeChange);
     $('#roomSelect').change(setPicture);
 
+    $(':checkbox').checkboxpicker();
+
     var duartionInMin = windowTimeLength;
     var minimumTime = fromTime;
     var maximumTime = toTime;
@@ -229,19 +231,20 @@ $(document).ready(function () {
 
     //change the services to checkboxes and display them in services div
     function displayCheckboxes() {
-        var checkboxes = "<tr class='col-sm-12'>";
+
+
+        var checkboxes = "<table class='table table-sm'><thead> <tr> <th>שירות</th> <th>סמן</th></tr>"
+
+
+        if(servicesArry.length == 0)
+            return;
 
         for (var i = 0; i < servicesArry.length; i++) {
-            if (i % 3 == 0 && i > 0)
-                checkboxes += "</tr><tr class='col-sm-12'>"
-            checkboxes += "<td class='checkbox-inline checkbox'> <label><input type='checkbox' value = '0' >" +
-                " <span class='cr'><i class='cr-icon glyphicon glyphicon-ok'></i></span>" +
-                servicesArry[i] +
-                " </label></td>";
-
+            checkboxes += "<tr> <td>" + servicesArry[i].toString() +"</td> <td><input type='checkbox' data-group-cls='btn-group-sm'></td><td></tr>" ;
         }
-        checkboxes += "</tr>"
+        checkboxes+= "</table>";
         $('#checkboxes').append(checkboxes);
+        $(':checkbox').checkboxpicker();
     }
 
 

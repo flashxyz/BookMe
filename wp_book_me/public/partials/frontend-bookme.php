@@ -149,8 +149,16 @@ $description = $selectSQL[0]->description;
 
         <div class="col-sm-3 col-xs-6">
                 <p/>שירותים <br>
+
+
+
+
+
+
             <div class="pre-scrollable">
-                <div id="checkboxes"></div>
+                <div id="checkboxes">
+                    <!--  here, the capabilities will be printed dynamically from js-->
+                </div>
             </div>
         </div>
 
