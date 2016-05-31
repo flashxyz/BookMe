@@ -189,7 +189,7 @@ function colourBrightness($hex, $percent)
         <div class="col-md-3" >
 
             <h3><?php echo $groupName; ?></h3>
-            <p style="background-color: <?php echo $veryBrightColor; ?>;" >
+            <p style="border-top-left-radius: 15px; font-style: italic; background: linear-gradient(<?php echo $veryBrightColor; ?>, white" >
                     <?php echo $description; ?></p>
                 <img src="http://bookme.myweb.jce.ac.il/wp-content/uploads/2016/05/meeting.png"/>
                 <p></p><br>
