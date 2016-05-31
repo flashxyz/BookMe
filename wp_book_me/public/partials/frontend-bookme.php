@@ -14,6 +14,7 @@ extract(shortcode_atts(array(
 
 $groupID = $atts['id'];
 
+//group SQL table
 $group_options_table = $wpdb->prefix . "bookme_group_options";
 
 $selectSQL = $wpdb->get_results($wpdb->prepare("SELECT * FROM $group_options_table WHERE id = %d", $groupID));
@@ -23,6 +24,27 @@ if (empty($selectSQL)) {
 
     echo "<h1>Sorry.. There is no shortcode id = " . $groupID . "</h1>";
     return;
+}
+
+//room SQL table
+$room_options_table = $wpdb->prefix . "bookme_rooms_options";
+//get rooms
+$selectSQL_rooms = $wpdb->get_results($wpdb->prepare("SELECT * FROM $room_options_table WHERE groupId = %d", $groupID));
+
+if (empty($selectSQL_rooms)) {
+
+    //no rooms
+}
+$index = 0;
+$roomsArray = [];
+$selectSQL_rooms[$index];
+$numberOfRooms = sizeof($selectSQL_rooms);
+
+while( $index < $numberOfRooms)
+{
+
+    array_push($roomsArray,$selectSQL_rooms[$index]->roomName);
+    $index ++;
 }
 
 
@@ -95,6 +117,7 @@ function colourBrightness($hex, $percent)
     var windowTimeLength = "<?php echo $windowTimeLength ?>";
     var fromTime = "<?php echo $fromTime ?>";
     var toTime = "<?php echo $toTime ?>";
+    //active days
     var activeDays = [];
     activeDays[0] = "<?php echo $activeDays["sunday"] ?>";
     activeDays[1] = "<?php echo $activeDays["monday"] ?>";
@@ -103,6 +126,15 @@ function colourBrightness($hex, $percent)
     activeDays[4] = "<?php echo $activeDays["thursday"] ?>";
     activeDays[5] = "<?php echo $activeDays["friday"] ?>";
     activeDays[6] = "<?php echo $activeDays["saturday"] ?>";
+    
+    //rooms array
+
+    //Convert PHP array to JS array.
+    <?php $jsArray = json_encode($roomsArray) ;
+    echo "var roomsArray = " . $jsArray . ";\n";
+    ?>
+
+    
 </script>
 
 <style>

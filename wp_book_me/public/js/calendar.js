@@ -1,9 +1,14 @@
 $(document).ready(function () {
-    var availableRooms = [["A100", "1", "RoomSelect"], ["A101", "2", "RoomSelect"],
-        ["A102", "3", "RoomSelect"], ["B100", "1", "RoomSelect"],
-        ["B101", "2", "RoomSelect"], ["B102", "3", "RoomSelect"],
-        ["C100", "2", "RoomSelect"], ["C101", "1", "RoomSelect"],
-        ["C102", "3", ""]];
+
+
+    //notice!
+    //this fake array has been changed to -> roomsArray
+    // var availableRooms = [["A100", "1", "RoomSelect"], ["A101", "2", "RoomSelect"],
+    //     ["A102", "3", "RoomSelect"], ["B100", "1", "RoomSelect"],
+    //     ["B101", "2", "RoomSelect"], ["B102", "3", "RoomSelect"],
+    //     ["C100", "2", "RoomSelect"], ["C101", "1", "RoomSelect"],
+    //     ["C102", "3", ""]];
+    
     var date = new Date();
     var d = date.getDate();
     var m = date.getMonth();
@@ -209,14 +214,17 @@ $(document).ready(function () {
         var j, i;
         var y = document.getElementById("roomSelect");
 
-        for (i = 0; i < availableRooms.length + 1; i++) {
+        for (i = 0; i < roomsArray.length + 1; i++) {
             y.remove(y.childNodes);
         }
+
         $('#roomSelect').append("<option>" + "בחר חדר:" + "</option>");
         if ($('#stepExample1').val() != "" && $('#stepExample2').val() != "" && $('#datePicker').val() != ""
-            && $('#stepExample1').val() < $('#stepExample2').val()) {
-            for (i = 0; i < availableRooms.length; i++) {
-                $('#roomSelect').append("<option>" + availableRooms[i] + "</option>");
+            && $('#stepExample1').val() < $('#stepExample2').val() )
+        {
+
+            for (i = 0; i < roomsArray.length; i++) {
+                $('#roomSelect').append("<option>" + roomsArray[i] + "</option>");
                 //.attr("value",key).text(value))
             }
             $('#roomHide').show();
@@ -224,7 +232,7 @@ $(document).ready(function () {
         }
         else {
             var x = document.getElementById("roomSelect");
-            for (i = 0; i < availableRooms.length + 1; i++) {
+            for (i = 0; i < roomsArray.length + 1; i++) {
                 x.remove(x.childNodes);
             }
             $('#roomHide').hide();
