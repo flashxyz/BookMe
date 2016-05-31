@@ -19,7 +19,11 @@ html, body {
 }
 #roomSelect {
     width:inherit !important;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
+
 .container-fluid {
     display: table;
     padding: 0;
