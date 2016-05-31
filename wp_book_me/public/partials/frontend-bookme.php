@@ -218,9 +218,8 @@ function colourBrightness($hex, $percent)
                 <br>
                 <button type="button" id="btnFindRoom" class="btn btn-default">מצא</button>
                 <br>
-                <div id="roomHide">
-                    <label>בחר חדר: </label><br>
-                    <div id="chooseroom"><select class="form-control" id="roomSelect" value="בחר חדר">
+                <div id="roomHide"><br><br>
+                    <div id="chooseroom"><select class="form-control" id="roomSelect" value="">
                             <option></option>
                         </select></div>
                     <button type="button" id="btnAddRoom" class="btn btn-default">אישור</button>
