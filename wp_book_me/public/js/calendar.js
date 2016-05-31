@@ -1,8 +1,8 @@
 $(document).ready(function () {
-    var availableRooms = [["A100", "1", "adamRoomSelector"], ["A101", "2", "adamRoomSelector"],
-        ["A102", "3", "adamRoomSelector"], ["B100", "1", "adamRoomSelector"],
-        ["B101", "2", "adamRoomSelector"], ["B102", "3", "adamRoomSelector"],
-        ["C100", "2", "adamRoomSelector"], ["C101", "1", "adamRoomSelector"],
+    var availableRooms = [["A100", "1", "RoomSelect"], ["A101", "2", "RoomSelect"],
+        ["A102", "3", "RoomSelect"], ["B100", "1", "RoomSelect"],
+        ["B101", "2", "RoomSelect"], ["B102", "3", "RoomSelect"],
+        ["C100", "2", "RoomSelect"], ["C101", "1", "RoomSelect"],
         ["C102", "3", ""]];
     var date = new Date();
     var d = date.getDate();
@@ -137,6 +137,7 @@ $(document).ready(function () {
                     if (timeStart.getHours() <= nowTime.getHours())
                         return;
             }
+
         calendar.fullCalendar('renderEvent',
             {
                 title: "רשום לחדר " + $('#roomSelect').val(),
@@ -208,7 +209,7 @@ $(document).ready(function () {
         for (i = 0; i < availableRooms.length + 1; i++) {
             y.remove(y.childNodes);
         }
-        $('#roomSelect').append("<option>" + "בחר חדר:" + "</option>");
+
         if ($('#stepExample1').val() != "" && $('#stepExample2').val() != "" && $('#datePicker').val() != ""
             && $('#stepExample1').val() < $('#stepExample2').val()) {
             for (i = 0; i < availableRooms.length; i++) {
@@ -230,6 +231,7 @@ $(document).ready(function () {
 
 
     function setPicture() {
+        $('#roomPictureSelect').html( "חדר נבחר: <br>"  + $('#roomSelect').val() +"<br>  <div id='img'></div>" );
         var name = $('#roomSelect').val();
         var i;
         for (i = 0; i < availableRooms.length; i++)
@@ -239,6 +241,7 @@ $(document).ready(function () {
         var style = "width:304px;height:228px;";
 
         $('#img').replaceWith("<img id = 'img' src=" + imgstring + " style=" + style + ">");
+
 
     }
 

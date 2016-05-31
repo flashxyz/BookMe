@@ -13,8 +13,11 @@ html, body {
     border: 5px dashed green ;
 }
 
+.col-md-3 h3 {
+    font-size: 32px;
+    margin-top: 7px;
+}
 #roomSelect {
-    background-color: #eadcff;
     width:inherit !important;
 }
 .container-fluid {
@@ -93,7 +96,8 @@ html, body {
 /* Normal font weight for the time in each event */
 .fc-time-grid-event .fc-time {
     font-weight: normal !important;
-    color: purple;
+    color: yellow;
+    direction: rtl;
 }
 
 /* Apply same opacity to all day events */
