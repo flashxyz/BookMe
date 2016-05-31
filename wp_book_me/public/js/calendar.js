@@ -256,7 +256,7 @@ $(document).ready(function () {
             return;
 
         for (var i = 0; i < servicesArry.length; i++) {
-            checkboxes += "<tr> <td data-halign='right'>" + servicesArry[i].toString() +"</td> <td><input type='checkbox' data-group-cls='btn-group-sm'></td><td></tr>" ;
+            checkboxes += "<tr> <td data-halign='right' class ='tdCheckboxe'>" + servicesArry[i].toString() +"</td> <td><input type='checkbox' data-group-cls='btn-group-sm'></td><td></tr>" ;
         }
         checkboxes+= "</table>";
         if(whichId == "checkboxes") {
