@@ -19,6 +19,15 @@
 		//execute the delete query of the group id we want to delete
 		$wpdb->query( $wpdb->prepare( " DELETE FROM $group_options_table WHERE id = %d", $groupID));
 
+		//now delete the rooms associated to this group
+
+		//room SQL table
+		$room_options_table = $wpdb->prefix . "bookme_rooms_options";
+
+		//execute the delete query of the group id we want to delete
+		$wpdb->query( $wpdb->prepare( " DELETE FROM $room_options_table WHERE groupId = %d", $groupID));
+
+
 
 	}
 
