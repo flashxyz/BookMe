@@ -51,14 +51,16 @@ if($_GET['group_id']==true AND $_GET['edit_group']==true)
         function addService()
         {
             var service=$('#wp_book_me_serviceBox').val();
-            alert(service);
-            window.location.replace(siteURL+'?page=wp_book_me&group_id=' + <?php echo $groupID; ?> +'&addService='+service);
+            if(service == "")
+                alert("Field is empty");
+            else
+            window.location.replace(siteURL+'?page=wp_book_me&group_id=' + <?php echo $groupID; ?> +'&add_service='+service);
         }
 
         function deleteService(index)
         {
             alert(index);
-            window.location.replace(siteURL+'?page=wp_book_me&group_id=' + <?php echo $groupID; ?> +'&deleteService='+index);
+            window.location.replace(siteURL+'?page=wp_book_me&group_id=' + <?php echo $groupID; ?> +'&delete_service='+index);
         }
     </script>
     

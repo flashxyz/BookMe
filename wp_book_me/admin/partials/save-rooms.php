@@ -72,7 +72,6 @@ $siteURL = get_site_url()."/wp-admin/admin.php";
 
 ?>
 
-<!-- this script redirect to the previous page-->
 <script>
 
     var siteURL = <?php echo json_encode($siteURL);?>;

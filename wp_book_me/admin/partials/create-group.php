@@ -55,7 +55,8 @@ $wpdb->insert($group_options_table, array(
     'toTime' => $defaultToTime,
     'viewMode' => $defaultViewMode,
     'calendarColor' => $defaultCalendarColor,
-    'windowTimeLength' => $defaultWindowTimeLength
+    'windowTimeLength' => $defaultWindowTimeLength,
+    'services' => ''
 ));
 
 
