@@ -109,7 +109,6 @@ function colourBrightness($hex, $percent)
 }
 
 
-
 ?>
 
 <script type="text/javascript">
@@ -126,8 +125,21 @@ function colourBrightness($hex, $percent)
     activeDays[4] = "<?php echo $activeDays["thursday"] ?>";
     activeDays[5] = "<?php echo $activeDays["friday"] ?>";
     activeDays[6] = "<?php echo $activeDays["saturday"] ?>";
-    
-    //rooms array
+
+
+
+    //get the services to array var in javascript
+    var services = [];
+    var length = <?php echo sizeof($services) ?>;
+
+    <?php $index = 0; ?>
+
+    for(var i =0; i < length; i++)
+    {
+        services[i] = "<?php echo $services[$index] ?>";
+        <?php $index++; ?>
+
+    }
     
 
     //roomsArray = [];
