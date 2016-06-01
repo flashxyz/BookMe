@@ -128,11 +128,20 @@ function colourBrightness($hex, $percent)
     activeDays[6] = "<?php echo $activeDays["saturday"] ?>";
     
     //rooms array
+    
 
-    //Convert PHP array to JS array.
+    //roomsArray = [];
+
     <?php $jsArray = json_encode($roomsArray) ;
     echo "var roomsArray = " . $jsArray . ";\n";
     ?>
+//
+//    for (var i = 0 ; i <  <?php //echo $numberOfRooms ?>// ; i++ )
+//    {
+//        roomsArray.push("<?php //echo $roomsArray[] ; ?>//");
+//
+//
+//    }
 
     
 </script>

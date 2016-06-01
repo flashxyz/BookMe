@@ -1,14 +1,9 @@
 $(document).ready(function () {
-
-
-    //notice!
-    //this fake array has been changed to -> roomsArray
-    // var availableRooms = [["A100", "1", "RoomSelect"], ["A101", "2", "RoomSelect"],
-    //     ["A102", "3", "RoomSelect"], ["B100", "1", "RoomSelect"],
-    //     ["B101", "2", "RoomSelect"], ["B102", "3", "RoomSelect"],
-    //     ["C100", "2", "RoomSelect"], ["C101", "1", "RoomSelect"],
-    //     ["C102", "3", ""]];
-    
+    var availableRooms = [["A100", "1", "RoomSelect"], ["A101", "2", "RoomSelect"],
+        ["A102", "3", "RoomSelect"], ["B100", "1", "RoomSelect"],
+        ["B101", "2", "RoomSelect"], ["B102", "3", "RoomSelect"],
+        ["C100", "2", "RoomSelect"], ["C101", "1", "RoomSelect"],
+        ["C102", "3", ""]];
     var date = new Date();
     var d = date.getDate();
     var m = date.getMonth();
@@ -100,12 +95,12 @@ $(document).ready(function () {
         eventClick: function (calEvent, jsEvent, view) {
             $('#changeOrderTime').hide();
             $('#myModal').modal('show');
-            $(document).on("click", "#changeOrderTimeButton", function(event){
+            $(document).on("click", "#changeOrderTimeButton", function (event) {
                 openEditRoom();
                 displayCheckboxes("checkboxes1");
             });
             // $('#myCalendar').fullCalendar('removeEvents',event._id);
-            $(document).on("click", "#deleteOrderButton", function(event){
+            $(document).on("click", "#deleteOrderButton", function (event) {
                 $('#calendar').fullCalendar('removeEvents', function (event) {
                     return event == calEvent;
                 });
@@ -134,18 +129,24 @@ $(document).ready(function () {
      */
     function addEvent() {
         var roomName = $('#roomSelect').val();
-        if( roomName == "בחר חדר:")
+
+        if (roomName == "בחר חדר:")
             return;
         var nowTime = new Date();
-        if (timeStart.getYear() <= nowTime.getYear())
-            if (timeStart.getMonth() <= nowTime.getMonth()) {
+        if (timeStart.getYear() == nowTime.getYear()) {
+            if (timeStart.getMonth() == nowTime.getMonth()) {
                 if (timeStart.getDate() < nowTime.getDate())
                     return;
                 else if (timeStart.getDate() == nowTime.getDate())
                     if (timeStart.getHours() <= nowTime.getHours())
                         return;
             }
+            else if (timeStart.getMonth() < nowTime.getMonth())
+                return;
 
+        }
+        else if( timeStart.getYear() < nowTime.getYear() )
+            return;
         calendar.fullCalendar('renderEvent',
             {
                 title: "רשום לחדר " + $('#roomSelect').val(),
@@ -220,8 +221,7 @@ $(document).ready(function () {
 
         $('#roomSelect').append("<option>" + "בחר חדר:" + "</option>");
         if ($('#stepExample1').val() != "" && $('#stepExample2').val() != "" && $('#datePicker').val() != ""
-            && $('#stepExample1').val() < $('#stepExample2').val() )
-        {
+            && $('#stepExample1').val() < $('#stepExample2').val()) {
 
             for (i = 0; i < roomsArray.length; i++) {
                 $('#roomSelect').append("<option>" + roomsArray[i] + "</option>");
@@ -242,7 +242,7 @@ $(document).ready(function () {
 
 
     function setPicture() {
-        $('#roomPictureSelect').html( "חדר נבחר: <br>"  + $('#roomSelect').val() +"<br>  <div id='img'></div>" );
+        $('#roomPictureSelect').html("חדר נבחר: <br>" + $('#roomSelect').val() + "<br>  <div id='img'></div>");
         var name = $('#roomSelect').val();
         var i;
         for (i = 0; i < availableRooms.length; i++)
@@ -263,18 +263,18 @@ $(document).ready(function () {
         var checkboxes = "<table class='table table-sm'  align='right' ><thead> <tr> <th data-halign='right'>שירות</th> <th>סמן</th></tr>"
 
 
-        if(servicesArry.length == 0)
+        if (servicesArry.length == 0)
             return;
 
         for (var i = 0; i < servicesArry.length; i++) {
-            checkboxes += "<tr> <td data-halign='right' class ='tdCheckboxe'>" + servicesArry[i].toString() +"</td> <td><input type='checkbox' data-group-cls='btn-group-sm'></td><td></tr>" ;
+            checkboxes += "<tr> <td data-halign='right' class ='tdCheckboxe'>" + servicesArry[i].toString() + "</td> <td><input type='checkbox' data-group-cls='btn-group-sm'></td><td></tr>";
         }
-        checkboxes+= "</table>";
-        if(whichId == "checkboxes") {
+        checkboxes += "</table>";
+        if (whichId == "checkboxes") {
             $('#checkboxes').append(checkboxes);
             $(':checkbox').checkboxpicker();
         }
-        if(whichId == "checkboxes1") {
+        if (whichId == "checkboxes1") {
             $('#checkboxes1').append(checkboxes);
             $(':checkbox').checkboxpicker();
         }
