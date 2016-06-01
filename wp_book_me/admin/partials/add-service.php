@@ -14,16 +14,20 @@ if($_GET['group_id']==true AND $_GET['add_service']==true)
     //get the table for farther modification
     $group_options_table = $wpdb->prefix . "bookme_group_options";
 
-    //get gata from GET\POST
+    //get gata from GET
     $groupID = $_GET['group_id'];
     $addService = $_GET['add_service'];
 
+    //get the relevant group row
     $selectSQL = $wpdb->get_results($wpdb->prepare("SELECT * FROM $group_options_table WHERE id = %d", $groupID));
 
+    //unserialize the service array
     $services = unserialize($selectSQL[0]->services);
 
+    //add the new service
     array_push($services, $addService);
 
+    //serialize the array again for pushing it back
     $serializeServices = serialize($services);
 
     //create array of the data we want to insert to specific row
@@ -38,11 +42,18 @@ if($_GET['group_id']==true AND $_GET['add_service']==true)
     //execute the update function for saving data
     $wpdb->update( $group_options_table, $dataArray, $whereArray);
 
-    echo "<h1>save service</h1>";
+
 }
 
 //get the current path url
 $siteURL = get_site_url()."/wp-admin/admin.php";
 
 ?>
+
+<script>
+
+    var siteURL = <?php echo json_encode($siteURL);?>;
+    window.location.replace(siteURL + "?page=wp_book_me&group_id=<?php echo $groupID ?>&edit_group=true");
+
+</script>
 

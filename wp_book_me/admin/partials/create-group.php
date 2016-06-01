@@ -26,6 +26,7 @@ $defaultNumOfRooms = 1;
 $defaultViewMode = "month";
 $defaultCalendarColor = "#000000";
 $defaultWindowTimeLength = 60;
+$defaultservices = serialize(array());
 
 
 //initialize default serialize array oy full active days
@@ -56,7 +57,7 @@ $wpdb->insert($group_options_table, array(
     'viewMode' => $defaultViewMode,
     'calendarColor' => $defaultCalendarColor,
     'windowTimeLength' => $defaultWindowTimeLength,
-    'services' => ''
+    'services' => $defaultservices
 ));
 
 
