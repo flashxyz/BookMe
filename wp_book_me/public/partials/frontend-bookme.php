@@ -271,7 +271,7 @@ function colourBrightness($hex, $percent)
                     <div id="chooseroom"><select class="form-control" id="roomSelect" value="">
                             <option></option>
                         </select></div>
-                    <button type="button" id="btnAddRoom" class="btn btn-default">אישור</button>
+                    <button type="button" id="btnReserveRoom" class="btn btn-default">אישור</button>
                 </div>
                 </p>
             </div>
@@ -293,11 +293,11 @@ function colourBrightness($hex, $percent)
                     <p> מתי להזמין<br><br>
                         <tr class="trStart">
                             <td class='tdStart'><label>שעת התחלה: </label></td>
-                            <td class='tdStart'><input id="stepExample1" type="text" class="time labelForom"/></td>
+                            <td class='tdStart'><input id="inputStartTime" type="text" class="time labelForom"/></td>
                         </tr>
                         <tr class="trStart">
                             <td class='tdStart'><label>שעת סיום: </label></td>
-                            <td class='tdStart'><input id="stepExample2" type="text" class="time labelForom"/></td>
+                            <td class='tdStart'><input id="inputEndTime" type="text" class="time labelForom"/></td>
                         </tr>
                         <tr class="trStart">
                             <td class='tdStart'><label>תאריך:</label></td>
@@ -313,7 +313,7 @@ function colourBrightness($hex, $percent)
             </div>
         </div>
         <div id="dialogWithUser">
-            <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal fade" id="reservationDetailsDialog" role="dialog">
                 <div class="modal-dialog">
 
                     <!-- Modal content-->
@@ -326,38 +326,8 @@ function colourBrightness($hex, $percent)
                             <p>החדר מוזמן לכך וכך שעות</p>
                         </div>
                         <div class="modal-body" id="editRoomTime">
-                            <button id="changeOrderTimeButton" type="button" class="btn btn-success">עריכה</button>
                             <div id="changeOrderTime">
-                                <p> ערוך הזמנת חדר מחדש <br><br>
-                                    <tr class="trStart">
-                                        <td class='tdStart'><label>שעת התחלה: </label></td>
-                                        <td class='tdStart'><input id="stepExample1" type="text"
-                                                                   class="time labelForom"/></td>
-                                    </tr>
-                                    <tr class="trStart">
-                                        <td class='tdStart'><label>שעת סיום: </label></td>
-                                        <td class='tdStart'><input id="stepExample2" type="text"
-                                                                   class="time labelForom"/></td>
-                                    </tr>
-                                    <tr class="trStart">
-                                        <td class='tdStart'><label>תאריך:</label></td>
-                                        <input type="text" class="date start labelForom" id="datePicker">
-                                        </td>
-                                    </tr>
-                                    <tr class="trStart">
-                                        <td class='tdStart'><label>כמות:</label></td>
-                                        <td class='tdStart'><input id="quantity" type="text"
-                                                                   class="time labelForom"/></td>
-                                    </tr>
-                                    <tr class="trStart">
-                                        <label>שירותים</label>
-                                        <div class="pre-scrollable text-right">
-                                            <div id="checkboxes1">
-                                                <!--  here, the capabilities will be printed dynamically from js-->
-                                            </div>
-                                        </div>
-                                    </tr>
-                                    <br>
+                                כרגע לא ידוע מה יהיה כאן
                             </div>
                             <br>
                             <button id="deleteOrderButton" type="button" class="btn btn-success">מחיקת חדר</button>
