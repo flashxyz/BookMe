@@ -10,7 +10,7 @@ $(document).ready(function () {
     var y = date.getFullYear();
 
     var timeStart;
-    var timeEnd;
+    var timeEnd;    
 
     var hideDays = [];
     getHideDays();
@@ -33,11 +33,11 @@ $(document).ready(function () {
     var duartionInMin = windowTimeLength;
     var minimumTime = fromTime;
     var maximumTime = toTime;
-
-    var servicesArry = ["מיקרוגל", "מיקרופון", "הסרטת וידאו", "מחשב", "רמקולים", "666666", "77777", "88888",
-        "99999", "10000", "מקרן", "300"];
+    var servicesArry = services;
+    
     displayCheckboxes("checkboxes");
     displayServicesDescription();
+
     var calendar;
     calendar = $('#calendar').fullCalendar({
         header: {
@@ -89,7 +89,8 @@ $(document).ready(function () {
         weekends: true,
         selectable: true,
         selectHelper: true,
-        weekNumbers: true,
+        weekNumbers: true,  
+        fixedWeekCount: false,
         allDayDefault: true,
 
         eventClick: function (calEvent, jsEvent, view) {

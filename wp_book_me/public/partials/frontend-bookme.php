@@ -130,17 +130,13 @@ function colourBrightness($hex, $percent)
 
     //get the services to array var in javascript
     var services = [];
-    var length = <?php echo sizeof($services) ?>;
 
-    <?php $index = 0; ?>
+    var i = 0;
+    <?php for ( $i = 0 ; $i < sizeof($services) ; $i++){ ?>
+    services[i] = "<?php echo $services[$i]?>";
+    i++;
+    <?php } ?>
 
-    for(var i =0; i < length; i++)
-    {
-        services[i] = "<?php echo $services[$index] ?>";
-        <?php $index++; ?>
-
-    }
-    
 
     //roomsArray = [];
 

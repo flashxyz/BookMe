@@ -4,10 +4,7 @@ html, body {
     font-family: 'Open Sans Hebrew', sans-serif;
     color: purple;
     background-color: purple;
-
 }
-
-
 
 .roomSelector {
     border: 5px dashed green ;
@@ -32,14 +29,11 @@ html, body {
     /*opacity:0.9;*/
 
 }
-.modal-backdrop
-{
+.modal-backdrop {
     opacity:0.5 !important;
 }
 
-
 .row-fluid {
-
     display: table-cell;
     vertical-align: middle;
 }
@@ -58,6 +52,7 @@ html, body {
     opacity: 0;
     border: 1px;
 }
+
 .pre-scrollable{
     text-align:right !important;
     direction: rtl !important;
@@ -77,7 +72,6 @@ html, body {
 .fc-event {
     font-size: 25px !important;
     font-weight: bold !important;
-
 }
 
 /* Remove the header border from Schedule */
@@ -86,9 +80,7 @@ html, body {
     border-width: 1px !important;
     padding: 0 !important;
     vertical-align: top !important;
-
 }
-
 
 /* Inherits background for each event from Schedule. */
 .fc-event .fc-bg {
@@ -121,7 +113,6 @@ html, body {
 /*#popup_choose {*/
     /*direction: ltr;*/
 /*}*/
-
 .fc-widget-header {
     background-color: purple;
     //height: 20px;
@@ -161,10 +152,6 @@ html, body {
     color: black;
     background: purple;
 }
-
-
-
-
 
 .checkbox label:after,
 .radio label:after {
@@ -296,3 +283,10 @@ html, body {
 .tdCheckboxe{
     text-align: right;
 }
+
+
+/*size of heigth row in calendar*/
+/*.fc-agendaWeek-view tr {*/
+    /*height: 60px;*/
+/*}*/
+
