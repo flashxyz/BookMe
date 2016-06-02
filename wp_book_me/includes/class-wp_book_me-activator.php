@@ -80,7 +80,8 @@ class Wp_book_me_Activator {
 				services VARCHAR(100),
 				isActive INT(1),
 				activeDays VARCHAR(180),
-				description VARCHAR(100)
+				description VARCHAR(100),
+				services VARCHAR(8000)
 				) DEFAULT CHARACTER SET utf8";
 
 			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
