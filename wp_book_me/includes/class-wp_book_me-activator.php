@@ -77,11 +77,10 @@ class Wp_book_me_Activator {
 				groupId BIGINT,
 				roomName VARCHAR(50),
 				capacity INT(4),
-				services VARCHAR(100),
+				services VARCHAR(8000),
 				isActive INT(1),
 				activeDays VARCHAR(180),
-				description VARCHAR(100),
-				services VARCHAR(8000)
+				description VARCHAR(100)
 				) DEFAULT CHARACTER SET utf8";
 
 			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
