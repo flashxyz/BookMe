@@ -52,7 +52,7 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
     $fromTime = $selectSQLGroup[0]->fromTime;
     $toTime = $selectSQLGroup[0]->toTime;
 
-
+    $services = unserialize($selectSQLGroup[0]->services);
 
     ?>
 
@@ -88,7 +88,7 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
 					$backgroundColor = "#ECECEC";
 				}    ?>
 
-                <form  action="?page=wp_book_me&group_id=<?php echo $groupID ?>&save_room=true&room_id=<?php echo$room_id ?>" method="post" id="<?php echo $this->plugin_name; ?>_RoomsSaveForm_<?php echo $room_id; ?>">
+                <form  action="?page=wp_book_me&group_id=<?php echo $groupID ?>&save_room=true&room_id=<?php echo$room_id ?>" method="post" id="<?php echo $this->plugin_name; ?>_RoomsSaveForm_<?php echo $room_id; ?>" class="<?php echo $this->plugin_name; ?>_RoomsSaveForm">
                     <table width='635px' style='border: 1px solid <?php echo $backgroundColor ?>;background-color:<?php echo $backgroundColor ?>'>
                     <tr style='background-color:<?php echo $backgroundColor ?>'>
                         <td style='padding-left:20px;width:100px;' ><p>Room <?php echo $roomIndex ?> </p></td>
@@ -100,7 +100,7 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
                                     </td>
                                     <td width='200px'>
                                         <label for="<?php echo $this->plugin_name; ?>_roomOptionName">
-                                            <input type="text" id="<?php echo $this->plugin_name; ?>_roomOptionName_<?php echo $room_id; ?>" class="<?php echo $this->plugin_name; ?>_roomOptionName" name="<?php echo $this->plugin_name; ?>[roomOptionName_<?php echo $room_id; ?>]" value="<?php echo $value->roomName; ?>"/>
+                                            <input type="text" class="<?php echo $this->plugin_name; ?>_roomOptionName" id="<?php echo $this->plugin_name; ?>_roomOptionName_<?php echo $room_id; ?>" class="<?php echo $this->plugin_name; ?>_roomOptionName" name="<?php echo $this->plugin_name; ?>[roomOptionName_<?php echo $room_id; ?>]" value="<?php echo $value->roomName; ?>"/>
                                         </label>
                                     </td>
                                 </tr>
@@ -111,7 +111,7 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
                                     </td>
                                     <td width='200px'>
                                         <label for="<?php echo $this->plugin_name; ?>_roomOptionCapacity">
-                                            <input type="number" id="<?php echo $this->plugin_name; ?>_roomOptionCapacity_<?php echo $room_id; ?>" class="<?php echo $this->plugin_name; ?>_roomOptionCapacity" name="<?php echo $this->plugin_name; ?>[roomOptionCapacity_<?php echo $room_id; ?>]" value="<?php echo $value->capacity; ?>"/>
+                                            <input class="<?php echo $this->plugin_name; ?>_roomOptionCapacity" type="number" id="<?php echo $this->plugin_name; ?>_roomOptionCapacity_<?php echo $room_id; ?>" class="<?php echo $this->plugin_name; ?>_roomOptionCapacity" name="<?php echo $this->plugin_name; ?>[roomOptionCapacity_<?php echo $room_id; ?>]" value="<?php echo $value->capacity; ?>"/>
                                         </label>
                                     </td>
                                 </tr>
