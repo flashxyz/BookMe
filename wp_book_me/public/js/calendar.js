@@ -1,42 +1,52 @@
 $(document).ready(function () {
-    var availableRooms = [["A100", "1", "RoomSelect"], ["A101", "2", "RoomSelect"],
+    //this is a test array, for rooms offering functionality.
+    var availableRoomsTestArray = [["A100", "1", "RoomSelect"], ["A101", "2", "RoomSelect"],
         ["A102", "3", "RoomSelect"], ["B100", "1", "RoomSelect"],
         ["B101", "2", "RoomSelect"], ["B102", "3", "RoomSelect"],
         ["C100", "2", "RoomSelect"], ["C101", "1", "RoomSelect"],
         ["C102", "3", ""]];
-    var date = new Date();
-    var d = date.getDate();
-    var m = date.getMonth();
-    var y = date.getFullYear();
 
-    var timeStart;
-    var timeEnd;    
+    //represent the start & end time of a specific room order request
+    var eventStartTime;
+    var eventEndTime;
 
-    var hideDays = [];
-    getHideDays();
-    var dateClick;
+    const ISRAEL_TIME_DIFF = 3;
 
-    $('#btnAddRoom').click(addEvent);
-    $('#btnFindRoom').click(ShowAvailableRoom);
+
+    //this array represent the days that will be excluded from calendar given days
+    var excludedDays = [];
+    //parsing of the inactive days, to get the excluded days
+    getExcludedDays();
+
+    $('#btnReserveRoom').click(reserveRoom);
+    $('#btnFindRoom').click(ShowAvailableRooms);
+    
+    //hide the room selection div 
     $('#roomHide').hide();
-    $('#changeOrderTime').hide();
-    $('#myModal').modal('hide');
+    $('#reservationDetailsDialog').modal('hide');
+
+    $('#datePicker').change(labelsChangeEvent);
+    $('#inputStartTime').change(labelsChangeEvent);
+    $('#inputEndTime').change(labelsChangeEvent);
+    
+    //when a different room is chosen, the picture need to be updated using setRoomsPicture.
+    $('#roomSelect').change(setRoomsPicture);
 
 
-    $('#datePicker').change(makeChange);
-    $('#stepExample1').change(makeChange);
-    $('#stepExample2').change(makeChange);
-    $('#roomSelect').change(setPicture);
-
-    $(':checkbox').checkboxpicker();
-
-    var duartionInMin = windowTimeLength;
-    var minimumTime = fromTime;
-    var maximumTime = toTime;
-    var servicesArry = services;
+    var slotDurationInMinutes = windowTimeLength;
+    var calendarBeginTime = fromTime;
+    var calendarEndTime = toTime;
+    var servicesArray = services;
     
     displayCheckboxes("checkboxes");
     displayServicesDescription();
+
+    //this variables are temporary, they will be used later for determining slot size.
+    var tmp1 = timeStringToFloat(calendarEndTime);
+    var tmp2 = timeStringToFloat(calendarBeginTime);
+    alert("number of rows: " + (tmp1 - tmp2)*(60/slotDurationInMinutes) );
+
+
 
     var calendar;
     calendar = $('#calendar').fullCalendar({
@@ -49,39 +59,42 @@ $(document).ready(function () {
         select: function (start, end, jsEvent, view) {
             $('#roomHide').hide();
             $('#btnFindRoom').show();
+
+            //the date objects of the user selection.
             var dateStart = new Date(start);
             var dateEnd = new Date(end);
 
-            var houreStart = dateStart.getHours() - 3;
+            var startHour = dateStart.getHours() - ISRAEL_TIME_DIFF;
             var dayStart = dateStart.getDate();
+            //the months begin from zero index so we add 1
             var monthStart = dateStart.getMonth() + 1;
             var minStart = dateStart.getMinutes();
             var yearStart = dateStart.getFullYear();
 
-            var houreEnd = dateEnd.getHours() - 3;
+            var endHour = dateEnd.getHours() - ISRAEL_TIME_DIFF;
             var dayEnd = dateEnd.getDate();
             var monthEnd = dateEnd.getMonth() + 1;
             var minEnd = dateEnd.getMinutes();
             var yearEnd = dateEnd.getFullYear();
 
-            timeEnd = new Date(yearEnd, monthEnd - 1, dayEnd, houreEnd, minEnd);
-            timeStart = new Date(yearStart, monthStart - 1, dayStart, houreStart, minStart);
+            eventEndTime = new Date(yearEnd, monthEnd - 1, dayEnd, endHour, minEnd);
+            eventStartTime = new Date(yearStart, monthStart - 1, dayStart, startHour, minStart);
 
-            var strTimeStart = convertTime(timeStart.getHours(), timeStart.getMinutes());
-            var strTimeEnd = convertTime(timeEnd.getHours(), timeEnd.getMinutes());
+            var strTimeStart = displayProperTimeLabel(eventStartTime.getHours(), eventStartTime.getMinutes());
+            var strTimeEnd = displayProperTimeLabel(eventEndTime.getHours(), eventEndTime.getMinutes());
             var strStartTime = dayStart + "/" + monthStart + "/" + yearStart;
 
             $('#datePicker').val(strStartTime);
-            $('#stepExample1').val(strTimeStart);
-            $('#stepExample2').val(strTimeEnd);
+            $('#inputStartTime').val(strTimeStart);
+            $('#inputEndTime').val(strTimeEnd);
 
         },
-        slotDuration: '00:' + duartionInMin + ':00',
+        slotDuration: '00:' + slotDurationInMinutes + ':00',
         lang: 'he',
         isRTL: true,
-        minTime: minimumTime + ":00",
-        maxTime: maximumTime + ":00",
-        hiddenDays: hideDays,
+        minTime: calendarBeginTime + ":00",
+        maxTime: calendarEndTime + ":00",
+        hiddenDays: excludedDays,
         allDaySlot: false,
         height: 600,
         axisFormat: "HH:mm",
@@ -93,13 +106,10 @@ $(document).ready(function () {
         fixedWeekCount: false,
         allDayDefault: true,
 
+        //this function is called when an event is being clicked.
         eventClick: function (calEvent, jsEvent, view) {
-            $('#changeOrderTime').hide();
-            $('#myModal').modal('show');
-            $(document).on("click", "#changeOrderTimeButton", function (event) {
-                openEditRoom();
-                displayCheckboxes("checkboxes1");
-            });
+            $('#reservationDetailsDialog').modal('show');
+
             // $('#myCalendar').fullCalendar('removeEvents',event._id);
             $(document).on("click", "#deleteOrderButton", function (event) {
                 $('#calendar').fullCalendar('removeEvents', function (event) {
@@ -124,35 +134,35 @@ $(document).ready(function () {
     });
 
 
-    /*addEvent function
-     create event if the time of event is bigger the Current Time
-     client can create event only in the future
+    /*reserveRoom function
+     create the event only if the time requested is not already passed.
+     a room can't be reserved in the past !
      */
-    function addEvent() {
+    function reserveRoom() {
         var roomName = $('#roomSelect').val();
 
         if (roomName == "בחר חדר:")
             return;
-        var nowTime = new Date();
-        if (timeStart.getYear() == nowTime.getYear()) {
-            if (timeStart.getMonth() == nowTime.getMonth()) {
-                if (timeStart.getDate() < nowTime.getDate())
+        var currentTime = new Date();
+        if (eventStartTime.getYear() == currentTime.getYear()) {
+            if (eventStartTime.getMonth() == currentTime.getMonth()) {
+                if (eventStartTime.getDate() < currentTime.getDate())
                     return;
-                else if (timeStart.getDate() == nowTime.getDate())
-                    if (timeStart.getHours() <= nowTime.getHours())
+                else if (eventStartTime.getDate() == currentTime.getDate())
+                    if (eventStartTime.getHours() <= currentTime.getHours())
                         return;
             }
-            else if (timeStart.getMonth() < nowTime.getMonth())
+            else if (eventStartTime.getMonth() < currentTime.getMonth())
                 return;
 
         }
-        else if( timeStart.getYear() < nowTime.getYear() )
+        else if( eventStartTime.getYear() < currentTime.getYear() )
             return;
         calendar.fullCalendar('renderEvent',
             {
                 title: "רשום לחדר " + $('#roomSelect').val(),
-                start: timeStart,
-                end: timeEnd,
+                start: eventStartTime,
+                end: eventEndTime,
                 color: '#3300FF',
                 textColor: 'white',
                 allDay: false
@@ -165,18 +175,18 @@ $(document).ready(function () {
 
     ///duration of time start/end
     $(function () {
-        $('#stepExample1').timepicker({
-            'minTime': minimumTime,
-            'maxTime': maximumTime,
+        $('#inputStartTime').timepicker({
+            'minTime': calendarBeginTime,
+            'maxTime': calendarEndTime,
             'timeFormat': 'H:i',
-            'step': duartionInMin,
+            'step': slotDurationInMinutes,
 
         });
-        $('#stepExample2').timepicker({
-            'minTime': minimumTime,
-            'maxTime': maximumTime,
+        $('#inputEndTime').timepicker({
+            'minTime': calendarBeginTime,
+            'maxTime': calendarEndTime,
             'timeFormat': 'H:i',
-            'step': duartionInMin,
+            'step': slotDurationInMinutes,
         });
     });
 
@@ -190,29 +200,29 @@ $(document).ready(function () {
     $('#datePicker').datepicker();
 
     /*
-     convertTime this function get hour, min
+     displayProperTimeLabel this function get hour, min
      and return time.
-     eg convertTime(6,7) = 06:07 .convertTime(12,10) = 12:10
+     eg displayProperTimeLabel(6,7) = 06:07 .displayProperTimeLabel(12,10) = 12:10
      */
-    function convertTime(houreStart, minStart) {
+    function displayProperTimeLabel(startHour, startMin) {
         var strTimeStart;
-        if (houreStart < 10) {
-            if (minStart < 10)
-                strTimeStart = '0' + houreStart + ':' + minStart + '0';
+        if (startHour < 10) {
+            if (startMin < 10)
+                strTimeStart = '0' + startHour + ':' + startMin + '0';
             else
-                strTimeStart = '0' + houreStart + ':' + minStart;
+                strTimeStart = '0' + startHour + ':' + startMin;
         }
         else {
-            if (minStart < 10)
-                strTimeStart = houreStart + ':' + minStart + '0';
+            if (startMin < 10)
+                strTimeStart = startHour + ':' + startMin + '0';
             else
-                strTimeStart = houreStart + ':' + minStart;
+                strTimeStart = startHour + ':' + startMin;
         }
         return strTimeStart;
     }
 
-    //showing the availabil rooms before elections user and availability room
-    function ShowAvailableRoom(startTime, endTime) {
+    //display the available rooms to the user
+    function ShowAvailableRooms(startTime, endTime) {
         var j, i;
         var y = document.getElementById("roomSelect");
 
@@ -221,8 +231,8 @@ $(document).ready(function () {
         }
 
         $('#roomSelect').append("<option>" + "בחר חדר:" + "</option>");
-        if ($('#stepExample1').val() != "" && $('#stepExample2').val() != "" && $('#datePicker').val() != ""
-            && $('#stepExample1').val() < $('#stepExample2').val()) {
+        if ($('#inputStartTime').val() != "" && $('#inputEndTime').val() != "" && $('#datePicker').val() != ""
+            && $('#inputStartTime').val() < $('#inputEndTime').val()) {
 
             for (i = 0; i < roomsArray.length; i++) {
                 $('#roomSelect').append("<option>" + roomsArray[i] + "</option>");
@@ -242,14 +252,14 @@ $(document).ready(function () {
     }
 
 
-    function setPicture() {
+    function setRoomsPicture() {
         $('#roomPictureSelect').html("חדר נבחר: <br>" + $('#roomSelect').val() + "<br>  <div id='img'></div>");
         var name = $('#roomSelect').val();
         var i;
-        for (i = 0; i < availableRooms.length; i++)
-            if (name == availableRooms[i])
+        for (i = 0; i < availableRoomsTestArray.length; i++)
+            if (name == availableRoomsTestArray[i])
                 break;
-        var imgstring = "./img/" + availableRooms[i][2] + ".jpg";
+        var imgstring = "./img/" + availableRoomsTestArray[i][2] + ".jpg";
         var style = "width:304px;height:228px;";
 
         $('#img').replaceWith("<img id = 'img' src=" + imgstring + " style=" + style + ">");
@@ -264,31 +274,29 @@ $(document).ready(function () {
         var checkboxes = "<table class='table table-sm'  align='right' ><thead> <tr> <th data-halign='right'>שירות</th> <th>סמן</th></tr>"
 
 
-        if (servicesArry.length == 0)
+        if (servicesArray.length == 0)
             return;
 
-        for (var i = 0; i < servicesArry.length; i++) {
-            checkboxes += "<tr> <td data-halign='right' class ='tdCheckboxe'>" + servicesArry[i].toString() + "</td> <td><input type='checkbox' data-group-cls='btn-group-sm'></td><td></tr>";
+        for (var i = 0; i < servicesArray.length; i++) {
+            checkboxes += "<tr> <td data-halign='right' class ='tdCheckboxe'>" + servicesArray[i].toString() + "</td> <td><input type='checkbox' data-group-cls='btn-group-sm'></td><td></tr>";
         }
         checkboxes += "</table>";
         if (whichId == "checkboxes") {
             $('#checkboxes').append(checkboxes);
-            $(':checkbox').checkboxpicker();
-        }
+            $(':checkbox').checkboxpicker({onLabel:"כן",offLabel:"לא"});        }
         if (whichId == "checkboxes1") {
             $('#checkboxes1').append(checkboxes);
-            $(':checkbox').checkboxpicker();
-        }
+            $(':checkbox').checkboxpicker({onLabel:"כן",offLabel:"לא"});        }
     }
 
 
     //Returns the days should not present in the calendar
     // e.g [1,2,3,4,5] is the arry of the hide days in week calendar
-    function getHideDays() {
+    function getExcludedDays() {
         var i, j = 0;
         for (i = 0; i < activeDays.length; i++) {
             if (activeDays[i] == '') {
-                hideDays[j] = i;
+                excludedDays[j] = i;
                 j++;
             }
         }
@@ -297,20 +305,16 @@ $(document).ready(function () {
     //display services in description
     function displayServicesDescription() {
         var services = "<ul>";
-        for (var i = 0; i < servicesArry.length; i++)
-            services += "<li>" + servicesArry[i] + "</li>"
+        for (var i = 0; i < servicesArray.length; i++)
+            services += "<li>" + servicesArray[i] + "</li>"
         services += "</ul>"
         $('#services').append(services);
     }
 
-    function openEditRoom() {
-        $('#changeOrderTime').show();
-    }
 
-
-    //change timeStart timEnd fo user changes in labels
-    // e.g timeEnd = ( "Mon May 30 2016 16:00:00 GMT+03:00(שעון קיץ ירושלים)" )
-    function makeChange() {
+    //change eventStartTime timEnd fo user changes in labels
+    // e.g eventEndTime = ( "Mon May 30 2016 16:00:00 GMT+03:00(שעון קיץ ירושלים)" )
+    function labelsChangeEvent() {
         $('#roomHide').hide();
         $('#btnFindRoom').show();
 
@@ -322,8 +326,8 @@ $(document).ready(function () {
         var minStart = "";
         var hourEnd = "";
         var minEnd = "";
-        var startTime = $("#stepExample1").val();
-        var endTime = $("#stepExample2").val();
+        var startTime = $("#inputStartTime").val();
+        var endTime = $("#inputEndTime").val();
         var dateTime = $("#datePicker").val();
 
         for (i = 0; (dateTime[i] != '/'); i++) {
@@ -365,7 +369,15 @@ $(document).ready(function () {
         if (minEnd == "" || hourEnd == "" || minStart == "" || hourStart == "")
             return;
 
-        timeStart = new Date(year, month - 1, day, hourStart, minStart);
-        timeEnd = new Date(year, month - 1, day, hourEnd, minEnd);
+        eventStartTime = new Date(year, month - 1, day, hourStart, minStart);
+        eventEndTime = new Date(year, month - 1, day, hourEnd, minEnd);
+    }
+
+    
+    function timeStringToFloat(time) {
+        var hoursMinutes = time.split(/[.:]/);
+        var hours = parseInt(hoursMinutes[0], 10);
+        var minutes = hoursMinutes[1] ? parseInt(hoursMinutes[1], 10) : 0;
+        return hours + minutes / 60;
     }
 });
