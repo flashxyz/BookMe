@@ -110,6 +110,10 @@ function colourBrightness($hex, $percent)
 
 ?>
 
+<link rel="stylesheet" type="text/css"
+      href="https://fonts.googleapis.com/css?family=Tangerine">
+
+
 <script type="text/javascript">
 
     var windowTimeLength = "<?php echo $windowTimeLength ?>";
@@ -213,6 +217,13 @@ function colourBrightness($hex, $percent)
         color: <?php echo $fiftyPercentBrighter; ?> !important;
     }
 
+    .greyGradient p {
+        color: <?php echo $fiftyPercentBrighter; ?>;
+    }
+    #services {
+        color: <?php echo $fiftyPercentBrighter; ?>;
+    }
+
 </style>
 
 
@@ -228,8 +239,9 @@ function colourBrightness($hex, $percent)
         <div class="col-md-3">
             <div class ="greyGradient">
             <h3><?php echo $groupName; ?></h3>
-                <p >
-                    <?php echo $description; ?></p>
+                <p style="text-align: center;" >
+                    <?php echo $description; ?>
+                </p>
                 <img src="http://bookme.myweb.jce.ac.il/wp-content/uploads/2016/05/meeting.png"/>
                 <p></p><br>
                 <h4>אמצעים מיוחדים</h4> <br>
@@ -283,7 +295,7 @@ function colourBrightness($hex, $percent)
                     </div>
             </div>
 
-            <div class="col-sm-3 col-xs-6">
+            <div class="col-sm-3 col-xs-6 text-right">
                 <div>
                     <table>
                         מתי להזמין<br><br>

@@ -1,10 +1,10 @@
 
-html, body {
 
-    font-family: 'Open Sans Hebrew', sans-serif;
-    color: purple;
-    background-color: purple;
-}
+@import url(http://fonts.googleapis.com/css?family=Exo:100,200,400);
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);
+@import url(http://fonts.googleapis.com/earlyaccess/opensanshebrew.css);
+
+
 
 .roomSelector {
     border: 5px dashed green ;
@@ -238,6 +238,7 @@ html, body {
 
 }
 .col-sm-12{
+
     direction: rtl !important;
     align-items: baseline;
     display: inline-block;
@@ -267,13 +268,21 @@ html, body {
     border-right:none !important;
 }
 
-#roomConfirmSelect{
+
+.row{
+    font-size: inherit;
+    font-weight: inherit;
+    font-family:'Open Sans Hebrew', sans-serif;
+    font-style: inherit;
+    text-decoration: inherit;
     text-align: center;
 }
 
 #chooseRoom{
+
     display: block ;
     text-align: center;
+
 }
 
 .form-control{
@@ -284,6 +293,7 @@ html, body {
 .fc-week-number span{
     color: #A7CC76;
     padding: 5px;
+
 }
 
 .tdCheckboxe{
@@ -291,17 +301,20 @@ html, body {
 }
 
 .fc-view-container{
+
     max-height: 550px;
     overflow-y: auto;
     overflow-x: hidden;
 }
 
+
 #services {
     max-height: 150px;
     overflow-y: auto;
     overflow-x: hidden;
-
+    text-align: right;
 }
+
 
 .spacer hr {
     color: #fff;
@@ -310,13 +323,29 @@ html, body {
 
 
 .greyGradient {
-    background: rgba(234, 220, 255, 0.22); /* For browsers that do not support gradients */
-    background: linear-gradient(white, #f5f5f5); /* Standard syntax */
+
+    margin-top: 58px;
+    background: rgba(255, 255, 255, 0.86);
+
     max-height: 550px;
-
-    font-family: 'Open Sans Hebrew', sans-serif;
-
+    font-size: inherit;
+    font-weight: inherit;
+    font-family:'Open Sans Hebrew', sans-serif;
+    font-style: inherit;
+    text-decoration: inherit;
+    text-align: center;
     padding: 5px;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+
+
+    line-height: 1.3em;
+    -moz-box-shadow:  0px 0px 0px 2px rgb(224, 224, 224);
+    -webkit-box-shadow:  0px 0px 0px 2px rgb(224, 224, 224);
+    box-shadow:  0px 0px 0px 2px rgb(224, 224, 224);
+}
+
+.greyGradient:hover {
+
+    -moz-box-shadow:  0px 0px 6px 0px rgb(128,128,128);
+    -webkit-box-shadow:  0px 0px 6px 0px rgb(128,128,128);
+    box-shadow:  0px 0px 6px 0px rgb(128,128,128);
 }
