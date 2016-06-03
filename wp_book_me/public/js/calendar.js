@@ -172,14 +172,14 @@ $(document).ready(function () {
             'minTime': calendarBeginTime,
             'maxTime': calendarEndTime,
             'timeFormat': 'H:i',
-            'step': slotDurationInMinutes,
+            'step': slotDurationInMinutes
 
         });
         $('#inputEndTime').timepicker({
             'minTime': calendarBeginTime,
             'maxTime': calendarEndTime,
             'timeFormat': 'H:i',
-            'step': slotDurationInMinutes,
+            'step': slotDurationInMinutes
         });
     });
 
@@ -246,16 +246,18 @@ $(document).ready(function () {
 
 
     function setRoomsPicture() {
+
         $('#roomPictureSelect').html("חדר נבחר: <br>" + $('#roomSelect').val() + "<br>  <div id='img'></div>");
         var name = $('#roomSelect').val();
         var i;
         for (i = 0; i < availableRoomsTestArray.length; i++)
             if (name == availableRoomsTestArray[i])
                 break;
-        var imgstring = "./img/" + availableRoomsTestArray[i][2] + ".jpg";
-        var style = "width:304px;height:228px;";
+        var noImage = "http://bookme.myweb.jce.ac.il/wp-content/uploads/2016/06/noPic.jpg";
+       // var imgstring = "./img/" + availableRoomsTestArray[i][2] + ".jpg";
+        var style = "width:240px;height:240px;";
 
-        $('#img').replaceWith("<img id = 'img' src=" + imgstring + " style=" + style + ">");
+        $('#img').replaceWith("<img id = 'img' src=" + noImage + " style=" + style + ">");
 
 
     }
@@ -366,7 +368,7 @@ $(document).ready(function () {
         eventEndTime = new Date(year, month - 1, day, hourEnd, minEnd);
     }
 
-    
+
     function timeStringToFloat(time) {
         var hoursMinutes = time.split(/[.:]/);
         var hours = parseInt(hoursMinutes[0], 10);

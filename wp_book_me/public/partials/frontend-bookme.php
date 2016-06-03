@@ -40,11 +40,10 @@ $roomsArray = [];
 $selectSQL_rooms[$index];
 $numberOfRooms = sizeof($selectSQL_rooms);
 
-while( $index < $numberOfRooms)
-{
+while ($index < $numberOfRooms) {
 
-    array_push($roomsArray,$selectSQL_rooms[$index]->roomName);
-    $index ++;
+    array_push($roomsArray, $selectSQL_rooms[$index]->roomName);
+    $index++;
 }
 
 
@@ -127,7 +126,6 @@ function colourBrightness($hex, $percent)
     activeDays[6] = "<?php echo $activeDays["saturday"] ?>";
 
 
-
     //get the services to array var in javascript
     var services = [];
 
@@ -139,11 +137,11 @@ function colourBrightness($hex, $percent)
 
     //roomsArray = [];
 
-    <?php $jsArray = json_encode($roomsArray) ;
+    <?php $jsArray = json_encode($roomsArray);
     echo "var roomsArray = " . $jsArray . ";\n";
     ?>
 
-    
+
 </script>
 
 <style>
@@ -227,15 +225,15 @@ function colourBrightness($hex, $percent)
             <hr>
         </div>
 
-        <div class="col-md-3" >
+        <div class="col-md-3">
 
             <h3><?php echo $groupName; ?></h3>
-            <p style="border-top-left-radius: 15px; font-style: italic; background: linear-gradient(<?php echo $veryBrightColor; ?>, white" >
-                    <?php echo $description; ?></p>
-                <img src="http://bookme.myweb.jce.ac.il/wp-content/uploads/2016/05/meeting.png"/>
-                <p></p><br>
-                <h3>אמצעים מיוחדים</h3> <br>
-                <div id=services></div>
+            <p style="opacity: 0.8 ;border-bottom-left-radius: 15px; margin-top: 22px; padding:7px; font-style: italic; background: linear-gradient( white, <?php echo $veryBrightColor; ?>">
+                <?php echo $description; ?></p>
+            <img src="http://bookme.myweb.jce.ac.il/wp-content/uploads/2016/05/meeting.png"/>
+            <p></p><br>
+            <h4>אמצעים מיוחדים</h4> <br>
+            <div id=services></div>
             </p>
         </div>
 
@@ -243,96 +241,102 @@ function colourBrightness($hex, $percent)
     <!-- /.row -->
 
     <!-- Related Projects Row -->
+    <div class="row">
+        <div class="spacer"> <hr style="border: 1px dotted <?php echo $veryBrightColor; ?>; border-style: none none dotted;"> </div>
+    </div>
+    <div class="row">
 
-    <div class="rtl">
+        <div class="optionsContainer">
 
-        <div class="col-sm-3 col-xs-6">
-            <div id="roomPictureSelect">
-                תיאור החדר
-                <br>
-            </div>
-        </div>
-
-        <div class="col-sm-3 col-xs-6">
-            <div id="roomConfirmSelect">
-                חדרים
-                <br>
-                <button type="button" id="btnFindRoom" class="btn btn-default">מצא</button>
-                <br>
-                <div id="roomHide"><br><br>
-                    <div id="chooseroom"><select class="form-control" id="roomSelect" value="">
-                            <option></option>
-                        </select></div>
-                    <button type="button" id="btnReserveRoom" class="btn btn-default">אישור</button>
-                </div>
-                </p>
-            </div>
-        </div>
-
-        <div class="col-sm-3 col-xs-6 text-right">
-            <p/>שירותים <br>
-
-            <div class="pre-scrollable text-right">
-                <div id="checkboxes">
-                    <!--  here, the capabilities will be printed dynamically from js-->
+            <div class="col-sm-3 col-xs-6">
+                <div id="roomPictureSelect">
+                    תיאור החדר
+                    <br>
                 </div>
             </div>
-        </div>
 
-        <div class="col-sm-3 col-xs-6">
-            <div>
-                <table>
-                    <p> מתי להזמין<br><br>
-                        <tr class="trStart">
-                            <td class='tdStart'><label>שעת התחלה: </label></td>
-                            <td class='tdStart'><input id="inputStartTime" type="text" class="time labelForom"/></td>
-                        </tr>
-                        <tr class="trStart">
-                            <td class='tdStart'><label>שעת סיום: </label></td>
-                            <td class='tdStart'><input id="inputEndTime" type="text" class="time labelForom"/></td>
-                        </tr>
-                        <tr class="trStart">
-                            <td class='tdStart'><label>תאריך:</label></td>
-                            <td class='tdStart'><input type="text" class="date start labelForom" id="datePicker"/>
-                            </td>
-                        </tr>
-                        <tr class="trStart">
-                            <td class='tdStart'><label>כמות:</label></td>
-                            <td class='tdStart'><input id="quantity" type="text" class="time labelForom"/></td>
-                        </tr>
-                    </p>
-                </table>
-            </div>
-        </div>
-        <div id="dialogWithUser">
-            <div class="modal fade" id="reservationDetailsDialog" role="dialog">
-                <div class="modal-dialog">
-
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">פרטי החדר</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p>החדר מוזמן לכך וכך שעות</p>
-                        </div>
-                        <div class="modal-body" id="editRoomTime">
-                            <div id="changeOrderTime">
-                                כרגע לא ידוע מה יהיה כאן
-                            </div>
-                            <br>
-                            <button id="deleteOrderButton" type="button" class="btn btn-success">מחיקת חדר</button>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
+            <div class="col-sm-3 col-xs-6">
+                <div id="roomConfirmSelect">
+                    חדרים
+                    <br>
+                    <button type="button" id="btnFindRoom" class="btn btn-default">מצא</button>
+                    <br>
+                    <div id="roomHide"><br><br>
+                        <div id="chooseroom"><select class="form-control" id="roomSelect" value="">
+                                <option></option>
+                            </select></div>
+                        <button type="button" id="btnReserveRoom" class="btn btn-default">אישור</button>
                     </div>
-
+                    </p>
                 </div>
             </div>
+
+            <div class="col-sm-3 col-xs-6 text-right">
+                <p/>שירותים <br>
+
+                <div class="pre-scrollable text-right">
+                    <div id="checkboxes">
+                        <!--  here, the capabilities will be printed dynamically from js-->
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3 col-xs-6">
+                <div>
+                    <table>
+                       מתי להזמין<br><br>
+                            <tr class="trStart">
+                                <td class='tdStart'><label>שעת התחלה: </label></td>
+                                <td class='tdStart'><input id="inputStartTime" type="text" class="time labelForom"/>
+                                </td>
+                            </tr>
+                            <tr class="trStart">
+                                <td class='tdStart'><label>שעת סיום: </label></td>
+                                <td class='tdStart'><input id="inputEndTime" type="text" class="time labelForom"/></td>
+                            </tr>
+                            <tr class="trStart">
+                                <td class='tdStart'><label>תאריך:</label></td>
+                                <td class='tdStart'><input type="text" class="date start labelForom" id="datePicker"/>
+                                </td>
+                            </tr>
+                            <tr class="trStart">
+                                <td class='tdStart'><label>כמות:</label></td>
+                                <td class='tdStart'><input id="quantity" type="text" class="time labelForom"/></td>
+                            </tr>
+         
+                    </table>
+                </div>
+            </div>
+            <div id="dialogWithUser">
+                <div class="modal fade" id="reservationDetailsDialog" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">פרטי החדר</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>החדר מוזמן לכך וכך שעות</p>
+                            </div>
+                            <div class="modal-body" id="editRoomTime">
+                                <div id="changeOrderTime">
+                                    כרגע לא ידוע מה יהיה כאן
+                                </div>
+                                <br>
+                                <button id="deleteOrderButton" type="button" class="btn btn-success">מחיקת חדר</button>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <hr>
         </div>
-        <hr>
     </div>
     <!-- /.row -->
 </div>

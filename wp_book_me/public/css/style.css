@@ -24,7 +24,6 @@ html, body {
 .container-fluid {
     display: table;
     padding: 0;
-    display: flex;
     margin: 5px;
     /*opacity:0.9;*/
 
@@ -53,6 +52,10 @@ html, body {
     border: 1px;
 }
 
+.optionsContainer {
+    margin-top: 5px;
+    direction: rtl ;
+}
 .pre-scrollable{
     text-align:right !important;
     direction: rtl !important;
@@ -246,7 +249,7 @@ html, body {
 
 }
 .pre-scrollable{
-    height: 200px;
+    height: 240px;
     direction: rtl;
 }
 
@@ -284,13 +287,18 @@ html, body {
     text-align: right;
 }
 
-
-/*size of heigth row in calendar*/
-/*.fc-agendaWeek-view tr {*/
-    /*height: 60px;*/
-/*}*/
-
 .col-md-9{
     max-height: 550px;
-    overflow: scroll;
+    overflow-y: auto;
 }
+
+#services {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.spacer hr {
+    color: #fff;
+    background-color: #fff;
+}
+
