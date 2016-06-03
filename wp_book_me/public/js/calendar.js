@@ -273,16 +273,17 @@ $(document).ready(function () {
     function displayCheckboxes(whichId) {
 
 
-        var checkboxes = "<table class='table table-sm'  align='right' ><thead> <tr> <th data-halign='right'>שירות</th> <th>סמן</th></tr>";
+        var checkboxes = "<table class='table table-sm text-right'  align='right' >";
 
 
         if (servicesArray.length == 0)
             return;
 
         for (var i = 0; i < servicesArray.length; i++) {
-            checkboxes += "<tr> <td data-halign='right' class ='tdCheckboxe'>" + servicesArray[i].toString() + "</td> <td><input type='checkbox' data-group-cls='btn-group-sm'></td><td></tr>";
+            checkboxes += "<tr> <td data-halign='right' class ='tdCheckboxe'>" + servicesArray[i].toString() + "</td> <td data-halign='left'><input type='checkbox' data-group-cls='btn-group-sm'></td><td></tr>";
         }
-        checkboxes += "</table>";
+        checkboxes+= "</table>";
+
         if (whichId == "checkboxes") {
             $('#checkboxes').append(checkboxes);
             $(':checkbox').checkboxpicker({onLabel:"כן",offLabel:"לא"});        }

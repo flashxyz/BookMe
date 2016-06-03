@@ -226,15 +226,16 @@ function colourBrightness($hex, $percent)
         </div>
 
         <div class="col-md-3">
-
+            <div class ="greyGradient">
             <h3><?php echo $groupName; ?></h3>
-            <p style="opacity: 0.8 ;border-bottom-left-radius: 15px; margin-top: 22px; padding:7px; font-style: italic; background: linear-gradient( white, <?php echo $veryBrightColor; ?>">
-                <?php echo $description; ?></p>
-            <img src="http://bookme.myweb.jce.ac.il/wp-content/uploads/2016/05/meeting.png"/>
-            <p></p><br>
-            <h4>אמצעים מיוחדים</h4> <br>
-            <div id=services></div>
-            </p>
+                <p >
+                    <?php echo $description; ?></p>
+                <img src="http://bookme.myweb.jce.ac.il/wp-content/uploads/2016/05/meeting.png"/>
+                <p></p><br>
+                <h4>אמצעים מיוחדים</h4> <br>
+                <div id=services></div>
+                </p>
+            </div>
         </div>
 
     </div>
@@ -269,18 +270,17 @@ function colourBrightness($hex, $percent)
                             </select></div>
                         <button type="button" id="btnReserveRoom" class="btn btn-default">אישור</button>
                     </div>
-                    </p>
+             
                 </div>
             </div>
 
             <div class="col-sm-3 col-xs-6 text-right">
                 <p/>שירותים <br>
+                <table class="table table-sm text-right" > <tbody> <tr> <td data-halign="right"  class ="text-right"> שירות </td> <td data-halign="left">&emsp; סמן &emsp;</td> </tr> </tbody></table>
 
-                <div class="pre-scrollable text-right">
                     <div id="checkboxes">
                         <!--  here, the capabilities will be printed dynamically from js-->
                     </div>
-                </div>
             </div>
 
             <div class="col-sm-3 col-xs-6">
