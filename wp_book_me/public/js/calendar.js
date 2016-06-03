@@ -41,13 +41,6 @@ $(document).ready(function () {
     displayCheckboxes("checkboxes");
     displayServicesDescription();
 
-    //this variables are temporary, they will be used later for determining slot size.
-    var tmp1 = timeStringToFloat(calendarEndTime);
-    var tmp2 = timeStringToFloat(calendarBeginTime);
-    alert("number of rows: " + (tmp1 - tmp2)*(60/slotDurationInMinutes) );
-
-
-
     var calendar;
     calendar = $('#calendar').fullCalendar({
         header: {
@@ -96,7 +89,7 @@ $(document).ready(function () {
         maxTime: calendarEndTime + ":00",
         hiddenDays: excludedDays,
         allDaySlot: false,
-        height: 600,
+        contentHeight: 'auto',
         axisFormat: "HH:mm",
         defaultView: "agendaWeek",
         weekends: true,

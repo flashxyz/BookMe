@@ -290,3 +290,7 @@ html, body {
     /*height: 60px;*/
 /*}*/
 
+.col-md-9{
+    max-height: 550px;
+    overflow: scroll;
+}
