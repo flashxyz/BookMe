@@ -103,6 +103,14 @@ $(document).ready(function () {
         eventClick: function (calEvent, jsEvent, view) {
             $('#reservationDetailsDialog').modal('show');
 
+            var date = new Date(calEvent.start);
+            var startHourClick = date.getHours();
+            var startMinClick = date.getMinutes();
+            date = new Date(calEvent.end);
+            var endHourClick = date.getHours();
+            var endMinClick = date.getMinutes();
+            displayOrderRoomInDialog(startHourClick, startMinClick, endHourClick, endMinClick, calEvent.title);
+
             // $('#myCalendar').fullCalendar('removeEvents',event._id);
             $(document).on("click", "#deleteOrderButton", function (event) {
                 $('#calendar').fullCalendar('removeEvents', function (event) {
@@ -259,14 +267,13 @@ $(document).ready(function () {
 
         $('#img').replaceWith("<img id = 'img' src=" + noImage + " style=" + style + ">");
 
-
     }
 
     //change the services to checkboxes and display them in services div
     function displayCheckboxes(whichId) {
 
 
-        var checkboxes = "<table class='table table-sm'  align='right' ><thead> <tr> <th data-halign='right'>שירות</th> <th>סמן</th></tr>"
+        var checkboxes = "<table class='table table-sm'  align='right' ><thead> <tr> <th data-halign='right'>שירות</th> <th>סמן</th></tr>";
 
 
         if (servicesArray.length == 0)
@@ -375,4 +382,22 @@ $(document).ready(function () {
         var minutes = hoursMinutes[1] ? parseInt(hoursMinutes[1], 10) : 0;
         return hours + minutes / 60;
     }
+
+    function displayOrderRoomInDialog(startHour, startMin, endHour, endMin, nameRoom){
+        var startDisplay = displayProperTimeLabel(startHour,startMin);
+        var endDisplay = displayProperTimeLabel(endHour,endMin);
+        var description = "<div id = 'diplayOrderRoom'' class='modal-body'>";
+        description += "החדר מוזמן לשעה: "
+        description += startDisplay;
+        description += " עד שעה: ";
+        description += endDisplay;
+        description += ", הינך ";
+        description += nameRoom;
+        $("#diplayOrderRoom").replaceWith(description);
+
+        var noImage = "http://bookme.myweb.jce.ac.il/wp-content/uploads/2016/06/noPic.jpg";
+        var style = "width:240px;height:240px;";
+        $('#changeOrderTime').replaceWith("<img id = 'changeOrderTime' src=" + noImage + " style=" + style + ">");
+    }
+
 });

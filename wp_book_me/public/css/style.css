@@ -287,18 +287,27 @@ html, body {
     text-align: right;
 }
 
-.col-md-9{
+.fc-view-container{
     max-height: 550px;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 #services {
-    max-height: 200px;
+    max-height: 150px;
     overflow-y: auto;
+    overflow-x: hidden;
+
 }
 
 .spacer hr {
     color: #fff;
     background-color: #fff;
 }
+
+.pre-scrollable {
+    max-height: 170px !important;
+
+}
+
 

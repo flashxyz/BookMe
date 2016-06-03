@@ -242,7 +242,9 @@ function colourBrightness($hex, $percent)
 
     <!-- Related Projects Row -->
     <div class="row">
-        <div class="spacer"> <hr style="border: 1px dotted <?php echo $veryBrightColor; ?>; border-style: none none dotted;"> </div>
+        <div class="spacer">
+            <hr style="border: 1px dotted <?php echo $veryBrightColor; ?>; border-style: none none dotted;">
+        </div>
     </div>
     <div class="row">
 
@@ -284,26 +286,26 @@ function colourBrightness($hex, $percent)
             <div class="col-sm-3 col-xs-6">
                 <div>
                     <table>
-                       מתי להזמין<br><br>
-                            <tr class="trStart">
-                                <td class='tdStart'><label>שעת התחלה: </label></td>
-                                <td class='tdStart'><input id="inputStartTime" type="text" class="time labelForom"/>
-                                </td>
-                            </tr>
-                            <tr class="trStart">
-                                <td class='tdStart'><label>שעת סיום: </label></td>
-                                <td class='tdStart'><input id="inputEndTime" type="text" class="time labelForom"/></td>
-                            </tr>
-                            <tr class="trStart">
-                                <td class='tdStart'><label>תאריך:</label></td>
-                                <td class='tdStart'><input type="text" class="date start labelForom" id="datePicker"/>
-                                </td>
-                            </tr>
-                            <tr class="trStart">
-                                <td class='tdStart'><label>כמות:</label></td>
-                                <td class='tdStart'><input id="quantity" type="text" class="time labelForom"/></td>
-                            </tr>
-         
+                        מתי להזמין<br><br>
+                        <tr class="trStart">
+                            <td class='tdStart'><label>שעת התחלה: </label></td>
+                            <td class='tdStart'><input id="inputStartTime" type="text" class="time labelForom"/>
+                            </td>
+                        </tr>
+                        <tr class="trStart">
+                            <td class='tdStart'><label>שעת סיום: </label></td>
+                            <td class='tdStart'><input id="inputEndTime" type="text" class="time labelForom"/></td>
+                        </tr>
+                        <tr class="trStart">
+                            <td class='tdStart'><label>תאריך:</label></td>
+                            <td class='tdStart'><input type="text" class="date start labelForom" id="datePicker"/>
+                            </td>
+                        </tr>
+                        <tr class="trStart">
+                            <td class='tdStart'><label>כמות:</label></td>
+                            <td class='tdStart'><input id="quantity" type="text" class="time labelForom"/></td>
+                        </tr>
+
                     </table>
                 </div>
             </div>
@@ -317,8 +319,8 @@ function colourBrightness($hex, $percent)
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 <h4 class="modal-title">פרטי החדר</h4>
                             </div>
-                            <div class="modal-body">
-                                <p>החדר מוזמן לכך וכך שעות</p>
+                            <div id = "diplayOrderRoom" class="modal-body">
+                                
                             </div>
                             <div class="modal-body" id="editRoomTime">
                                 <div id="changeOrderTime">
