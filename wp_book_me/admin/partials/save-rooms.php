@@ -18,9 +18,43 @@ if($_GET['group_id']==true AND $_GET['room_id']==true AND  $_GET['save_room']==t
     //get fields from submitted forms
     $roomName = $postArray['roomOptionName_' . $roomID];
     $roomCapacity = $postArray['roomOptionCapacity_' . $roomID];
+    //get group table
+    $group_options_table = $wpdb->prefix . "bookme_group_options";
+    
+    //get specific group table
+    $selectSQL_Group = $wpdb->get_results($wpdb->prepare("SELECT * FROM $group_options_table WHERE id = %d", $groupID));
 
-    //services not ready right now!.
-    //$roomServices = $postArray['roomOptionServices_' . $roomID];
+    //get amount of services
+    $services = unserialize($selectSQL_Group[0]->services);
+
+    //so that we can use if to get services from room page
+    $num_of_services = sizeof($services);
+
+
+    //services for each room
+    $roomServicesSerialized;
+
+    //for SQL
+    $roomServicesArray;
+
+    //loop for every service.
+    $serviceIndex = 0;
+
+    while($serviceIndex < $num_of_services) {
+
+        $roomServices = $postArray['room_' . $roomID . '_service_' . $serviceIndex];
+        //run over group services and apply room values
+        //$roomServices[$serviceIndex] = $roomServices;
+        //echo $serviceIndex;
+        $roomServicesArray[$services[$serviceIndex]] = $roomServices;
+
+        $serviceIndex++;
+
+    }
+
+    //serialize the data for SQL.
+    $roomServicesSerialized = serialize($roomServicesArray);
+
 
     $roomDescription = $postArray['roomOptionDescription_' . $roomID];
     $roomIsActive = $postArray['roomOptionIsActive_' . $roomID];
@@ -50,7 +84,7 @@ if($_GET['group_id']==true AND $_GET['room_id']==true AND  $_GET['save_room']==t
         'roomName' => $roomName,
         'capacity' => $roomCapacity,
         'activeDays' => $activeDaysArray,
-       //'services' => $roomServices,
+        'services' => $roomServicesSerialized,
         'description' => $roomDescription,
         'isActive' => $roomIsActive
     );
@@ -73,7 +107,6 @@ $siteURL = get_site_url()."/wp-admin/admin.php";
 ?>
 
 <script>
-
     var siteURL = <?php echo json_encode($siteURL);?>;
     window.location.replace(siteURL + "?page=wp_book_me&group_id=<?php echo $groupID ?>&edit_rooms=true");
 
