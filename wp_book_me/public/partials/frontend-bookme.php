@@ -41,8 +41,9 @@ $selectSQL_rooms[$index];
 $numberOfRooms = sizeof($selectSQL_rooms);
 
 while ($index < $numberOfRooms) {
-
-    array_push($roomsArray, $selectSQL_rooms[$index]->roomName);
+    $roomCell[0] = $selectSQL_rooms[$index]->roomId;
+    $roomCell[1] = $selectSQL_rooms[$index]->roomName;
+    array_push($roomsArray, $roomCell);
     $index++;
 }
 
