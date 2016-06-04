@@ -99,9 +99,8 @@ class Wp_book_me_Activator {
 				groupId BIGINT,
 				roomId BIGINT,
 				userId BIGINT,
-				startTime VARCHAR(50),
-				endTime VARCHAR(50),
-				toTime VARCHAR(50)
+				startTime VARCHAR(150),
+				endTime VARCHAR(150)
 				) DEFAULT CHARACTER SET utf8";
 
 			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');

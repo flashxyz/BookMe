@@ -6,9 +6,11 @@
  * Time: 18:30
  */
 
-global $wpdb;
+//include WP content
+$parse_uri = explode( 'wp-content', $_SERVER['SCRIPT_FILENAME'] );
+require_once( $parse_uri[0] . 'wp-load.php' );
 
-echo var_dump( $wpdb );
+global $wpdb;
 
 $groupId = $_POST['group1'] ;
 $roomId = $_POST['room1'] ;
@@ -24,9 +26,12 @@ $rooms_options_table = $wpdb->prefix . "bookme_rooms_options";
 
 
 $selectSQL = $wpdb->get_results( "SELECT * FROM $rooms_options_table WHERE groupId = '$groupId'" );
+?>
 
-echo $selectSQL[0];
-
+<script>
+    alert(<?php echo $endTime . "UID" . $userId ?> );
+</script>
+<?php
 //get the next id of SQL Auto_increment generator
 //$last = $wpdb->get_row("SHOW TABLE STATUS LIKE '$rooms_reservation_table'");
 //$nextID = $last->Auto_increment;
