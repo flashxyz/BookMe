@@ -128,7 +128,7 @@ function colourBrightness($hex, $percent)
     activeDays[4] = "<?php echo $activeDays["thursday"] ?>";
     activeDays[5] = "<?php echo $activeDays["friday"] ?>";
     activeDays[6] = "<?php echo $activeDays["saturday"] ?>";
-
+    var userID = <?php echo get_current_user_id(); ?>;
 
     //get the services to array var in javascript
     var services = [];
