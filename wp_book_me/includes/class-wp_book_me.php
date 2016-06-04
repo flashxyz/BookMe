@@ -119,6 +119,8 @@ class Wp_book_me {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-wp_book_me-public.php';
 
+
+
 		$this->loader = new Wp_book_me_Loader();
 
 	}

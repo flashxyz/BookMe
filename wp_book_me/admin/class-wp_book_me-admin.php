@@ -144,7 +144,7 @@ class Wp_book_me_Admin {
 	*/
  
 	public function display_plugin_setup_page() {
-	
+
 		if($_GET['group_id'] == false and $_POST['group_id'] == false)
 		{	
 			include_once( 'partials/wp_book_me-admin-display.php' );
@@ -194,6 +194,7 @@ class Wp_book_me_Admin {
 		{
 			require_once('partials/add-service.php');
 		}
+
 
 	}
 	//need to remove this - > not used

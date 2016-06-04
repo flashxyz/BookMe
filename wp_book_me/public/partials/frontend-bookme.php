@@ -109,6 +109,13 @@ function colourBrightness($hex, $percent)
 }
 
 
+//get the current path url
+$siteURL = get_site_url()."/wp-admin/admin.php";
+
+
+
+
+
 ?>
 
 <link rel="stylesheet" type="text/css"
@@ -116,6 +123,8 @@ function colourBrightness($hex, $percent)
 
 
 <script type="text/javascript">
+
+    var siteURL = "<?php echo $siteURL ?>";
 
     var windowTimeLength = "<?php echo $windowTimeLength ?>";
     var fromTime = "<?php echo $fromTime ?>";
