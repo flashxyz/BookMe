@@ -13,7 +13,7 @@ extract(shortcode_atts(array(
     'id' => ''), $atts));
 
 $groupID = $atts['id'];
-
+$userID = get_current_user_id();
 //group SQL table
 $group_options_table = $wpdb->prefix . "bookme_group_options";
 
@@ -44,6 +44,22 @@ while ($index < $numberOfRooms) {
     $roomCell[0] = $selectSQL_rooms[$index]->roomId;
     $roomCell[1] = $selectSQL_rooms[$index]->roomName;
     array_push($roomsArray, $roomCell);
+    $index++;
+}
+
+//get table
+$room_reservation_table = $wpdb->prefix . "bookme_room_reservation";
+
+//get all reservations for this user id,group
+$selectSQL_reservation = $wpdb->get_results($wpdb->prepare("SELECT * FROM $room_reservation_table WHERE groupId = %d AND userId = %d ", $groupID, $userID));
+$reservation_array = [];
+$index = 0;
+while ($index < $numberOfRooms) {
+    $resCell[0] = $selectSQL_reservation[$index]->roomId;
+    $resCell[1] = $selectSQL_reservation[$index]->userId;
+    $resCell[2] = $selectSQL_reservation[$index]->startTime;
+    $resCell[3] = $selectSQL_reservation[$index]->endTime;
+    array_push($reservation_array, $resCell);
     $index++;
 }
 
@@ -110,7 +126,7 @@ function colourBrightness($hex, $percent)
 
 
 //get the current path url
-$siteURL = get_site_url()."/wp-admin/admin.php";
+$submitURL = get_site_url()."/wp-content/plugins/wp_book_me/public/partials/calendarSubmit.php";
 
 
 
@@ -124,7 +140,7 @@ $siteURL = get_site_url()."/wp-admin/admin.php";
 
 <script type="text/javascript">
 
-    var siteURL = "<?php echo $siteURL ?>";
+    var submitURL = "<?php echo $submitURL ?>";
 
     var windowTimeLength = "<?php echo $windowTimeLength ?>";
     var fromTime = "<?php echo $fromTime ?>";
@@ -138,7 +154,7 @@ $siteURL = get_site_url()."/wp-admin/admin.php";
     activeDays[4] = "<?php echo $activeDays["thursday"] ?>";
     activeDays[5] = "<?php echo $activeDays["friday"] ?>";
     activeDays[6] = "<?php echo $activeDays["saturday"] ?>";
-    var userID = <?php echo get_current_user_id(); ?>;
+    var userID = <?php echo $userID; ?>;
     var groupID =  <?php echo $groupID ?>;
     //get the services to array var in javascript
     var services = [];
@@ -154,6 +170,11 @@ $siteURL = get_site_url()."/wp-admin/admin.php";
     <?php $jsArray = json_encode($roomsArray);
     echo "var roomsArray = " . $jsArray . ";\n";
     ?>
+
+    <?php $jsArray = json_encode( $reservation_array);
+    echo "var reservationsArray = " . $jsArray . ";\n";
+    ?>
+
 
 
 </script>

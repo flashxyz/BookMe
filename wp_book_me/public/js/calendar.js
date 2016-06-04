@@ -159,9 +159,9 @@ $(document).ready(function () {
 
         var roomName = $('#roomSelect').val();
         var dataString = 'groupId1' + groupID + 'roomId1' + selectedRoomId + 'userId1' + userID + 'startTime1' + eventStartTime + 'endTime' + eventEndTime ;
-        alert("before");
+
         sendDataToPhp();
-        alert("after sending");
+
         calendar.fullCalendar('renderEvent',
             {
                 title: "רשום לחדר " + roomName.toString(),
@@ -410,14 +410,9 @@ $(document).ready(function () {
     }
 
     function sendDataToPhp() {
-            //gropromuserstartend
-        /*
-            var dataString = 'group1='+ groupID + '&room1='+ selectedRoomId +'&userId=' + userID.toString() + '&start1=' +
-                eventStartTime.toString() + '&end1=' + eventEndTime.toString() +'&addRes=true' ;
-            */
         $.ajax({
                 type: "POST",
-                url:"http://bookme.myweb.jce.ac.il/wp-content/plugins/wp_book_me/public/partials/calendarSubmit.php",
+                url:submitURL,
                 data: {
                     group1: groupID,
                     room1: selectedRoomId,
@@ -431,8 +426,24 @@ $(document).ready(function () {
                     //alert(data);
                 }
             });
-
-      //  window.location.href = "http://bookme.myweb.jce.ac.il/wp-content/plugins/wp_book_me/public/js/calendarSubmit.php?groupId=" + groupID + "&roomId=" + selectedRoomId + "&userId=" + userID + "&startTime=" + eventStartTime + "&endTime=" + eventEndTime ;
+    }
+    function checkRoomInSQL() {
+        $.ajax({
+            type: "POST",
+            url:submitURL,
+            data: {
+                group1: groupID,
+                room1: selectedRoomId,
+                userId: userID.toString(),
+                start1: eventStartTime.toString(),
+                end1: eventEndTime.toString(),
+                addRes: true,
+            },//dataString
+            cache: false,
+            success:function(data) {
+                //alert(data);
+            }
+        });
     }
 
 

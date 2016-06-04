@@ -22,16 +22,14 @@ $endTime = $_POST['end1'] ;
 //get the table name we want to work with
 $rooms_reservation_table = $wpdb->prefix . "bookme_room_reservation";
 
+
+
+
 $rooms_options_table = $wpdb->prefix . "bookme_rooms_options";
 
 
 $selectSQL = $wpdb->get_results( "SELECT * FROM $rooms_options_table WHERE groupId = '$groupId'" );
-?>
 
-<script>
-    alert(<?php echo $endTime . "UID" . $userId ?> );
-</script>
-<?php
 //get the next id of SQL Auto_increment generator
 //$last = $wpdb->get_row("SHOW TABLE STATUS LIKE '$rooms_reservation_table'");
 //$nextID = $last->Auto_increment;
@@ -39,7 +37,7 @@ $selectSQL = $wpdb->get_results( "SELECT * FROM $rooms_options_table WHERE group
 
 //execute the insert new row query
 $wpdb->insert($rooms_reservation_table, array(
-    'reservationId' => '1',
+    'reservationId' => '',
     'groupId' => $groupId,
     'roomId' => $roomId,
     'userId' => $userId,
