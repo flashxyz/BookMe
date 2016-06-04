@@ -158,9 +158,18 @@ $(document).ready(function () {
 
 
         var roomName = $('#roomSelect').val();
-        var groupId= 2; //fix this
-        var userId = userID;
-        var dataString = 'g';
+        var dataString = 'groupId1' + groupID + 'roomId1' + selectedRoomId + 'userId1' + userID + 'startTime1' + eventStartTime + 'endTime' + eventEndTime ;
+        $.ajax({
+            type:"POST",
+            url: "calendarSubmit.php",
+            data: dataString,
+            cache : false,
+            success: function(result) {
+                alert(result);
+            }
+        });
+
+        alert("after sending");
         calendar.fullCalendar('renderEvent',
             {
                 title: "רשום לחדר " + roomName.toString(),
