@@ -159,16 +159,8 @@ $(document).ready(function () {
 
         var roomName = $('#roomSelect').val();
         var dataString = 'groupId1' + groupID + 'roomId1' + selectedRoomId + 'userId1' + userID + 'startTime1' + eventStartTime + 'endTime' + eventEndTime ;
-        $.ajax({
-            type:"POST",
-            url: "calendarSubmit.php",
-            data: dataString,
-            cache : false,
-            success: function(result) {
-                alert(result);
-            }
-        });
-
+        alert("before");
+        sendDataToPhp();
         alert("after sending");
         calendar.fullCalendar('renderEvent',
             {
@@ -275,7 +267,6 @@ $(document).ready(function () {
                 break;
             }
 
-        alert("rooms id is " + selectedRoomId);
         var noImage = "http://bookme.myweb.jce.ac.il/wp-content/uploads/2016/06/noPic.jpg";
        // var imgstring = "./img/" + availableRoomsTestArray[i][2] + ".jpg";
         var style = "width:240px;height:240px;";
@@ -418,4 +409,22 @@ $(document).ready(function () {
         $('#changeOrderTime').replaceWith("<img id = 'changeOrderTime' src=" + noImage + " style=" + style + ">");
     }
 
+    function sendDataToPhp() {
+ //gropromuserstartend
+        var dataString = 'group1='+ groupID + '&room1='+ selectedRoomId +'&userId=' + userID.toString() + '&start1=' + eventStartTime.toString() + '&end1=' + eventEndTime.toString() ;
+        $.ajax({
+            type: "POST",
+            url:"http://bookme.myweb.jce.ac.il/wp-content/plugins/wp_book_me/public/js/calendarSubmit.php",
+            data: dataString,
+            cache: false,
+            success:function(data) {
+                alert(data);
+            }
+        });
+
+      //  window.location.href = "http://bookme.myweb.jce.ac.il/wp-content/plugins/wp_book_me/public/js/calendarSubmit.php?groupId=" + groupID + "&roomId=" + selectedRoomId + "&userId=" + userID + "&startTime=" + eventStartTime + "&endTime=" + eventEndTime ;
+    }
+
+
 });
+
