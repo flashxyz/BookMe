@@ -273,7 +273,7 @@ $(document).ready(function () {
     function displayCheckboxes(whichId) {
 
 
-        var checkboxes = "<table class='table table-sm text-right'  align='right' >";
+        var checkboxes = "<table class='table table-sm text-right table-cool'  align='right' >";
 
 
         if (servicesArray.length == 0)
@@ -304,6 +304,8 @@ $(document).ready(function () {
             }
         }
     }
+
+
 
     //display services in description
     function displayServicesDescription() {

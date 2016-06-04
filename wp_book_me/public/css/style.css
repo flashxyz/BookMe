@@ -220,7 +220,7 @@
 #checkboxes {
     direction: rtl;
     max-width: 300px;
-    max-height: 320px;
+    max-height: 150px;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -278,11 +278,33 @@
     text-align: center;
 }
 
-#chooseRoom{
 
-    display: block ;
-    text-align: center;
+#roomConfirmSelect {
 
+    display: table-cell;
+    vertical-align: middle;
+    width: 400px;
+    height: 192px;
+
+}
+
+.cool-button {
+    background: #2db34a;
+    border-radius: 6px;
+    height: 50%;
+    width: 50%;
+    transition-property: background, border-radius;
+    transition-duration: .2s, 1s;
+    transition-timing-function: linear, ease-in;
+}
+
+.cool-button:hover {
+    border-radius: 5%;
+}
+
+.fc-state-hover{
+    background-color: #2aabd2 !important;
+    background: #2aabd2 !important;
 }
 
 .form-control{
@@ -319,6 +341,18 @@
 .spacer hr {
     color: #fff;
     background-color: #fff;
+}
+
+.table-cool tr:hover {
+
+    background-color:white;
+    filter:progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr=white, endColorstr=#f2f2f2);
+    background-image:-moz-linear-gradient(left top, white 0%, #f2f2f2 50%,white 100%);
+    background-image:linear-gradient(left top, white 0%, #f2f2f2 50%,white 100%);
+    background-image:-webkit-linear-gradient(left top, white 0%, #f2f2f2 50%,white 100%);
+    background-image:-o-linear-gradient(left top, white 0%, #f2f2f2 50%,white 100%);
+    background-image:-ms-linear-gradient(left top, white 0%, #f2f2f2 50%,white 100%);
+    background-image:-webkit-gradient(linear, left top, right bottom, color-stop(0%,white), color-stop(50%, #f2f2f2),color-stop(100%,white));
 }
 
 

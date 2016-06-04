@@ -205,10 +205,18 @@ function colourBrightness($hex, $percent)
         background-color: <?php echo $veryBrightColor; ?>;
     }
 
+    .cool-button {
+        background:  <?php echo $calendarColor; ?>;
+    }
+    .cool-button:hover {
+        background:  <?php echo $fiftyPercentBrighter; ?> !important;
+    }
     .fc-bg {
         color: <?php echo $fiftyPercentBrighter; ?> !important;
     }
-
+    .fc-state-hover{
+        background-color: <?php echo $veryBrightColor; ?> !important;
+    }
     .fc-center h2 {
         color: <?php echo $calendarColor; ?>;
     }
@@ -266,29 +274,30 @@ function colourBrightness($hex, $percent)
             <div class="col-sm-3 col-xs-6">
                 <div id="roomPictureSelect">
                     תיאור החדר
-                    <br>
+                    <br> <br>
                 </div>
             </div>
 
             <div class="col-sm-3 col-xs-6">
-                <div id="roomConfirmSelect">
+
                     חדרים
-                    <br>
-                    <button type="button" id="btnFindRoom" class="btn btn-default">מצא</button>
-                    <br>
-                    <div id="roomHide"><br><br>
+                    <br><br>
+                <div id="roomConfirmSelect">
+                    <button type="button" id="btnFindRoom" class="cool-button">מצא</button>
+
+                    <div id="roomHide">
                         <div id="chooseroom"><select class="form-control" id="roomSelect" value="">
                                 <option></option>
                             </select></div>
-                        <button type="button" id="btnReserveRoom" class="btn btn-default">אישור</button>
+                        <button type="button" id="btnReserveRoom" class="cool-button">אישור</button>
                     </div>
              
                 </div>
             </div>
 
             <div class="col-sm-3 col-xs-6 text-right">
-                <p/>שירותים <br>
-                <table class="table table-sm text-right" > <tbody> <tr> <td data-halign="right"  class ="text-right"> שירות </td> <td data-halign="left">&emsp; סמן &emsp;</td> </tr> </tbody></table>
+               שירותים <br><br>
+                <table class="table-sm text-right table-cool" style="margin-bottom: 0px;" > <tbody> <tr> <td data-halign="right"  class ="text-right"> שירות </td> <td data-halign="left">&emsp; סמן &emsp;</td> </tr> </tbody></table>
 
                     <div id="checkboxes">
                         <!--  here, the capabilities will be printed dynamically from js-->
@@ -297,7 +306,7 @@ function colourBrightness($hex, $percent)
 
             <div class="col-sm-3 col-xs-6 text-right">
                 <div>
-                    <table>
+                    <table class="table-cool">
                         מתי להזמין<br><br>
                         <tr class="trStart">
                             <td class='tdStart'><label>שעת התחלה: </label></td>
