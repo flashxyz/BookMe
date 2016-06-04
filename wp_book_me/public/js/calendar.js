@@ -1,10 +1,6 @@
 $(document).ready(function () {
     //this is a test array, for rooms offering functionality.
-    var availableRoomsTestArray = [["A100", "1", "RoomSelect"], ["A101", "2", "RoomSelect"],
-        ["A102", "3", "RoomSelect"], ["B100", "1", "RoomSelect"],
-        ["B101", "2", "RoomSelect"], ["B102", "3", "RoomSelect"],
-        ["C100", "2", "RoomSelect"], ["C101", "1", "RoomSelect"],
-        ["C102", "3", ""]];
+    var selectedRoomId = 0;
 
     //represent the start & end time of a specific room order request
     var eventStartTime;
@@ -159,9 +155,15 @@ $(document).ready(function () {
         }
         else if( eventStartTime.getYear() < currentTime.getYear() )
             return;
+
+
+        var roomName = $('#roomSelect').val();
+        var groupId= 2; //fix this
+        var userId = userID;
+        var dataString = 'g';
         calendar.fullCalendar('renderEvent',
             {
-                title: "רשום לחדר " + $('#roomSelect').val(),
+                title: "רשום לחדר " + roomName.toString(),
                 start: eventStartTime,
                 end: eventEndTime,
                 color: '#3300FF',
@@ -236,7 +238,7 @@ $(document).ready(function () {
             && $('#inputStartTime').val() < $('#inputEndTime').val()) {
 
             for (i = 0; i < roomsArray.length; i++) {
-                $('#roomSelect').append("<option>" + roomsArray[i] + "</option>");
+                $('#roomSelect').append("<option>" + roomsArray[i][1] + "</option>");
                 //.attr("value",key).text(value))
             }
             $('#roomHide').show();
@@ -258,9 +260,13 @@ $(document).ready(function () {
         $('#roomPictureSelect').html("חדר נבחר: <br>" + $('#roomSelect').val() + "<br>  <div id='img'></div>");
         var name = $('#roomSelect').val();
         var i;
-        for (i = 0; i < availableRoomsTestArray.length; i++)
-            if (name == availableRoomsTestArray[i])
+        for (i = 0; i < roomsArray.length; i++)
+            if (name == roomsArray[i][1]) {
+                selectedRoomId = roomsArray[i][0];
                 break;
+            }
+
+        alert("rooms id is " + selectedRoomId);
         var noImage = "http://bookme.myweb.jce.ac.il/wp-content/uploads/2016/06/noPic.jpg";
        // var imgstring = "./img/" + availableRoomsTestArray[i][2] + ".jpg";
         var style = "width:240px;height:240px;";
