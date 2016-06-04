@@ -56,9 +56,8 @@ $reservation_array = [];
 $index = 0;
 while ($index < $numberOfRooms) {
     $resCell[0] = $selectSQL_reservation[$index]->roomId;
-    $resCell[1] = $selectSQL_reservation[$index]->userId;
-    $resCell[2] = $selectSQL_reservation[$index]->startTime;
-    $resCell[3] = $selectSQL_reservation[$index]->endTime;
+    $resCell[1] = $selectSQL_reservation[$index]->startTime;
+    $resCell[2] = $selectSQL_reservation[$index]->endTime;
     array_push($reservation_array, $resCell);
     $index++;
 }

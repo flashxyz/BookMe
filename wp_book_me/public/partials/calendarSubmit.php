@@ -12,39 +12,55 @@ require_once( $parse_uri[0] . 'wp-load.php' );
 
 global $wpdb;
 
-$groupId = $_POST['group1'] ;
-$roomId = $_POST['room1'] ;
-$userId = $_POST['userId'] ;
-$startTime = $_POST['start1'] ;
-$endTime = $_POST['end1'] ;
-
-
 //get the table name we want to work with
 $rooms_reservation_table = $wpdb->prefix . "bookme_room_reservation";
 
-
-
-
+//get rooms table
 $rooms_options_table = $wpdb->prefix . "bookme_rooms_options";
 
 
-$selectSQL = $wpdb->get_results( "SELECT * FROM $rooms_options_table WHERE groupId = '$groupId'" );
 
-//get the next id of SQL Auto_increment generator
-//$last = $wpdb->get_row("SHOW TABLE STATUS LIKE '$rooms_reservation_table'");
-//$nextID = $last->Auto_increment;
+if($_POST[addRes] == true)
+{
+    $groupId = $_POST['group1'] ;
+    $roomId = $_POST['room1'] ;
+    $userId = $_POST['userId'] ;
+    $startTime = $_POST['start1'] ;
+    $endTime = $_POST['end1'] ;
+
+    $selectSQL = $wpdb->get_results( "SELECT * FROM $rooms_options_table WHERE groupId = '$groupId'" );
+
+    //execute the insert new row query
+    $wpdb->insert($rooms_reservation_table, array(
+        'reservationId' => '',
+        'groupId' => $groupId,
+        'roomId' => $roomId,
+        'userId' => $userId,
+        'startTime' => $startTime,
+        'endTime' => $endTime
+
+    ));
 
 
-//execute the insert new row query
-$wpdb->insert($rooms_reservation_table, array(
-    'reservationId' => '',
-    'groupId' => $groupId,
-    'roomId' => $roomId,
-    'userId' => $userId,
-    'startTime' => $startTime,
-    'endTime' => $endTime
+}
 
-));
+if($_POST[checkRes] == true)
+{
+
+
+    //check if room is available at this time
+
+
+    //return list of rooms
+
+
+}
+
+
+
+
+
+
 
 
 

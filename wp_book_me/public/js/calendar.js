@@ -37,6 +37,7 @@ $(document).ready(function () {
     displayCheckboxes("checkboxes");
     displayServicesDescription();
 
+
     var calendar;
     calendar = $('#calendar').fullCalendar({
         header: {
@@ -130,6 +131,9 @@ $(document).ready(function () {
         ]
     });
 
+    //fill user reservations
+    addUserReservations();
+
 
     /*reserveRoom function
      create the event only if the time requested is not already passed.
@@ -174,6 +178,37 @@ $(document).ready(function () {
             },
             true // make the event "stick"
         );
+    }
+
+    function addUserReservations() {
+
+        //reservationsArray ->array of reservations for this looged user.
+        // $resCell[0] = $selectSQL_reservation[$index]->roomId;
+        // $resCell[1] = $selectSQL_reservation[$index]->startTime;
+        // $resCell[2] = $selectSQL_reservation[$index]->endTime;
+
+        var resIndex = 0;
+
+        while(resIndex < reservationsArray.length)
+        {
+            calendar.fullCalendar('renderEvent',
+                {
+                    title: "רשום לחדר " + reservationsArray[resIndex][0].toString(),
+                    start: reservationsArray[resIndex][1].toString(),
+                    end: reservationsArray[resIndex][2].toString(),
+                    color: '#3300FF',
+                    textColor: 'white',
+                    allDay: false
+
+                },
+                true // make the event "stick"
+            );
+            //alert(reservationsArray[resIndex]);
+            resIndex++;
+        }
+
+
+
     }
 
 
@@ -427,6 +462,7 @@ $(document).ready(function () {
                 }
             });
     }
+    //this function will check the room available for this query
     function checkRoomInSQL() {
         $.ajax({
             type: "POST",
@@ -437,11 +473,14 @@ $(document).ready(function () {
                 userId: userID.toString(),
                 start1: eventStartTime.toString(),
                 end1: eventEndTime.toString(),
-                addRes: true,
+                checkRes: true,
             },//dataString
             cache: false,
             success:function(data) {
-                //alert(data);
+                //if null -> no room
+
+                //else -> show the rooms that we got from submit.
+
             }
         });
     }
