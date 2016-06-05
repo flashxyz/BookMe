@@ -52,9 +52,11 @@ $room_reservation_table = $wpdb->prefix . "bookme_room_reservation";
 
 //get all reservations for this user id,group
 $selectSQL_reservation = $wpdb->get_results($wpdb->prepare("SELECT * FROM $room_reservation_table WHERE groupId = %d AND userId = %d ", $groupID, $userID));
+$numberOfReservation = sizeof($selectSQL_reservation);
+
 $reservation_array = [];
 $index = 0;
-while ($index < $numberOfRooms) {
+while ($index < $numberOfReservation) {
     $resCell[0] = $selectSQL_reservation[$index]->roomId;
     $resCell[1] = $selectSQL_reservation[$index]->startTime;
     $resCell[2] = $selectSQL_reservation[$index]->endTime;

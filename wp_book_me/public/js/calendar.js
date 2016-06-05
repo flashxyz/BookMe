@@ -186,7 +186,8 @@ $(document).ready(function () {
         // $resCell[0] = $selectSQL_reservation[$index]->roomId;
         // $resCell[1] = $selectSQL_reservation[$index]->startTime;
         // $resCell[2] = $selectSQL_reservation[$index]->endTime;
-
+        
+        
         var resIndex = 0;
 
         while(resIndex < reservationsArray.length)
@@ -206,9 +207,7 @@ $(document).ready(function () {
             //alert(reservationsArray[resIndex]);
             resIndex++;
         }
-
-
-
+        
     }
 
 
