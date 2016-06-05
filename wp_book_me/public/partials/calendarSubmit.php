@@ -101,6 +101,15 @@ if($_POST[checkRes] == true)
 
 }
 
+if($_POST[delRes] == true)
+{
+    $eventId = $_POST['event_id'] ;
+
+    //execute the delete query of the group id we want to delete
+    $wpdb->query( $wpdb->prepare( " DELETE FROM $rooms_reservation_table WHERE reservationId = %d", $eventId));
+
+}
+
 
 
 

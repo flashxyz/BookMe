@@ -108,8 +108,14 @@ $(document).ready(function () {
             var endMinClick = date.getMinutes();
             displayOrderRoomInDialog(startHourClick, startMinClick, endHourClick, endMinClick, calEvent.title);
 
-            // $('#myCalendar').fullCalendar('removeEvents',event._id);
+            //$('#myCalendar').fullCalendar('removeEvents',event._id);
+
+
+
             $(document).on("click", "#deleteOrderButton", function (event) {
+                
+                //this function will actually delete a SQL entry via php calendar submit page
+                deleteEvent(calEvent._id);
                 $('#calendar').fullCalendar('removeEvents', function (event) {
                     return event == calEvent;
                 });
@@ -186,6 +192,7 @@ $(document).ready(function () {
         // $resCell[0] = $selectSQL_reservation[$index]->roomId;
         // $resCell[1] = $selectSQL_reservation[$index]->startTime;
         // $resCell[2] = $selectSQL_reservation[$index]->endTime;
+        //$resCell[3] = $selectSQL_reservation[$index]->reservationId;
         
         
         var resIndex = 0;
@@ -194,6 +201,7 @@ $(document).ready(function () {
         {
             calendar.fullCalendar('renderEvent',
                 {
+                    id: reservationsArray[resIndex][3].toString(),
                     title: "רשום לחדר " + reservationsArray[resIndex][0].toString(),
                     start: reservationsArray[resIndex][1].toString(),
                     end: reservationsArray[resIndex][2].toString(),
@@ -479,6 +487,23 @@ $(document).ready(function () {
 
                 //else -> show the rooms that we got from submit.
 
+            }
+        });
+    }
+    //this functions will delete event from SQL
+    function deleteEvent(eventId) {
+        $.ajax({
+            type: "POST",
+            url: submitURL,
+            data: {
+                event_id: eventId, 
+                delRes: true,
+            },//dataString
+            cache: false,
+            success:function(data) {
+                //if null -> no room
+
+                //else -> show the rooms that we got from submit.
             }
         });
     }

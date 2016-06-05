@@ -35,6 +35,7 @@ if (empty($selectSQL_rooms)) {
 
     //no rooms
 }
+//add rooms to array
 $index = 0;
 $roomsArray = [];
 $selectSQL_rooms[$index];
@@ -50,16 +51,19 @@ while ($index < $numberOfRooms) {
 //get table
 $room_reservation_table = $wpdb->prefix . "bookme_room_reservation";
 
+
 //get all reservations for this user id,group
 $selectSQL_reservation = $wpdb->get_results($wpdb->prepare("SELECT * FROM $room_reservation_table WHERE groupId = %d AND userId = %d ", $groupID, $userID));
 $numberOfReservation = sizeof($selectSQL_reservation);
 
+//add all reservations for this user to an array
 $reservation_array = [];
 $index = 0;
 while ($index < $numberOfReservation) {
     $resCell[0] = $selectSQL_reservation[$index]->roomId;
     $resCell[1] = $selectSQL_reservation[$index]->startTime;
     $resCell[2] = $selectSQL_reservation[$index]->endTime;
+    $resCell[3] = $selectSQL_reservation[$index]->reservationId;
     array_push($reservation_array, $resCell);
     $index++;
 }
@@ -380,7 +384,7 @@ $submitURL = get_site_url()."/wp-content/plugins/wp_book_me/public/partials/cale
                                     כרגע לא ידוע מה יהיה כאן
                                 </div>
                                 <br>
-                                <button id="deleteOrderButton" type="button" class="btn btn-success">מחיקת חדר</button>
+                                <button id="deleteOrderButton" type="button" data-dismiss="modal" class="btn btn-success">מחיקת חדר</button>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
