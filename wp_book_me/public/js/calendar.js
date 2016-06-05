@@ -15,7 +15,7 @@ $(document).ready(function () {
     getExcludedDays();
 
     $('#btnReserveRoom').click(reserveRoom);
-    $('#btnFindRoom').click(ShowAvailableRooms);
+    $('#btnFindRoom').click(validationFindRoom);
     
     //hide the room selection div 
     $('#roomHide').hide();
@@ -506,6 +506,20 @@ $(document).ready(function () {
                 //else -> show the rooms that we got from submit.
             }
         });
+    }
+
+    //this function will make validations of the fields
+    //and if they empty or they un legal - the site will alert the fields required.
+    function validationFindRoom(){
+        if (document.getElementById("inputStartTime").value == "") {
+        } else if (document.getElementById("inputEndTime").value == "") {
+        }
+        else if (document.getElementById("datePicker").value == "") {
+        }
+        else if (document.getElementById("inputStartTime").value >= document.getElementById("inputEndTime").value ) {
+        }
+        else
+            ShowAvailableRooms();
     }
 
     function getCheckedServices(){

@@ -395,6 +395,11 @@ $submitURL = get_site_url()."/wp-content/plugins/wp_book_me/public/partials/cale
                 </div>
             </div>
             <hr>
+            <div id="validationDialogWithUser">
+                <div class="modal fade" id="validDetailsDialog" role="dialog">
+                    <div class="modal-dialog">
+                    </div>
+                </div>
         </div>
     </div>
     <!-- /.row -->
