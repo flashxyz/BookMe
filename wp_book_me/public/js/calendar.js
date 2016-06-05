@@ -449,11 +449,11 @@ $(document).ready(function () {
                 type: "POST",
                 url:submitURL,
                 data: {
-                    group1: groupID,
-                    room1: selectedRoomId,
+                    group: groupID,
+                    room: selectedRoomId,
                     userId: userID.toString(),
-                    start1: eventStartTime.toString(),
-                    end1: eventEndTime.toString(),
+                    start: eventStartTime.toString(),
+                    end: eventEndTime.toString(),
                     addRes: true,
                 },//dataString
                 cache: false,
@@ -468,11 +468,10 @@ $(document).ready(function () {
             type: "POST",
             url:submitURL,
             data: {
-                group1: groupID,
-                room1: selectedRoomId,
+                group: groupID,
                 userId: userID.toString(),
-                start1: eventStartTime.toString(),
-                end1: eventEndTime.toString(),
+                start: eventStartTime.toString(),
+                end: eventEndTime.toString(),
                 checkRes: true,
             },//dataString
             cache: false,
