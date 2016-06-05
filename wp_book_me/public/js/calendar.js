@@ -328,7 +328,7 @@ $(document).ready(function () {
             return;
 
         for (var i = 0; i < servicesArray.length; i++) {
-            checkboxes += "<tr> <td data-halign='right' class ='tdCheckboxe'>" + servicesArray[i].toString() + "</td> <td data-halign='left'><input type='checkbox' data-group-cls='btn-group-sm'></td><td></tr>";
+            checkboxes += "<tr> <td data-halign='right' class ='tdCheckboxe'>" + servicesArray[i].toString() + "</td> <td data-halign='left'><input type='checkbox' data-group-cls='btn-group-sm' name='presentServicce'></td><td></tr>";
         }
         checkboxes+= "</table>";
 
@@ -507,6 +507,16 @@ $(document).ready(function () {
             }
         });
     }
+
+    function getCheckedServices(){
+        var checkedServices = [] ,i;
+        if(servicesArray.length == 0)
+            return;
+        checkedServices = $('input[name=presentServicce]:checked');
+
+    }
+
+
 
 
 });
