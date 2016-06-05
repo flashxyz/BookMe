@@ -59,7 +59,7 @@ if($_GET['group_id']==true AND $_GET['edit_group']==true)
 
         function deleteService(index)
         {
-            alert(index);
+            index += 1;
             window.location.replace(siteURL+'?page=wp_book_me&group_id=' + <?php echo $groupID; ?> +'&delete_service='+index);
         }
     </script>
