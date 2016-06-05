@@ -511,15 +511,27 @@ $(document).ready(function () {
     //this function will make validations of the fields
     //and if they empty or they un legal - the site will alert the fields required.
     function validationFindRoom(){
+        var addition = [];
+        addition.length = 0;
         if (document.getElementById("inputStartTime").value == "") {
-        } else if (document.getElementById("inputEndTime").value == "") {
+            addition +=" נא להזין זמן התחלה תקין";
         }
-        else if (document.getElementById("datePicker").value == "") {
+        if (document.getElementById("inputEndTime").value == "") {
+            addition +="נא להזין זמן סיום תקין";
         }
-        else if (document.getElementById("inputStartTime").value >= document.getElementById("inputEndTime").value ) {
+        if (document.getElementById("datePicker").value == "") {
+            addition +="  נא להזין תאריך תקין";
         }
-        else
+        if (document.getElementById("inputStartTime").value >= document.getElementById("inputEndTime").value ) {
+            addition +="נא למלא זמן התחלה קטן מזמן סיום";
+        }
+        if(addition.length == 0) {
             ShowAvailableRooms();
+        }
+        else {
+            $('#validOrderRoom').append(addition);
+            $('#validationDialogWithUser').modal('show');
+        }
     }
 
     function getCheckedServices(){
