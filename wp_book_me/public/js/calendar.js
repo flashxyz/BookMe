@@ -514,16 +514,16 @@ $(document).ready(function () {
         var addition = [];
         addition.length = 0;
         if (document.getElementById("inputStartTime").value == "") {
-            addition +=" נא להזין זמן התחלה תקין";
+            addition +="<p> נא להזין זמן התחלה תקין</p>";
         }
         if (document.getElementById("inputEndTime").value == "") {
-            addition +="נא להזין זמן סיום תקין";
+            addition +="<p>נא להזין זמן סיום תקין</p>";
         }
         if (document.getElementById("datePicker").value == "") {
-            addition +="  נא להזין תאריך תקין";
+            addition +=" <p> נא להזין תאריך תקין</p>";
         }
         if (document.getElementById("inputStartTime").value >= document.getElementById("inputEndTime").value ) {
-            addition +="נא למלא זמן התחלה קטן מזמן סיום";
+            addition +="<p>נא למלא זמן התחלה קטן מזמן סיום</p>";
         }
         if(addition.length == 0) {
             ShowAvailableRooms();

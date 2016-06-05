@@ -406,8 +406,8 @@ $submitURL = get_site_url()."/wp-content/plugins/wp_book_me/public/partials/cale
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 <h4 class="modal-title">Modal Header</h4>
                             </div>
-                            <div class="modal-body">
-                                <p>This is a small modal.</p>
+                            <div class="modal-body" id = "validOrderRoom">
+                                <p></p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
