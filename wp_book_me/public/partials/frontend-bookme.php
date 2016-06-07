@@ -346,21 +346,21 @@ $submitURL = get_site_url()."/wp-content/plugins/wp_book_me/public/partials/cale
                         מתי להזמין<br><br>
                         <tr class="trStart">
                             <td class='tdStart'><label>שעת התחלה: </label></td>
-                            <td class='tdStart'><input id="inputStartTime" type="text" class="time labelForom"/>
+                            <td class='tdStart'><input id="inputStartTime" type="text" class="time labelForom" data-toggle="validator" pattern="[0-9]" maxlength="5" placeholder="##:##" data-error="input time as ##:##" required/>
                             </td>
                         </tr>
                         <tr class="trStart">
                             <td class='tdStart'><label>שעת סיום: </label></td>
-                            <td class='tdStart'><input id="inputEndTime" type="text" class="time labelForom"/></td>
+                            <td class='tdStart'><input id="inputEndTime" type="text" class="time labelForom" data-toggle="validator" pattern="[0-9]" maxlength="5" placeholder="##:##" data-error="input time as ##:##" required/></td>
                         </tr>
                         <tr class="trStart">
                             <td class='tdStart'><label>תאריך:</label></td>
-                            <td class='tdStart'><input type="text" class="date start labelForom" id="datePicker"/>
+                            <td class='tdStart'><input type="text" class="date start labelForom" id="datePicker" data-toggle="validator" pattern="[0-9](/)" maxlength="10" placeholder="####/##/##" data-error="input date as ##/##/####" required/>
                             </td>
                         </tr>
                         <tr class="trStart">
                             <td class='tdStart'><label>כמות:</label></td>
-                            <td class='tdStart'><input id="quantity" type="text" class="time labelForom"/></td>
+                            <td class='tdStart'><input id="quantity" type="text" class="time labelForom" data-toggle="validator" pattern="[0-9]" maxlength="3" required/></td>
                         </tr>
 
                     </table>
