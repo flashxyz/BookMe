@@ -362,8 +362,8 @@ $submitURL = get_site_url()."/wp-content/plugins/wp_book_me/public/partials/cale
                             <td class='tdStart'><label>כמות:</label></td>
                             <td class='tdStart'><input id="quantity" type="text" class="time labelForom" data-toggle="validator" pattern="[0-9]" maxlength="3" required/></td>
                         </tr>
-
                     </table>
+                    <div id="errorInput"></div>
                 </div>
             </div>
             <div id="dialogWithUser">
