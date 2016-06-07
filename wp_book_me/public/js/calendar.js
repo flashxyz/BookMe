@@ -150,22 +150,6 @@ $(document).ready(function () {
 
         if (roomName == "בחר חדר:")
             return;
-        var currentTime = new Date();
-        if (eventStartTime.getYear() == currentTime.getYear()) {
-            if (eventStartTime.getMonth() == currentTime.getMonth()) {
-                if (eventStartTime.getDate() < currentTime.getDate())
-                    return;
-                else if (eventStartTime.getDate() == currentTime.getDate())
-                    if (eventStartTime.getHours() <= currentTime.getHours())
-                        return;
-            }
-            else if (eventStartTime.getMonth() < currentTime.getMonth())
-                return;
-
-        }
-        else if( eventStartTime.getYear() < currentTime.getYear() )
-            return;
-
 
         var roomName = $('#roomSelect').val();
         var dataString = 'groupId1' + groupID + 'roomId1' + selectedRoomId + 'userId1' + userID + 'startTime1' + eventStartTime + 'endTime' + eventEndTime ;
@@ -196,15 +180,18 @@ $(document).ready(function () {
         
         
         var resIndex = 0;
-
+        var startOrderDate;
+        var endOrderDate;
         while(resIndex < reservationsArray.length)
         {
+            startOrderDate = new Date(reservationsArray[resIndex][1]);
+            endOrderDate = new Date(reservationsArray[resIndex][2])
             calendar.fullCalendar('renderEvent',
                 {
                     id: reservationsArray[resIndex][3].toString(),
                     title: "רשום לחדר " + reservationsArray[resIndex][0].toString(),
-                    start: reservationsArray[resIndex][1].toString(),
-                    end: reservationsArray[resIndex][2].toString(),
+                    start: startOrderDate,
+                    end: endOrderDate,
                     color: '#3300FF',
                     textColor: 'white',
                     allDay: false
@@ -511,6 +498,24 @@ $(document).ready(function () {
     //this function will make validations of the fields
     //and if they empty or they un legal - the site will alert the fields required.
     function validationFindRoom(){
+
+        var currentTime = new Date();
+        if (eventStartTime.getYear() == currentTime.getYear()) {
+            if (eventStartTime.getMonth() == currentTime.getMonth()) {
+                if (eventStartTime.getDate() < currentTime.getDate())
+                    return;
+                else if (eventStartTime.getDate() == currentTime.getDate())
+                    if (eventStartTime.getHours() <= currentTime.getHours())
+                        return;
+            }
+            else if (eventStartTime.getMonth() < currentTime.getMonth())
+                return;
+
+        }
+        else if( eventStartTime.getYear() < currentTime.getYear() )
+            return;
+
+
         var addition = [];
         addition.length = 0;
         if (document.getElementById("inputStartTime").value == "") {
