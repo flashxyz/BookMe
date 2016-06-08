@@ -269,6 +269,14 @@ $(document).ready(function () {
 
     //display the available rooms to the user
     function ShowAvailableRooms(startTime, endTime) {
+
+        //room capacity is now at :
+        //roomsArray[i][2]
+
+        //this is user input quantity
+        demandedCapacity = $('#quantity').val();
+
+
         var j, i;
         var y = document.getElementById("roomSelect");
 
@@ -281,7 +289,8 @@ $(document).ready(function () {
             && $('#inputStartTime').val() < $('#inputEndTime').val()) {
 
             for (i = 0; i < roomsArray.length; i++) {
-                $('#roomSelect').append("<option>" + roomsArray[i][1] + "</option>");
+                if(demandedCapacity <= roomsArray[i][2] )
+                     $('#roomSelect').append("<option>" + roomsArray[i][1] + "</option>");
                 //.attr("value",key).text(value))
             }
             $('#roomHide').show();
@@ -295,6 +304,7 @@ $(document).ready(function () {
             $('#roomHide').hide();
             $('#btnFindRoom').show();
         }
+
     }
 
 

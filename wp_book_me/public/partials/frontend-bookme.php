@@ -44,6 +44,7 @@ $numberOfRooms = sizeof($selectSQL_rooms);
 while ($index < $numberOfRooms) {
     $roomCell[0] = $selectSQL_rooms[$index]->roomId;
     $roomCell[1] = $selectSQL_rooms[$index]->roomName;
+    $roomCell[2] = $selectSQL_rooms[$index]->capacity;
     array_push($roomsArray, $roomCell);
     $index++;
 }
@@ -85,6 +86,7 @@ $brightness = 0.2; // 80% brighter
 $veryBrightColor = colourBrightness($calendarColor, $brightness);
 $brightness = 0.9; // 10% lighter
 $darkerColor = colourBrightness($calendarColor, $brightness);
+
 
 //this function will generate a brighter color than the one given as a parameter.
 //the whole calendar colors will be based upon that.

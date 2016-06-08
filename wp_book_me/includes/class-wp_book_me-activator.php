@@ -77,7 +77,6 @@ class Wp_book_me_Activator {
 				groupId BIGINT,
 				roomName VARCHAR(50),
 				capacity INT(4),
-				occupied INT(4),
 				services VARCHAR(8000),
 				isActive INT(1),
 				activeDays VARCHAR(180),
