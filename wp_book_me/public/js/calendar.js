@@ -11,6 +11,7 @@ $(document).ready(function () {
 
     var errorCurrentTime = 1;
     var errorMenyHourPerUser = 2;
+    var errorMenyQuantity = 0;
 
     //this array represent the days that will be excluded from calendar given days
     var excludedDays = [];
@@ -544,6 +545,7 @@ $(document).ready(function () {
             return;
         }
         $('#errorInput').hide();
+        errorMenyQuantity = document.getElementById("quantity").value;
         var currentTime = new Date();
         if (eventStartTime.getYear() == currentTime.getYear()) {
             if (eventStartTime.getMonth() == currentTime.getMonth()) {
@@ -567,6 +569,12 @@ $(document).ready(function () {
             cleanInErrorInput(errorCurrentTime);
             return;
         }
+        else if (!atoiInJS(errorMenyQuantity))
+        {
+            cleanInErrorInput(50);
+            return;
+        }
+
 
 
         var addition = [];
@@ -611,11 +619,28 @@ $(document).ready(function () {
             errorInput += preventManyHours + " שעות! ";
             errorInput += "</div>";
         }
+        else if (eroorInput == 50) {
+            errorInput += "<div id='errorInput'> *שים לב לכמות - היא לא תקנית, ";
+            errorInput += preventManyHours + " כמות! ";
+            errorInput += "</div>";
+        }
+
         $("#errorInput").replaceWith(errorInput);
         $('#datePicker').val("");
         $('#inputStartTime').val("");
         $('#inputEndTime').val("");
         $('#errorInput').show();
+    }
+
+    function atoiInJS(str){
+        if(str == null || str.length == 0)
+            return false;
+        for(var i = o; i < str.length; i++)
+        {
+            if(str[i] > "9" || str[i] < "0")
+                return false;
+        }
+        return true;
     }
 
 
