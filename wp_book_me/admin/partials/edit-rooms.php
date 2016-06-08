@@ -30,8 +30,6 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
     //get active days from group
     $activeDays = unserialize($selectSQLGroup[0]->activeDays);
 
-    //get room Services
-    $checkedServices = unserialize($selectSQL[0]->services);
 
     $sundayChecked = $activeDays["sunday"];
     $mondayChecked = $activeDays["monday"];
@@ -55,7 +53,7 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
     $fromTime = $selectSQLGroup[0]->fromTime;
     $toTime = $selectSQLGroup[0]->toTime;
 
-    $services = unserialize($selectSQLGroup[0]->services);
+    $services = unserialize($selectSQLGroup[0] -> services);
 
     ?>
 
@@ -81,7 +79,7 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
 				$group_id = $value -> groupId;
 
                 $ActiveRoomDaysByID = unserialize($value -> activeDays);
-
+                $servicesByID = unserialize($value -> services);
 
                 $sundayCheckedRoomByID = $ActiveRoomDaysByID["sunday"];
                 $mondayCheckedRoomByID = $ActiveRoomDaysByID["monday"];
@@ -231,7 +229,7 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
                                 <tr>
                                     <td width='100px' >
                                         <label for="<?php echo $this->plugin_name; ?>_room_<?php echo $room_id; ?>_service_<?php echo $serviceIndex; ?>">
-                                            <input type="checkbox" id="<?php echo $this->plugin_name; ?>_room_<?php echo $room_id; ?>_service_<?php echo $serviceIndex; ?>" name="<?php echo $this->plugin_name; ?>[room_<?php echo $room_id; ?>_service_<?php echo $serviceIndex; ?>]" value="1" <?php checked($checkedServices[$serv], 1); ?>/>
+                                            <input type="checkbox" id="<?php echo $this->plugin_name; ?>_room_<?php echo $room_id; ?>_service_<?php echo $serviceIndex; ?>" name="<?php echo $this->plugin_name; ?>[room_<?php echo $room_id; ?>_service_<?php echo $serviceIndex; ?>]" value="1" <?php checked($servicesByID[$serv], 1); ?>/>
                                             <sapn> <?php echo $serv?> </sapn>
                                         </label>
                                     </td>
