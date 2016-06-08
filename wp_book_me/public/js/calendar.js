@@ -44,6 +44,7 @@ $(document).ready(function () {
     displayServicesDescription();
 
 
+
     var calendar;
     calendar = $('#calendar').fullCalendar({
         header: {
@@ -141,7 +142,7 @@ $(document).ready(function () {
             displayOrderRoomInDialog(startHourClick, startMinClick, endHourClick, endMinClick, calEvent.title);
 
             //$('#myCalendar').fullCalendar('removeEvents',event._id);
-
+            findservices();
 
             $(document).on("click", "#deleteOrderButton", function (event) {
 
@@ -642,6 +643,21 @@ $(document).ready(function () {
         }
         return true;
     }
+    function findservices() {
+        var lala =[];
+        var lolo = $(".tdCheckboxe").text();
+        var j = 0;
+        $("input[name='presentServicce']").each( function () {
+            if( $(this).val() == "on" )
+            {
+                lala[j] = lolo[j];
+                lala.length++;
+                j++;
+            }
+        });
+        alert(lala);
+    }
+
 
 
 });
