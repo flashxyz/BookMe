@@ -80,6 +80,17 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
                 $roomIndex++;
 				$group_id = $value -> groupId;
 
+                $ActiveRoomDaysByID = unserialize($value -> activeDays);
+
+
+                $sundayCheckedRoomByID = $ActiveRoomDaysByID["sunday"];
+                $mondayCheckedRoomByID = $ActiveRoomDaysByID["monday"];
+                $tuesdayCheckedRoomByID = $ActiveRoomDaysByID["tuesday"];
+                $wednesdayCheckedRoomByID = $ActiveRoomDaysByID["wednesday"];
+                $thursdayCheckedRoomByID = $ActiveRoomDaysByID["thursday"];
+                $fridayCheckedRoomByID = $ActiveRoomDaysByID["friday"];
+                $saturdayCheckedRoomByID = $ActiveRoomDaysByID["saturday"];
+
                 $room_id = $value -> roomId;
 
 				if ($roomIndex % 2 != 0)
@@ -163,25 +174,25 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
                                 <tr>
                                     <td width='100px' >
                                         <label for="<?php echo $this->plugin_name; ?>_activeSunday_<?php echo $room_id; ?>">
-                                            <input type="checkbox" id="<?php echo $this->plugin_name; ?>_activeSunday_<?php echo $room_id; ?>" name="<?php echo $this->plugin_name; ?>[activeSunday_<?php echo $room_id; ?>]" value="1" <?php echo $disableSunday ?> <?php checked($sundayChecked, 1); ?>/>
+                                            <input type="checkbox" id="<?php echo $this->plugin_name; ?>_activeSunday_<?php echo $room_id; ?>" name="<?php echo $this->plugin_name; ?>[activeSunday_<?php echo $room_id; ?>]" value="1" <?php echo $disableSunday ?> <?php checked($sundayCheckedRoomByID, 1); ?>/>
                                             <sapn>Sunday</sapn>
                                         </label>
                                     </td>
                                     <td width='100px' >
                                         <label for="<?php echo $this->plugin_name; ?>_activeMonday_<?php echo $room_id; ?>">
-                                            <input type="checkbox" id="<?php echo $this->plugin_name; ?>_activeMonday_<?php echo $room_id; ?>" name="<?php echo $this->plugin_name; ?>[activeMonday_<?php echo $room_id; ?>]" value="1" <?php echo $disableMonday ?> <?php checked($mondayChecked, 1); ?>/>
+                                            <input type="checkbox" id="<?php echo $this->plugin_name; ?>_activeMonday_<?php echo $room_id; ?>" name="<?php echo $this->plugin_name; ?>[activeMonday_<?php echo $room_id; ?>]" value="1" <?php echo $disableMonday ?> <?php checked($mondayCheckedRoomByID, 1); ?>/>
                                             <sapn>Monday</sapn>
                                         </label>
                                     </td>
                                     <td width='100px' >
                                         <label for="<?php echo $this->plugin_name; ?>_activeTuesday">
-                                            <input type="checkbox" id="<?php echo $this->plugin_name; ?>_activeTuesday" name="<?php echo $this->plugin_name; ?>[activeTuesday]" value="1" <?php echo $disableThursday ?> <?php checked($tuesdayChecked, 1); ?>/>
+                                            <input type="checkbox" id="<?php echo $this->plugin_name; ?>_activeTuesday_<?php echo $room_id; ?>" name="<?php echo $this->plugin_name; ?>[activeTuesday_<?php echo $room_id; ?>]" value="1" <?php echo $disableThursday ?> <?php checked($tuesdayCheckedRoomByID, 1); ?>/>
                                             <sapn>Tuesday</sapn>
                                         </label>
                                     </td>
                                     <td width='100px' >
                                         <label for="<?php echo $this->plugin_name; ?>_activeWednesday_<?php echo $room_id; ?>">
-                                            <input type="checkbox" id="<?php echo $this->plugin_name; ?>_activeWednesday_<?php echo $room_id; ?>" name="<?php echo $this->plugin_name; ?>[activeWednesday_<?php echo $room_id; ?>]" value="1" <?php echo $disableWednesday ?> <?php checked($wednesdayChecked, 1); ?>/>
+                                            <input type="checkbox" id="<?php echo $this->plugin_name; ?>_activeWednesday_<?php echo $room_id; ?>" name="<?php echo $this->plugin_name; ?>[activeWednesday_<?php echo $room_id; ?>]" value="1" <?php echo $disableWednesday ?> <?php checked($wednesdayCheckedRoomByID, 1); ?>/>
                                             <sapn>Wednesday</sapn>
                                         </label>
                                     </td>
@@ -190,19 +201,19 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
                                 <tr>
                                     <td width='100px' >
                                         <label for="<?php echo $this->plugin_name; ?>_activeThursday_<?php echo $room_id; ?>">
-                                            <input type="checkbox" id="<?php echo $this->plugin_name; ?>_activeThursday_<?php echo $room_id; ?>" name="<?php echo $this->plugin_name; ?>[activeThursday_<?php echo $room_id; ?>]" value="1" <?php echo $disableThursday ?> <?php checked($thursdayChecked, 1); ?>/>
+                                            <input type="checkbox" id="<?php echo $this->plugin_name; ?>_activeThursday_<?php echo $room_id; ?>" name="<?php echo $this->plugin_name; ?>[activeThursday_<?php echo $room_id; ?>]" value="1" <?php echo $disableThursday ?> <?php checked($thursdayCheckedRoomByID, 1); ?>/>
                                             <sapn>Thursday</sapn>
                                         </label>
                                     </td >
                                     <td width='100px' >
                                         <label for="<?php echo $this->plugin_name; ?>_activeFriday_<?php echo $room_id; ?>">
-                                            <input type="checkbox" id="<?php echo $this->plugin_name; ?>_activeFriday_<?php echo $room_id; ?>" name="<?php echo $this->plugin_name; ?>[activeFriday_<?php echo $room_id; ?>]" value="1" <?php echo $disableFriday ?> <?php checked($fridayChecked, 1); ?>/>
+                                            <input type="checkbox" id="<?php echo $this->plugin_name; ?>_activeFriday_<?php echo $room_id; ?>" name="<?php echo $this->plugin_name; ?>[activeFriday_<?php echo $room_id; ?>]" value="1" <?php echo $disableFriday ?> <?php checked($fridayCheckedRoomByID, 1); ?>/>
                                             <sapn>Friday</sapn>
                                         </label>
                                     </td>
                                     <td width='100px'>
                                         <label for="<?php echo $this->plugin_name; ?>_activeSaturday_<?php echo $room_id; ?>">
-                                            <input type="checkbox" id="<?php echo $this->plugin_name; ?>_activeSaturday_<?php echo $room_id; ?>" name="<?php echo $this->plugin_name; ?>[activeSaturday_<?php echo $room_id; ?>]" value="1" <?php echo $disableSaturday ?> <?php checked($saturdayChecked, 1); ?>/>
+                                            <input type="checkbox" id="<?php echo $this->plugin_name; ?>_activeSaturday_<?php echo $room_id; ?>" name="<?php echo $this->plugin_name; ?>[activeSaturday_<?php echo $room_id; ?>]" value="1" <?php echo $disableSaturday ?> <?php checked($saturdayCheckedRoomByID, 1); ?>/>
                                             <sapn>Saturday</sapn>
                                         </label>
                                     </td>
