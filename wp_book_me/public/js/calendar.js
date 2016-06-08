@@ -7,7 +7,11 @@ $(document).ready(function () {
     var eventEndTime;
 
     const ISRAEL_TIME_DIFF = 3;
+    var preventManyHours = 3;
 
+    var errorCurrentTime = 1;
+    var errorMenyHourPerUser = 2;
+    var errorMenyQuantity = 0;
 
     //this array represent the days that will be excluded from calendar given days
     var excludedDays = [];
@@ -15,16 +19,18 @@ $(document).ready(function () {
     getExcludedDays();
 
     $('#btnReserveRoom').click(reserveRoom);
-    $('#btnFindRoom').click(ShowAvailableRooms);
-    
+    $('#btnFindRoom').click(validationFindRoom);
+
     //hide the room selection div 
     $('#roomHide').hide();
+    $('#errorInput').hide();
+
     $('#reservationDetailsDialog').modal('hide');
 
     $('#datePicker').change(labelsChangeEvent);
     $('#inputStartTime').change(labelsChangeEvent);
     $('#inputEndTime').change(labelsChangeEvent);
-    
+
     //when a different room is chosen, the picture need to be updated using setRoomsPicture.
     $('#roomSelect').change(setRoomsPicture);
 
@@ -33,9 +39,10 @@ $(document).ready(function () {
     var calendarBeginTime = fromTime;
     var calendarEndTime = toTime;
     var servicesArray = services;
-    
+
     displayCheckboxes("checkboxes");
     displayServicesDescription();
+
 
 
     var calendar;
@@ -47,6 +54,7 @@ $(document).ready(function () {
         },
 
         select: function (start, end, jsEvent, view) {
+            $('#errorInput').hide();
             $('#roomHide').hide();
             $('#btnFindRoom').show();
 
@@ -67,6 +75,31 @@ $(document).ready(function () {
             var minEnd = dateEnd.getMinutes();
             var yearEnd = dateEnd.getFullYear();
 
+            var currentTime = new Date();
+
+            if (endHour < 0)
+                dayEnd--;
+
+
+            if (startHour < 0 && endHour < 0)
+                dayEnd++;
+
+            if (dayStart != dayEnd || currentTime.getDate() > dayStart) {
+                cleanInErrorInput(errorCurrentTime);
+                return;
+            }
+            if (currentTime.getDate() == dayStart && currentTime.getHours() >= startHour) {
+                cleanInErrorInput(errorCurrentTime);
+                return;
+            }
+            if (endHour < 0)
+                endHour += 24;
+            if (startHour < 0)
+                startHour += 24;
+            if ((endHour - startHour) > preventManyHours) {
+                cleanInErrorInput(errorMenyHourPerUser);
+                return;
+            }
             eventEndTime = new Date(yearEnd, monthEnd - 1, dayEnd, endHour, minEnd);
             eventStartTime = new Date(yearStart, monthStart - 1, dayStart, startHour, minStart);
 
@@ -92,7 +125,7 @@ $(document).ready(function () {
         weekends: true,
         selectable: true,
         selectHelper: true,
-        weekNumbers: true,  
+        weekNumbers: true,
         fixedWeekCount: false,
         allDayDefault: true,
 
@@ -109,11 +142,10 @@ $(document).ready(function () {
             displayOrderRoomInDialog(startHourClick, startMinClick, endHourClick, endMinClick, calEvent.title);
 
             //$('#myCalendar').fullCalendar('removeEvents',event._id);
-
-
+            findservices();
 
             $(document).on("click", "#deleteOrderButton", function (event) {
-                
+
                 //this function will actually delete a SQL entry via php calendar submit page
                 deleteEvent(calEvent._id);
                 $('#calendar').fullCalendar('removeEvents', function (event) {
@@ -150,25 +182,9 @@ $(document).ready(function () {
 
         if (roomName == "בחר חדר:")
             return;
-        var currentTime = new Date();
-        if (eventStartTime.getYear() == currentTime.getYear()) {
-            if (eventStartTime.getMonth() == currentTime.getMonth()) {
-                if (eventStartTime.getDate() < currentTime.getDate())
-                    return;
-                else if (eventStartTime.getDate() == currentTime.getDate())
-                    if (eventStartTime.getHours() <= currentTime.getHours())
-                        return;
-            }
-            else if (eventStartTime.getMonth() < currentTime.getMonth())
-                return;
-
-        }
-        else if( eventStartTime.getYear() < currentTime.getYear() )
-            return;
-
 
         var roomName = $('#roomSelect').val();
-        var dataString = 'groupId1' + groupID + 'roomId1' + selectedRoomId + 'userId1' + userID + 'startTime1' + eventStartTime + 'endTime' + eventEndTime ;
+        var dataString = 'groupId1' + groupID + 'roomId1' + selectedRoomId + 'userId1' + userID + 'startTime1' + eventStartTime + 'endTime' + eventEndTime;
 
         sendDataToPhp();
 
@@ -193,18 +209,20 @@ $(document).ready(function () {
         // $resCell[1] = $selectSQL_reservation[$index]->startTime;
         // $resCell[2] = $selectSQL_reservation[$index]->endTime;
         //$resCell[3] = $selectSQL_reservation[$index]->reservationId;
-        
-        
-        var resIndex = 0;
 
-        while(resIndex < reservationsArray.length)
-        {
+
+        var resIndex = 0;
+        var startOrderDate;
+        var endOrderDate;
+        while (resIndex < reservationsArray.length) {
+            startOrderDate = new Date(reservationsArray[resIndex][1]);
+            endOrderDate = new Date(reservationsArray[resIndex][2])
             calendar.fullCalendar('renderEvent',
                 {
                     id: reservationsArray[resIndex][3].toString(),
                     title: "רשום לחדר " + reservationsArray[resIndex][0].toString(),
-                    start: reservationsArray[resIndex][1].toString(),
-                    end: reservationsArray[resIndex][2].toString(),
+                    start: startOrderDate,
+                    end: endOrderDate,
                     color: '#3300FF',
                     textColor: 'white',
                     allDay: false
@@ -215,7 +233,7 @@ $(document).ready(function () {
             //alert(reservationsArray[resIndex]);
             resIndex++;
         }
-        
+
     }
 
 
@@ -303,6 +321,7 @@ $(document).ready(function () {
             }
             $('#roomHide').hide();
             $('#btnFindRoom').show();
+
         }
 
     }
@@ -320,7 +339,7 @@ $(document).ready(function () {
             }
 
         var noImage = "http://bookme.myweb.jce.ac.il/wp-content/uploads/2016/06/noPic.jpg";
-       // var imgstring = "./img/" + availableRoomsTestArray[i][2] + ".jpg";
+        // var imgstring = "./img/" + availableRoomsTestArray[i][2] + ".jpg";
         var style = "width:240px;height:240px;";
 
         $('#img').replaceWith("<img id = 'img' src=" + noImage + " style=" + style + ">");
@@ -329,8 +348,6 @@ $(document).ready(function () {
 
     //change the services to checkboxes and display them in services div
     function displayCheckboxes(whichId) {
-
-
         var checkboxes = "<table class='table table-sm text-right table-cool'  align='right' >";
 
 
@@ -338,16 +355,18 @@ $(document).ready(function () {
             return;
 
         for (var i = 0; i < servicesArray.length; i++) {
-            checkboxes += "<tr> <td data-halign='right' class ='tdCheckboxe'>" + servicesArray[i].toString() + "</td> <td data-halign='left'><input type='checkbox' data-group-cls='btn-group-sm'></td><td></tr>";
+            checkboxes += "<tr> <td data-halign='right' class ='tdCheckboxe'>" + servicesArray[i].toString() + "</td> <td data-halign='left'><input type='checkbox' data-group-cls='btn-group-sm' name='presentServicce'></td><td></tr>";
         }
-        checkboxes+= "</table>";
+        checkboxes += "</table>";
 
         if (whichId == "checkboxes") {
             $('#checkboxes').append(checkboxes);
-            $(':checkbox').checkboxpicker({onLabel:"כן",offLabel:"לא"});        }
+            $(':checkbox').checkboxpicker({onLabel: "כן", offLabel: "לא"});
+        }
         if (whichId == "checkboxes1") {
             $('#checkboxes1').append(checkboxes);
-            $(':checkbox').checkboxpicker({onLabel:"כן",offLabel:"לא"});        }
+            $(':checkbox').checkboxpicker({onLabel: "כן", offLabel: "לא"});
+        }
     }
 
 
@@ -364,7 +383,6 @@ $(document).ready(function () {
     }
 
 
-
     //display services in description
     function displayServicesDescription() {
         var services = "<ul>";
@@ -378,9 +396,9 @@ $(document).ready(function () {
     //change eventStartTime timEnd fo user changes in labels
     // e.g eventEndTime = ( "Mon May 30 2016 16:00:00 GMT+03:00(שעון קיץ ירושלים)" )
     function labelsChangeEvent() {
+        $('#errorInput').hide();
         $('#roomHide').hide();
         $('#btnFindRoom').show();
-
         var i;
         var day = "";
         var month = "";
@@ -432,6 +450,11 @@ $(document).ready(function () {
         if (minEnd == "" || hourEnd == "" || minStart == "" || hourStart == "")
             return;
 
+        if (hourStart >= hourEnd) {
+            cleanInErrorInput(errorCurrentTime);
+            return;
+        }
+
         eventStartTime = new Date(year, month - 1, day, hourStart, minStart);
         eventEndTime = new Date(year, month - 1, day, hourEnd, minEnd);
     }
@@ -444,9 +467,9 @@ $(document).ready(function () {
         return hours + minutes / 60;
     }
 
-    function displayOrderRoomInDialog(startHour, startMin, endHour, endMin, nameRoom){
-        var startDisplay = displayProperTimeLabel(startHour,startMin);
-        var endDisplay = displayProperTimeLabel(endHour,endMin);
+    function displayOrderRoomInDialog(startHour, startMin, endHour, endMin, nameRoom) {
+        var startDisplay = displayProperTimeLabel(startHour, startMin);
+        var endDisplay = displayProperTimeLabel(endHour, endMin);
         var description = "<div id = 'diplayOrderRoom'' class='modal-body'>";
         description += "החדר מוזמן לשעה: "
         description += startDisplay;
@@ -463,27 +486,28 @@ $(document).ready(function () {
 
     function sendDataToPhp() {
         $.ajax({
-                type: "POST",
-                url:submitURL,
-                data: {
-                    group: groupID,
-                    room: selectedRoomId,
-                    userId: userID.toString(),
-                    start: eventStartTime.toString(),
-                    end: eventEndTime.toString(),
-                    addRes: true,
-                },//dataString
-                cache: false,
-                success:function(data) {
-                    //alert(data);
-                }
-            });
+            type: "POST",
+            url: submitURL,
+            data: {
+                group: groupID,
+                room: selectedRoomId,
+                userId: userID.toString(),
+                start: eventStartTime.toString(),
+                end: eventEndTime.toString(),
+                addRes: true,
+            },//dataString
+            cache: false,
+            success: function (data) {
+                //alert(data);
+            }
+        });
     }
+
     //this function will check the room available for this query
     function checkRoomInSQL() {
         $.ajax({
             type: "POST",
-            url:submitURL,
+            url: submitURL,
             data: {
                 group: groupID,
                 userId: userID.toString(),
@@ -492,7 +516,7 @@ $(document).ready(function () {
                 checkRes: true,
             },//dataString
             cache: false,
-            success:function(data) {
+            success: function (data) {
                 //if null -> no room
 
                 //else -> show the rooms that we got from submit.
@@ -500,23 +524,150 @@ $(document).ready(function () {
             }
         });
     }
+
     //this functions will delete event from SQL
     function deleteEvent(eventId) {
         $.ajax({
             type: "POST",
             url: submitURL,
             data: {
-                event_id: eventId, 
+                event_id: eventId,
                 delRes: true,
             },//dataString
             cache: false,
-            success:function(data) {
+            success: function (data) {
                 //if null -> no room
 
                 //else -> show the rooms that we got from submit.
             }
         });
     }
+
+    //this function will make validations of the fields
+    //and if they empty or they un legal - the site will alert the fields required.
+    function validationFindRoom() {
+
+        if (!eventStartTime) {
+            cleanInErrorInput(errorCurrentTime);
+            return;
+        }
+        if ($('#inputEndTime').val() == "" || $('#inputStartTime').val() == "" || $('#datePicker').val() == "") {
+            cleanInErrorInput(errorCurrentTime);
+            return;
+        }
+        $('#errorInput').hide();
+        errorMenyQuantity = document.getElementById("quantity").value;
+        var currentTime = new Date();
+        if (eventStartTime.getYear() == currentTime.getYear()) {
+            if (eventStartTime.getMonth() == currentTime.getMonth()) {
+                if (eventStartTime.getDate() < currentTime.getDate()) {
+                    cleanInErrorInput(errorCurrentTime);
+                    return;
+                }
+                else if (eventStartTime.getDate() == currentTime.getDate())
+                    if (eventStartTime.getHours() <= currentTime.getHours()
+                        || (eventEndTime.getHours() - eventStartTime.getHours()) > preventManyHours) {
+                        cleanInErrorInput(errorCurrentTime);
+                        return;
+                    }
+            }
+            else if (eventStartTime.getMonth() < currentTime.getMonth()) {
+                cleanInErrorInput(errorCurrentTime);
+                return;
+            }
+        }
+        else if (eventStartTime.getYear() < currentTime.getYear()) {
+            cleanInErrorInput(errorCurrentTime);
+            return;
+        }
+        else if (!atoiInJS(errorMenyQuantity))
+        {
+            cleanInErrorInput(50);
+            return;
+        }
+
+
+
+        var addition = [];
+        addition.length = 0;
+        if (document.getElementById("inputStartTime").value == "") {
+            addition += "<p> נא להזין זמן התחלה תקין</p>";
+        }
+        if (document.getElementById("inputEndTime").value == "") {
+            addition += "<p>נא להזין זמן סיום תקין</p>";
+        }
+        if (document.getElementById("datePicker").value == "") {
+            addition += " <p> נא להזין תאריך תקין</p>";
+        }
+        if (document.getElementById("inputStartTime").value >= document.getElementById("inputEndTime").value) {
+            addition += "<p>נא למלא זמן התחלה קטן מזמן סיום</p>";
+        }
+        if (addition.length == 0) {
+            ShowAvailableRooms();
+        }
+        else {
+            $('#validOrderRoom').append(addition);
+            $('#validationDialogWithUser').modal('show');
+        }
+    }
+
+    function getCheckedServices() {
+        var checkedServices = [], i;
+        if (servicesArray.length == 0)
+            return;
+        checkedServices = $('input[name=presentServicce]:checked');
+
+    }
+
+    function cleanInErrorInput(eroorInput) {
+        var errorInput = "";
+        if (eroorInput == errorCurrentTime) {
+            errorInput += "<div id='errorInput'> *שים לב לתאריך והשעה, ";
+            errorInput += "</div>";
+        }
+        else if (eroorInput == errorMenyHourPerUser) {
+            errorInput += "<div id='errorInput'> * אינך יכול להזמין יותר מ- ";
+            errorInput += preventManyHours + " שעות! ";
+            errorInput += "</div>";
+        }
+        else if (eroorInput == 50) {
+            errorInput += "<div id='errorInput'> *שים לב לכמות - היא לא תקנית, ";
+            errorInput += preventManyHours + " כמות! ";
+            errorInput += "</div>";
+        }
+
+        $("#errorInput").replaceWith(errorInput);
+        $('#datePicker').val("");
+        $('#inputStartTime').val("");
+        $('#inputEndTime').val("");
+        $('#errorInput').show();
+    }
+
+    function atoiInJS(str){
+        if(str == null || str.length == 0)
+            return false;
+        for(var i = o; i < str.length; i++)
+        {
+            if(str[i] > "9" || str[i] < "0")
+                return false;
+        }
+        return true;
+    }
+    function findservices() {
+        var lala =[];
+        var lolo = $(".tdCheckboxe").text();
+        var j = 0;
+        $("input[name='presentServicce']").each( function () {
+            if( $(this).val() == "on" )
+            {
+                lala[j] = lolo[j];
+                lala.length++;
+                j++;
+            }
+        });
+        alert(lala);
+    }
+
 
 
 });

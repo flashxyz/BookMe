@@ -348,24 +348,24 @@ $submitURL = get_site_url()."/wp-content/plugins/wp_book_me/public/partials/cale
                         מתי להזמין<br><br>
                         <tr class="trStart">
                             <td class='tdStart'><label>שעת התחלה: </label></td>
-                            <td class='tdStart'><input id="inputStartTime" type="text" class="time labelForom"/>
+                            <td class='tdStart'><input id="inputStartTime" type="text" class="time labelForom" data-toggle="validator" pattern="[0-9]" maxlength="5" placeholder="##:##" data-error="input time as ##:##" required/>
                             </td>
                         </tr>
                         <tr class="trStart">
                             <td class='tdStart'><label>שעת סיום: </label></td>
-                            <td class='tdStart'><input id="inputEndTime" type="text" class="time labelForom"/></td>
+                            <td class='tdStart'><input id="inputEndTime" type="text" class="time labelForom" data-toggle="validator" pattern="[0-9]" maxlength="5" placeholder="##:##" data-error="input time as ##:##" required/></td>
                         </tr>
                         <tr class="trStart">
                             <td class='tdStart'><label>תאריך:</label></td>
-                            <td class='tdStart'><input type="text" class="date start labelForom" id="datePicker"/>
+                            <td class='tdStart'><input type="text" class="date start labelForom" id="datePicker" data-toggle="validator" pattern="[0-9](/)" maxlength="10" placeholder="####/##/##" data-error="input date as ##/##/####" required/>
                             </td>
                         </tr>
                         <tr class="trStart">
                             <td class='tdStart'><label>כמות:</label></td>
-                            <td class='tdStart'><input id="quantity" type="text" class="time labelForom"/></td>
+                            <td class='tdStart'><input id="quantity" type="text" class="time labelForom" data-toggle="validator" pattern="[0-9]" maxlength="3" required/></td>
                         </tr>
-
                     </table>
+                    <div id="errorInput"></div>
                 </div>
             </div>
             <div id="dialogWithUser">
@@ -397,6 +397,27 @@ $submitURL = get_site_url()."/wp-content/plugins/wp_book_me/public/partials/cale
                 </div>
             </div>
             <hr>
+            <div id="validationDialogWithUser">
+                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Small Modal</button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Modal Header</h4>
+                            </div>
+                            <div class="modal-body" id = "validOrderRoom">
+                                <p></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <!-- /.row -->

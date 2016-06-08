@@ -59,7 +59,7 @@ if($_GET['group_id']==true AND $_GET['edit_group']==true)
 
         function deleteService(index)
         {
-            alert(index);
+            index += 1;
             window.location.replace(siteURL+'?page=wp_book_me&group_id=' + <?php echo $groupID; ?> +'&delete_service='+index);
         }
     </script>
@@ -237,34 +237,7 @@ if($_GET['group_id']==true AND $_GET['edit_group']==true)
                     </td>
                 </tr>
             </table>
-    
-    
-    
-            <br><span>Calendar view mode: </span><hr>
-            <table width='300px'>
-                <tr>
-                    <td width='100px' >
-                        <label for="<?php echo $this->plugin_name; ?>_calendarViewMode">
-                            <input type="radio" id="<?php echo $this->plugin_name; ?>_calendarViewMode" name="<?php echo $this->plugin_name; ?>[calendarViewMode]" value="month" <?php checked($viewMode, "month"); ?> />
-                            <sapn>Month</sapn>
-                        </label>
-                    </td>
-                    <td width='100px' >
-                        <label for="<?php echo $this->plugin_name; ?>_calendarViewMode">
-                            <input type="radio" id="<?php echo $this->plugin_name; ?>_calendarViewMode" name="<?php echo $this->plugin_name; ?>[calendarViewMode]" value="week" <?php checked($viewMode, "week"); ?>/>
-                            <sapn>Week</sapn>
-                        </label>
-                    </td>
-                    <td width='100px' >
-                        <label for="<?php echo $this->plugin_name; ?>_calendarViewMode">
-                            <input type="radio" id="<?php echo $this->plugin_name; ?>_calendarViewMode" name="<?php echo $this->plugin_name; ?>[calendarViewMode]" value="agenda" <?php checked($viewMode, "agenda"); ?>/>
-                            <sapn>Agenda</sapn>
-                        </label>
-                    </td>
-                </tr>
-    
-    
-            </table>
+
             <br>
             <br>
             <table width="450px">

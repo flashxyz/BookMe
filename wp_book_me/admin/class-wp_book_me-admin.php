@@ -194,6 +194,10 @@ class Wp_book_me_Admin {
 		{
 			require_once('partials/add-service.php');
 		}
+		if($_GET['group_id']==true AND $_GET['delete_service']==true)
+		{
+			require_once('partials/delete-service.php');
+		}
 
 
 	}
