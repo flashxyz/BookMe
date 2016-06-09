@@ -355,7 +355,7 @@ $(document).ready(function () {
             return;
 
         for (var i = 0; i < servicesArray.length; i++) {
-            checkboxes += "<tr> <td data-halign='right' class ='tdCheckboxe'>" + servicesArray[i].toString() + "</td> <td data-halign='left'><input type='checkbox' data-group-cls='btn-group-sm' name='presentServicce' id = "+servicesArray[i].toString()+"></td><td></tr>";
+            checkboxes += "<tr> <td data-halign='right' class ='tdCheckboxe'>" + servicesArray[i].toString() + "</td> <td data-halign='left'><input type='checkbox' data-group-cls='btn-group-sm' name='presentServicce' id = "+i+"></td><td></tr>";
         }
         checkboxes += "</table>";
 
@@ -635,7 +635,7 @@ $(document).ready(function () {
         var userServices = [];
         var j = 0;
         for (var i = 0; i < servicesArray.length; i++)
-            if ($('#' + servicesArray[i].toString()).prop('checked')) {
+            if ($('#' + i).prop('checked')) {
                 userServices[j] = servicesArray[i].toString();
                 j++;
             }
