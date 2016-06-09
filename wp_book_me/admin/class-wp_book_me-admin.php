@@ -101,6 +101,7 @@ class Wp_book_me_Admin {
 		 * class.
 		 */
 
+
 		/*wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp_book_me-admin.js', array( 'jquery' ), $this->version, false );*/
 	        if ( 'toplevel_page_wp_book_me' == get_current_screen() -> id ) {
 				
@@ -110,6 +111,7 @@ class Wp_book_me_Admin {
 				//added validation jQuery script
 				wp_enqueue_script( 'jquery.validate.min', plugin_dir_url( __FILE__ ) . 'js/jquery.validate.min.js', array( 'jquery'), $this->version, false);
 				wp_enqueue_script( 'jquery-2.2.4.min', plugin_dir_url( __FILE__ ) . 'js/jquery-2.2.4.min.js', array( 'jquery'), $this->version, false);
+				wp_enqueue_script( 'jquery-ui-1.10.4.custom.min', plugin_dir_url( __FILE__ ) . 'js/jquery-ui-1.10.4.custom.min.js', array( 'jquery'), $this->version, false);
 
 			}
 	}
