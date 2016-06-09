@@ -481,13 +481,6 @@ $(document).ready(function () {
     }
 
 
-    function timeStringToFloat(time) {
-        var hoursMinutes = time.split(/[.:]/);
-        var hours = parseInt(hoursMinutes[0], 10);
-        var minutes = hoursMinutes[1] ? parseInt(hoursMinutes[1], 10) : 0;
-        return hours + minutes / 60;
-    }
-
     function displayOrderRoomInDialog(startHour, startMin, endHour, endMin, nameRoom) {
         var startDisplay = displayProperTimeLabel(startHour, startMin);
         var endDisplay = displayProperTimeLabel(endHour, endMin);
@@ -524,27 +517,6 @@ $(document).ready(function () {
         });
     }
 
-    //this function will check the room available for this query
-    function checkRoomInSQL() {
-        $.ajax({
-            type: "POST",
-            url: submitURL,
-            data: {
-                group: groupID,
-                userId: userID.toString(),
-                start: eventStartTime.toString(),
-                end: eventEndTime.toString(),
-                checkRes: true,
-            },//dataString
-            cache: false,
-            success: function (data) {
-                //if null -> no room
-
-                //else -> show the rooms that we got from submit.
-
-            }
-        });
-    }
 
     //this functions will delete event from SQL
     function deleteEvent(eventId) {
@@ -611,14 +583,6 @@ $(document).ready(function () {
 
     }
 
-    function getCheckedServices() {
-        var checkedServices = [], i;
-        if (servicesArray.length == 0)
-            return;
-        checkedServices = $('input[name=presentServicce]:checked');
-
-    }
-
     function cleanInErrorInput(eroorInput) {
         var errorInput = "";
         if (eroorInput == errorCurrentTime) {
@@ -672,7 +636,6 @@ $(document).ready(function () {
     function alreadyBooked() {
         var dateStart;
         var dateEnd;
-        alert("in check date");
         for (var i = 0; i < reservationsArrayByUser.length; i++) {
             dateStart = new Date(reservationsArrayByUser[i][1]);
             dateEnd = new Date(reservationsArrayByUser[i][2])
