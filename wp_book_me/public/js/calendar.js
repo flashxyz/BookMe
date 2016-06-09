@@ -205,7 +205,11 @@ $(document).ready(function () {
         var dataString = 'groupId1' + groupID + 'roomId1' + selectedRoomId + 'userId1' + userID + 'startTime1' + eventStartTime + 'endTime' + eventEndTime;
 
         sendDataToPhp();
-
+        swal({
+            title: 'תודה!',
+            text: 'החדר הוזמן בהצלחה',
+            type: 'success'
+        });
         calendar.fullCalendar('renderEvent',
             {
                 title: "רשום לחדר " + roomName.toString(),
@@ -224,11 +228,7 @@ $(document).ready(function () {
         $('#inputEndTime').val("");
         $('#roomHide').hide();
         $('#btnFindRoom').show();
-    //     swal({
-    //     title: 'Congratulations!',
-    //         text: 'Your message has been succesfully sent',
-    //         type: 'success'
-    // });
+
         
     }
 
