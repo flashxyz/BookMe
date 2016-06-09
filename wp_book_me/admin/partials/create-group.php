@@ -54,6 +54,7 @@ $wpdb->insert($group_options_table, array(
     'activeDays' => $defaultActiveDays,
     'fromTime' => $defaultFromTime,
     'toTime' => $defaultToTime,
+    'description' => '',
     'viewMode' => $defaultViewMode,
     'calendarColor' => $defaultCalendarColor,
     'windowTimeLength' => $defaultWindowTimeLength,
