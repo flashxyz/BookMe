@@ -224,6 +224,11 @@ $(document).ready(function () {
         $('#inputEndTime').val("");
         $('#roomHide').hide();
         $('#btnFindRoom').show();
+    //     swal({
+    //     title: 'Congratulations!',
+    //         text: 'Your message has been succesfully sent',
+    //         type: 'success'
+    // });
         
     }
 

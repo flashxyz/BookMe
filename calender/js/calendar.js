@@ -87,6 +87,11 @@ $(document).ready(function () {
         allDayDefault: true,
 
         eventClick: function (calEvent, jsEvent, view) {
+            swal({
+                title: 'Congratulations!',
+                text: 'Your message has been succesfully sent',
+                type: 'success'
+            });
             alert("event clicked! ");
         },
 
