@@ -69,6 +69,21 @@ while ($index < $numberOfReservation) {
     $index++;
 }
 
+$selectSQL_reservation_byUser = $wpdb->get_results($wpdb->prepare("SELECT * FROM $room_reservation_table WHERE userId = %d ",  $userID));
+$numberOfReservationByUser = sizeof($selectSQL_reservation_byUser);
+
+//add all reservations for this user to an array
+$reservation_array_byUser = [];
+$index = 0;
+while ($index < $numberOfReservationByUser) {
+    $resCell[0] = $selectSQL_reservation_byUser[$index]->roomId;
+    $resCell[1] = $selectSQL_reservation_byUser[$index]->startTime;
+    $resCell[2] = $selectSQL_reservation_byUser[$index]->endTime;
+    $resCell[3] = $selectSQL_reservation_byUser[$index]->reservationId;
+    array_push($reservation_array_byUser, $resCell);
+    $index++;
+}
+
 
 $calendarColor = $selectSQL[0]->calendarColor;
 $fromTime = $selectSQL[0]->fromTime;
@@ -182,6 +197,9 @@ $submitURL = get_site_url()."/wp-content/plugins/wp_book_me/public/partials/cale
     echo "var reservationsArray = " . $jsArray . ";\n";
     ?>
 
+    <?php $jsArray = json_encode( $reservation_array_byUser);
+    echo "var reservationsArrayByUser = " . $jsArray . ";\n";
+    ?>
 
 
 </script>

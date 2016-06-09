@@ -673,9 +673,9 @@ $(document).ready(function () {
         var dateStart;
         var dateEnd;
         alert("in check date");
-        for (var i = 0; i < reservationsArray.length; i++) {
-            dateStart = new Date(reservationsArray[i][1]);
-            dateEnd = new Date(reservationsArray[i][2])
+        for (var i = 0; i < reservationsArrayByUser.length; i++) {
+            dateStart = new Date(reservationsArrayByUser[i][1]);
+            dateEnd = new Date(reservationsArrayByUser[i][2])
             if (eventStartTime < dateStart && eventEndTime > dateStart)
                 return false;
             if (eventStartTime >= dateStart && eventEndTime <= dateEnd)
