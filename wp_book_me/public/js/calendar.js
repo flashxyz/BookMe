@@ -44,7 +44,6 @@ $(document).ready(function () {
     displayServicesDescription();
 
 
-
     var calendar;
     calendar = $('#calendar').fullCalendar({
         header: {
@@ -100,12 +99,23 @@ $(document).ready(function () {
                 cleanInErrorInput(errorMenyHourPerUser);
                 return;
             }
-            eventEndTime = new Date(yearEnd, monthEnd - 1, dayEnd, endHour, minEnd);
-            eventStartTime = new Date(yearStart, monthStart - 1, dayStart, startHour, minStart);
+
+            if (startHour > 20) {
+                eventEndTime = new Date(yearEnd, monthEnd - 1, dayEnd-1, endHour, minEnd);
+                eventStartTime = new Date(yearStart, monthStart - 1, dayStart-1, startHour, minStart);
+            }
+            else {
+                eventEndTime = new Date(yearEnd, monthEnd - 1, dayEnd, endHour, minEnd);
+                eventStartTime = new Date(yearStart, monthStart - 1, dayStart, startHour, minStart);
+            }
 
             var strTimeStart = displayProperTimeLabel(eventStartTime.getHours(), eventStartTime.getMinutes());
             var strTimeEnd = displayProperTimeLabel(eventEndTime.getHours(), eventEndTime.getMinutes());
-            var strStartTime = dayStart + "/" + monthStart + "/" + yearStart;
+
+            if (startHour > 20)
+                var strStartTime = dayStart - 1 + "/" + monthStart + "/" + yearStart;
+            else
+                var strStartTime = dayStart + "/" + monthStart + "/" + yearStart;
 
             $('#datePicker').val(strStartTime);
             $('#inputStartTime').val(strTimeStart);
@@ -176,7 +186,7 @@ $(document).ready(function () {
      a room can't be reserved in the past !
      */
     function reserveRoom() {
-        if(userID == 0) {
+        if (userID == 0) {
             alert("You need to log in first!");
             return;
         }
@@ -310,8 +320,8 @@ $(document).ready(function () {
             && $('#inputStartTime').val() < $('#inputEndTime').val()) {
 
             for (i = 0; i < roomsArray.length; i++) {
-                if(demandedCapacity <= roomsArray[i][2] )
-                     $('#roomSelect').append("<option>" + roomsArray[i][1] + "</option>");
+                if (demandedCapacity <= roomsArray[i][2])
+                    $('#roomSelect').append("<option>" + roomsArray[i][1] + "</option>");
                 //.attr("value",key).text(value))
             }
             $('#roomHide').show();
@@ -356,9 +366,8 @@ $(document).ready(function () {
 
         if (servicesArray.length == 0)
             return;
-
         for (var i = 0; i < servicesArray.length; i++) {
-            checkboxes += "<tr> <td data-halign='right' class ='tdCheckboxe'>" + servicesArray[i].toString() + "</td> <td data-halign='left'><input type='checkbox' data-group-cls='btn-group-sm' name='presentServicce' id = "+i+"></td><td></tr>";
+            checkboxes += "<tr> <td data-halign='right' class ='tdCheckboxe'>" + servicesArray[i].toString() + "</td> <td data-halign='left'><input type='checkbox' data-group-cls='btn-group-sm' name='presentServicce' id = " + "service" + i + "></td><td></tr>";
         }
         checkboxes += "</table>";
 
@@ -580,12 +589,11 @@ $(document).ready(function () {
             cleanInErrorInput(errorCurrentTime);
             return;
         }
-        else if (!atoiInJS(errorMenyQuantity))
-        {
+        else if (!atoiInJS(errorMenyQuantity)) {
             cleanInErrorInput(50);
             return;
         }
-        var userServices =getArrayUserServicesSelected();
+        var userServices = getArrayUserServicesSelected();
         alert(userServices);
         ShowAvailableRooms();
 
@@ -623,12 +631,11 @@ $(document).ready(function () {
         $('#errorInput').show();
     }
 
-    function atoiInJS(str){
-        if(str == null || str.length == 0)
+    function atoiInJS(str) {
+        if (str == null || str.length == 0)
             return false;
-        for(var i = o; i < str.length; i++)
-        {
-            if(str[i] > "9" || str[i] < "0")
+        for (var i = o; i < str.length; i++) {
+            if (str[i] > "9" || str[i] < "0")
                 return false;
         }
         return true;
@@ -638,7 +645,7 @@ $(document).ready(function () {
         var userServices = [];
         var j = 0;
         for (var i = 0; i < servicesArray.length; i++)
-            if ($('#' + i).prop('checked')) {
+            if ($('#service' + i).prop('checked')) {
                 userServices[j] = servicesArray[i].toString();
                 j++;
             }
