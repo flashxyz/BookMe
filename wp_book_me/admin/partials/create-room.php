@@ -17,7 +17,11 @@ $numOfRooms  = sizeof($selectSQL) + 1;
 
 //initialize default values when creating new room
 $defaultRoomName = "Room " . $numOfRooms;
+$defaultCapacity = 1;
+$defaultServices = '';
 $defaultIsActive = 1;
+$defaultActiveDays = '';
+$defaultDescription = '';
 
 
 //execute the insert new row query
@@ -25,7 +29,11 @@ $wpdb->insert($rooms_options_table, array(
     'roomId' => '',
     'groupId' => $groupID,
     'roomName' => $defaultRoomName,
-    'isActive' => $defaultIsActive
+    'capacity' => $defaultCapacity,
+    'services' => $defaultServices,
+    'isActive' => $defaultIsActive,
+    'activeDays' => $defaultActiveDays,
+    'description' => $defaultDescription
 
 ));
 
