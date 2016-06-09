@@ -355,17 +355,14 @@ $(document).ready(function () {
             return;
 
         for (var i = 0; i < servicesArray.length; i++) {
-            checkboxes += "<tr> <td data-halign='right' class ='tdCheckboxe'>" + servicesArray[i].toString() + "</td> <td data-halign='left'><input type='checkbox' data-group-cls='btn-group-sm' name='presentServicce'></td><td></tr>";
+            checkboxes += "<tr> <td data-halign='right' class ='tdCheckboxe'>" + servicesArray[i].toString() + "</td> <td data-halign='left'><input type='checkbox' data-group-cls='btn-group-sm' name='presentServicce' id = "+servicesArray[i].toString()+"></td><td></tr>";
         }
         checkboxes += "</table>";
 
         if (whichId == "checkboxes") {
             $('#checkboxes').append(checkboxes);
-            $(':checkbox').checkboxpicker({onLabel: "כן", offLabel: "לא"});
-        }
-        if (whichId == "checkboxes1") {
-            $('#checkboxes1').append(checkboxes);
-            $(':checkbox').checkboxpicker({onLabel: "כן", offLabel: "לא"});
+            $(':checkbox').checkboxpicker({onLabel: "כן", offLabel: "לא", checked: true, disabled: false});
+            $(':checkbox').change(labelsChangeEvent);
         }
     }
 
@@ -585,30 +582,10 @@ $(document).ready(function () {
             cleanInErrorInput(50);
             return;
         }
+        var userServices =getArrayUserServicesSelected();
+        alert(userServices);
+        ShowAvailableRooms();
 
-
-
-        var addition = [];
-        addition.length = 0;
-        if (document.getElementById("inputStartTime").value == "") {
-            addition += "<p> נא להזין זמן התחלה תקין</p>";
-        }
-        if (document.getElementById("inputEndTime").value == "") {
-            addition += "<p>נא להזין זמן סיום תקין</p>";
-        }
-        if (document.getElementById("datePicker").value == "") {
-            addition += " <p> נא להזין תאריך תקין</p>";
-        }
-        if (document.getElementById("inputStartTime").value >= document.getElementById("inputEndTime").value) {
-            addition += "<p>נא למלא זמן התחלה קטן מזמן סיום</p>";
-        }
-        if (addition.length == 0) {
-            ShowAvailableRooms();
-        }
-        else {
-            $('#validOrderRoom').append(addition);
-            $('#validationDialogWithUser').modal('show');
-        }
     }
 
     function getCheckedServices() {
@@ -653,22 +630,17 @@ $(document).ready(function () {
         }
         return true;
     }
-    function findservices() {
-        var lala =[];
-        var lolo = $(".tdCheckboxe").text();
+
+    function getArrayUserServicesSelected() {
+        var userServices = [];
         var j = 0;
-        $("input[name='presentServicce']").each( function () {
-            if( $(this).val() == "on" )
-            {
-                lala[j] = lolo[j];
-                lala.length++;
+        for (var i = 0; i < servicesArray.length; i++)
+            if ($('#' + servicesArray[i].toString()).prop('checked')) {
+                userServices[j] = servicesArray[i].toString();
                 j++;
             }
-        });
-        alert(lala);
+        return userServices;
     }
-
-
-
+    
 });
 
