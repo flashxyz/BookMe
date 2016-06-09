@@ -11,6 +11,7 @@ $(document).ready(function () {
 
     var errorCurrentTime = 1;
     var errorMenyHourPerUser = 2;
+    var errorAlreadyBooked = 3;
     var errorMenyQuantity = 0;
 
     //this array represent the days that will be excluded from calendar given days
@@ -101,8 +102,8 @@ $(document).ready(function () {
             }
 
             if (startHour > 20) {
-                eventEndTime = new Date(yearEnd, monthEnd - 1, dayEnd-1, endHour, minEnd);
-                eventStartTime = new Date(yearStart, monthStart - 1, dayStart-1, startHour, minStart);
+                eventEndTime = new Date(yearEnd, monthEnd - 1, dayEnd - 1, endHour, minEnd);
+                eventStartTime = new Date(yearStart, monthStart - 1, dayStart - 1, startHour, minStart);
             }
             else {
                 eventEndTime = new Date(yearEnd, monthEnd - 1, dayEnd, endHour, minEnd);
@@ -190,7 +191,11 @@ $(document).ready(function () {
             alert("You need to log in first!");
             return;
         }
-
+        var booked = alreadyBooked();
+        if (!booked) {
+            cleanInErrorInput(errorAlreadyBooked);
+            return;
+        }
         var roomName = $('#roomSelect').val();
 
         if (roomName == "בחר חדר:")
@@ -213,6 +218,13 @@ $(document).ready(function () {
             },
             true // make the event "stick"
         );
+
+        $('#datePicker').val("");
+        $('#inputStartTime').val("");
+        $('#inputEndTime').val("");
+        $('#roomHide').hide();
+        $('#btnFindRoom').show();
+        
     }
 
     function addUserReservations() {
@@ -618,6 +630,11 @@ $(document).ready(function () {
             errorInput += preventManyHours + " שעות! ";
             errorInput += "</div>";
         }
+        else if (eroorInput == errorAlreadyBooked) {
+            errorInput += "<div id='errorInput'> * אתה כבר רשום לשעה זו ";
+            errorInput += "</div>";
+        }
+
         else if (eroorInput == 50) {
             errorInput += "<div id='errorInput'> *שים לב לכמות - היא לא תקנית, ";
             errorInput += preventManyHours + " כמות! ";
@@ -650,6 +667,25 @@ $(document).ready(function () {
                 j++;
             }
         return userServices;
+    }
+
+    function alreadyBooked() {
+        var dateStart;
+        var dateEnd;
+        alert("in check date");
+        for (var i = 0; i < reservationsArray.length; i++) {
+            dateStart = new Date(reservationsArray[i][1]);
+            dateEnd = new Date(reservationsArray[i][2])
+            if (eventStartTime < dateStart && eventEndTime > dateStart)
+                return false;
+            if (eventStartTime >= dateStart && eventEndTime <= dateEnd)
+                return false;
+            if (eventStartTime < dateEnd && eventEndTime > dateEnd)
+                return false;
+            if(eventStartTime < dateStart && eventEndTime > dateEnd)
+                return false;
+        }
+        return true;
     }
 });
 
