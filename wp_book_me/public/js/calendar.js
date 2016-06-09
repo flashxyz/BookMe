@@ -142,8 +142,6 @@ $(document).ready(function () {
             displayOrderRoomInDialog(startHourClick, startMinClick, endHourClick, endMinClick, calEvent.title);
 
             //$('#myCalendar').fullCalendar('removeEvents',event._id);
-            findservices();
-
             $(document).on("click", "#deleteOrderButton", function (event) {
 
                 //this function will actually delete a SQL entry via php calendar submit page
@@ -641,6 +639,5 @@ $(document).ready(function () {
             }
         return userServices;
     }
-    
 });
 
