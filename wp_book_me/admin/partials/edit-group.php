@@ -26,7 +26,6 @@ if($_GET['group_id']==true AND $_GET['edit_group']==true)
     $fromTime = $selectSQL[0]->fromTime;
     $toTime = $selectSQL[0]->toTime;
     $description = $selectSQL[0]->description;
-    $viewMode = $selectSQL[0]->viewMode;
     $calendarColor = $selectSQL[0]->calendarColor;
     $windowTimeLength = $selectSQL[0]->windowTimeLength;
     $services = unserialize($selectSQL[0]->services);

@@ -20,7 +20,6 @@ if($_GET['group_id']==true AND $_GET['save_options']==true)
     $groupDescription = $postArray['groupDescription'];
     $calendarColor = $postArray['calendarColor'];
     $timeSlot = $postArray['timeSlot'];
-    $calendarViewMode = $postArray['calendarViewMode'];
     $activeSundayCheckBox = $postArray['activeSunday'];
     $activeMondayCheckBox = $postArray['activeMonday'];
     $activeTuesdayCheckBox = $postArray['activeTuesday'];
@@ -28,10 +27,7 @@ if($_GET['group_id']==true AND $_GET['save_options']==true)
     $activeThursdayCheckBox = $postArray['activeThursday'];
     $activeFridayCheckBox = $postArray['activeFriday'];
     $activeSaturdayCheckBox = $postArray['activeSaturday'];
-    
-    //print post value
-    //echo "POST values <br>";
-    //echo $groupName ."<br>".$numOfRooms."<br>".$roomsAvailableFrom."<br>". $roomsAvailableUntil."<br>".$groupDescription."<br>".$calendarColor."<br>".$timeSlot."<br>".$calendarViewMode;
+
 
     //parse the active days to TLV format
     $activeDaysArray = serialize(array(
@@ -51,7 +47,6 @@ if($_GET['group_id']==true AND $_GET['save_options']==true)
         'activeDays' => $activeDaysArray,
         'toTime' => $roomsAvailableUntil,
         'description' => $groupDescription,
-        'viewMode' => $calendarViewMode,
         'calendarColor' => $calendarColor,
         'windowTimeLength' => $timeSlot
     );

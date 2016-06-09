@@ -53,7 +53,6 @@ class Wp_book_me_Activator {
 				fromTime VARCHAR(50),
 				toTime VARCHAR(50),
 				description VARCHAR(200),
-				viewMode VARCHAR(80),
 				calendarColor VARCHAR(10),
 				windowTimeLength INT(4),
 				services VARCHAR(8000)

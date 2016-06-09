@@ -23,7 +23,6 @@ if($nextID != $groupID)
 //initialize default values when creating new group
 $defaultGroupName = "Group " . $groupID;
 $defaultNumOfRooms = 1;
-$defaultViewMode = "month";
 $defaultCalendarColor = "#000000";
 $defaultWindowTimeLength = 60;
 $defaultservices = serialize(array());
@@ -55,16 +54,20 @@ $wpdb->insert($group_options_table, array(
     'fromTime' => $defaultFromTime,
     'toTime' => $defaultToTime,
     'description' => '',
-    'viewMode' => $defaultViewMode,
     'calendarColor' => $defaultCalendarColor,
     'windowTimeLength' => $defaultWindowTimeLength,
     'services' => $defaultservices
 ));
 
 
+
 //initialize default values when creating new room
 $defaultRoomName = "Room 1";
+$defaultCapacity = 1;
+$defaultServices = '';
 $defaultIsActive = 1;
+$defaultActiveDays = '';
+$defaultDescription = '';
 
 
 //execute the insert new row query
@@ -72,10 +75,12 @@ $wpdb->insert($rooms_options_table, array(
     'roomId' => '',
     'groupId' => $groupID,
     'roomName' => $defaultRoomName,
-    'isActive' => $defaultIsActive
+    'capacity' => $defaultCapacity,
+    'services' => $defaultServices,
+    'isActive' => $defaultIsActive,
+    'activeDays' => $defaultActiveDays,
+    'description' => $defaultDescription
 
 ));
-
-
 
 ?>
