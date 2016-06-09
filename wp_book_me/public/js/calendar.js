@@ -12,7 +12,9 @@ $(document).ready(function () {
     var errorCurrentTime = 1;
     var errorMenyHourPerUser = 2;
     var errorAlreadyBooked = 3;
+    var errorEmptyInputs = 4;
     var errorMenyQuantity = 0;
+    $("#inputStartTime").keypress(function(event) {event.preventDefault();});
 
     //this array represent the days that will be excluded from calendar given days
     var excludedDays = [];
@@ -92,6 +94,10 @@ $(document).ready(function () {
                 cleanInErrorInput(errorCurrentTime);
                 return;
             }
+            if (currentTime.getDate() == null || currentTime.getHours() == null) {
+                cleanInErrorInput(errorEmptyInputs);
+                return;
+            }
             if (endHour < 0)
                 endHour += 24;
             if (startHour < 0)
@@ -121,6 +127,7 @@ $(document).ready(function () {
             $('#datePicker').val(strStartTime);
             $('#inputStartTime').val(strTimeStart);
             $('#inputEndTime').val(strTimeEnd);
+
 
         },
         slotDuration: '00:' + slotDurationInMinutes + ':00',
@@ -155,11 +162,24 @@ $(document).ready(function () {
             //$('#myCalendar').fullCalendar('removeEvents',event._id);
             $(document).on("click", "#deleteOrderButton", function (event) {
 
-                //this function will actually delete a SQL entry via php calendar submit page
-                deleteEvent(calEvent._id);
-                $('#calendar').fullCalendar('removeEvents', function (event) {
-                    return event == calEvent;
+                swal({
+                    title: "?האם אתה בטוח",
+                    text: "לא יתאפשר לשחזר את הזמנת החדר!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "!כן, מחק את החדר",
+                    closeOnConfirm: false
+                },
+                    function(){
+                        //this function will actually delete a SQL entry via php calendar submit page
+                        deleteEvent(calEvent._id);
+                        $('#calendar').fullCalendar('removeEvents', function (event) {
+                            return event == calEvent;
+                        });
+                    swal("!נמחק", "הזמנת החדר נמחקה", "success");
                 });
+
             });
         },
 
@@ -206,7 +226,7 @@ $(document).ready(function () {
 
         sendDataToPhp();
         swal({
-            title: 'תודה!',
+            title: '!תודה',
             text: 'החדר הוזמן בהצלחה',
             type: 'success'
         });
@@ -546,11 +566,15 @@ $(document).ready(function () {
     function validationFindRoom() {
 
         if (!eventStartTime) {
-            cleanInErrorInput(errorCurrentTime);
+            cleanInErrorInput(errorEmptyInputs);
+            return;
+        }
+        if ($('#inputEndTime').val() == null || $('#inputStartTime').val() == null || $('#datePicker').val() == null) {
+            cleanInErrorInput(errorEmptyInputs);
             return;
         }
         if ($('#inputEndTime').val() == "" || $('#inputStartTime').val() == "" || $('#datePicker').val() == "") {
-            cleanInErrorInput(errorCurrentTime);
+            cleanInErrorInput(errorEmptyInputs);
             return;
         }
         $('#errorInput').hide();
@@ -591,23 +615,19 @@ $(document).ready(function () {
     function cleanInErrorInput(eroorInput) {
         var errorInput = "";
         if (eroorInput == errorCurrentTime) {
-            errorInput += "<div id='errorInput'> *שים לב לתאריך והשעה, ";
-            errorInput += "</div>";
+            sweetAlert("...אופס", "!תאריך ושעה לא נכונים", "error");
         }
         else if (eroorInput == errorMenyHourPerUser) {
-            errorInput += "<div id='errorInput'> * אינך יכול להזמין יותר מ- ";
-            errorInput += preventManyHours + " שעות! ";
-            errorInput += "</div>";
+            sweetAlert("...אופס", "אינך יכול להזמין יותר מ"+preventManyHours + "!", "error");
         }
         else if (eroorInput == errorAlreadyBooked) {
-            errorInput += "<div id='errorInput'> * אתה כבר רשום לשעה זו ";
-            errorInput += "</div>";
+            sweetAlert("...אופס", "!אתה כבר רשום לשעה זו", "error");
         }
-
         else if (eroorInput == 50) {
-            errorInput += "<div id='errorInput'> *שים לב לכמות - היא לא תקנית, ";
-            errorInput += preventManyHours + " כמות! ";
-            errorInput += "</div>";
+            sweetAlert("...אופס", "!שים לב לכמות - היא לא תקנית", "error");
+        }
+        else if (eroorInput == errorEmptyInputs) {
+            sweetAlert("...אופס", "!יש שדות שיש למלא", "error");
         }
 
         $("#errorInput").replaceWith(errorInput);
