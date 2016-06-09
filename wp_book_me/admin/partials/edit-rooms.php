@@ -218,9 +218,22 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
                                 </tr>
                             </table>
                             <br>
-                            <hr>
-                            <span>Services: </span><hr>
+
                             <?php
+                                //check if there are services to show
+                                //if there are services so write "Services: " label
+                                if(sizeof($services) > 0)
+                                {
+                                    ?>
+                                    <hr>
+                                    <span>Services: </span>
+                                    <hr>
+                                <?php
+                                }
+
+
+
+                            //show group services
                             $serviceIndex = 0;
                             foreach($services as $serv)
                             {
