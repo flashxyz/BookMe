@@ -176,6 +176,11 @@ $(document).ready(function () {
      a room can't be reserved in the past !
      */
     function reserveRoom() {
+        if(userID == 0) {
+            alert("You need to log in first!");
+            return;
+        }
+
         var roomName = $('#roomSelect').val();
 
         if (roomName == "בחר חדר:")
