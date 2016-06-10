@@ -7,7 +7,7 @@ $(document).ready(function () {
     var eventEndTime;
 
     const ISRAEL_TIME_DIFF = 3;
-    var preventManyHours = reservationLimitation;
+
 
     var errorCurrentTime = 1;
     var errorMenyHourPerUser = 2;
@@ -43,6 +43,9 @@ $(document).ready(function () {
     var calendarEndTime = toTime;
     var servicesArray = services;
     var numOfReservationsPerUser = numOfReservations;
+    var preventSlotTime = reservationLimitation * windowTimeLength;
+
+    alert(preventSlotTime);
 
     displayCheckboxes("checkboxes");
     displayServicesDescription();
@@ -103,7 +106,16 @@ $(document).ready(function () {
                 endHour += 24;
             if (startHour < 0)
                 startHour += 24;
-            if ((endHour - startHour) > preventManyHours) {
+            var addMIn = minStart;
+            if(minStart == minEnd)
+                addMIn = 0;
+            else if( minStart > minEnd ){
+                endHour--;
+                addMIn = 60-(minStart - minEnd);
+            }
+            else if(minStart < minEnd )
+                addMIn = (minEnd - minStart);
+            if (((endHour - startHour)*60 + addMIn)  > preventSlotTime) {
                 cleanInErrorInput(errorMenyHourPerUser);
                 return;
             }
@@ -597,7 +609,8 @@ $(document).ready(function () {
                 }
                 else if (eventStartTime.getDate() == currentTime.getDate())
                     if (eventStartTime.getHours() <= currentTime.getHours()
-                        || (eventEndTime.getHours() - eventStartTime.getHours()) > preventManyHours) {
+                        || (eventEndTime.getHours() - eventStartTime.getHours()) > preventSlotTime) {
+                        alert("1234");
                         cleanInErrorInput(errorCurrentTime);
                         return;
                     }
@@ -627,7 +640,7 @@ $(document).ready(function () {
             sweetAlert("...אופס", "!תאריך ושעה לא נכונים", "error");
         }
         else if (eroorInput == errorMenyHourPerUser) {
-            sweetAlert("...אופס", "אינך יכול להזמין יותר מ - "+preventManyHours + " משבצות זמן!", "error");
+            sweetAlert("...אופס", "אינך יכול להזמין יותר מ - "+reservationLimitation + " משבצות זמן!", "error");
         }
         else if (eroorInput == errorAlreadyBooked) {
             sweetAlert("...אופס", "!אתה כבר רשום לשעה זו", "error");
