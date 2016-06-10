@@ -45,8 +45,6 @@ $(document).ready(function () {
     var numOfReservationsPerUser = numOfReservations;
     var preventSlotTime = reservationLimitation * windowTimeLength;
 
-    alert(preventSlotTime);
-
     displayCheckboxes("checkboxes");
     displayServicesDescription();
     displayNumberOfEventsPerUser();
@@ -63,6 +61,8 @@ $(document).ready(function () {
             $('#errorInput').hide();
             $('#roomHide').hide();
             $('#btnFindRoom').show();
+
+            var strStartTime;
 
             //the date objects of the user selection.
             var dateStart = new Date(start);
@@ -86,7 +86,6 @@ $(document).ready(function () {
             if (endHour < 0)
                 dayEnd--;
 
-
             if (startHour < 0 && endHour < 0)
                 dayEnd++;
 
@@ -102,45 +101,55 @@ $(document).ready(function () {
                 cleanInErrorInput(errorEmptyInputs);
                 return;
             }
+            //that fix the calendar problem 21:00 in calendar is -3 and 22:00 is -2 ...
             if (endHour < 0)
                 endHour += 24;
             if (startHour < 0)
                 startHour += 24;
+
+            //addMin for add minute for calculate the user time piker
             var addMIn = minStart;
+
+            //if minStart equals minEnd so no calc will be only in hour
             if(minStart == minEnd)
                 addMIn = 0;
+
+            //if minStart bigger minEnd like 08:30 09:15 so minus 1 in hour time  and calculate the rest minute
             else if( minStart > minEnd ){
                 endHour--;
                 addMIn = 60-(minStart - minEnd);
             }
+
+            //if minStart lower minEnd like 08:10 09:15 so calculate the rest minute
             else if(minStart < minEnd )
                 addMIn = (minEnd - minStart);
+
+            //check the user minute and the preventSlotTime(limit of admin)
             if (((endHour - startHour)*60 + addMIn)  > preventSlotTime) {
                 cleanInErrorInput(errorMenyHourPerUser);
                 return;
             }
 
+            //that fix the calendar problem in calendar 20:00 and above return the next day
             if (startHour > 20) {
                 eventEndTime = new Date(yearEnd, monthEnd - 1, dayEnd - 1, endHour, minEnd);
                 eventStartTime = new Date(yearStart, monthStart - 1, dayStart - 1, startHour, minStart);
+                strStartTime = dayStart - 1 + "/" + monthStart + "/" + yearStart;
             }
             else {
                 eventEndTime = new Date(yearEnd, monthEnd - 1, dayEnd, endHour, minEnd);
                 eventStartTime = new Date(yearStart, monthStart - 1, dayStart, startHour, minStart);
+                strStartTime = dayStart + "/" + monthStart + "/" + yearStart;
             }
+
 
             var strTimeStart = displayProperTimeLabel(eventStartTime.getHours(), eventStartTime.getMinutes());
             var strTimeEnd = displayProperTimeLabel(eventEndTime.getHours(), eventEndTime.getMinutes());
 
-            if (startHour > 20)
-                var strStartTime = dayStart - 1 + "/" + monthStart + "/" + yearStart;
-            else
-                var strStartTime = dayStart + "/" + monthStart + "/" + yearStart;
 
             $('#datePicker').val(strStartTime);
             $('#inputStartTime').val(strTimeStart);
             $('#inputEndTime').val(strTimeEnd);
-
 
         },
         slotDuration: '00:' + slotDurationInMinutes + ':00',
@@ -610,7 +619,6 @@ $(document).ready(function () {
                 else if (eventStartTime.getDate() == currentTime.getDate())
                     if (eventStartTime.getHours() <= currentTime.getHours()
                         || (eventEndTime.getHours() - eventStartTime.getHours()) > preventSlotTime) {
-                        alert("1234");
                         cleanInErrorInput(errorCurrentTime);
                         return;
                     }
