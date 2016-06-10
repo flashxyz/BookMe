@@ -14,6 +14,23 @@
     font-size: 32px;
     margin-top: 7px;
 }
+
+
+.ShowNumOfEventsAnimation  {
+    color:green;
+    width: 100%;
+    height: 100%;
+    animation: pulse 5s infinite;
+}
+
+@keyframes ShowNumOfEventsAnimation  {
+    0% {
+        background-color: #001F3F;
+    }
+    100% {
+        background-color: #FF4136;
+    }
+}
 #roomSelect {
     width:inherit !important;
     display: block;
@@ -44,6 +61,14 @@
 
 .fc-agenda-slots td div {
     color: purple;
+    height: 45px !important;
+}
+.fc-agendaWeek-view tr {
+    height: 45px;
+}
+
+.fc-agendaDay-view tr {
+    height: 45px;
 }
 
 /* Remove that awful yellow color and border from today in Schedule */
@@ -64,6 +89,7 @@
 /* Styling for each event from Schedule */
 .fc-time-grid-event.fc-v-event.fc-event {
     border-radius: 4px;
+
     border: none;
     padding: 5px;
     opacity: .65;
@@ -73,9 +99,9 @@
 
 /* Bolds the name of the event and inherits the font size */
 .fc-event {
-    font-size: 25px !important;
-    font-weight: bold !important;
+    font-size: 10px !important;
 }
+
 
 /* Remove the header border from Schedule */
 .fc td, .fc th {
@@ -94,8 +120,8 @@
 
 /* Normal font weight for the time in each event */
 .fc-time-grid-event .fc-time {
-    font-weight: normal !important;
-    color: yellow;
+    color: #6ff8ff;
+    font-size: x-small !important;
     direction: rtl;
 }
 
@@ -124,8 +150,11 @@
     margin-bottom: 5px;
 }
 
+.fc-title {
+    font-size: 15px;
+}
 .fc-row{
-    height: 30px;
+    height: 45px;
 }
 .fc-header-title {
     background-color: purple;
@@ -135,10 +164,12 @@
     color: purple;
 }
 
-
+.fc-event-inner {
+    font-size: 1.5em;
+}
 
 .fc-axis {
-
+    font-size: x-small;
     color: purple;
 }
 
@@ -343,6 +374,11 @@
     background-color: #fff;
 }
 
+.table-cool tr {
+    transition: all 1.5s ease-in;
+    transition: all 1.5s ease-out;
+}
+
 .table-cool tr:hover {
 
     background-color:white;
@@ -375,6 +411,10 @@
     -moz-box-shadow:  0px 0px 0px 2px rgb(224, 224, 224);
     -webkit-box-shadow:  0px 0px 0px 2px rgb(224, 224, 224);
     box-shadow:  0px 0px 0px 2px rgb(224, 224, 224);
+}
+.greyGradient {
+    transition: all 1s ease-out;
+
 }
 
 .greyGradient:hover {

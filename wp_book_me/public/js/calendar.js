@@ -42,10 +42,11 @@ $(document).ready(function () {
     var calendarBeginTime = fromTime;
     var calendarEndTime = toTime;
     var servicesArray = services;
+    var numOfReservationsPerUser = numOfReservations;
 
     displayCheckboxes("checkboxes");
     displayServicesDescription();
-
+    displayNumberOfEventsPerUser();
 
     var calendar;
     calendar = $('#calendar').fullCalendar({
@@ -138,6 +139,7 @@ $(document).ready(function () {
         hiddenDays: excludedDays,
         allDaySlot: false,
         contentHeight: 'auto',
+        height: 650,
         axisFormat: "HH:mm",
         defaultView: "agendaWeek",
         weekends: true,
@@ -178,6 +180,9 @@ $(document).ready(function () {
                             return event == calEvent;
                         });
                     swal("!נמחק", "הזמנת החדר נמחקה", "success");
+                    //if we remove event here we should also decrease the number of reservations global var.
+                    numOfReservationsPerUser --;
+                    displayNumberOfEventsPerUser();
                 });
 
             });
@@ -230,6 +235,10 @@ $(document).ready(function () {
             text: 'החדר הוזמן בהצלחה',
             type: 'success'
         });
+
+        //if we render event here we should also increase the number of reservations global.
+        numOfReservationsPerUser ++;
+        displayNumberOfEventsPerUser();
         calendar.fullCalendar('renderEvent',
             {
                 title: "רשום לחדר " + roomName.toString(),
@@ -674,5 +683,15 @@ $(document).ready(function () {
                 return false;
         }
         return true;
+    }
+
+
+
+    function displayNumberOfEventsPerUser (){
+
+            var numOfEvents = numOfReservationsPerUser; //Dummy value
+            var text= "מספר האירועים שהזמנת: " + numOfEvents ;
+            $('#ShowNumOfEvents').html(text);
+
     }
 });

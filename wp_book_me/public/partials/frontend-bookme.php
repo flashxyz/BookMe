@@ -181,12 +181,15 @@ $submitURL = get_site_url()."/wp-content/plugins/wp_book_me/public/partials/cale
     //get the services to array var in javascript
     var services = [];
 
+
     var i = 0;
     <?php for ( $i = 0 ; $i < sizeof($services) ; $i++){ ?>
     services[i] = "<?php echo $services[$i]?>";
     i++;
     <?php } ?>
 
+    var numOfReservations= "<?php echo $numberOfReservationByUser ?>";
+    alert(numOfReservations);
     //roomsArray = [];
 
     <?php $jsArray = json_encode($roomsArray);
@@ -307,6 +310,7 @@ $submitURL = get_site_url()."/wp-content/plugins/wp_book_me/public/partials/cale
                     <?php echo $description; ?>
                 </p>
                 <img src="http://bookme.myweb.jce.ac.il/wp-content/uploads/2016/05/meeting.png"/>
+                <div id="ShowNumOfEvents" class="ShowNumOfEventsAnimation"></div>
                 <p></p><br>
                 <h4>אמצעים מיוחדים</h4> <br>
                 <div id=services></div>
@@ -366,7 +370,7 @@ $submitURL = get_site_url()."/wp-content/plugins/wp_book_me/public/partials/cale
                         מתי להזמין<br><br>
                         <tr class="trStart">
                             <td class='tdStart'><label>שעת התחלה: </label></td>
-                            <td class='tdStart'><input id="inputStartTime" type="text" class="time labelForom" data-toggle="validator" pattern="[0-9]" maxlength="5" placeholder="##:##" data-error="input time as ##:##" onkeydown="return false"  required/>
+                            <td class='tdStart'><input id="inputStartTime" type="text" class="time labelForom"  pattern="[0-9]" maxlength="5" placeholder="##:##" data-error="input time as ##:##" onkeydown="return false"  required/>
                             </td>
                         </tr>
                         <tr class="trStart">
