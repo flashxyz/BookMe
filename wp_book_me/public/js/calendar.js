@@ -7,7 +7,7 @@ $(document).ready(function () {
     var eventEndTime;
 
     const ISRAEL_TIME_DIFF = 3;
-    var preventManyHours = 3;
+    var preventManyHours = reservationLimitation;
 
     var errorCurrentTime = 1;
     var errorMenyHourPerUser = 2;
@@ -627,7 +627,7 @@ $(document).ready(function () {
             sweetAlert("...אופס", "!תאריך ושעה לא נכונים", "error");
         }
         else if (eroorInput == errorMenyHourPerUser) {
-            sweetAlert("...אופס", "אינך יכול להזמין יותר מ"+preventManyHours + "!", "error");
+            sweetAlert("...אופס", "אינך יכול להזמין יותר מ - "+preventManyHours + " משבצות זמן!", "error");
         }
         else if (eroorInput == errorAlreadyBooked) {
             sweetAlert("...אופס", "!אתה כבר רשום לשעה זו", "error");

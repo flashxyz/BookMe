@@ -93,6 +93,7 @@ $services = unserialize($selectSQL[0]->services);
 $activeDays = unserialize($selectSQL[0]->activeDays);
 $groupName = $selectSQL[0]->groupName;
 $description = $selectSQL[0]->description;
+$reservationLimitation =  $selectSQL[0]->reservationLimitation;
 
 //define a brighter color by 50%
 $brightness = 0.5; // 50% brighter
@@ -167,6 +168,7 @@ $submitURL = get_site_url()."/wp-content/plugins/wp_book_me/public/partials/cale
     var windowTimeLength = "<?php echo $windowTimeLength ?>";
     var fromTime = "<?php echo $fromTime ?>";
     var toTime = "<?php echo $toTime ?>";
+    var reservationLimitation = "<?php echo $reservationLimitation ?>";
     //active days
     var activeDays = [];
     activeDays[0] = "<?php echo $activeDays["sunday"] ?>";
