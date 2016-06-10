@@ -20,6 +20,7 @@ if($_GET['group_id']==true AND $_GET['save_options']==true)
     $groupDescription = $postArray['groupDescription'];
     $calendarColor = $postArray['calendarColor'];
     $timeSlot = $postArray['timeSlot'];
+    $reservationLimitation = $postArray['reservationLimitation'];
     $activeSundayCheckBox = $postArray['activeSunday'];
     $activeMondayCheckBox = $postArray['activeMonday'];
     $activeTuesdayCheckBox = $postArray['activeTuesday'];
@@ -48,7 +49,8 @@ if($_GET['group_id']==true AND $_GET['save_options']==true)
         'toTime' => $roomsAvailableUntil,
         'description' => $groupDescription,
         'calendarColor' => $calendarColor,
-        'windowTimeLength' => $timeSlot
+        'windowTimeLength' => $timeSlot,
+        'reservationLimitation' => $reservationLimitation
     );
 
     //create array of the condition to get the specific row

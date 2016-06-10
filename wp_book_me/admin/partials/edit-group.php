@@ -28,6 +28,7 @@ if($_GET['group_id']==true AND $_GET['edit_group']==true)
     $description = $selectSQL[0]->description;
     $calendarColor = $selectSQL[0]->calendarColor;
     $windowTimeLength = $selectSQL[0]->windowTimeLength;
+    $reservationLimitation = $selectSQL[0]->reservationLimitation;
     $services = unserialize($selectSQL[0]->services);
     
 
@@ -150,6 +151,19 @@ if($_GET['group_id']==true AND $_GET['edit_group']==true)
                     </td>
                     <td width='250px' >
                         <span>minutes</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td width='250px' >
+                        <span>reservation limit: </span>
+                    </td>
+                    <td width='100px' >
+                        <label for="<?php echo $this->plugin_name; ?>_reservationLimitation">
+                            <input type="number" id="<?php echo $this->plugin_name; ?>_reservationLimitation" name="<?php echo $this->plugin_name; ?>[reservationLimitation]" min="1" step="1" value="<?php echo $reservationLimitation; ?>"/>
+                        </label>
+                    </td>
+                    <td width='250px' >
+                        <span>Time Slot</span>
                     </td>
                 </tr>
     

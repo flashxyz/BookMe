@@ -25,6 +25,7 @@ $defaultGroupName = "Group " . $groupID;
 $defaultNumOfRooms = 1;
 $defaultCalendarColor = "#000000";
 $defaultWindowTimeLength = 60;
+$defaultReservationLimitation =1;
 $defaultservices = serialize(array());
 
 
@@ -56,6 +57,7 @@ $wpdb->insert($group_options_table, array(
     'description' => '',
     'calendarColor' => $defaultCalendarColor,
     'windowTimeLength' => $defaultWindowTimeLength,
+    'reservationLimitation' => $defaultReservationLimitation,
     'services' => $defaultservices
 ));
 

@@ -55,6 +55,7 @@ class Wp_book_me_Activator {
 				description VARCHAR(200),
 				calendarColor VARCHAR(10),
 				windowTimeLength INT(4),
+				reservationLimitation INT(3),
 				services VARCHAR(8000)
 				) DEFAULT CHARACTER SET utf8";
 
