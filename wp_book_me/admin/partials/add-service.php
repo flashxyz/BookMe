@@ -10,7 +10,7 @@ global $wpdb;
 
 if($_GET['group_id']==true AND $_GET['add_service']==true)
 {
-
+    include 'edit-rooms.php';
     //get the table for farther modification
     $group_options_table = $wpdb->prefix . "bookme_group_options";
 

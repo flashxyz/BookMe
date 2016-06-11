@@ -22,6 +22,16 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
         <?php
     }
 
+    $numberOfRooms = sizeof($selectSQL);
+
+    $index = 0;
+    $roomsArray = array();
+
+    while ($index < $numberOfRooms) {
+        $roomsArray[$index] = $selectSQL[$index]->roomId;
+        $index++;
+    }
+
     //get group table from SQL
     $group_options_table = $wpdb->prefix . "bookme_group_options";
 
@@ -274,9 +284,7 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
         <table width="500px">
             <tr>
                 <td width="150px">
-                    <form  action="?page=wp_book_me&group_id=<?php echo $groupID ?>&save_all=true" method="post" id="<?php echo $this->plugin_name; ?>_saveAllOptionsRoom">
-                        <input class="button-primary" type="submit" name="saveOptionsBTN" value="Save All" />
-                    </form>
+                    <input class="button-primary" type="button" id="saveAllOptionsBTN" value="Save All" onclick="return saveAll()"/>
                 </td>
 
                 <td width="200px">
@@ -292,6 +300,8 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
             </tr>
 
         </table>
+
+
     </div>
 
 
@@ -301,3 +311,17 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
 }
 
 ?>
+
+<script>
+
+    function saveAll() {
+
+        var numOfRooms = <?php echo json_encode($roomsArray );?>;
+        for(var i=0; i < numOfRooms.length; i++)
+        {
+            var formID = "#wp_book_me_RoomsSaveForm_" + numOfRooms[i];
+            $.post($(formID).attr("action"), $(formID).serialize());
+        }
+
+    }
+</script>

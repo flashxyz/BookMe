@@ -41,8 +41,12 @@ if($_GET['group_id']==true AND $_GET['save_all']==true)
     ?>
 
     for( var i = 0 ; i < numOfRooms.length ; i++)
-    var name = "saveRoomBTN_" + numOfRooms[i];
-        document.getElementsByName(name).click();
-    //window.location.replace(siteURL + "?page=wp_book_me&group_id=<?php echo $groupID ?>&edit_rooms=true");
+    {
+        var formID = "#wp_book_me_RoomsSaveForm_" + numOfRooms[i];
+        alert(formID);
+        $("#wp_book_me_RoomsSaveForm_5").submit();
+    }
+
+    window.location.replace(siteURL + "?page=wp_book_me&group_id=<?php echo $groupID ?>&edit_rooms=true");
 
 </script>
