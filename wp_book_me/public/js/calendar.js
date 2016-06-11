@@ -131,7 +131,9 @@ $(document).ready(function () {
                 cleanInErrorInput(errorMenyHourPerUser);
                 return;
             }
-
+            if (minStart > minEnd) {
+                endHour++;
+            }
             //that fix the calendar problem in calendar 20:00 and above return the next day
             if (startHour > 20) {
                 eventEndTime = new Date(yearEnd, monthEnd - 1, dayEnd - 1, endHour, minEnd);
@@ -474,7 +476,6 @@ $(document).ready(function () {
     //change eventStartTime timEnd fo user changes in labels
     // e.g eventEndTime = ( "Mon May 30 2016 16:00:00 GMT+03:00(שעון קיץ ירושלים)" )
     function labelsChangeEvent() {
-        alert("1");
         $('#errorInput').hide();
         $('#roomHide').hide();
         $('#btnFindRoom').show();
