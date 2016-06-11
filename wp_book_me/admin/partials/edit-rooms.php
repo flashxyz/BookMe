@@ -274,8 +274,9 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
         <table width="500px">
             <tr>
                 <td width="150px">
-                    <input class="button-primary" type="submit" name="saveOptionsBTN" value="Save All" />
-<!--         </form>-->
+                    <form  action="?page=wp_book_me&group_id=<?php echo $groupID ?>&save_all=true" method="post" id="<?php echo $this->plugin_name; ?>_saveAllOptionsRoom">
+                        <input class="button-primary" type="submit" name="saveOptionsBTN" value="Save All" />
+                    </form>
                 </td>
 
                 <td width="200px">

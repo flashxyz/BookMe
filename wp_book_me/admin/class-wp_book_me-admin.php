@@ -200,6 +200,10 @@ class Wp_book_me_Admin {
 		{
 			require_once('partials/delete-service.php');
 		}
+		if($_GET['group_id']==true AND $_GET['save_all']==true)
+		{
+			require_once('partials/save-all-rooms.php');
+		}
 
 
 	}
