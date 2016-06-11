@@ -14,7 +14,9 @@ $(document).ready(function () {
     var errorAlreadyBooked = 3;
     var errorEmptyInputs = 4;
     var errorMenyQuantity = 0;
-    $("#inputStartTime").keypress(function(event) {event.preventDefault();});
+    $("#inputStartTime").keypress(function (event) {
+        event.preventDefault();
+    });
 
     //this array represent the days that will be excluded from calendar given days
     var excludedDays = [];
@@ -111,21 +113,21 @@ $(document).ready(function () {
             var addMIn = minStart;
 
             //if minStart equals minEnd so no calc will be only in hour
-            if(minStart == minEnd)
+            if (minStart == minEnd)
                 addMIn = 0;
 
             //if minStart bigger minEnd like 08:30 09:15 so minus 1 in hour time  and calculate the rest minute
-            else if( minStart > minEnd ){
+            else if (minStart > minEnd) {
                 endHour--;
-                addMIn = 60-(minStart - minEnd);
+                addMIn = 60 - (minStart - minEnd);
             }
 
             //if minStart lower minEnd like 08:10 09:15 so calculate the rest minute
-            else if(minStart < minEnd )
+            else if (minStart < minEnd)
                 addMIn = (minEnd - minStart);
 
             //check the user minute and the preventSlotTime(limit of admin)
-            if (((endHour - startHour)*60 + addMIn)  > preventSlotTime) {
+            if (((endHour - startHour) * 60 + addMIn) > preventSlotTime) {
                 cleanInErrorInput(errorMenyHourPerUser);
                 return;
             }
@@ -186,25 +188,25 @@ $(document).ready(function () {
             $(document).on("click", "#deleteOrderButton", function (event) {
 
                 swal({
-                    title: "?האם אתה בטוח",
-                    text: "לא יתאפשר לשחזר את הזמנת החדר!",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#DD6B55",
-                    confirmButtonText: "!כן, מחק את החדר",
-                    closeOnConfirm: false
-                },
-                    function(){
+                        title: "?האם אתה בטוח",
+                        text: "לא יתאפשר לשחזר את הזמנת החדר!",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "!כן, מחק את החדר",
+                        closeOnConfirm: false
+                    },
+                    function () {
                         //this function will actually delete a SQL entry via php calendar submit page
                         deleteEvent(calEvent._id);
                         $('#calendar').fullCalendar('removeEvents', function (event) {
                             return event == calEvent;
                         });
-                    swal("!נמחק", "הזמנת החדר נמחקה", "success");
-                    //if we remove event here we should also decrease the number of reservations global var.
-                    numOfReservationsPerUser --;
-                    displayNumberOfEventsPerUser();
-                });
+                        swal("!נמחק", "הזמנת החדר נמחקה", "success");
+                        //if we remove event here we should also decrease the number of reservations global var.
+                        numOfReservationsPerUser--;
+                        displayNumberOfEventsPerUser();
+                    });
 
             });
         },
@@ -258,7 +260,7 @@ $(document).ready(function () {
         });
 
         //if we render event here we should also increase the number of reservations global.
-        numOfReservationsPerUser ++;
+        numOfReservationsPerUser++;
         displayNumberOfEventsPerUser();
         calendar.fullCalendar('renderEvent',
             {
@@ -279,7 +281,7 @@ $(document).ready(function () {
         $('#roomHide').hide();
         $('#btnFindRoom').show();
 
-        
+
     }
 
     function addUserReservations() {
@@ -472,6 +474,7 @@ $(document).ready(function () {
     //change eventStartTime timEnd fo user changes in labels
     // e.g eventEndTime = ( "Mon May 30 2016 16:00:00 GMT+03:00(שעון קיץ ירושלים)" )
     function labelsChangeEvent() {
+        alert("1");
         $('#errorInput').hide();
         $('#roomHide').hide();
         $('#btnFindRoom').show();
@@ -526,7 +529,12 @@ $(document).ready(function () {
         if (minEnd == "" || hourEnd == "" || minStart == "" || hourStart == "")
             return;
 
-        if (hourStart >= hourEnd) {
+
+        if (hourStart == hourEnd && minStart > minEnd) {
+            cleanInErrorInput(errorCurrentTime);
+            return;
+        }
+        else if (hourStart > hourEnd) {
             cleanInErrorInput(errorCurrentTime);
             return;
         }
@@ -648,7 +656,7 @@ $(document).ready(function () {
             sweetAlert("...אופס", "!תאריך ושעה לא נכונים", "error");
         }
         else if (eroorInput == errorMenyHourPerUser) {
-            sweetAlert("...אופס", "אינך יכול להזמין יותר מ - "+reservationLimitation + " משבצות זמן!", "error");
+            sweetAlert("...אופס", "אינך יכול להזמין יותר מ - " + reservationLimitation + " משבצות זמן!", "error");
         }
         else if (eroorInput == errorAlreadyBooked) {
             sweetAlert("...אופס", "!אתה כבר רשום לשעה זו", "error");
@@ -700,19 +708,18 @@ $(document).ready(function () {
                 return false;
             if (eventStartTime < dateEnd && eventEndTime > dateEnd)
                 return false;
-            if(eventStartTime < dateStart && eventEndTime > dateEnd)
+            if (eventStartTime < dateStart && eventEndTime > dateEnd)
                 return false;
         }
         return true;
     }
 
 
+    function displayNumberOfEventsPerUser() {
 
-    function displayNumberOfEventsPerUser (){
-
-            var numOfEvents = numOfReservationsPerUser; //Dummy value
-            var text= "מספר האירועים שהזמנת: " + numOfEvents ;
-            $('#ShowNumOfEvents').html(text);
+        var numOfEvents = numOfReservationsPerUser; //Dummy value
+        var text = "מספר האירועים שהזמנת: " + numOfEvents;
+        $('#ShowNumOfEvents').html(text);
 
     }
 });
