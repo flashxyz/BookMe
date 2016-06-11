@@ -73,6 +73,12 @@
 
 				  "wp_book_me[roomsAvailableFrom]": {
 					  required: true
+				  },
+
+				  "wp_book_me[serviceBox]": {
+					  minlength: 3,
+					  //limited by SQL database
+					  maxlength: 15
 				  }
 
 

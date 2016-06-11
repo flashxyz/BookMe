@@ -172,7 +172,7 @@ if($_GET['group_id']==true AND $_GET['edit_group']==true)
 
 
             <br><span>services: </span><hr>
-            <input type="text" id="<?php echo $this->plugin_name; ?>_serviceBox" name="<?php echo $this->plugin_name; ?>[_serviceBox]"/>
+            <input type="text" id="<?php echo $this->plugin_name; ?>_serviceBox" name="<?php echo $this->plugin_name; ?>[serviceBox]"/>
 
             <input class="button-primary" type="button" name="addServiceBTN" value="Add Service" onclick="return addService()"/>
 
