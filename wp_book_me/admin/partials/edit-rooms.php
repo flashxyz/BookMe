@@ -112,7 +112,7 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
                                     </td>
                                     <td width='200px'>
                                         <label for="<?php echo $this->plugin_name; ?>_roomOptionName">
-                                            <input type="text" class="<?php echo $this->plugin_name; ?>_roomOptionName" id="<?php echo $this->plugin_name; ?>_roomOptionName_<?php echo $room_id; ?>" class="<?php echo $this->plugin_name; ?>_roomOptionName" name="<?php echo $this->plugin_name; ?>[roomOptionName_<?php echo $room_id; ?>]" value="<?php echo $value->roomName; ?>"/>
+                                            <input type="text" class="<?php echo $this->plugin_name; ?>_roomOptionName" id="<?php echo $this->plugin_name; ?>_roomOptionName_<?php echo $room_id; ?>" class="<?php echo $this->plugin_name; ?>_roomOptionName" name="<?php echo $this->plugin_name; ?>[roomOptionName_<?php echo $room_id; ?>]" value="<?php echo $value->roomName; ?>" minlength="3"  maxlength="40"/>
                                         </label>
                                     </td>
                                 </tr>
@@ -123,24 +123,10 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
                                     </td>
                                     <td width='200px'>
                                         <label for="<?php echo $this->plugin_name; ?>_roomOptionCapacity">
-                                            <input class="<?php echo $this->plugin_name; ?>_roomOptionCapacity" type="number" id="<?php echo $this->plugin_name; ?>_roomOptionCapacity_<?php echo $room_id; ?>" class="<?php echo $this->plugin_name; ?>_roomOptionCapacity" name="<?php echo $this->plugin_name; ?>[roomOptionCapacity_<?php echo $room_id; ?>]" value="<?php echo $value->capacity; ?>"/>
+                                            <input class="<?php echo $this->plugin_name; ?>_roomOptionCapacity" type="number" id="<?php echo $this->plugin_name; ?>_roomOptionCapacity_<?php echo $room_id; ?>" class="<?php echo $this->plugin_name; ?>_roomOptionCapacity" name="<?php echo $this->plugin_name; ?>[roomOptionCapacity_<?php echo $room_id; ?>]" value="<?php echo $value->capacity; ?>" min="1" max="9999"/>
                                         </label>
                                     </td>
                                 </tr>
-
-                                <!--
-                                <tr>
-                                    <td width='200px'>
-                                        <span>Services: </span>
-                                    </td>
-                                    <td width='200px'>
-                                        <label for="<?php echo $this->plugin_name; ?>_roomOptionServices">
-                                            <input type="text" id="<?php echo $this->plugin_name; ?>_roomOptionServices" class="<?php echo $this->plugin_name; ?>_roomOptionServices" name="<?php echo $this->plugin_name; ?>[roomOptionServices]" value="<?php echo $value->services; ?>"/>
-                                        </label>
-                                    </td>
-                                </tr>
-                                -->
-
 
                                 <tr>
                                     <td width='200px'>
@@ -148,7 +134,7 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
                                     </td>
                                     <td width='200px'>
                                         <label for="<?php echo $this->plugin_name; ?>_roomOptionDescription">
-                                            <input type="text" id="<?php echo $this->plugin_name; ?>_roomOptionDescription_<?php echo $room_id; ?>" class="<?php echo $this->plugin_name; ?>_roomOptionDescription" name="<?php echo $this->plugin_name; ?>[roomOptionDescription_<?php echo $room_id; ?>]" value="<?php echo $value->description; ?>"/>
+                                            <input type="text" id="<?php echo $this->plugin_name; ?>_roomOptionDescription_<?php echo $room_id; ?>" class="<?php echo $this->plugin_name; ?>_roomOptionDescription" name="<?php echo $this->plugin_name; ?>[roomOptionDescription_<?php echo $room_id; ?>]" value="<?php echo $value->description; ?>" maxlength="99"/>
                                         </label>
                                     </td>
                                 </tr>
