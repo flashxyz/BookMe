@@ -125,7 +125,7 @@ if($_GET['group_id']==true AND $_GET['edit_group']==true)
                     </td>
                     <td width='100px' >
                         <label for="<?php echo $this->plugin_name; ?>_groupDescription">
-                            <input type="text" id="<?php echo $this->plugin_name; ?>_groupDescription" name="<?php echo $this->plugin_name; ?>[groupDescription]" rows="3" value="<?php echo $description; ?>"/>
+                            <textarea id="<?php echo $this->plugin_name; ?>_groupDescription" name="<?php echo $this->plugin_name; ?>[groupDescription]" cols="20" rows="3" maxlength="99"><?php echo $description; ?></textarea>
                         </label>
                     </td>
                 </tr>

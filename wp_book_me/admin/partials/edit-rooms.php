@@ -134,7 +134,7 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
                                     </td>
                                     <td width='200px'>
                                         <label for="<?php echo $this->plugin_name; ?>_roomOptionDescription">
-                                            <input type="text" id="<?php echo $this->plugin_name; ?>_roomOptionDescription_<?php echo $room_id; ?>" class="<?php echo $this->plugin_name; ?>_roomOptionDescription" name="<?php echo $this->plugin_name; ?>[roomOptionDescription_<?php echo $room_id; ?>]" value="<?php echo $value->description; ?>" maxlength="99"/>
+                                            <textarea id="<?php echo $this->plugin_name; ?>_roomOptionDescription_<?php echo $room_id; ?>" class="<?php echo $this->plugin_name; ?>_roomOptionDescription" name="<?php echo $this->plugin_name; ?>[roomOptionDescription_<?php echo $room_id; ?>]" cols="20" rows="3" maxlength="99" ><?php echo $value->description; ?></textarea>
                                         </label>
                                     </td>
                                 </tr>

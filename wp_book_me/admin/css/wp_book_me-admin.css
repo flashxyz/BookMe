@@ -28,3 +28,14 @@ label.error {
     overflow:hidden;
 }
 /*-------------------------------------------*/
+
+.wp_book_me_roomOptionDescription
+{
+
+    resize: none;
+}
+
+#wp_book_me_groupDescription
+{
+    resize: none;
+}
