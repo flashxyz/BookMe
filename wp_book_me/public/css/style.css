@@ -319,6 +319,11 @@
 
 }
 
+/* for the red annoying box shadow... */
+input:required {
+    box-shadow:none;
+}
+
 .cool-button {
     background: #2db34a;
     border-radius: 6px;

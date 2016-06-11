@@ -334,7 +334,7 @@ $submitURL = get_site_url()."/wp-content/plugins/wp_book_me/public/partials/cale
                 <p></p><br>
                 <h4>אמצעים מיוחדים</h4> <br>
                 <div id=services></div>
-                </p>
+        
             </div>
         </div>
 
