@@ -35,11 +35,13 @@ if (empty($selectSQL_rooms)) {
 
     //no rooms
 }
+
 //add rooms to array
 $index = 0;
 $roomsArray = [];
 $selectSQL_rooms[$index];
 $numberOfRooms = sizeof($selectSQL_rooms);
+
 
 while ($index < $numberOfRooms) {
     $roomCell[0] = $selectSQL_rooms[$index]->roomId;
@@ -48,6 +50,22 @@ while ($index < $numberOfRooms) {
     array_push($roomsArray, $roomCell);
     $index++;
 }
+
+$roomServicesArray = array();
+
+for($i = 0; $i < $numberOfRooms; $i++)
+{
+    $tempId = $selectSQL_rooms[$i]->roomId;
+    $tempServicesArray = unserialize($selectSQL_rooms[$i]->services);
+    $temp = array($tempId => $tempServicesArray);
+
+    array_push($roomServicesArray, $temp);
+}
+
+print_r($roomServicesArray[0]);
+
+
+
 
 //get table
 $room_reservation_table = $wpdb->prefix . "bookme_room_reservation";
