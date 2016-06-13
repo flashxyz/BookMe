@@ -43,5 +43,5 @@ if($_POST[searchByServices] == true)
 
 
     }
-    echo $roomsMatchedByServices;
+    echo json_encode($roomsMatchedByServices);
 }
