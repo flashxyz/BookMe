@@ -28,6 +28,7 @@ if($_POST[searchByServices] == true)
     foreach($selectSQL_rooms as $value)
     {
         $roomID = $value -> roomId;
+        $roomName = $value -> roomName;
         $servicesOfRoom = unserialize($value -> services);
 
         $isRoomMatched = true;
@@ -38,7 +39,7 @@ if($_POST[searchByServices] == true)
         }
         if($isRoomMatched == true)
         {
-            array_push($roomsMatchedByServices, $roomID);
+            array_push($roomsMatchedByServices, $roomName);
         }
 
 

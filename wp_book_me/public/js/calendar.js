@@ -1,6 +1,8 @@
 $(document).ready(function () {
     //this is a test array, for rooms offering functionality.
     var selectedRoomId = 0;
+    
+    var roomsAfterFilter = [];
 
     //represent the start & end time of a specific room order request
     var eventStartTime;
@@ -387,22 +389,22 @@ $(document).ready(function () {
         for (i = 0; i < roomsArray.length + 1; i++) {
             y.remove(y.childNodes);
         }
-
         $('#roomSelect').append("<option>" + "בחר חדר:" + "</option>");
         if ($('#inputStartTime').val() != "" && $('#inputEndTime').val() != "" && $('#datePicker').val() != ""
             && $('#inputStartTime').val() < $('#inputEndTime').val()) {
 
-            for (i = 0; i < roomsArray.length; i++) {
-                if (demandedCapacity <= roomsArray[i][2])
-                    $('#roomSelect').append("<option>" + roomsArray[i][1] + "</option>");
-                //.attr("value",key).text(value))
-            }
+            // for (i = 0; i < roomsAfterFilter.length; i++) {
+            //     //if (demandedCapacity <= roomsArray[i][2])
+            //         //$('#roomSelect').append("<option>" + roomsArray[i][1] + "</option>");
+            //        $('#roomSelect').append("<option>" + roomsAfterFilter[i] + "</option>");
+            //
+            // }
             $('#roomHide').show();
             $('#btnFindRoom').hide();
         }
         else {
             var x = document.getElementById("roomSelect");
-            for (i = 0; i < roomsArray.length + 1; i++) {
+            for (i = 0; i < roomsAfterFilter.length + 1; i++) {
                 x.remove(x.childNodes);
             }
             $('#roomHide').hide();
@@ -604,7 +606,6 @@ $(document).ready(function () {
 
 
     function clickedServices(roomClickedServices) {
-        alert("meyohad");
         $.ajax({
             type: "POST",
             url: searchRoomsURL,
@@ -616,8 +617,18 @@ $(document).ready(function () {
             cache: false,
             success: function (data) {
                 //if null -> no room
-                alert(data);
+                roomsAfterFilter = JSON.parse(data);
                 //else -> show the rooms that we got from submit.
+
+
+                $('#roomSelect').empty();
+                $('#roomSelect').append("<option>" + "בחר חדר:" + "</option>");
+
+                for (var i = 0; i < roomsAfterFilter.length; i++) {
+
+                    $('#roomSelect').append("<option>" + roomsAfterFilter[i] + "</option>");
+
+                }
             }
         });
     }
