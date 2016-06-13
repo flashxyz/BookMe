@@ -15,11 +15,17 @@ global $wpdb;
 //get rooms table
 $rooms_options_table = $wpdb->prefix . "bookme_rooms_options";
 
+//get the table name we want to work with
+$rooms_reservation_table = $wpdb->prefix . "bookme_room_reservation";
+
 
 if($_POST[searchByServices] == true)
 {
     $servicesArray = $_POST['servicesArray'];
-    $groupID = $_POST['groupId'] ;
+    $groupID = $_POST['groupId'];
+    $startTime = $_POST['startTime'];
+    $endTime = $_POST['endTime'];
+    $capacityDemand = $_POST['capacityRoom'];
 
     $roomsMatchedByServices = array();
     //get rooms
@@ -29,6 +35,16 @@ if($_POST[searchByServices] == true)
     {
         $roomID = $value -> roomId;
         $roomName = $value -> roomName;
+        $roomCapacitiy = $value -> capacity;
+
+        if($capacityDemand > $roomCapacitiy)
+            continue;
+
+        $selectSQL_reservation =  $wpdb->get_results( "SELECT * FROM $rooms_reservation_table WHERE groupId = '$groupID' AND roomId = '$roomID' AND startTime = '$startTime' AND endTime = '$endTime'" );
+
+        if(sizeof($selectSQL_reservation) > 0)
+            continue;
+        
         $servicesOfRoom = unserialize($value -> services);
 
         $isRoomMatched = true;

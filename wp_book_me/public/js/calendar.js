@@ -49,7 +49,6 @@ $(document).ready(function () {
     var servicesArray = services;
     var numOfReservationsPerUser = numOfReservations;
     var preventSlotTime = reservationLimitation * windowTimeLength;
-
     displayCheckboxes("checkboxes");
     displayServicesDescription();
     displayNumberOfEventsPerUser();
@@ -379,9 +378,6 @@ $(document).ready(function () {
         //room capacity is now at :
         //roomsArray[i][2]
 
-        //this is user input quantity
-        demandedCapacity = $('#quantity').val();
-
 
         var j, i;
         var y = document.getElementById("roomSelect");
@@ -393,12 +389,6 @@ $(document).ready(function () {
         if ($('#inputStartTime').val() != "" && $('#inputEndTime').val() != "" && $('#datePicker').val() != ""
             && $('#inputStartTime').val() < $('#inputEndTime').val()) {
 
-            // for (i = 0; i < roomsAfterFilter.length; i++) {
-            //     //if (demandedCapacity <= roomsArray[i][2])
-            //         //$('#roomSelect').append("<option>" + roomsArray[i][1] + "</option>");
-            //        $('#roomSelect').append("<option>" + roomsAfterFilter[i] + "</option>");
-            //
-            // }
             $('#roomHide').show();
             $('#btnFindRoom').hide();
         }
@@ -606,19 +596,25 @@ $(document).ready(function () {
 
 
     function clickedServices(roomClickedServices) {
+        var demandedCapacity = $('#quantity').val();
+
+        if(demandedCapacity == "")
+            demandedCapacity = 1;
+
         $.ajax({
             type: "POST",
             url: searchRoomsURL,
             data: {
                 servicesArray: roomClickedServices,
                 groupId: groupID,
-                startTime: eventStartTime,
-                endTime: eventEndTime,
+                startTime: eventStartTime.toString(),
+                endTime: eventEndTime.toString(),
                 capacityRoom: demandedCapacity,
                 searchByServices: true,
             },//dataString
             cache: false,
             success: function (data) {
+
                 //if null -> no room
                 roomsAfterFilter = JSON.parse(data);
                 //else -> show the rooms that we got from submit.
