@@ -40,7 +40,7 @@ if($_POST[searchByServices] == true)
         if($capacityDemand > $roomCapacitiy)
             continue;
 
-        $selectSQL_reservation =  $wpdb->get_results( "SELECT * FROM $rooms_reservation_table WHERE groupId = '$groupID' AND roomId = '$roomID' AND startTime = '$startTime' AND endTime = '$endTime'" );
+        $selectSQL_reservation =  $wpdb->get_results( "SELECT * FROM $rooms_reservation_table WHERE groupId = '$groupID' AND roomId = '$roomID' AND (startTime = '$startTime' OR endTime = '$endTime')" );
 
         if(sizeof($selectSQL_reservation) > 0)
             continue;
