@@ -42,12 +42,15 @@ $roomsArray = [];
 $selectSQL_rooms[$index];
 $numberOfRooms = sizeof($selectSQL_rooms);
 
+//map of room names by id
+$roomArrayById = array();
 
 while ($index < $numberOfRooms) {
     $roomCell[0] = $selectSQL_rooms[$index]->roomId;
     $roomCell[1] = $selectSQL_rooms[$index]->roomName;
     $roomCell[2] = $selectSQL_rooms[$index]->capacity;
     array_push($roomsArray, $roomCell);
+    $roomArrayById[$roomCell[0]] = $roomCell[1];
     $index++;
 }
 
@@ -67,6 +70,7 @@ while ($index < $numberOfReservation) {
     $resCell[1] = $selectSQL_reservation[$index]->startTime;
     $resCell[2] = $selectSQL_reservation[$index]->endTime;
     $resCell[3] = $selectSQL_reservation[$index]->reservationId;
+    $resCell[4] = $roomArrayById[$resCell[0]];
     array_push($reservation_array, $resCell);
     $index++;
 }

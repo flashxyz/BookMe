@@ -310,7 +310,7 @@ $(document).ready(function () {
             calendar.fullCalendar('renderEvent',
                 {
                     id: reservationsArray[resIndex][3].toString(),
-                    title: "רשום לחדר " + reservationsArray[resIndex][0].toString(),
+                    title: "רשום לחדר " + reservationsArray[resIndex][4].toString(),
                     start: startOrderDate,
                     end: endOrderDate,
                     color: '#3300FF',
