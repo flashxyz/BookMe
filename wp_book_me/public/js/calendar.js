@@ -13,6 +13,7 @@ $(document).ready(function () {
     var errorMenyHourPerUser = 2;
     var errorAlreadyBooked = 3;
     var errorEmptyInputs = 4;
+    var errorEarlyInputs = 5;
     var errorMenyQuantity = 0;
     $("#inputStartTime").keypress(function (event) {
         event.preventDefault();
@@ -92,11 +93,11 @@ $(document).ready(function () {
                 dayEnd++;
 
             if (dayStart != dayEnd || currentTime.getDate() > dayStart) {
-                cleanInErrorInput(errorCurrentTime);
+                cleanInErrorInput(errorEarlyInputs);
                 return;
             }
             if (currentTime.getDate() == dayStart && currentTime.getHours() >= startHour) {
-                cleanInErrorInput(errorCurrentTime);
+                cleanInErrorInput(errorEarlyInputs);
                 return;
             }
             if (currentTime.getDate() == null || currentTime.getHours() == null) {
@@ -193,6 +194,7 @@ $(document).ready(function () {
                         title: "?האם אתה בטוח",
                         text: "לא יתאפשר לשחזר את הזמנת החדר!",
                         type: "warning",
+                        cancelButtonText: "ביטול",
                         showCancelButton: true,
                         confirmButtonColor: "#DD6B55",
                         confirmButtonText: "!כן, מחק את החדר",
@@ -622,13 +624,13 @@ $(document).ready(function () {
         if (eventStartTime.getYear() == currentTime.getYear()) {
             if (eventStartTime.getMonth() == currentTime.getMonth()) {
                 if (eventStartTime.getDate() < currentTime.getDate()) {
-                    cleanInErrorInput(errorCurrentTime);
+                    cleanInErrorInput(errorEarlyInputs);
                     return;
                 }
                 else if (eventStartTime.getDate() == currentTime.getDate())
                     if (eventStartTime.getHours() <= currentTime.getHours()
                         || (eventEndTime.getHours() - eventStartTime.getHours()) > preventSlotTime) {
-                        cleanInErrorInput(errorCurrentTime);
+                        cleanInErrorInput(errorEarlyInputs);
                         return;
                     }
             }
@@ -655,6 +657,9 @@ $(document).ready(function () {
         var errorInput = "";
         if (eroorInput == errorCurrentTime) {
             sweetAlert("...אופס", "!תאריך ושעה לא נכונים", "error");
+        }
+        if (eroorInput == errorEarlyInputs) {
+            sweetAlert("...אופס", "!תאריך ושעה כבר עברו, בחר תאריך ושעה עדכניים", "error");
         }
         else if (eroorInput == errorMenyHourPerUser) {
             sweetAlert("...אופס", "אינך יכול להזמין יותר מ - " + reservationLimitation + " משבצות זמן!", "error");
