@@ -612,6 +612,9 @@ $(document).ready(function () {
             data: {
                 servicesArray: roomClickedServices,
                 groupId: groupID,
+                startTime: eventStartTime,
+                endTime: eventEndTime,
+                capacityRoom: demandedCapacity,
                 searchByServices: true,
             },//dataString
             cache: false,
