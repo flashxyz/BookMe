@@ -25,6 +25,14 @@ $genOptIsRTL = $selectSQL_generalOptions->isRTL;
 $genOptFirstDay = $selectSQL_generalOptions->firstDayOfWeek;
 $genOptDateFormat = $selectSQL_generalOptions->dateFormat;
 
+if($genOptIsRTL == '1')
+{
+    $genOptIsRTL = "true";
+}
+else
+{
+    $genOptIsRTL = "false";
+}
 
 
 //group SQL table
@@ -230,6 +238,13 @@ $searchRoomsURL = get_site_url()."/wp-content/plugins/wp_book_me/public/partials
     <?php $jsArray = json_encode( $reservation_array_byUser);
     echo "var reservationsArrayByUser = " . $jsArray . ";\n";
     ?>
+
+    //general options import -------------------
+    var genOptIsRTL = "<?php echo $genOptIsRTL ?>";
+    var genOptDateFormat = "<?php echo $genOptDateFormat ?>";
+    var genOptFirstDay = "<?php echo $genOptFirstDay ?>";
+    //end of general options import -----------------
+
 
 
 </script>
