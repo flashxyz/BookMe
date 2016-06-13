@@ -153,6 +153,8 @@ function colourBrightness($hex, $percent)
 //get the current path url
 $submitURL = get_site_url()."/wp-content/plugins/wp_book_me/public/partials/calendarSubmit.php";
 
+$searchRoomsURL = get_site_url()."/wp-content/plugins/wp_book_me/public/partials/searchRooms.php"; 
+
 
 
 
@@ -166,6 +168,9 @@ $submitURL = get_site_url()."/wp-content/plugins/wp_book_me/public/partials/cale
 <script type="text/javascript">
 
     var submitURL = "<?php echo $submitURL ?>";
+    
+    var searchRoomsURL = "<?php echo $searchRoomsURL ?>";
+    
 
     var windowTimeLength = "<?php echo $windowTimeLength ?>";
     var fromTime = "<?php echo $fromTime ?>";
@@ -193,7 +198,7 @@ $submitURL = get_site_url()."/wp-content/plugins/wp_book_me/public/partials/cale
     <?php } ?>
 
     var numOfReservations= "<?php echo $numberOfReservationByUser ?>";
-    alert(numOfReservations);
+
     //roomsArray = [];
 
     <?php $jsArray = json_encode($roomsArray);

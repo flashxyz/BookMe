@@ -16,8 +16,7 @@ global $wpdb;
 $rooms_options_table = $wpdb->prefix . "bookme_rooms_options";
 
 
-if($_POST['searchByServices'] == true)
+if($_POST[searchByServices] == true)
 {
-    echo "hello";
-
+// here is the query
 }

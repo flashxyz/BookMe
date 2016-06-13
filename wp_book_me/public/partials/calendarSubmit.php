@@ -18,8 +18,6 @@ $rooms_reservation_table = $wpdb->prefix . "bookme_room_reservation";
 //get rooms table
 $rooms_options_table = $wpdb->prefix . "bookme_rooms_options";
 
-
-
 if($_POST[addRes] == true)
 {
 
@@ -109,14 +107,6 @@ if($_POST[delRes] == true)
     $wpdb->query( $wpdb->prepare( " DELETE FROM $rooms_reservation_table WHERE reservationId = %d", $eventId));
 
 }
-
-
-
-
-
-
-
-
 
 
 ?>

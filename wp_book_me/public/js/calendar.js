@@ -316,7 +316,7 @@ $(document).ready(function () {
                 },
                 true // make the event "stick"
             );
-            //alert(reservationsArray[resIndex]);
+
             resIndex++;
         }
 
@@ -602,6 +602,25 @@ $(document).ready(function () {
         });
     }
 
+
+    function clickedServices(roomClickedServices) {
+        alert("meyohad");
+        $.ajax({
+            type: "POST",
+            url: searchRoomsURL,
+            data: {
+                servicesArray: roomClickedServices,
+                searchByServices: true,
+            },//dataString
+            cache: false,
+            success: function (data) {
+                //if null -> no room
+                //alert(data);
+                //else -> show the rooms that we got from submit.
+            }
+        });
+    }
+
     //this function will make validations of the fields
     //and if they empty or they un legal - the site will alert the fields required.
     function validationFindRoom() {
@@ -648,7 +667,7 @@ $(document).ready(function () {
             return;
         }
         var userServices = getArrayUserServicesSelected();
-        alert(userServices);
+        clickedServices(userServices);
         ShowAvailableRooms();
 
     }
