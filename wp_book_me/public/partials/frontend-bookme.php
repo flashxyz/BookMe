@@ -342,6 +342,7 @@ $searchRoomsURL = get_site_url()."/wp-content/plugins/wp_book_me/public/partials
 
             <div class="col-sm-3 col-xs-6">
                 <div id="roomPictureSelect">
+                    
                     תיאור החדר
                     <br> <br>
                 </div>
