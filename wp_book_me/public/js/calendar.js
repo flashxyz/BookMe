@@ -240,7 +240,7 @@ $(document).ready(function () {
      */
     function reserveRoom() {
         if (userID == 0) {
-            alert("You need to log in first!");
+            sweetAlert("...אופס", ".!עליך להתחבר על מנת לבצע הזמנה", "error");
             return;
         }
         var booked = alreadyBooked();
@@ -728,4 +728,5 @@ $(document).ready(function () {
         $('#ShowNumOfEvents').html(text);
 
     }
+
 });
