@@ -610,12 +610,13 @@ $(document).ready(function () {
             url: searchRoomsURL,
             data: {
                 servicesArray: roomClickedServices,
+                groupId: groupID,
                 searchByServices: true,
             },//dataString
             cache: false,
             success: function (data) {
                 //if null -> no room
-                //alert(data);
+                alert(data);
                 //else -> show the rooms that we got from submit.
             }
         });

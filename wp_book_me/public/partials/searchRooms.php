@@ -18,5 +18,30 @@ $rooms_options_table = $wpdb->prefix . "bookme_rooms_options";
 
 if($_POST[searchByServices] == true)
 {
-// here is the query
+    $servicesArray = $_POST['servicesArray'];
+    $groupID = $_POST['groupId'] ;
+
+    $roomsMatchedByServices = array();
+    //get rooms
+    $selectSQL_rooms =  $wpdb->get_results( "SELECT * FROM $rooms_options_table WHERE groupId = '$groupID'" );
+
+    foreach($selectSQL_rooms as $value)
+    {
+        $roomID = $value -> roomId;
+        $servicesOfRoom = unserialize($value -> services);
+
+        $isRoomMatched = true;
+        for($i =0; $i < sizeof($servicesArray); $i++)
+        {
+            if($servicesOfRoom[$servicesArray[$i]] != 1)
+                $isRoomMatched = false;
+        }
+        if($isRoomMatched == true)
+        {
+            array_push($roomsMatchedByServices, $roomID);
+        }
+
+
+    }
+    echo $roomsMatchedByServices;
 }
