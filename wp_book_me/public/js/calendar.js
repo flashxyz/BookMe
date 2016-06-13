@@ -10,13 +10,15 @@ $(document).ready(function () {
 
     const ISRAEL_TIME_DIFF = 3;
 
-
+    var errorMenyQuantity = 0;
     var errorCurrentTime = 1;
     var errorMenyHourPerUser = 2;
     var errorAlreadyBooked = 3;
     var errorEmptyInputs = 4;
     var errorEarlyInputs = 5;
-    var errorMenyQuantity = 0;
+    var errorNoRoomsAvailable = 6;
+
+
     $("#inputStartTime").keypress(function (event) {
         event.preventDefault();
     });
@@ -38,6 +40,7 @@ $(document).ready(function () {
     $('#datePicker').change(labelsChangeEvent);
     $('#inputStartTime').change(labelsChangeEvent);
     $('#inputEndTime').change(labelsChangeEvent);
+    $('#quantity').change(labelsChangeEvent);
 
     //when a different room is chosen, the picture need to be updated using setRoomsPicture.
     $('#roomSelect').change(setRoomsPicture);
@@ -389,8 +392,8 @@ $(document).ready(function () {
         if ($('#inputStartTime').val() != "" && $('#inputEndTime').val() != "" && $('#datePicker').val() != ""
             && $('#inputStartTime').val() < $('#inputEndTime').val()) {
 
-            $('#roomHide').show();
-            $('#btnFindRoom').hide();
+            // $('#roomHide').show();
+            // $('#btnFindRoom').hide();
         }
         else {
             var x = document.getElementById("roomSelect");
@@ -618,15 +621,24 @@ $(document).ready(function () {
                 //if null -> no room
                 roomsAfterFilter = JSON.parse(data);
                 //else -> show the rooms that we got from submit.
+                if (roomsAfterFilter.length == 0) {
+                    $('#roomHide').hide();
+                    $('#btnFindRoom').show();
+                    cleanInErrorInput(errorNoRoomsAvailable);
 
+                }
+                else {
 
-                $('#roomSelect').empty();
-                $('#roomSelect').append("<option>" + "בחר חדר:" + "</option>");
+                    $('#roomHide').show();
+                    $('#btnFindRoom').hide();
+                    $('#roomSelect').empty();
+                    $('#roomSelect').append("<option>" + "בחר חדר:" + "</option>");
 
-                for (var i = 0; i < roomsAfterFilter.length; i++) {
+                    for (var i = 0; i < roomsAfterFilter.length; i++) {
 
-                    $('#roomSelect').append("<option>" + roomsAfterFilter[i] + "</option>");
+                        $('#roomSelect').append("<option>" + roomsAfterFilter[i] + "</option>");
 
+                    }
                 }
             }
         });
@@ -679,7 +691,7 @@ $(document).ready(function () {
         }
         var userServices = getArrayUserServicesSelected();
         clickedServices(userServices);
-        ShowAvailableRooms();
+        //ShowAvailableRooms();
 
     }
 
@@ -703,12 +715,16 @@ $(document).ready(function () {
         else if (eroorInput == errorEmptyInputs) {
             sweetAlert("...אופס", "!יש שדות שיש למלא", "error");
         }
+        else if (eroorInput == errorNoRoomsAvailable) {
+            sweetAlert("...אופס", "!לא נמצאו חדרים העונים לדרישתך", "error");
+        }
 
         $("#errorInput").replaceWith(errorInput);
         $('#datePicker').val("");
         $('#inputStartTime').val("");
         $('#inputEndTime').val("");
         $('#errorInput').show();
+
     }
 
     function atoiInJS(str) {
