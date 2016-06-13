@@ -1,7 +1,6 @@
 $(document).ready(function () {
     //this is a test array, for rooms offering functionality.
     var selectedRoomId = 0;
-    
     var roomsAfterFilter = [];
 
     //represent the start & end time of a specific room order request
@@ -163,7 +162,8 @@ $(document).ready(function () {
         },
         slotDuration: '00:' + slotDurationInMinutes + ':00',
         lang: 'he',
-        isRTL: true,
+        isRTL: genOptIsRTL,
+        firstDay: genOptFirstDay,
         minTime: calendarBeginTime + ":00",
         maxTime: calendarEndTime + ":00",
         hiddenDays: excludedDays,

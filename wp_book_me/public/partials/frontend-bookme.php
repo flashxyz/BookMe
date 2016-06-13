@@ -25,6 +25,7 @@ $genOptIsRTL = $selectSQL_generalOptions->isRTL;
 $genOptFirstDay = $selectSQL_generalOptions->firstDayOfWeek;
 $genOptDateFormat = $selectSQL_generalOptions->dateFormat;
 
+//set rtl as full calendars rtl
 if($genOptIsRTL == '1')
 {
     $genOptIsRTL = "true";
@@ -32,6 +33,15 @@ if($genOptIsRTL == '1')
 else
 {
     $genOptIsRTL = "false";
+}
+//set first day as full calendars first day
+if($genOptFirstDay == 'sunday')
+{
+    $genOptFirstDay = 0;
+}
+else
+{
+    $genOptFirstDay = 1;
 }
 
 
