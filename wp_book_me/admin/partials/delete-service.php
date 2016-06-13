@@ -5,7 +5,7 @@
  * Date: 01/06/2016
  * Time: 21:31
  */
-
+include "edit-rooms.php";
 
 global $wpdb;
 
@@ -14,6 +14,8 @@ if($_GET['group_id']==true AND $_GET['delete_service']==true)
 
     //get the table for farther modification
     $group_options_table = $wpdb->prefix . "bookme_group_options";
+    //get room tables from sql
+    $rooms_options_table = $wpdb->prefix . "bookme_rooms_options";
 
     //get gata from GET
     $groupID = $_GET['group_id'];
@@ -45,7 +47,44 @@ if($_GET['group_id']==true AND $_GET['delete_service']==true)
     $wpdb->update( $group_options_table, $dataArray, $whereArray);
 
 
+    $selectSQL_Rooms = $wpdb->get_results( "SELECT * FROM $rooms_options_table WHERE groupId = '$groupID'" );
+
+    $numberOfRooms = sizeof($selectSQL_Rooms);
+    
+    $newRoomsArrayServices = array();
+
+
+    foreach($selectSQL_Rooms as $value) {
+
+        $servicesByID = unserialize($value -> services);
+        $roomID = $value -> roomId;
+
+        foreach ($services as $service)
+        {
+            $temp = $servicesByID[$service];
+            $newRoomsArrayServices[$service] = $temp;
+        }
+
+        //serialize the array again for pushing it back
+        $newRoomsArrayServicesSerialized = serialize($newRoomsArrayServices);
+
+        //create array of the data we want to insert to specific row
+        $dataArray = array(
+            'services' => $newRoomsArrayServicesSerialized
+        );
+
+
+        //create array of the condition to get the specific row
+        $whereArray = array( 'roomId' => $roomID);
+
+        //execute the update function for saving data
+        $wpdb->update( $rooms_options_table, $dataArray, $whereArray);
+    }
+
+
 }
+
+
 
 //get the current path url
 $siteURL = get_site_url()."/wp-admin/admin.php";
