@@ -560,6 +560,7 @@ $(document).ready(function () {
     }
 
     function sendDataToPhp() {
+
         $.ajax({
             type: "POST",
             url: submitURL,
@@ -567,8 +568,8 @@ $(document).ready(function () {
                 group: groupID,
                 room: selectedRoomId,
                 userId: userID.toString(),
-                start: eventStartTime.toString(),
-                end: eventEndTime.toString(),
+                start: eventStartTime.toString().split('(')[0],
+                end: eventEndTime.toString().split('(')[0],
                 addRes: true,
             },//dataString
             cache: false,
@@ -610,8 +611,8 @@ $(document).ready(function () {
             data: {
                 servicesArray: roomClickedServices,
                 groupId: groupID,
-                startTime: eventStartTime.toString(),
-                endTime: eventEndTime.toString(),
+                startTime: eventStartTime.toString().split('(')[0],
+                endTime: eventEndTime.toString().split('(')[0],
                 capacityRoom: demandedCapacity,
                 searchByServices: true,
             },//dataString
