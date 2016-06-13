@@ -14,8 +14,22 @@ extract(shortcode_atts(array(
 
 $groupID = $atts['id'];
 $userID = get_current_user_id();
+
+//general options
+$general_options_table = $wpdb->prefix . "bookme_general_options";
+
+//get general options from data
+$selectSQL_generalOptions = $wpdb->get_row( "SELECT * FROM $general_options_table" );
+
+$genOptIsRTL = $selectSQL_generalOptions->isRTL;
+$genOptFirstDay = $selectSQL_generalOptions->firstDayOfWeek;
+$genOptDateFormat = $selectSQL_generalOptions->dateFormat;
+
+
+
 //group SQL table
 $group_options_table = $wpdb->prefix . "bookme_group_options";
+
 
 $selectSQL = $wpdb->get_results($wpdb->prepare("SELECT * FROM $group_options_table WHERE id = %d", $groupID));
 
