@@ -39,26 +39,9 @@ if($_POST[addRes] == true)
         'endTime' => $endTime
 
     ));
-    
-    //HERE WE NEED TO INCREASE THE ROOM OCCUPIED PLACES
-    $selectSQL_room = $wpdb->get_results( "SELECT * FROM $rooms_options_table WHERE groupId = '$groupId' AND roomId = '$roomId'" );
-    $occ = $selectSQL_room[0]->occupied;
-    $occ++;
+    echo $wpdb->insert_id;
 
-    //update in SQL
-    //create array of the data we want to insert to specific row
-    $dataArray = array(
-        'occupied' => $occ
-    );
 
-    //create array of the condition to get the specific row
-    $whereArray = array(
-        'groupId' => $groupId,
-        'roomId' => $roomId
-        );
-
-    //execute the update function for saving data
-    $wpdb->update( $rooms_options_table, $dataArray, $whereArray);
     
 
 
