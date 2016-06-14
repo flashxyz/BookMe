@@ -415,7 +415,7 @@ $(document).ready(function () {
 
     function setRoomsPicture() {
         var name = $('#roomSelect').val();
-        var dropdownstr = " <div id='roomPictureSelect'> תיאור החדר <div class='dropdown'> <button class='btn btn-default dropdown-toggle' " +
+        var dropdownstr = " <div class='dropup'> תיאור החדר <button class='btn btn-default dropdown-toggle' " +
             "type='button' data-toggle='dropdown' data-hover='dropdown'>שירותי חדר " + name + " <span class='caret'></span></button>";
 
         var i;
@@ -427,35 +427,38 @@ $(document).ready(function () {
             }
         }
         var servicesRoomSelected = "<ul class='dropdown-menu'>";
+        //
+        // $.ajax({
+        //     type: "POST",
+        //     url: searchServiceURL,
+        //     data: {
+        //         servicesArray: servicesArray,
+        //         roomId: selectedRoomId,
+        //         groupId: groupID,
+        //         searchByRoomId: true,
+        //     },//dataString
+        //     cache: false,
+        //     success: function (data) {
+        //        // alert("success");
+        //         serviceAfterFilter = JSON.parse(data);
+        //     }
+        // });
 
-        $.ajax({
-            type: "POST",
-            url: searchServiceURL,
-            data: {
-                servicesArray: servicesArray,
-                roomId: selectedRoomId,
-                groupId: groupID,
-                searchByRoomId: true,
-            },//dataString
-            cache: false,
-            success: function (data) {
-
-                serviceAfterFilter = JSON.parse(data);
-                for (var i = 0; i < serviceAfterFilter.length; i++) {
-                    //alert(serviceAfterFilter[i]);
-                    servicesRoomSelected += "<li><a href='#'>" + serviceAfterFilter[i] + "</a></li>";
-                }
-            }
-        });
-        servicesRoomSelected +="</ul></div>";
+       // alert("number of services : " + servicesArray.length);
+ 
+        for (var i = 0; i < 6; i++) {
+            servicesRoomSelected += "<li><a href='#'>" + "insertHere" + "</a></li>";
+        }
+        servicesRoomSelected +="</ul>";
         dropdownstr += servicesRoomSelected;
 
         var noImage = "http://bookme.myweb.jce.ac.il/wp-content/uploads/2016/06/noPic.jpg";
         // var imgstring = "./img/" + availableRoomsTestArray[i][2] + ".jpg";
         var style = "width:240px;height:240px;";
 
-        dropdownstr += "  <img id = 'img' src=" + noImage + " style=" + style + "></div>";
-        $('#roomPictureSelect').replaceWith(dropdownstr);
+        dropdownstr += "  <img id = 'img' src=" + noImage + " style=" + style + "> </div>";
+        document.getElementById("roomPictureSelect").innerHTML = dropdownstr;
+       // $('#roomPictureSelect').replaceWith(dropdownstr);
     }
 
     
