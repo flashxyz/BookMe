@@ -443,7 +443,7 @@ $(document).ready(function () {
         // });
 
        // alert("number of services : " + servicesArray.length);
-
+ 
         for (var i = 0; i < 6; i++) {
             servicesRoomSelected += "<li><a href='#'>" + "insertHere" + "</a></li>";
         }
