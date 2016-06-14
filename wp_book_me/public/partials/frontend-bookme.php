@@ -81,7 +81,7 @@ while ($index < $numberOfRooms) {
     $roomCell[0] = $selectSQL_rooms[$index]->roomId;
     $roomCell[1] = $selectSQL_rooms[$index]->roomName;
     $roomCell[2] = $selectSQL_rooms[$index]->capacity;
-    $roomCell[3] = unserialize($selectSQL_rooms[$index]->services);
+    $roomCell[3] = implode(',', array_keys(unserialize($selectSQL_rooms[$index]->services),1));
     array_push($roomsArray, $roomCell);
     $roomArrayById[$roomCell[0]] = $roomCell[1];
     $index++;
@@ -204,9 +204,9 @@ $searchRoomsURL = get_site_url()."/wp-content/plugins/wp_book_me/public/partials
 <script type="text/javascript">
 
     var submitURL = "<?php echo $submitURL ?>";
-    
+
     var searchRoomsURL = "<?php echo $searchRoomsURL ?>";
-    
+
     var windowTimeLength = "<?php echo $windowTimeLength ?>";
     var fromTime = "<?php echo $fromTime ?>";
     var toTime = "<?php echo $toTime ?>";

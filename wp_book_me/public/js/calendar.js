@@ -416,14 +416,18 @@ $(document).ready(function () {
         var dropdownstr = " <div class='dropup'> תיאור החדר <button class='btn btn-default dropdown-toggle' " +
             "type='button' data-toggle='dropdown' data-hover='dropdown'>שירותי חדר " + name + " <span class='caret'></span></button>";
 
+        var services;
         var i;
         for (i = 0; i < roomsArray.length; i++) {
 
             if (name == roomsArray[i][1]) {
                 selectedRoomId = roomsArray[i][0];
+                services = roomsArray[i][3];
+                alert(services);
                 break;
             }
         }
+
         var servicesRoomSelected = "<ul class='dropdown-menu'>";
         //
         // $.ajax({
@@ -443,7 +447,7 @@ $(document).ready(function () {
         // });
 
        // alert("number of services : " + servicesArray.length);
- 
+
         for (var i = 0; i < 6; i++) {
             servicesRoomSelected += "<li><a href='#'>" + "insertHere" + "</a></li>";
         }
