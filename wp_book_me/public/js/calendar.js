@@ -608,14 +608,12 @@ $(document).ready(function () {
             },//dataString
             cache: false,
             success: function (data) {
-                alert(data);
+                //alert(data);
+                //apply the id on the new event!
                 var newEvent = calendar.fullCalendar('clientEvents', 'tempId')[0];
                 newEvent._id = data;
-               //return data
             }
         });
-        //draw all events again
-
 
     }
 
