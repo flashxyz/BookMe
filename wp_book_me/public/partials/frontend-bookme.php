@@ -81,6 +81,7 @@ while ($index < $numberOfRooms) {
     $roomCell[0] = $selectSQL_rooms[$index]->roomId;
     $roomCell[1] = $selectSQL_rooms[$index]->roomName;
     $roomCell[2] = $selectSQL_rooms[$index]->capacity;
+    $roomCell[3] = unserialize($selectSQL_rooms[$index]->services);
     array_push($roomsArray, $roomCell);
     $roomArrayById[$roomCell[0]] = $roomCell[1];
     $index++;
