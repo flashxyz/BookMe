@@ -189,8 +189,9 @@ function colourBrightness($hex, $percent)
 //get the current path url
 $submitURL = get_site_url()."/wp-content/plugins/wp_book_me/public/partials/calendarSubmit.php";
 
-$searchRoomsURL = get_site_url()."/wp-content/plugins/wp_book_me/public/partials/searchRooms.php"; 
+$searchRoomsURL = get_site_url()."/wp-content/plugins/wp_book_me/public/partials/searchRooms.php";
 
+$searchServiceURL = get_site_url()."/wp-content/plugins/wp_book_me/public/partials/searchServices.php";
 
 
 
@@ -206,13 +207,14 @@ $searchRoomsURL = get_site_url()."/wp-content/plugins/wp_book_me/public/partials
     var submitURL = "<?php echo $submitURL ?>";
     
     var searchRoomsURL = "<?php echo $searchRoomsURL ?>";
-    
+
+    var searchServiceURL ="<?php echo $searchServiceURL ?>";
 
     var windowTimeLength = "<?php echo $windowTimeLength ?>";
     var fromTime = "<?php echo $fromTime ?>";
     var toTime = "<?php echo $toTime ?>";
     var reservationLimitation = "<?php echo $reservationLimitation ?>";
-    //active days
+    
     var activeDays = [];
     activeDays[0] = "<?php echo $activeDays["sunday"] ?>";
     activeDays[1] = "<?php echo $activeDays["monday"] ?>";
@@ -385,7 +387,7 @@ $searchRoomsURL = get_site_url()."/wp-content/plugins/wp_book_me/public/partials
 
             <div class="col-sm-3 col-xs-6">
                 <div id="roomPictureSelect">
-                    
+
                     תיאור החדר
                     <br> <br>
                 </div>

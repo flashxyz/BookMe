@@ -2,6 +2,7 @@ $(document).ready(function () {
     //this is a test array, for rooms offering functionality.
     var selectedRoomId = 0;
     var roomsAfterFilter = [];
+    var serviceAfterFilter = [];
 
     //represent the start & end time of a specific room order request
     var eventStartTime;
@@ -408,24 +409,54 @@ $(document).ready(function () {
     }
 
 
+
+
     function setRoomsPicture() {
-        $('#roomPictureSelect').html("חדר נבחר: <br>" + $('#roomSelect').val() + "<br>  <div id='img'></div>");
         var name = $('#roomSelect').val();
+        var dropdownstr = " <div id='roomPictureSelect'> תיאור החדר <div class='dropdown'> <button class='btn btn-default dropdown-toggle' " +
+            "type='button' data-toggle='dropdown' data-hover='dropdown'>שירותי חדר " + name + " <span class='caret'></span></button>";
+
         var i;
-        for (i = 0; i < roomsArray.length; i++)
+        for (i = 0; i < roomsArray.length; i++) {
+
             if (name == roomsArray[i][1]) {
                 selectedRoomId = roomsArray[i][0];
                 break;
             }
+        }
+        var servicesRoomSelected = "<ul class='dropdown-menu'>";
+
+        $.ajax({
+            type: "POST",
+            url: searchServiceURL,
+            data: {
+                servicesArray: servicesArray,
+                roomId: selectedRoomId,
+                groupId: groupID,
+                searchByRoomId: true,
+            },//dataString
+            cache: false,
+            success: function (data) {
+
+                serviceAfterFilter = JSON.parse(data);
+                for (var i = 0; i < serviceAfterFilter.length; i++) {
+                    alert(serviceAfterFilter[i]);
+                    servicesRoomSelected += "<li><a href='#'>" + serviceAfterFilter[i] + "</a></li>";
+                }
+            }
+        });
+        servicesRoomSelected +="</ul></div>";
+        dropdownstr += servicesRoomSelected;
 
         var noImage = "http://bookme.myweb.jce.ac.il/wp-content/uploads/2016/06/noPic.jpg";
         // var imgstring = "./img/" + availableRoomsTestArray[i][2] + ".jpg";
         var style = "width:240px;height:240px;";
 
-        $('#img').replaceWith("<img id = 'img' src=" + noImage + " style=" + style + ">");
-
+        dropdownstr += "  <img id = 'img' src=" + noImage + " style=" + style + "></div>";
+        $('#roomPictureSelect').replaceWith(dropdownstr);
     }
 
+    
     //change the services to checkboxes and display them in services div
     function displayCheckboxes(whichId) {
         var checkboxes = "<table class='table table-sm text-right table-cool'  align='right' >";
@@ -544,12 +575,12 @@ $(document).ready(function () {
     function displayOrderRoomInDialog(startHour, startMin, endHour, endMin, nameRoom) {
         var startDisplay = displayProperTimeLabel(startHour, startMin);
         var endDisplay = displayProperTimeLabel(endHour, endMin);
-        var description = "<div id = 'diplayOrderRoom'' class='modal-body'><ul>";
+        var description = "<div id = 'diplayOrderRoom'' class='modal-body'>";
         description += "החדר מוזמן לשעה: ";
-        description += startDisplay +"</ul><ul>";
+        description += startDisplay;
         description += " עד שעה: ";
-        description += endDisplay+"</ul><ul>";
-        description += nameRoom + "</ul>";
+        description += endDisplay +" " ;
+        description += nameRoom ;
         $("#diplayOrderRoom").replaceWith(description);
 
         var noImage = "http://bookme.myweb.jce.ac.il/wp-content/uploads/2016/06/noPic.jpg";
@@ -600,7 +631,7 @@ $(document).ready(function () {
     function clickedServices(roomClickedServices) {
         var demandedCapacity = $('#quantity').val();
 
-        if(demandedCapacity == "")
+        if (demandedCapacity == "")
             demandedCapacity = 1;
 
         $.ajax({
