@@ -605,9 +605,9 @@ $(document).ready(function () {
             },//dataString
             cache: false,
             success: function (data) {
+                alert(data);
                 var newEvent = calendar.fullCalendar('clientEvents', 'tempId')[0];
                 newEvent._id = data;
-                //alert();
                //return data
             }
         });
