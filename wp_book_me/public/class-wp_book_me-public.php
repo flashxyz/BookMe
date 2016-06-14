@@ -82,6 +82,10 @@ class Wp_book_me_Public {
 		wp_enqueue_style( 'bootstrap.min', plugin_dir_url( __FILE__ ) . 'css/bootstrap.min.css', array(), $this->version, 'all' );
 		wp_enqueue_style( 'bootstrap-theme.min', plugin_dir_url( __FILE__ ) . 'css/bootstrap-theme.min.css', array(), $this->version, 'all' );
 		wp_enqueue_style( 'sweetAlert.css', plugin_dir_url( __FILE__ ) . 'css/sweetAlert.css', array(), $this->version, 'all' );
+		wp_enqueue_style( 'animate.css', plugin_dir_url( __FILE__ ) . 'css/animate.css', array(), $this->version, 'all' );
+		wp_enqueue_style( 'animate.min.css', plugin_dir_url( __FILE__ ) . 'css/animate.min.css', array(), $this->version, 'all' );
+		wp_enqueue_style( 'bootstrap-dropdownhover.css', plugin_dir_url( __FILE__ ) . 'css/bootstrap-dropdownhover.css', array(), $this->version, 'all' );
+		wp_enqueue_style( 'bootstrap-dropdownhover.min.css', plugin_dir_url( __FILE__ ) . 'css/bootstrap-dropdownhover.min.css', array(), $this->version, 'all' );
 
 	}
 
@@ -119,6 +123,9 @@ class Wp_book_me_Public {
 		wp_enqueue_script(  'datepair', plugin_dir_url( __FILE__ ) . 'js/datepair.js', array( 'jquery'), $this->version, false);
 		wp_enqueue_script(  'jquery.datepair', plugin_dir_url( __FILE__ ) . 'js/jquery.datepair.js', array( 'jquery'), $this->version, false);
 		wp_enqueue_script(  'sweetAlert', plugin_dir_url( __FILE__ ) . 'js/sweetAlert.js', array( 'jquery'), $this->version, false);
+		wp_enqueue_script(  'sweetAlert', plugin_dir_url( __FILE__ ) . 'js/sweetAlert.js', array( 'jquery'), $this->version, false);
+		wp_enqueue_script(  'bootstrap-dropdownhover', plugin_dir_url( __FILE__ ) . 'js/bootstrap-dropdownhover.js', array( 'jquery'), $this->version, false);
+		wp_enqueue_script(  'bootstrap-dropdownhover.min', plugin_dir_url( __FILE__ ) . 'js/bootstrap-dropdownhover.min.js', array( 'jquery'), $this->version, false);
 
 
 	}

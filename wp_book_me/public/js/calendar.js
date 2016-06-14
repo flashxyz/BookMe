@@ -409,7 +409,6 @@ $(document).ready(function () {
 
 
     function setRoomsPicture() {
-
         $('#roomPictureSelect').html("חדר נבחר: <br>" + $('#roomSelect').val() + "<br>  <div id='img'></div>");
         var name = $('#roomSelect').val();
         var i;
@@ -545,13 +544,12 @@ $(document).ready(function () {
     function displayOrderRoomInDialog(startHour, startMin, endHour, endMin, nameRoom) {
         var startDisplay = displayProperTimeLabel(startHour, startMin);
         var endDisplay = displayProperTimeLabel(endHour, endMin);
-        var description = "<div id = 'diplayOrderRoom'' class='modal-body'>";
-        description += "החדר מוזמן לשעה: "
-        description += startDisplay;
+        var description = "<div id = 'diplayOrderRoom'' class='modal-body'><ul>";
+        description += "החדר מוזמן לשעה: ";
+        description += startDisplay +"</ul><ul>";
         description += " עד שעה: ";
-        description += endDisplay;
-        description += ", הינך ";
-        description += nameRoom;
+        description += endDisplay+"</ul><ul>";
+        description += nameRoom + "</ul>";
         $("#diplayOrderRoom").replaceWith(description);
 
         var noImage = "http://bookme.myweb.jce.ac.il/wp-content/uploads/2016/06/noPic.jpg";
