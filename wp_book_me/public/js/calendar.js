@@ -182,7 +182,6 @@ $(document).ready(function () {
 
         //this function is called when an event is being clicked.
         eventClick: function (calEvent, jsEvent, view) {
-            alert(calEvent._id);
             $('#reservationDetailsDialog').modal('show');
 
             var date = new Date(calEvent.start);
@@ -274,7 +273,6 @@ $(document).ready(function () {
         displayNumberOfEventsPerUser();
         calendar.fullCalendar('renderEvent',
             {
-                id: 'tempId',
                 title: "רשום לחדר " + roomName.toString(),
                 start: eventStartTime,
                 end: eventEndTime,
@@ -414,6 +412,7 @@ $(document).ready(function () {
 
 
     function setRoomsPicture() {
+
         var name = $('#roomSelect').val();
         var dropdownstr = " <div class='dropup'> תיאור החדר <button class='btn btn-default dropdown-toggle' " +
             "type='button' data-toggle='dropdown' data-hover='dropdown'>שירותי חדר " + name + " <span class='caret'></span></button>";
@@ -425,44 +424,22 @@ $(document).ready(function () {
             if (name == roomsArray[i][1]) {
                 selectedRoomId = roomsArray[i][0];
                 services = roomsArray[i][3];
-                alert(services);
                 break;
             }
         }
-
+        var specificRoomServices = services.split(',');
+        alert(specificRoomServices.length);
         var servicesRoomSelected = "<ul class='dropdown-menu'>";
-        //
-        // $.ajax({
-        //     type: "POST",
-        //     url: searchServiceURL,
-        //     data: {
-        //         servicesArray: servicesArray,
-        //         roomId: selectedRoomId,
-        //         groupId: groupID,
-        //         searchByRoomId: true,
-        //     },//dataString
-        //     cache: false,
-        //     success: function (data) {
-        //        // alert("success");
-        //         serviceAfterFilter = JSON.parse(data);
-        //     }
-        // });
-
-       // alert("number of services : " + servicesArray.length);
-
-        for (var i = 0; i < 6; i++) {
-            servicesRoomSelected += "<li><a href='#'>" + "insertHere" + "</a></li>";
+        for (var i = 0; i < specificRoomServices.length; i++) {
+            servicesRoomSelected += "<li><a href='#'>" + specificRoomServices[i].toString() + "</a></li>";
         }
-        servicesRoomSelected +="</ul>";
+        servicesRoomSelected +="</ul></div>";
         dropdownstr += servicesRoomSelected;
 
         var noImage = "http://bookme.myweb.jce.ac.il/wp-content/uploads/2016/06/noPic.jpg";
-        // var imgstring = "./img/" + availableRoomsTestArray[i][2] + ".jpg";
-        var style = "width:240px;height:240px;";
+        $('#roomPictureSelect').html(dropdownstr);
+        $('roomPictureSelect').css('background-image', 'url(' + noImage + ')');
 
-        dropdownstr += "  <img id = 'img' src=" + noImage + " style=" + style + "> </div>";
-        document.getElementById("roomPictureSelect").innerHTML = dropdownstr;
-       // $('#roomPictureSelect').replaceWith(dropdownstr);
     }
 
     
@@ -599,6 +576,9 @@ $(document).ready(function () {
 
     function sendDataToPhp() {
 
+        var requestedSlots = [];
+        requestedSlots = breakDurationIntoSlotsArray();
+        alert(requestedSlots.toString());
         $.ajax({
             type: "POST",
             url: submitURL,
@@ -613,18 +593,36 @@ $(document).ready(function () {
             cache: false,
             success: function (data) {
                 //alert(data);
-                //apply the id on the new event!
-                var newEvent = calendar.fullCalendar('clientEvents', 'tempId')[0];
-                newEvent._id = data;
             }
         });
-
     }
 
+    /*  this function is using the start of selection time, and the end of selection time,
+        to generate an array of slots, for easier comparison against the database tables.
+        for example: if the user marked the hours 8-10, and the duration of each slot is 60 minutes,
+        the array returned by the function is 8, 9 , 9 , 10 */
+
+    function breakDurationIntoSlotsArray () {
+        //calculate how many slots of time the user has picked, respective to the slotDuration set by the admin
+        var how_many_slots_picked = (eventEndTime - eventStartTime) / (60000*slotDurationInMinutes) ; // get number of slots selected
+        //this array will hold the single slots after the breaking, without the hebrew/english time stamp
+        var splittedArrayToReturn = [];
+        var curr  = eventStartTime  ;
+        var prev;
+        for (var i=1 ; i<=how_many_slots_picked ; i++)
+        {
+            prev = curr;
+            //adding slotDurationInMinutes to the current date, to build a single time slot at a time.
+            curr= new Date(prev.getTime() + slotDurationInMinutes * 60000);
+            //pushing to the array we return, the pushed values are already  cleaned.
+            splittedArrayToReturn.push(prev.toString().split('(')[0],curr.toString().split('(')[0]);
+        }
+
+        return splittedArrayToReturn;
+    }
 
     //this functions will delete event from SQL
     function deleteEvent(eventId) {
-        //alert("deleteEvent! : " + eventId)
         $.ajax({
             type: "POST",
             url: submitURL,

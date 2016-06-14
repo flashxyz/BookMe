@@ -316,6 +316,11 @@
     margin-top: 0; // remove the gap so it doesn't close
 }
 
+#roomPictureSelect {
+    background-color: #2aabd2;
+    height: 240px;
+}
+
 #roomConfirmSelect {
 
     display: table-cell;
