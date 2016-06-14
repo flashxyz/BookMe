@@ -191,8 +191,6 @@ $submitURL = get_site_url()."/wp-content/plugins/wp_book_me/public/partials/cale
 
 $searchRoomsURL = get_site_url()."/wp-content/plugins/wp_book_me/public/partials/searchRooms.php";
 
-$searchServiceURL = get_site_url()."/wp-content/plugins/wp_book_me/public/partials/searchServices.php";
-
 
 
 
@@ -207,9 +205,7 @@ $searchServiceURL = get_site_url()."/wp-content/plugins/wp_book_me/public/partia
     var submitURL = "<?php echo $submitURL ?>";
     
     var searchRoomsURL = "<?php echo $searchRoomsURL ?>";
-
-    var searchServiceURL ="<?php echo $searchServiceURL ?>";
-
+    
     var windowTimeLength = "<?php echo $windowTimeLength ?>";
     var fromTime = "<?php echo $fromTime ?>";
     var toTime = "<?php echo $toTime ?>";

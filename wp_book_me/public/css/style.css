@@ -309,6 +309,12 @@
     text-align: center;
 }
 
+.dropup:hover .dropdown-menu {
+    width: 200px;
+    direction: rtl;
+    display: table-row;
+    margin-top: 0; // remove the gap so it doesn't close
+}
 
 #roomConfirmSelect {
 
