@@ -182,6 +182,7 @@ $(document).ready(function () {
 
         //this function is called when an event is being clicked.
         eventClick: function (calEvent, jsEvent, view) {
+            alert(calEvent._id);
             $('#reservationDetailsDialog').modal('show');
 
             var date = new Date(calEvent.start);
@@ -273,6 +274,7 @@ $(document).ready(function () {
         displayNumberOfEventsPerUser();
         calendar.fullCalendar('renderEvent',
             {
+                id: 'tempId',
                 title: "רשום לחדר " + roomName.toString(),
                 start: eventStartTime,
                 end: eventEndTime,
@@ -611,13 +613,18 @@ $(document).ready(function () {
             cache: false,
             success: function (data) {
                 //alert(data);
+                //apply the id on the new event!
+                var newEvent = calendar.fullCalendar('clientEvents', 'tempId')[0];
+                newEvent._id = data;
             }
         });
+
     }
 
 
     //this functions will delete event from SQL
     function deleteEvent(eventId) {
+        //alert("deleteEvent! : " + eventId)
         $.ajax({
             type: "POST",
             url: submitURL,
