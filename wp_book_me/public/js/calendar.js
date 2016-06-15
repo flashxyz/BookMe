@@ -244,10 +244,7 @@ $(document).ready(function () {
      a room can't be reserved in the past !
      */
     function reserveRoom() {
-        if (userID == 0) {
-            sweetAlert("...אופס", ".!עליך להתחבר על מנת לבצע הזמנה", "error");
-            return;
-        }
+cali
         var booked = alreadyBooked();
         if (!booked) {
             cleanInErrorInput(errorAlreadyBooked);
@@ -711,6 +708,12 @@ $(document).ready(function () {
     //this function will make validations of the fields
     //and if they empty or they un legal - the site will alert the fields required.
     function validationFindRoom() {
+
+
+        if (userID == 0) {
+            sweetAlert("...אופס", ".!עליך להתחבר על מנת לבצע הזמנה", "error");
+            return;
+        }
 
         if (!eventStartTime) {
             cleanInErrorInput(errorEmptyInputs);

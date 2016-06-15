@@ -220,14 +220,7 @@ $searchRoomsURL = get_site_url()."/wp-content/plugins/wp_book_me/public/partials
     var genOptDateFormat = "<?php echo $genOptDateFormat ?>";
     var genOptFirstDay = "<?php echo $genOptFirstDay ?>";
     //end of general options import -----------------
-
-
-    <?php
-    if($userID != 0 )
-    {
-    ?>
-
-
+    
     
     var activeDays = [];
     activeDays[0] = "<?php echo $activeDays["sunday"] ?>";
@@ -265,13 +258,7 @@ $searchRoomsURL = get_site_url()."/wp-content/plugins/wp_book_me/public/partials
     echo "var reservationsArrayByUser = " . $jsArray . ";\n";
     ?>
 
-
-
-    <?php }
-    else
-    {?>
-    sweetAlert("...אופס", ".!עליך להתחבר על מנת לבצע הזמנה", "error");
-    <?php } ?>
+    
 
 
 
