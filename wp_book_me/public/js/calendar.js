@@ -17,6 +17,7 @@ $(document).ready(function () {
     var errorEmptyInputs = 4;
     var errorEarlyInputs = 5;
     var errorNoRoomsAvailable = 6;
+    var errorMoreThenOneDay = 7;
 
 
     $("#inputStartTime").keypress(function (event) {
@@ -96,7 +97,7 @@ $(document).ready(function () {
             if (startHour < 0 && endHour < 0)
                 dayEnd++;
 
-            if (dayStart != dayEnd || currentTime.getDate() > dayStart) {
+            if (dayStart != dayEnd && currentTime.getDate() > dayStart) {
                 cleanInErrorInput(errorEarlyInputs);
                 return;
             }
@@ -131,8 +132,15 @@ $(document).ready(function () {
             else if (minStart < minEnd)
                 addMIn = (minEnd - minStart);
 
+
+            //check the selection is for the same day!
+            if (dateStart.getDate() != dateEnd.getDate() ) {
+                cleanInErrorInput(errorMoreThenOneDay);
+                return;
+            }
+
             //check the user minute and the preventSlotTime(limit of admin)
-            if (((endHour - startHour) * 60 + addMIn) > preventSlotTime) {
+            if ( (((endHour - startHour) * 60 + addMIn) > preventSlotTime ) || (dateStart.getDate() != dateEnd.getDate()) ) {
                 cleanInErrorInput(errorMenyHourPerUser);
                 return;
             }
@@ -784,6 +792,9 @@ cali
         }
         else if (eroorInput == errorNoRoomsAvailable) {
             sweetAlert("...אופס", "!לא נמצאו חדרים העונים לדרישתך", "error");
+        }
+        else if (eroorInput == errorMoreThenOneDay) {
+            sweetAlert("...אופס", "!הזמנה לא יכול להיות על שני ימים", "error");
         }
 
         $("#errorInput").replaceWith(errorInput);
