@@ -43,6 +43,7 @@ if($_POST[searchByServices] == true)
 
         $selectSQL_reservation =  $wpdb->get_results( "SELECT * FROM $rooms_reservation_table WHERE groupId = '$groupID' 
                         AND roomId = '$roomID' AND resDate ='$dateString' AND ((startDoubleTime <= '$startTimeDouble' AND endDoubleTime >= '$endTimeDouble')
+                        OR (startDoubleTime > '$startTimeDouble' AND endDoubleTime < '$endTimeDouble') 
                         OR (startDoubleTime > '$startTimeDouble' AND endDoubleTime >= '$endTimeDouble' AND startDoubleTime < '$endTimeDouble')
                         OR (endDoubleTime < '$endTimeDouble' AND startDoubleTime <= '$startTimeDouble' AND endDoubleTime > '$startTimeDouble'))" );
 
