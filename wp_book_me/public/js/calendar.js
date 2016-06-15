@@ -697,8 +697,9 @@ $(document).ready(function () {
             data: {
                 servicesArray: roomClickedServices,
                 groupId: groupID,
-                startTime: eventStartTime.toString().split('(')[0],
-                endTime: eventEndTime.toString().split('(')[0],
+                dateString: getDateTimeFromDate(eventStartTime),
+                startTimeDouble:getHourTimeIntegerFromDate(eventStartTime),
+                endTimeDouble:getHourTimeIntegerFromDate(eventEndTime),
                 capacityRoom: demandedCapacity,
                 searchByServices: true,
             },//dataString
