@@ -252,7 +252,6 @@ $(document).ready(function () {
      a room can't be reserved in the past !
      */
     function reserveRoom() {
-cali
         var booked = alreadyBooked();
         if (!booked) {
             cleanInErrorInput(errorAlreadyBooked);
