@@ -329,14 +329,6 @@
     height: 192px;
 
 }
-
-.dropdown{
-    position: relative;
-    height: 300px;
-    display: block !important;
-
-}
-
 /* for the red annoying box shadow... */
 input:required {
     box-shadow:none;
