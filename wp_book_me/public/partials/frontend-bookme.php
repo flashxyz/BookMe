@@ -205,12 +205,29 @@ $searchRoomsURL = get_site_url()."/wp-content/plugins/wp_book_me/public/partials
 
     var submitURL = "<?php echo $submitURL ?>";
 
+    var userID = <?php echo $userID; ?>;
+
     var searchRoomsURL = "<?php echo $searchRoomsURL ?>";
 
     var windowTimeLength = "<?php echo $windowTimeLength ?>";
     var fromTime = "<?php echo $fromTime ?>";
     var toTime = "<?php echo $toTime ?>";
     var reservationLimitation = "<?php echo $reservationLimitation ?>";
+    var groupID =  <?php echo $groupID ?>;
+
+    //general options import -------------------
+    var genOptIsRTL = "<?php echo $genOptIsRTL ?>";
+    var genOptDateFormat = "<?php echo $genOptDateFormat ?>";
+    var genOptFirstDay = "<?php echo $genOptFirstDay ?>";
+    //end of general options import -----------------
+
+
+    <?php
+    if($userID != 0 )
+    {
+    ?>
+
+
     
     var activeDays = [];
     activeDays[0] = "<?php echo $activeDays["sunday"] ?>";
@@ -220,8 +237,8 @@ $searchRoomsURL = get_site_url()."/wp-content/plugins/wp_book_me/public/partials
     activeDays[4] = "<?php echo $activeDays["thursday"] ?>";
     activeDays[5] = "<?php echo $activeDays["friday"] ?>";
     activeDays[6] = "<?php echo $activeDays["saturday"] ?>";
-    var userID = <?php echo $userID; ?>;
-    var groupID =  <?php echo $groupID ?>;
+
+
     //get the services to array var in javascript
     var services = [];
 
@@ -248,11 +265,13 @@ $searchRoomsURL = get_site_url()."/wp-content/plugins/wp_book_me/public/partials
     echo "var reservationsArrayByUser = " . $jsArray . ";\n";
     ?>
 
-    //general options import -------------------
-    var genOptIsRTL = "<?php echo $genOptIsRTL ?>";
-    var genOptDateFormat = "<?php echo $genOptDateFormat ?>";
-    var genOptFirstDay = "<?php echo $genOptFirstDay ?>";
-    //end of general options import -----------------
+
+
+    <?php }
+    else
+    {?>
+    sweetAlert("...אופס", ".!עליך להתחבר על מנת לבצע הזמנה", "error");
+    <?php } ?>
 
 
 
@@ -351,7 +370,6 @@ $searchRoomsURL = get_site_url()."/wp-content/plugins/wp_book_me/public/partials
     }
 
 </style>
-
 
 <div class="container-fluid text-right">
 
@@ -483,6 +501,4 @@ $searchRoomsURL = get_site_url()."/wp-content/plugins/wp_book_me/public/partials
     </div>
     <!-- /.row -->
 </div>
-
-
 
