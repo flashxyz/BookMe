@@ -294,6 +294,14 @@ $searchRoomsURL = get_site_url()."/wp-content/plugins/wp_book_me/public/partials
 
     }
 
+    .dropdown:hover .dropbtn{
+        background-color: <?php echo $calendarColor; ?> !important;
+    }
+
+    .dropbtn {
+        background-color: <?php echo $fiftyPercentBrighter; ?> !important;
+    }
+
     #roomSelector {
         color: <?php echo $veryBrightColor; ?>;
     }

@@ -409,13 +409,12 @@ $(document).ready(function () {
     }
 
 
-
-
     function setRoomsPicture() {
 
         var name = $('#roomSelect').val();
-        var dropdownstr = " <div class='dropup'> תיאור החדר <button class='btn btn-default dropdown-toggle' " +
-            "type='button' data-toggle='dropdown' data-hover='dropdown'>שירותי חדר " + name + " <span class='caret'></span></button>";
+        if (name == "בחר חדר:")
+            return;
+        var dropdownstr = " <div class='dropdown'><button class='dropbtn'>שירותי חדר " + name;
 
         var services;
         var i;
@@ -428,21 +427,22 @@ $(document).ready(function () {
             }
         }
         var specificRoomServices = services.split(',');
-        alert(specificRoomServices.length);
-        var servicesRoomSelected = "<ul class='dropdown-menu'>";
+        var servicesRoomSelected = "<div class='dropdown-content'>";
         for (var i = 0; i < specificRoomServices.length; i++) {
-            servicesRoomSelected += "<li><a href='#'>" + specificRoomServices[i].toString() + "</a></li>";
+            servicesRoomSelected += "<a href='#'>" + specificRoomServices[i].toString() + "</a>";
         }
-        servicesRoomSelected +="</ul></div>";
+        servicesRoomSelected += "</div> </div>";
         dropdownstr += servicesRoomSelected;
 
         var noImage = "http://bookme.myweb.jce.ac.il/wp-content/uploads/2016/06/noPic.jpg";
+        $('#roomPictureSelect').css('background-image', 'url(' + noImage + ')');
+        $('#roomPictureSelect').css('background-size', '100%');
         $('#roomPictureSelect').html(dropdownstr);
-        $('roomPictureSelect').css('background-image', 'url(' + noImage + ')');
+
 
     }
 
-    
+
     //change the services to checkboxes and display them in services div
     function displayCheckboxes(whichId) {
         var checkboxes = "<table class='table table-sm text-right table-cool'  align='right' >";
@@ -565,8 +565,31 @@ $(document).ready(function () {
         description += "החדר מוזמן לשעה: ";
         description += startDisplay;
         description += " עד שעה: ";
-        description += endDisplay +" " ;
-        description += nameRoom ;
+        description += endDisplay + " ";
+        description += nameRoom + ".";
+        var name = nameRoom.slice(10, nameRoom.length);
+        var services;
+        for (i = 0; i < roomsArray.length; i++) {
+
+            if (name == roomsArray[i][1]) {
+                services = roomsArray[i][3];
+                break;
+            }
+        }
+        var specificRoomServices = services.split(',');
+        if (specificRoomServices.length != 1) {
+            description += "<br> השירותים בחדר זה הם:";
+            description += "<br>";
+
+            for (var i = 0; i < specificRoomServices.length; i++) {
+                if (i < specificRoomServices.length - 1)
+                    description += specificRoomServices[i].toString() + ",";
+                else
+                    description += specificRoomServices[i].toString() + ".";
+            }
+        }
+        else
+            description += "<br>"+ "אין שירותים בחדר זה.";
         $("#diplayOrderRoom").replaceWith(description);
 
         var noImage = "http://bookme.myweb.jce.ac.il/wp-content/uploads/2016/06/noPic.jpg";
@@ -598,24 +621,23 @@ $(document).ready(function () {
     }
 
     /*  this function is using the start of selection time, and the end of selection time,
-        to generate an array of slots, for easier comparison against the database tables.
-        for example: if the user marked the hours 8-10, and the duration of each slot is 60 minutes,
-        the array returned by the function is 8, 9 , 9 , 10 */
+     to generate an array of slots, for easier comparison against the database tables.
+     for example: if the user marked the hours 8-10, and the duration of each slot is 60 minutes,
+     the array returned by the function is 8, 9 , 9 , 10 */
 
-    function breakDurationIntoSlotsArray () {
+    function breakDurationIntoSlotsArray() {
         //calculate how many slots of time the user has picked, respective to the slotDuration set by the admin
-        var how_many_slots_picked = (eventEndTime - eventStartTime) / (60000*slotDurationInMinutes) ; // get number of slots selected
+        var how_many_slots_picked = (eventEndTime - eventStartTime) / (60000 * slotDurationInMinutes); // get number of slots selected
         //this array will hold the single slots after the breaking, without the hebrew/english time stamp
         var splittedArrayToReturn = [];
-        var curr  = eventStartTime  ;
+        var curr = eventStartTime;
         var prev;
-        for (var i=1 ; i<=how_many_slots_picked ; i++)
-        {
+        for (var i = 1; i <= how_many_slots_picked; i++) {
             prev = curr;
             //adding slotDurationInMinutes to the current date, to build a single time slot at a time.
-            curr= new Date(prev.getTime() + slotDurationInMinutes * 60000);
+            curr = new Date(prev.getTime() + slotDurationInMinutes * 60000);
             //pushing to the array we return, the pushed values are already  cleaned.
-            splittedArrayToReturn.push(prev.toString().split('(')[0],curr.toString().split('(')[0]);
+            splittedArrayToReturn.push(prev.toString().split('(')[0], curr.toString().split('(')[0]);
         }
 
         return splittedArrayToReturn;
