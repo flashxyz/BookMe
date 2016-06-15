@@ -559,6 +559,10 @@ $(document).ready(function () {
 
         eventStartTime = new Date(year, month - 1, day, hourStart, minStart);
         eventEndTime = new Date(year, month - 1, day, hourEnd, minEnd);
+
+        for(var i = 0; i < excludedDays.length ; i++)
+            if(excludedDays[i] == eventStartTime.getDay())
+                cleanInErrorInput(errorCurrentTime);
     }
 
 
