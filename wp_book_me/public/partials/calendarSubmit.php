@@ -38,8 +38,11 @@ if($_POST[addRes] == true)
         'groupId' => $groupId,
         'roomId' => $roomId,
         'userId' => $userId,
-        'startTime' => $startTime,
-        'endTime' => $endTime
+        'startTime' => $startTimeString,
+        'endTime' => $endTimeString,
+        'resDate' => $dateString,
+        'startDoubleTime' => $startTimeDouble,
+        'endDoubleTime' => $endTimeDouble
 
     ));
 
