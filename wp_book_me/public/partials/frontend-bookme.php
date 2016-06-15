@@ -355,6 +355,9 @@ $searchRoomsURL = get_site_url()."/wp-content/plugins/wp_book_me/public/partials
     #services {
         color: <?php echo $fiftyPercentBrighter; ?>;
     }
+    #roomPictureSelect {
+        border: 10px dotted  <?php echo $veryBrightColor; ?> ;
+    }
 
 </style>
 

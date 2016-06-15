@@ -318,6 +318,8 @@
 
 #roomPictureSelect {
     /*background-color: #2aabd2;*/
+    border: 10px dotted rgba(217, 219, 255, 0.65);
+    background-clip: padding-box;
     height: 240px;
 }
 

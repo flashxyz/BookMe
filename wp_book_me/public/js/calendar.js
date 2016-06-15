@@ -419,7 +419,7 @@ $(document).ready(function () {
         var name = $('#roomSelect').val();
         if (name == "בחר חדר:")
             return;
-        var dropdownstr = " <div class='dropdown'><button class='dropbtn'>שירותי חדר " + name;
+        var dropdownstr = " <div class='dropdown'><button class='dropbtn'>שירותי " + name;
 
         var services;
         var i;
@@ -439,8 +439,15 @@ $(document).ready(function () {
         servicesRoomSelected += "</div> </div>";
         dropdownstr += servicesRoomSelected;
 
-        var noImage = "http://bookme.myweb.jce.ac.il/wp-content/uploads/2016/06/noPic.jpg";
-        $('#roomPictureSelect').css('background-image', 'url(' + noImage + ')');
+        //noinspection JSAnnotator
+        var randomImages = ["http://bookme.myweb.jce.ac.il/wp-content/uploads/2016/06/noPic.jpg" ,
+        "http://bookme.myweb.jce.ac.il/wp-content/uploads/2016/06/purpleRoom.jpg",
+        "http://bookme.myweb.jce.ac.il/wp-content/uploads/2016/06/greenRoom.jpg"
+        ] ;
+        var randomImgIndex = Math.floor(Math.random() * 3);
+        alert("random images index is " +randomImgIndex);
+
+        $('#roomPictureSelect').css('background-image', 'url(' + randomImages[randomImgIndex] + ')');
         $('#roomPictureSelect').css('background-size', '100%');
         $('#roomPictureSelect').html(dropdownstr);
 
