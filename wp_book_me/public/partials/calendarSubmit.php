@@ -47,7 +47,7 @@ if($_POST[addRes] == true)
     ));
 
     //get last added row
-    $selectSQL_lastAddedRow =  $wpdb->get_results( "SELECT * FROM $rooms_reservation_table WHERE groupId = '$groupId' AND userId = '$userId' AND roomId = '$roomId' AND startTime = '$startTime' AND endTime = '$endTime'" );
+    $selectSQL_lastAddedRow =  $wpdb->get_results( "SELECT * FROM $rooms_reservation_table WHERE groupId = '$groupId' AND userId = '$userId' AND roomId = '$roomId' AND startTime = '$startTimeString' AND endTime = '$endTimeString'" );
     //return row to calendar
     echo $selectSQL_lastAddedRow[0]->reservationId;
 

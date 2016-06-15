@@ -46,6 +46,7 @@ if($_POST[searchByServices] == true)
                         OR (startDoubleTime > '$startTimeDouble' AND endDoubleTime >= '$endTimeDouble' AND startDoubleTime < '$endTimeDouble')
                         OR (endDoubleTime < '$endTimeDouble' AND startDoubleTime <= '$startTimeDouble' AND endDoubleTime > '$startTimeDouble'))" );
 
+
         if(sizeof($selectSQL_reservation) > 0)
             continue;
         

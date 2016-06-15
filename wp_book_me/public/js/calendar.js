@@ -277,6 +277,7 @@ $(document).ready(function () {
         displayNumberOfEventsPerUser();
         calendar.fullCalendar('renderEvent',
             {
+                id: 'tempId',
                 title: "רשום לחדר " + roomName.toString(),
                 start: eventStartTime,
                 end: eventEndTime,
@@ -626,7 +627,9 @@ $(document).ready(function () {
             },//dataString
             cache: false,
             success: function (data) {
-                //alert(data);
+                //apply the id on the new event!
+                var newEvent = calendar.fullCalendar('clientEvents', 'tempId')[0];
+                newEvent._id = data;
             }
         });
     }
