@@ -617,8 +617,11 @@ $(document).ready(function () {
                 group: groupID,
                 room: selectedRoomId,
                 userId: userID.toString(),
-                start: eventStartTime.toString().split('(')[0],
-                end: eventEndTime.toString().split('(')[0],
+                startString: eventStartTime.toString(),
+                endString: eventEndTime.toString(),
+                dateString: getDateTimeFromDate(eventStartTime),
+                startTimeDouble:getHourTimeIntegerFromDate(eventStartTime),
+                endTimeDouble:getHourTimeIntegerFromDate(eventEndTime),
                 addRes: true,
             },//dataString
             cache: false,
@@ -626,6 +629,18 @@ $(document).ready(function () {
                 //alert(data);
             }
         });
+    }
+
+    function getHourTimeIntegerFromDate(time)
+    {
+        var hour = time.getHours();
+        var minutes = time.getMinutes()/60;
+        return (hour+minutes);
+    }
+
+    function getDateTimeFromDate(time)
+    {
+        return time.getDate() + "/" + (time.getMonth()+1);
     }
 
     /*  this function is using the start of selection time, and the end of selection time,

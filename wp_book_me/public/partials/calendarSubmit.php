@@ -21,11 +21,14 @@ $rooms_options_table = $wpdb->prefix . "bookme_rooms_options";
 if($_POST[addRes] == true)
 {
 
-    $groupId = $_POST['group'] ;
-    $roomId = $_POST['room'] ;
-    $userId = $_POST['userId'] ;
-    $startTime = $_POST['start'] ;
-    $endTime = $_POST['end'] ;
+    $groupId = $_POST['group'];
+    $roomId = $_POST['room'];
+    $userId = $_POST['userId'];
+    $startTimeString = $_POST['startString'];
+    $endTimeString = $_POST['endString'];
+    $dateString = $_POST['dateString'];
+    $startTimeDouble = $_POST['startTimeDouble'];
+    $endTimeDouble = $_POST['endTimeDouble'];
 
 
 
