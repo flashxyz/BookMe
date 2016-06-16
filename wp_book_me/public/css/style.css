@@ -346,6 +346,7 @@ input:required {
     transition-property: background, border-radius;
     transition-duration: .2s, 1s;
     transition-timing-function: linear, ease-in;
+    animation: shake 9s infinite;
 }
 
 .cool-button:hover {
