@@ -32,8 +32,11 @@ $(document).ready(function () {
     $('#btnReserveRoom').click(reserveRoom);
     $('#btnFindRoom').click(validationFindRoom);
 
+<<<<<<< HEAD
     $(document).on('click', ".confirm",function(){window.location.reload(true); });
 
+=======
+>>>>>>> parent of 9946f60... fixed overload orders
     //hide the room selection div 
     $('#roomHide').hide();
     $('#errorInput').hide();
