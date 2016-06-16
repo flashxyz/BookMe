@@ -32,6 +32,8 @@ $(document).ready(function () {
     $('#btnReserveRoom').click(reserveRoom);
     $('#btnFindRoom').click(validationFindRoom);
 
+    $(".confirm").click(function(){location.reload();});
+
     //hide the room selection div 
     $('#roomHide').hide();
     $('#errorInput').hide();
