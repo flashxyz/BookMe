@@ -134,13 +134,13 @@ $(document).ready(function () {
 
 
             //check the selection is for the same day!
-            if (dateStart.getDate() != dateEnd.getDate() ) {
+            if (dateStart.getDate() != dateEnd.getDate()) {
                 cleanInErrorInput(errorMoreThenOneDay);
                 return;
             }
 
             //check the user minute and the preventSlotTime(limit of admin)
-            if ( (((endHour - startHour) * 60 + addMIn) > preventSlotTime ) || (dateStart.getDate() != dateEnd.getDate()) ) {
+            if ((((endHour - startHour) * 60 + addMIn) > preventSlotTime ) || (dateStart.getDate() != dateEnd.getDate())) {
                 cleanInErrorInput(errorMenyHourPerUser);
                 return;
             }
@@ -357,8 +357,6 @@ $(document).ready(function () {
         'autoclose': true
     });
 
-    $('#datePicker').datepicker();
-
     /*
      displayProperTimeLabel this function get hour, min
      and return time.
@@ -440,18 +438,16 @@ $(document).ready(function () {
         dropdownstr += servicesRoomSelected;
 
         //noinspection JSAnnotator
-        var randomImages = ["http://bookme.myweb.jce.ac.il/wp-content/uploads/2016/06/noPic.jpg" ,
-        "http://bookme.myweb.jce.ac.il/wp-content/uploads/2016/06/purpleRoom.jpg",
-        "http://bookme.myweb.jce.ac.il/wp-content/uploads/2016/06/greenRoom.jpg"
-        ] ;
+        var randomImages = ["http://bookme.myweb.jce.ac.il/wp-content/uploads/2016/06/noPic.jpg",
+            "http://bookme.myweb.jce.ac.il/wp-content/uploads/2016/06/purpleRoom.jpg",
+            "http://bookme.myweb.jce.ac.il/wp-content/uploads/2016/06/greenRoom.jpg"
+        ];
         var randomImgIndex = Math.floor(Math.random() * 3);
-        alert("random images index is " +randomImgIndex);
+        alert("random images index is " + randomImgIndex);
 
         $('#roomPictureSelect').css('background-image', 'url(' + randomImages[randomImgIndex] + ')');
         $('#roomPictureSelect').css('background-size', '100%');
         $('#roomPictureSelect').html(dropdownstr);
-
-
     }
 
 
@@ -568,8 +564,8 @@ $(document).ready(function () {
         eventStartTime = new Date(year, month - 1, day, hourStart, minStart);
         eventEndTime = new Date(year, month - 1, day, hourEnd, minEnd);
 
-        for(var i = 0; i < excludedDays.length ; i++)
-            if(excludedDays[i] == eventStartTime.getDay())
+        for (var i = 0; i < excludedDays.length; i++)
+            if (excludedDays[i] == eventStartTime.getDay())
                 cleanInErrorInput(errorCurrentTime);
     }
 
@@ -592,6 +588,9 @@ $(document).ready(function () {
                 break;
             }
         }
+        if (roomsArray[i][4] != "")
+            description += "<br>" + roomsArray[i][4] + ".";
+
         var specificRoomServices = services.split(',');
         if (specificRoomServices.length != 1) {
             description += "<br> השירותים בחדר זה הם:";
@@ -605,7 +604,7 @@ $(document).ready(function () {
             }
         }
         else
-            description += "<br>"+ "אין שירותים בחדר זה.";
+            description += "<br>" + "אין שירותים בחדר זה.";
         $("#diplayOrderRoom").replaceWith(description);
 
         var noImage = "http://bookme.myweb.jce.ac.il/wp-content/uploads/2016/06/noPic.jpg";
@@ -628,8 +627,8 @@ $(document).ready(function () {
                 startString: eventStartTime.toString(),
                 endString: eventEndTime.toString(),
                 dateString: getDateTimeFromDate(eventStartTime),
-                startTimeDouble:getHourTimeIntegerFromDate(eventStartTime),
-                endTimeDouble:getHourTimeIntegerFromDate(eventEndTime),
+                startTimeDouble: getHourTimeIntegerFromDate(eventStartTime),
+                endTimeDouble: getHourTimeIntegerFromDate(eventEndTime),
                 addRes: true,
             },//dataString
             cache: false,
@@ -641,16 +640,14 @@ $(document).ready(function () {
         });
     }
 
-    function getHourTimeIntegerFromDate(time)
-    {
+    function getHourTimeIntegerFromDate(time) {
         var hour = time.getHours();
-        var minutes = time.getMinutes()/60;
-        return (hour+minutes);
+        var minutes = time.getMinutes() / 60;
+        return (hour + minutes);
     }
 
-    function getDateTimeFromDate(time)
-    {
-        return time.getDate() + "/" + (time.getMonth()+1);
+    function getDateTimeFromDate(time) {
+        return time.getDate() + "/" + (time.getMonth() + 1);
     }
 
     /*  this function is using the start of selection time, and the end of selection time,
@@ -708,8 +705,8 @@ $(document).ready(function () {
                 servicesArray: roomClickedServices,
                 groupId: groupID,
                 dateString: getDateTimeFromDate(eventStartTime),
-                startTimeDouble:getHourTimeIntegerFromDate(eventStartTime),
-                endTimeDouble:getHourTimeIntegerFromDate(eventEndTime),
+                startTimeDouble: getHourTimeIntegerFromDate(eventStartTime),
+                endTimeDouble: getHourTimeIntegerFromDate(eventEndTime),
                 capacityRoom: demandedCapacity,
                 searchByServices: true,
             },//dataString
