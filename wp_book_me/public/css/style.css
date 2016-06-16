@@ -338,6 +338,8 @@ input:required {
 
 .cool-button {
     background: #2db34a;
+    font-family: "Nunito", sans-serif;
+    font-size: large;
     border-radius: 6px;
     height: 50%;
     width: 50%;

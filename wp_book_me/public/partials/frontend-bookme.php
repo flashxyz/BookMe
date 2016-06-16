@@ -412,7 +412,7 @@ $searchRoomsURL = get_site_url()."/wp-content/plugins/wp_book_me/public/partials
                     חדרים
                     <br><br>
                 <div id="roomConfirmSelect">
-                    <button type="button" id="btnFindRoom" class="cool-button">מצא</button>
+                    <button type="button" id="btnFindRoom" class="cool-button">חיפוש</button>
 
                     <div id="roomHide">
                         <div id="chooseroom"><select class="form-control" id="roomSelect" value="">
