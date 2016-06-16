@@ -32,7 +32,7 @@ $(document).ready(function () {
     $('#btnReserveRoom').click(reserveRoom);
     $('#btnFindRoom').click(validationFindRoom);
 
-    $(".confirm").click(function(){location.reload();});
+    $(document).on('click', ".confirm",function(){window.location.reload(true); });
 
     //hide the room selection div 
     $('#roomHide').hide();
