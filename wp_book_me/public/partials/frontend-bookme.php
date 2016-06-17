@@ -354,6 +354,12 @@ $searchRoomsURL = get_site_url() . "/wp-content/plugins/wp_book_me/public/partia
     #roomPictureSelect {
         border: 10px dotted <?php echo $veryBrightColor; ?>;
     }
+    .slideUp {
+        background-color: <?php echo $calendarColor; ?>;
+    }
+    .Tada {
+        background-color: <?php echo $calendarColor; ?>;
+    }
 
 </style>
 
@@ -411,7 +417,7 @@ $searchRoomsURL = get_site_url() . "/wp-content/plugins/wp_book_me/public/partia
                 חדרים
                 <br><br>
                 <div id="roomConfirmSelect">
-                    <button type="button" id="btnFindRoom" class="cool-button">חיפוש</button>
+                    <button type="button" id="btnFindRoom" class="Tada">חיפוש</button>
 
                     <div id="roomHide">
                         <div id="chooseroom"><select class="form-control" id="roomSelect" value="">
