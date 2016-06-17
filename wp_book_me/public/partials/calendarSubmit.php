@@ -12,11 +12,12 @@ require_once( $parse_uri[0] . 'wp-load.php' );
 
 global $wpdb;
 
-//get the table name we want to work with
-$rooms_reservation_table = $wpdb->prefix . "bookme_room_reservation";
+//get reservation table
+$room_reservation_table = $wpdb->prefix . "bookme_room_reservation";
 
-//get rooms table
-$rooms_options_table = $wpdb->prefix . "bookme_rooms_options";
+//room SQL table
+$room_options_table = $wpdb->prefix . "bookme_rooms_options";
+
 
 if($_POST[addRes] == true)
 {
@@ -47,7 +48,7 @@ if($_POST[addRes] == true)
     ));
 
     //get last added row
-    $selectSQL_lastAddedRow =  $wpdb->get_results( "SELECT * FROM $rooms_reservation_table WHERE groupId = '$groupId' AND userId = '$userId' AND roomId = '$roomId' AND startTime = '$startTimeString' AND endTime = '$endTimeString'" );
+    $selectSQL_lastAddedRow =  $wpdb->get_results( "SELECT * FROM $room_reservation_table WHERE groupId = '$groupId' AND userId = '$userId' AND roomId = '$roomId' AND startTime = '$startTimeString' AND endTime = '$endTimeString'" );
     //return row to calendar
     echo $selectSQL_lastAddedRow[0]->reservationId;
 
@@ -97,8 +98,56 @@ if($_POST[delRes] == true)
     $eventId = $_POST['event_id'] ;
 
     //execute the delete query of the group id we want to delete
-    $wpdb->query( $wpdb->prepare( " DELETE FROM $rooms_reservation_table WHERE reservationId = %d", $eventId));
+    $wpdb->query( $wpdb->prepare( " DELETE FROM $room_reservation_table WHERE reservationId = %d", $eventId));
 
+}
+
+if($_POST[getReservationArray] == true)
+{
+    $groupID = $_POST['groupId'] ;
+    $userID = $_POST['userId'] ;
+
+
+
+    //get all reservations for this user id,group
+    $selectSQL_reservation = $wpdb->get_results($wpdb->prepare("SELECT * FROM $room_reservation_table WHERE groupId = %d AND userId = %d ", $groupID, $userID));
+    $numberOfReservation = sizeof($selectSQL_reservation);
+
+    //get rooms
+    $selectSQL_rooms = $wpdb->get_results($wpdb->prepare("SELECT * FROM $room_options_table WHERE groupId = %d", $groupID));
+
+
+    //add rooms to array
+    $index = 0;
+    $roomsArray = [];
+    $selectSQL_rooms[$index];
+    $numberOfRooms = sizeof($selectSQL_rooms);
+
+    //map of room names by id
+    $roomArrayById = array();
+
+    while ($index < $numberOfRooms) {
+        $roomCell[0] = $selectSQL_rooms[$index]->roomId;
+        $roomCell[1] = $selectSQL_rooms[$index]->roomName;
+        $roomArrayById[$roomCell[0]] = $roomCell[1];
+        $index++;
+    }
+
+    //add all reservations for this user to an array
+    $reservation_array = [];
+    $index = 0;
+    while ($index < $numberOfReservation) {
+        $resCell[0] = $selectSQL_reservation[$index]->roomId;
+        $resCell[1] = $selectSQL_reservation[$index]->startTime;
+        $resCell[2] = $selectSQL_reservation[$index]->endTime;
+        $resCell[3] = $selectSQL_reservation[$index]->reservationId;
+        $resCell[4] = $roomArrayById[$resCell[0]];
+        array_push($reservation_array, $resCell);
+        $index++;
+    }
+
+    echo json_encode($reservation_array);
+    //echo "hello";
 }
 
 

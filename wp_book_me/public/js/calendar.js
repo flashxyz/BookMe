@@ -3,6 +3,8 @@ $(document).ready(function () {
     var selectedRoomId = 0;
     var roomsAfterFilter = [];
     var serviceAfterFilter = [];
+    var reservationsArray;
+
 
     //represent the start & end time of a specific room order request
     var eventStartTime;
@@ -300,35 +302,46 @@ $(document).ready(function () {
 
     function addUserReservations() {
 
-        //reservationsArray ->array of reservations for this looged user.
-        // $resCell[0] = $selectSQL_reservation[$index]->roomId;
-        // $resCell[1] = $selectSQL_reservation[$index]->startTime;
-        // $resCell[2] = $selectSQL_reservation[$index]->endTime;
-        //$resCell[3] = $selectSQL_reservation[$index]->reservationId;
+
+        $.ajax({
+            type: "POST",
+            url: submitURL,
+            data: {
+                groupId: groupID,
+                userId:userID,
+                getReservationArray: true
+            },//dataString
+            cache: false,
+            success: function (data)
+            {
+                reservationsArray = JSON.parse(data);
+                alert(reservationsArray);
+                var resIndex = 0;
+                var startOrderDate;
+                var endOrderDate;
+                while (resIndex < reservationsArray.length) {
+                    startOrderDate = new Date(reservationsArray[resIndex][1]);
+                    endOrderDate = new Date(reservationsArray[resIndex][2])
+                    calendar.fullCalendar('renderEvent',
+                        {
+                            id: reservationsArray[resIndex][3].toString(),
+                            title: "רשום לחדר " + reservationsArray[resIndex][4],
+                            start: startOrderDate,
+                            end: endOrderDate,
+                            color: '#3300FF',
+                            textColor: 'white',
+                            allDay: false
+
+                        },
+                        true // make the event "stick"
+                    );
+
+                    resIndex++;
+                }
+            }
+        });
 
 
-        var resIndex = 0;
-        var startOrderDate;
-        var endOrderDate;
-        while (resIndex < reservationsArray.length) {
-            startOrderDate = new Date(reservationsArray[resIndex][1]);
-            endOrderDate = new Date(reservationsArray[resIndex][2])
-            calendar.fullCalendar('renderEvent',
-                {
-                    id: reservationsArray[resIndex][3].toString(),
-                    title: "רשום לחדר " + reservationsArray[resIndex][4],
-                    start: startOrderDate,
-                    end: endOrderDate,
-                    color: '#3300FF',
-                    textColor: 'white',
-                    allDay: false
-
-                },
-                true // make the event "stick"
-            );
-
-            resIndex++;
-        }
 
     }
 

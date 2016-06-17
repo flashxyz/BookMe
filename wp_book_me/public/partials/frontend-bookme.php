@@ -86,22 +86,22 @@ while ($index < $numberOfRooms) {
 $room_reservation_table = $wpdb->prefix . "bookme_room_reservation";
 
 
-//get all reservations for this user id,group
-$selectSQL_reservation = $wpdb->get_results($wpdb->prepare("SELECT * FROM $room_reservation_table WHERE groupId = %d AND userId = %d ", $groupID, $userID));
-$numberOfReservation = sizeof($selectSQL_reservation);
-
-//add all reservations for this user to an array
-$reservation_array = [];
-$index = 0;
-while ($index < $numberOfReservation) {
-    $resCell[0] = $selectSQL_reservation[$index]->roomId;
-    $resCell[1] = $selectSQL_reservation[$index]->startTime;
-    $resCell[2] = $selectSQL_reservation[$index]->endTime;
-    $resCell[3] = $selectSQL_reservation[$index]->reservationId;
-    $resCell[4] = $roomArrayById[$resCell[0]];
-    array_push($reservation_array, $resCell);
-    $index++;
-}
+////get all reservations for this user id,group
+//$selectSQL_reservation = $wpdb->get_results($wpdb->prepare("SELECT * FROM $room_reservation_table WHERE groupId = %d AND userId = %d ", $groupID, $userID));
+//$numberOfReservation = sizeof($selectSQL_reservation);
+//
+////add all reservations for this user to an array
+//$reservation_array = [];
+//$index = 0;
+//while ($index < $numberOfReservation) {
+//    $resCell[0] = $selectSQL_reservation[$index]->roomId;
+//    $resCell[1] = $selectSQL_reservation[$index]->startTime;
+//    $resCell[2] = $selectSQL_reservation[$index]->endTime;
+//    $resCell[3] = $selectSQL_reservation[$index]->reservationId;
+//    $resCell[4] = $roomArrayById[$resCell[0]];
+//    array_push($reservation_array, $resCell);
+//    $index++;
+//}
 
 $selectSQL_reservation_byUser = $wpdb->get_results($wpdb->prepare("SELECT * FROM $room_reservation_table WHERE userId = %d ", $userID));
 $numberOfReservationByUser = sizeof($selectSQL_reservation_byUser);
