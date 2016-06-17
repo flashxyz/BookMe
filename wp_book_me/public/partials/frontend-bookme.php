@@ -104,6 +104,10 @@ $brightness = 0.9; // 10% lighter
 $darkerColor = colourBrightness($calendarColor, $brightness);
 
 
+
+$selectSQL_reservation_byUser = $wpdb->get_results($wpdb->prepare("SELECT * FROM $room_reservation_table WHERE userId = %d ", $userID));
+$numberOfReservationByUser = sizeof($selectSQL_reservation_byUser);
+
 //this function will generate a brighter color than the one given as a parameter.
 //the whole calendar colors will be based upon that.
 function colourBrightness($hex, $percent)
