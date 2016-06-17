@@ -85,40 +85,6 @@ while ($index < $numberOfRooms) {
 //get table
 $room_reservation_table = $wpdb->prefix . "bookme_room_reservation";
 
-
-////get all reservations for this user id,group
-//$selectSQL_reservation = $wpdb->get_results($wpdb->prepare("SELECT * FROM $room_reservation_table WHERE groupId = %d AND userId = %d ", $groupID, $userID));
-//$numberOfReservation = sizeof($selectSQL_reservation);
-//
-////add all reservations for this user to an array
-//$reservation_array = [];
-//$index = 0;
-//while ($index < $numberOfReservation) {
-//    $resCell[0] = $selectSQL_reservation[$index]->roomId;
-//    $resCell[1] = $selectSQL_reservation[$index]->startTime;
-//    $resCell[2] = $selectSQL_reservation[$index]->endTime;
-//    $resCell[3] = $selectSQL_reservation[$index]->reservationId;
-//    $resCell[4] = $roomArrayById[$resCell[0]];
-//    array_push($reservation_array, $resCell);
-//    $index++;
-//}
-
-$selectSQL_reservation_byUser = $wpdb->get_results($wpdb->prepare("SELECT * FROM $room_reservation_table WHERE userId = %d ", $userID));
-$numberOfReservationByUser = sizeof($selectSQL_reservation_byUser);
-
-//add all reservations for this user to an array
-$reservation_array_byUser = [];
-$index = 0;
-while ($index < $numberOfReservationByUser) {
-    $resCell[0] = $selectSQL_reservation_byUser[$index]->roomId;
-    $resCell[1] = $selectSQL_reservation_byUser[$index]->startTime;
-    $resCell[2] = $selectSQL_reservation_byUser[$index]->endTime;
-    $resCell[3] = $selectSQL_reservation_byUser[$index]->reservationId;
-    array_push($reservation_array_byUser, $resCell);
-    $index++;
-}
-
-
 $calendarColor = $selectSQL[0]->calendarColor;
 $fromTime = $selectSQL[0]->fromTime;
 $toTime = $selectSQL[0]->toTime;
@@ -241,14 +207,6 @@ $searchRoomsURL = get_site_url() . "/wp-content/plugins/wp_book_me/public/partia
 
     <?php $jsArray = json_encode($roomsArray);
     echo "var roomsArray = " . $jsArray . ";\n";
-    ?>
-
-    <?php $jsArray = json_encode($reservation_array);
-    echo "var reservationsArray = " . $jsArray . ";\n";
-    ?>
-
-    <?php $jsArray = json_encode($reservation_array_byUser);
-    echo "var reservationsArrayByUser = " . $jsArray . ";\n";
     ?>
 
 

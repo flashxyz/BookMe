@@ -256,6 +256,7 @@ $(document).ready(function () {
      */
     function reserveRoom() {
         var booked = alreadyBooked();
+        alert(booked);
         if (!booked) {
             cleanInErrorInput(errorAlreadyBooked);
             return;
@@ -315,7 +316,6 @@ $(document).ready(function () {
             success: function (data)
             {
                 reservationsArray = JSON.parse(data);
-                alert(reservationsArray);
                 var resIndex = 0;
                 var startOrderDate;
                 var endOrderDate;
@@ -456,7 +456,6 @@ $(document).ready(function () {
             "http://bookme.myweb.jce.ac.il/wp-content/uploads/2016/06/greenRoom.jpg"
         ];
         var randomImgIndex = Math.floor(Math.random() * 3);
-        alert("random images index is " + randomImgIndex);
 
         $('#roomPictureSelect').css('background-image', 'url(' + randomImages[randomImgIndex] + ')');
         $('#roomPictureSelect').css('background-size', '100%');
@@ -646,7 +645,6 @@ $(document).ready(function () {
                 //apply the id on the new event!
                 var newEvent = calendar.fullCalendar('clientEvents', 'tempId')[0];
                 newEvent._id = data;
-                alert(data);
             }
         });
     }
@@ -864,10 +862,10 @@ $(document).ready(function () {
     }
 
     function alreadyBooked() {
-        var dateStart;
-        var dateEnd;
 
-        $.ajax({
+        var result;
+        jQuery.ajax({
+            async: false,
             type: "POST",
             url: submitURL,
             data: {
@@ -876,24 +874,30 @@ $(document).ready(function () {
             },//dataString
             cache: false,
             success: function (data) {
-
+                var dateStart;
+                var dateEnd;
                 reservationsArrayByUser = JSON.parse(data);
 
                 for (var i = 0; i < reservationsArrayByUser.length; i++) {
                     dateStart = new Date(reservationsArrayByUser[i][1]);
                     dateEnd = new Date(reservationsArrayByUser[i][2])
+
+
                     if (eventStartTime < dateStart && eventEndTime > dateStart)
-                        return false;
+                        result = false;
                     if (eventStartTime >= dateStart && eventEndTime <= dateEnd)
-                        return false;
+                        result = false;
                     if (eventStartTime < dateEnd && eventEndTime > dateEnd)
-                        return false;
+                        result = false;
                     if (eventStartTime < dateStart && eventEndTime > dateEnd)
-                        return false;
+                        result = false;
                 }
-                return true;
+                result = true;
             }
         });
+        console.log("after call");
+        return result;
+
     }
 
 
