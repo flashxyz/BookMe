@@ -803,21 +803,53 @@ $(document).ready(function () {
     //and if they empty or they un legal - the site will alert the fields required.
     function validationFindRoom() {
 
-
         if (userID == 0) {
             sweetAlert("...אופס", ".!עליך להתחבר על מנת לבצע הזמנה", "error");
             return;
         }
+        var start_time = $('#inputStartTime').val();
+        var end_time = $('#inputEndTime').val();
 
+        var hourMinStart = start_time.split(":");
+        var hourMinEnd = end_time.split(":");
+        hourMinStart[0] = (parseInt(hourMinStart[0]));
+        hourMinStart[1] = (parseInt(hourMinStart[1]));
+
+        hourMinEnd[0] = (parseInt(hourMinEnd[0]));
+        hourMinEnd[1] = (parseInt(hourMinEnd[1]));
+
+        var addMIn = hourMinStart[1];
+
+        //if minStart equals minEnd so no calc will be only in hour
+        if (hourMinStart[1] == hourMinEnd[1])
+            addMIn = 0;
+
+        //if minStart bigger minEnd like 08:30 09:15 so minus 1 in hour time  and calculate the rest minute
+        else if (hourMinStart[1] > hourMinEnd[1]) {
+            hourMinStart[0]--;
+            addMIn = 60 - (hourMinStart[1] - hourMinEnd[1]);
+        }
+
+        //if minStart lower minEnd like 08:10 09:15 so calculate the rest minute
+        else if (hourMinStart[1] < hourMinEnd[1])
+            addMIn = (hourMinEnd[1] - hourMinStart[1]);
+
+        alert(((hourMinEnd[0] - hourMinStart[0]) * 60 + addMIn)  + ">" + preventSlotTime );
+        //check the user minute and the preventSlotTime(limit of admin)
+        if ((((hourMinEnd[0] - hourMinStart[0]) * 60 + addMIn) > preventSlotTime )) {
+            cleanInErrorInput(errorMenyHourPerUser);
+            return;
+        }
+    
         if (!eventStartTime) {
             cleanInErrorInput(errorEmptyInputs);
             return;
         }
-        if ($('#inputEndTime').val() == null || $('#inputStartTime').val() == null || $('#datePicker').val() == null) {
+        if (end_time == null || start_time == null || $('#datePicker').val() == null) {
             cleanInErrorInput(errorEmptyInputs);
             return;
         }
-        if ($('#inputEndTime').val() == "" || $('#inputStartTime').val() == "" || $('#datePicker').val() == "") {
+        if (end_time == "" || start_time == "" || $('#datePicker').val() == "") {
             cleanInErrorInput(errorEmptyInputs);
             return;
         }
