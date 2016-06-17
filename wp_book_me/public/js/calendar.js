@@ -6,6 +6,15 @@ $(document).ready(function () {
     var reservationsArray;
     var reservationsArrayByUser;
 
+    var weekday=new Array(7);
+    weekday[0]="sunday";
+    weekday[1]="monday";
+    weekday[2]="tuesday";
+    weekday[3]="wednesday";
+    weekday[4]="thursday";
+    weekday[5]="friday";
+    weekday[6]="saturday";
+
 
     //represent the start & end time of a specific room order request
     var eventStartTime;
@@ -284,7 +293,9 @@ $(document).ready(function () {
                 dateString: getDateTimeFromDate(eventStartTime),
                 startTimeDouble: getHourTimeIntegerFromDate(eventStartTime),
                 endTimeDouble: getHourTimeIntegerFromDate(eventEndTime),
+                day:weekday[eventStartTime.getDay()],
                 capacityRoom: demandedCapacity,
+
                 searchByServices: true,
             },//dataString
             cache: false,
@@ -756,6 +767,7 @@ $(document).ready(function () {
                 startTimeDouble: getHourTimeIntegerFromDate(eventStartTime),
                 endTimeDouble: getHourTimeIntegerFromDate(eventEndTime),
                 capacityRoom: demandedCapacity,
+                day:weekday[eventStartTime.getDay()],
                 searchByServices: true,
             },//dataString
             cache: false,

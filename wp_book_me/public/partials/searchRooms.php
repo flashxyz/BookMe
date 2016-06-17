@@ -27,6 +27,7 @@ if($_POST[searchByServices] == true)
     $startTimeDouble = $_POST['startTimeDouble'];
     $endTimeDouble = $_POST['endTimeDouble'];
     $capacityDemand = $_POST['capacityRoom'];
+    $reservationDay = $_POST['day'];
 
     $roomsMatchedByServices = array();
     //get rooms
@@ -40,6 +41,11 @@ if($_POST[searchByServices] == true)
 
         if($capacityDemand > $roomCapacitiy)
             continue;
+
+
+        $roomActiveDays = unserialize($value -> activeDays);
+        if($roomActiveDays[$reservationDay] != 1)
+           continue;
 
         $selectSQL_reservation =  $wpdb->get_results( "SELECT * FROM $rooms_reservation_table WHERE groupId = '$groupID' 
                         AND roomId = '$roomID' AND resDate ='$dateString' AND ((startDoubleTime <= '$startTimeDouble' AND endDoubleTime >= '$endTimeDouble')
