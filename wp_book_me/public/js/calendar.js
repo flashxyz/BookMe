@@ -814,17 +814,20 @@ $(document).ready(function () {
         if (eventStartTime.getYear() == currentTime.getYear()) {
             if (eventStartTime.getMonth() == currentTime.getMonth()) {
                 if (eventStartTime.getDate() < currentTime.getDate()) {
+                    $('#datePicker').val("");
                     cleanInErrorInput(errorEarlyInputs);
                     return;
                 }
                 else if (eventStartTime.getDate() == currentTime.getDate())
                     if (eventStartTime.getHours() <= currentTime.getHours()
                         || (eventEndTime.getHours() - eventStartTime.getHours()) > preventSlotTime) {
+                        $('#inputEndTime').val("");
                         cleanInErrorInput(errorEarlyInputs);
                         return;
                     }
             }
             else if (eventStartTime.getMonth() < currentTime.getMonth()) {
+                $('#inputStartTime').val("");
                 cleanInErrorInput(errorCurrentTime);
                 return;
             }
@@ -843,6 +846,8 @@ $(document).ready(function () {
     }
 
     function cleanInErrorInput(eroorInput) {
+        $('#roomHide').hide();
+        $('#btnFindRoom').show();
         var errorInput = "";
         if (eroorInput == errorCurrentTime) {
             sweetAlert("...אופס", "!תאריך ושעה לא נכונים", "error");
@@ -873,9 +878,6 @@ $(document).ready(function () {
         }
 
         $("#errorInput").replaceWith(errorInput);
-        $('#datePicker').val("");
-        $('#inputStartTime').val("");
-        $('#inputEndTime').val("");
         $('#errorInput').show();
 
     }
