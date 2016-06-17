@@ -256,7 +256,6 @@ $(document).ready(function () {
      */
     function reserveRoom() {
         var booked = alreadyBooked();
-        alert(booked);
         if (!booked) {
             cleanInErrorInput(errorAlreadyBooked);
             return;
@@ -881,21 +880,30 @@ $(document).ready(function () {
                 for (var i = 0; i < reservationsArrayByUser.length; i++) {
                     dateStart = new Date(reservationsArrayByUser[i][1]);
                     dateEnd = new Date(reservationsArrayByUser[i][2])
-
-
                     if (eventStartTime < dateStart && eventEndTime > dateStart)
+                    {
                         result = false;
+                        return;
+                    }
                     if (eventStartTime >= dateStart && eventEndTime <= dateEnd)
+                    {
                         result = false;
+                        return;
+                    }
                     if (eventStartTime < dateEnd && eventEndTime > dateEnd)
+                    {
                         result = false;
+                        return;
+                    }
                     if (eventStartTime < dateStart && eventEndTime > dateEnd)
+                    {
                         result = false;
+                        return;
+                    }
                 }
                 result = true;
             }
         });
-        console.log("after call");
         return result;
 
     }
