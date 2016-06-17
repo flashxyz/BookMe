@@ -417,7 +417,7 @@ $searchRoomsURL = get_site_url() . "/wp-content/plugins/wp_book_me/public/partia
                         <div id="chooseroom"><select class="form-control" id="roomSelect" value="">
                                 <option></option>
                             </select></div>
-                        <button type="button" id="btnReserveRoom" class="cool-button">אישור</button>
+                        <button type="button" id="btnReserveRoom" class="slideUp">בצע הזמנה</button>
                     </div>
 
                 </div>
