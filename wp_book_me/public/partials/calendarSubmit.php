@@ -34,7 +34,7 @@ if($_POST[addRes] == true)
 
 
     //execute the insert new row query
-    $wpdb->insert($rooms_reservation_table, array(
+    $wpdb->insert($room_reservation_table, array(
         'reservationId' => '',
         'groupId' => $groupId,
         'roomId' => $roomId,

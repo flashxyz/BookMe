@@ -4,6 +4,7 @@ $(document).ready(function () {
     var roomsAfterFilter = [];
     var serviceAfterFilter = [];
     var reservationsArray;
+    var reservationsArrayByUser;
 
 
     //represent the start & end time of a specific room order request
@@ -301,7 +302,6 @@ $(document).ready(function () {
     }
 
     function addUserReservations() {
-
 
         $.ajax({
             type: "POST",
@@ -627,9 +627,6 @@ $(document).ready(function () {
 
     function sendDataToPhp() {
 
-        var requestedSlots = [];
-        requestedSlots = breakDurationIntoSlotsArray();
-        alert(requestedSlots.toString());
         $.ajax({
             type: "POST",
             url: submitURL,
@@ -649,6 +646,7 @@ $(document).ready(function () {
                 //apply the id on the new event!
                 var newEvent = calendar.fullCalendar('clientEvents', 'tempId')[0];
                 newEvent._id = data;
+                alert(data);
             }
         });
     }
@@ -868,19 +866,34 @@ $(document).ready(function () {
     function alreadyBooked() {
         var dateStart;
         var dateEnd;
-        for (var i = 0; i < reservationsArrayByUser.length; i++) {
-            dateStart = new Date(reservationsArrayByUser[i][1]);
-            dateEnd = new Date(reservationsArrayByUser[i][2])
-            if (eventStartTime < dateStart && eventEndTime > dateStart)
-                return false;
-            if (eventStartTime >= dateStart && eventEndTime <= dateEnd)
-                return false;
-            if (eventStartTime < dateEnd && eventEndTime > dateEnd)
-                return false;
-            if (eventStartTime < dateStart && eventEndTime > dateEnd)
-                return false;
-        }
-        return true;
+
+        $.ajax({
+            type: "POST",
+            url: submitURL,
+            data: {
+                userId:userID,
+                getReservationArrayByUser: true
+            },//dataString
+            cache: false,
+            success: function (data) {
+
+                reservationsArrayByUser = JSON.parse(data);
+
+                for (var i = 0; i < reservationsArrayByUser.length; i++) {
+                    dateStart = new Date(reservationsArrayByUser[i][1]);
+                    dateEnd = new Date(reservationsArrayByUser[i][2])
+                    if (eventStartTime < dateStart && eventEndTime > dateStart)
+                        return false;
+                    if (eventStartTime >= dateStart && eventEndTime <= dateEnd)
+                        return false;
+                    if (eventStartTime < dateEnd && eventEndTime > dateEnd)
+                        return false;
+                    if (eventStartTime < dateStart && eventEndTime > dateEnd)
+                        return false;
+                }
+                return true;
+            }
+        });
     }
 
 
