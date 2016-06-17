@@ -610,7 +610,7 @@ $(document).ready(function () {
             cleanInErrorInput(errorCurrentTime);
             return;
         }
-
+        // end of basic validation of inputs.
         eventStartTime = new Date(year, month - 1, day, hourStart, minStart);
         eventEndTime = new Date(year, month - 1, day, hourEnd, minEnd);
 
@@ -619,7 +619,7 @@ $(document).ready(function () {
                 cleanInErrorInput(errorCurrentTime);
     }
 
-
+    // this function will display  the room details.
     function displayOrderRoomInDialog(startHour, startMin, endHour, endMin, nameRoom) {
         var startDisplay = displayProperTimeLabel(startHour, startMin);
         var endDisplay = displayProperTimeLabel(endHour, endMin);
@@ -737,6 +737,7 @@ $(document).ready(function () {
             }
         });
     }
+
 
 
     function clickedServices(roomClickedServices) {
