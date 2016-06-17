@@ -21,6 +21,7 @@ $(document).ready(function () {
     var errorEarlyInputs = 5;
     var errorNoRoomsAvailable = 6;
     var errorMoreThenOneDay = 7;
+    var errorRoomNotAvailable = 8;
 
 
     $("#inputStartTime").keypress(function (event) {
@@ -264,8 +265,46 @@ $(document).ready(function () {
 
         if (roomName == "בחר חדר:")
             return;
+        var userServices = getArrayUserServicesSelected();
 
-        var roomName = $('#roomSelect').val();
+        var demandedCapacity = $('#quantity').val();
+
+        if (demandedCapacity == "")
+            demandedCapacity = 1;
+
+        var roomIsNotAvailable = false;
+
+        $.ajax({
+            async:false,
+            type: "POST",
+            url: searchRoomsURL,
+            data: {
+                servicesArray: userServices,
+                groupId: groupID,
+                dateString: getDateTimeFromDate(eventStartTime),
+                startTimeDouble: getHourTimeIntegerFromDate(eventStartTime),
+                endTimeDouble: getHourTimeIntegerFromDate(eventEndTime),
+                capacityRoom: demandedCapacity,
+                searchByServices: true,
+            },//dataString
+            cache: false,
+            success: function (data) {
+
+                roomsAfterFilter = JSON.parse(data);
+
+                if(roomsAfterFilter.indexOf(roomName) == -1)
+                    roomIsNotAvailable = true;
+
+            }
+        });
+
+        if(roomIsNotAvailable)
+        {
+            cleanInErrorInput(errorRoomNotAvailable);
+
+            return;
+        }
+
         var dataString = 'groupId1' + groupID + 'roomId1' + selectedRoomId + 'userId1' + userID + 'startTime1' + eventStartTime + 'endTime' + eventEndTime;
 
         sendDataToPhp();
@@ -800,7 +839,6 @@ $(document).ready(function () {
         }
         var userServices = getArrayUserServicesSelected();
         clickedServices(userServices);
-        //ShowAvailableRooms();
 
     }
 
@@ -829,6 +867,9 @@ $(document).ready(function () {
         }
         else if (eroorInput == errorMoreThenOneDay) {
             sweetAlert("...אופס", "!הזמנה לא יכול להיות על שני ימים", "error");
+        }
+        else if (eroorInput == errorRoomNotAvailable) {
+            sweetAlert("...אופס", "!מישהו הספיק לתפוס את החדר לפניך", "error");
         }
 
         $("#errorInput").replaceWith(errorInput);
