@@ -180,7 +180,7 @@ if($_GET['group_id']==true AND $_GET['edit_rooms']==true)
                                     </td>
                                     <td width='100px' >
                                         <label for="<?php echo $this->plugin_name; ?>_activeTuesday">
-                                            <input type="checkbox" id="<?php echo $this->plugin_name; ?>_activeTuesday_<?php echo $room_id; ?>" name="<?php echo $this->plugin_name; ?>[activeTuesday_<?php echo $room_id; ?>]" value="1" <?php echo $disableThursday ?> <?php checked($tuesdayCheckedRoomByID, 1); ?>/>
+                                            <input type="checkbox" id="<?php echo $this->plugin_name; ?>_activeTuesday_<?php echo $room_id; ?>" name="<?php echo $this->plugin_name; ?>[activeTuesday_<?php echo $room_id; ?>]" value="1" <?php echo $disableTuesday ?> <?php checked($tuesdayCheckedRoomByID, 1); ?>/>
                                             <sapn>Tuesday</sapn>
                                         </label>
                                     </td>
