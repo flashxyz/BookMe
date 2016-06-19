@@ -834,7 +834,7 @@ $(document).ready(function () {
         else if (hourMinStart[1] < hourMinEnd[1])
             addMIn = (hourMinEnd[1] - hourMinStart[1]);
 
-        alert(((hourMinEnd[0] - hourMinStart[0]) * 60 + addMIn)  + ">" + preventSlotTime );
+        //alert(((hourMinEnd[0] - hourMinStart[0]) * 60 + addMIn)  + ">" + preventSlotTime );
         //check the user minute and the preventSlotTime(limit of admin)
         if ((((hourMinEnd[0] - hourMinStart[0]) * 60 + addMIn) > preventSlotTime )) {
             cleanInErrorInput(errorMenyHourPerUser);
