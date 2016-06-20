@@ -151,11 +151,13 @@ function colourBrightness($hex, $percent)
     return $hash . $hex;
 }
 
-
+$imageUrl = get_site_url() . "/wp-content/plugins/wp_book_me/public/js/images/meeting.png";
 //get the current path url
 $submitURL = get_site_url() . "/wp-content/plugins/wp_book_me/public/partials/calendarSubmit.php";
 
 $searchRoomsURL = get_site_url() . "/wp-content/plugins/wp_book_me/public/partials/searchRooms.php";
+
+$siteURLForImages = get_site_url() . "/wp-content/plugins/wp_book_me/public/js/images/";
 
 
 ?>
@@ -169,6 +171,8 @@ $searchRoomsURL = get_site_url() . "/wp-content/plugins/wp_book_me/public/partia
     var submitURL = "<?php echo $submitURL ?>";
 
     var userID = <?php echo $userID; ?>;
+
+    var siteURLForImages = "<?php echo $siteURLForImages; ?>";
 
     var searchRoomsURL = "<?php echo $searchRoomsURL ?>";
 
@@ -340,7 +344,7 @@ $searchRoomsURL = get_site_url() . "/wp-content/plugins/wp_book_me/public/partia
                 <p style="text-align: center;">
                     <?php echo $description; ?>
                 </p>
-                <img src="http://bookme.myweb.jce.ac.il/wp-content/uploads/2016/05/meeting.png"/>
+                <img src="<?php echo $imageUrl; ?>"/>
                 <div id="ShowNumOfEvents" class="ShowNumOfEventsAnimation"></div>
                 <p></p><br>
                 <h4>אמצעים מיוחדים</h4> <br>

@@ -500,10 +500,11 @@ $(document).ready(function () {
         dropdownstr += servicesRoomSelected;
 
         //noinspection JSAnnotator
-        var randomImages = ["http://bookme.myweb.jce.ac.il/wp-content/uploads/2016/06/noPic.jpg",
-            "http://bookme.myweb.jce.ac.il/wp-content/uploads/2016/06/purpleRoom.jpg",
-            "http://bookme.myweb.jce.ac.il/wp-content/uploads/2016/06/greenRoom.jpg"
-        ];
+        var random1 = "" + siteURLForImages + "noPic.jpg";
+        var random2 = "" + siteURLForImages + "purpleRoom.jpg";
+        var random3 = "" + siteURLForImages + "greenRoom.jpg";
+
+        var randomImages = [random1, random2,random3];
         var randomImgIndex = Math.floor(Math.random() * 3);
 
         $('#roomPictureSelect').css('background-image', 'url(' + randomImages[randomImgIndex] + ')');
